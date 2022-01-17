@@ -35,7 +35,7 @@ terrain jardinier(terrain a){
     }
     return(a);
 }
-
+//pouet
 terrain irriguer(terrain a){
     a.irriguee = 1;
     printf("Le terrain est maintenant irrigué");
