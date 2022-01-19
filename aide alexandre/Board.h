@@ -59,7 +59,8 @@ terrain irriguer(terrain a){
 
 int nombreEtNom(Joueur *JA, Joueur *JB, Joueur *JC, Joueur *JD);
 int nbJoueurs = 0 ;
-int nombreEtNom(Joueur *JA, Joueur *JB, Joueur *JC, Joueur *JD)
+int nombreEtNom(Joueur *JA, Joueur *JB, Joueur *JC, Joueur *JD);
+/*
 {
     printf("Combien y-a-t-il de joueurs ?\n");
     scanf("%d", &nbJoueurs);
@@ -86,7 +87,8 @@ int nombreEtNom(Joueur *JA, Joueur *JB, Joueur *JC, Joueur *JD)
     }
     return nbJoueurs;
 }
-
+*/
+/*
 int main(){
     int mem = 1;
     int irrigation;
@@ -175,3 +177,4 @@ int main(){
     }while (action != 0);
     return(0);
 }
+*/
