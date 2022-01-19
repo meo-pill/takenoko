@@ -6,12 +6,7 @@
 #include <stdlib.h>
 #include "Board.h"
 
-Joueur J0 = {"", 0, 0};
-Joueur J1 = {"", 0, 0};
-Joueur J2 = {"", 0, 0};
-Joueur J3 = {"", 0, 0};
-
-int rentree(terrain coordonee[100][100]){
+int rentree(S_terrain coordonee[100][100]){
     int lat = -1, lon = -1;
 
     printf("donner la latitude longitude de la nouvelle tuile entre 0 et 100 :\n");
@@ -37,7 +32,7 @@ int rentree(terrain coordonee[100][100]){
     }
 }
 
-int irriguer(terrain coordonee[100][100]){
+int irriguer(S_terrain coordonee[100][100]){
     int lat = -1, lon = -1;
 
     printf("donner la latitude longitude de la tuile a irriguer entre 0 et 100 :\n");
@@ -64,7 +59,7 @@ int irriguer(terrain coordonee[100][100]){
 
 }
 
-int panda(terrain coordonee[100][100]){
+int panda(S_terrain coordonee[100][100]){
     int lat = -1, lon = -1;
 
     printf("donner la latitude longitude pour deplacer le panda entre 0 et 100 :\n");
@@ -95,7 +90,7 @@ int panda(terrain coordonee[100][100]){
 
 }
 
-int jardinier(terrain coordonee[100][100]){
+int jardinier(S_terrain coordonee[100][100]){
     int lat = -1, lon = -1;
 
     printf("donner la latitude longitude pour deplacer le jardinier entre 0 et 100 :\n");
@@ -126,7 +121,7 @@ int jardinier(terrain coordonee[100][100]){
 
 }
 
-void intialisation (terrain coordonee[100][100]){
+void intialisation (S_terrain coordonee[100][100]){
     int lat = -1, lon = -1;
 
 
@@ -154,30 +149,19 @@ void intialisation (terrain coordonee[100][100]){
     coordonee[lat][lon].valide = 1;
 }
 
-int nombreEtNom(Joueur *JA, Joueur *JB, Joueur *JC, Joueur *JD){
-    int nbJoueurs = 0 ;
-    printf("Combien y-a-t-il de joueurs ?\n");
-    scanf("%d", &nbJoueurs);
-    if(nbJoueurs>=2 && nbJoueurs<=4)
-    {
-        printf("Entrez le nom du premier joueur :\n");
-        scanf("%s", JA->username);
-        printf("Entrez le nom du deuxieme joueur:\n");
-        scanf("%s", JB->username);
-        if(nbJoueurs>=3)
-        {
-            printf("Entrez le nom du troisieme joueur :\n");
-            scanf("%s", JC->username);
-        }
-        if(nbJoueurs==4)
-        {
-            printf("Entrez le nom du quatrieme joueur :\n");
-            scanf("%s", JD->username);
-        }
+void nombreEtNom(S_Joueur *Joueur){
+    int nbJoueurs = 0;
+
+    while(nbJoueurs < 1){
+        printf("Combien y-a-t-il de joueurs ?\n");
+        scanf("%d", &nbJoueurs);
+    }
+
+    if(nbJoueurs>=2 && nbJoueurs<=4){
+       
     }
     else
     {
 
     }
-    return nbJoueurs;
 }
