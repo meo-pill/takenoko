@@ -16,13 +16,13 @@ typedef struct T_terrain{
     int valide;
 }S_terrain;
 
-S_terrain rentree(S_terrain coordonee[100][100]);
+int rentree(S_terrain coordonee[100][100]);
 
-S_terrain panda(S_terrain coordonee[100][100]);
+int panda(S_terrain coordonee[100][100]);
 
-S_terrain jardinier(S_terrain coordonee[100][100]);
+int jardinier(S_terrain coordonee[100][100]);
 
-S_terrain irriguer(S_terrain coordonee[100][100]);
+int irriguer(S_terrain coordonee[100][100]);
 
 void intialisation (S_terrain coordonee[100][100]);
 
