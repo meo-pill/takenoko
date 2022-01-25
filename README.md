@@ -1,2 +1,0 @@
-# takenoko
-project Takenoko

@@ -2,28 +2,28 @@
 #define BOARD_H_INCLUDED
 #endif // BOARD_H_INCLUDED
 
-typedef struct Joueur{
+typedef struct T_Joueur{
     char username[100];
     int nbPoints;
     int nbBambous;
-}Joueur;
+}S_Joueur;
 
-typedef struct terrain{
+typedef struct T_terrain{
     int latitude;
     int longitude;
     int irriguee;
     int bambou;
     int valide;
-}terrain;
+}S_terrain;
 
-terrain rentree(terrain a);
+int rentree(S_terrain coordonee[100][100]);
 
-terrain panda(terrain a,int *nbPanda);
+int panda(S_terrain coordonee[100][100]);
 
-terrain jardinier(terrain a,int *nbBambous);
+int jardinier(S_terrain coordonee[100][100]);
 
-terrain irriguer(terrain a);
+int irriguer(S_terrain coordonee[100][100]);
 
-void intialisation (terrain coordonee[100][100]);
+void intialisation (S_terrain coordonee[100][100]);
 
-int nombreEtNom(Joueur *JA, Joueur *JB, Joueur *JC, Joueur *JD);
+int nombreEtNom(S_Joueur *Joueur);
