@@ -1,0 +1,15 @@
+une structure pour contenir personage{
+  position;
+  position de l'image;
+  pointeur sur les fonction
+  dont fonction affichage
+  type du personage
+}
+
+une structure case{
+  type terain(couleur);
+  état irigation;
+  nb bambou;
+  effet spécial case;
+}
+
