@@ -1,0 +1,65 @@
+/**
+ *
+ *
+ *
+ *
+ */
+
+/**Definition des constante*/
+const vide 0
+const plien 1
+const maxnb2J 9
+const maxnb3J 8
+const maxnb4J 7
+/**definition des structurs*/
+typedef struct  personnage personnage_t;
+typedef struct case_plato case_plato_t;
+typedef struct carte carte_t;
+typedef struct joueur joueur_t;
+
+/**definition des type enumérer*/
+typedef enum couleur {jaune,rose,vert};
+typedef enum effet{rien,eau,stop,plus};
+typedef enum effDes{soleil,pluie,vent,orage,nuage,choixJ};
+typedef enum couleurJ{bleu,rouge,noir,vert};
+
+/**variable globale*/
+joueur_t J[4];
+case_plato_t piece[27];
+carte_t typeCartePanda[4];
+carte_t *cartePanda[15];
+carte_t carteParcelle[15];
+carte_t carteJardinier[15];
+case_plato_t * plateau[27][27];
+
+
+/** des structurs*/
+struct personnage_t{
+        int x,y; //coordonnée
+        char image; //l'images du personne
+        char Type[10]; //nom du personnage
+};
+
+struct case_plato_t{
+         couleur C;
+         int iriguer;
+         int nbBambou;
+         effet E;
+};
+struct carte_t{
+ 	char desc;
+ 	int nbRep;
+ 	int point;
+};
+ 
+struct joueur_t{
+        char nom_joueur[20];
+        carte * carte_panda[15];
+        carte * carte_jardinier[15];
+        carte * carte_parcelle[15];
+	int bambou [3];
+	int effSpe [3];
+	int nbIrigation
+        int nbObjectif;
+};
+
