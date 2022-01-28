@@ -1,10 +1,6 @@
-#ifndef BOARD_H_INCLUDED
-#define BOARD_H_INCLUDED
-#endif  //BOARD_H_INCLUDED
-
 #include <stdio.h>
 #include <stdlib.h>
-#include "Board.h"
+#include "../fichier_h/Board.h"
 
 int rentree(S_terrain coordonee[100][100]){
     int lat = -1, lon = -1;
