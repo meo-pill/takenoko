@@ -26,6 +26,6 @@ int irriguer(S_terrain coordonee[100][100]);
 
 void intialisation (S_terrain coordonee[100][100]);
 
-int nombreEtNom(S_Joueur *Joueur);
+void nombreEtNom(S_Joueur *Joueur);
 
 #endif
