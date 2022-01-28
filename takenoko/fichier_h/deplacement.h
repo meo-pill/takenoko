@@ -1,4 +1,4 @@
-typedef struct case{};
+typedef struct casse{};
 
-case posible();
-case generer();
+casse posible();
+casse generer();
