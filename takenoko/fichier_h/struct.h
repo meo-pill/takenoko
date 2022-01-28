@@ -1,3 +1,5 @@
+#ifndef STRUCT_H_INCLUDED
+#define STRUCT_H_INCLUDED
 /**
  *
  *
@@ -61,3 +63,4 @@ struct joueur_t{
         int nbObjectif;
 };
 
+#endif
