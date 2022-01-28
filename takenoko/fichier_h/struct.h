@@ -34,25 +34,25 @@ case_plato_t * plateau[27][27];
 
 
 /** des structurs*/
-struct personnage_t{
+struct personnage{
         int x,y; //coordonnée
         char image; //l'images du personne
         char Type[10]; //nom du personnage
 };
 
-struct case_plato_t{
+struct case_plato{
          couleur C;
          int iriguer;
          int nbBambou;
          effet E;
 };
-struct carte_t{
+struct carte{
  	char desc;
  	int nbRep;
  	int point;
 };
  
-struct joueur_t{
+struct joueur{
         char nom_joueur[20];
         carte * carte_panda[15];
         carte * carte_jardinier[15];
