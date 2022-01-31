@@ -1,39 +1,36 @@
 // Mise en oeuvre d'une file d'entiers par pointeurs
 
-#include "../fichier_h/file.h"
+#include "index.h"
 
-t_file* tete;
-t_file* queue;
-
-void initfile(void){
-	tete = NULL;
-	queue = NULL;
+extern void initfile(void){
+	file_tuile_tete = NULL;
+	file_tuile_queue = NULL;
 }
 
-int filevide(void){
-	return tete == NULL;
+extern int filevide(void){
+	return file_tuile_tete == NULL;
 }
 
-void ajouter(int v){
-	t_file* nouv;
+extern void ajouter(case_plato_t * tuile){
+	file_t* nouv;
 
-	nouv = malloc(sizeof(t_file));
-	nouv->nombre = v;
+	nouv = malloc(sizeof(file_t));
+	nouv->tuile = tuile;
 	nouv->suivant = NULL;
 	if(filevide())
-		tete = nouv;
+		file_tuile_tete = nouv;
 	else
-		queue->suivant = nouv;
-	queue = nouv;
+		file_tuile_queue->suivant = nouv;
+	file_tuile_queue = nouv;
 }
 
-void retirer(int* v){
-t_file* premier;
+extern void retirer(case_plato_t ** tuile){
+file_t* premier;
 
 	if(!filevide()){
-		premier = tete;
-		*v = premier->nombre;
-		tete = premier->suivant;
+		premier = file_tuile_tete;
+		*tuile = premier->tuile;
+		file_tuile_tete = premier->suivant;
 		free(premier);
 	}
 }

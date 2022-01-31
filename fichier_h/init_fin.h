@@ -3,7 +3,7 @@
 
 #include "index.h"
 
-void const initaliser(void);
-void const suprimer(void);
+extern void initaliser(void);
+extern void suprimer(void);
 
 #endif
