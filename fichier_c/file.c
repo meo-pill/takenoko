@@ -5,16 +5,16 @@
 file_t* tete;
 file_t* queue;
 
-void initfile(void){
+extern void initfile(void){
 	tete = NULL;
 	queue = NULL;
 }
 
-int filevide(void){
+extern int filevide(void){
 	return tete == NULL;
 }
 
-void ajouter(case_plato_t * tuile){
+extern void ajouter(case_plato_t * tuile){
 	file_t* nouv;
 
 	nouv = malloc(sizeof(file_t));
@@ -27,7 +27,7 @@ void ajouter(case_plato_t * tuile){
 	queue = nouv;
 }
 
-void retirer(case_plato_t ** tuile){
+extern void retirer(case_plato_t ** tuile){
 file_t* premier;
 
 	if(!filevide()){

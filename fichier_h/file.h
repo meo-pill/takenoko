@@ -8,9 +8,9 @@ struct file_s{
 	struct file_s * suivant;
 };
 
-void initfile(void);
-void ajouter(case_plato_t * tuile);
-void retirer(case_plato_t ** tuile);
-int filevide(void);
+extern void initfile(void);
+extern void ajouter(case_plato_t * tuile);
+extern void retirer(case_plato_t ** tuile);
+extern int filevide(void);
 
 #endif
