@@ -38,13 +38,14 @@ struct personnage{
         int x,y; //coordonnée
         char image; //l'images du personne
         char Type[10]; //nom du personnage
+        void (*deplacement)(case_plato_t * plateau[27][27]); // poiteur sur fonction de déplacement
 };
 
 struct case_plato{
-         couleur C;
-         int iriguer;
-         int nbBambou;
-         effet E;
+        couleur C;
+        int iriguer;
+        int nbBambou;
+        effet E;
 };
 struct carte{
  	char desc;
