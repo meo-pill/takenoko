@@ -3,12 +3,12 @@
 #include "index.h"
 
 extern void initfile(void){
-	tete = NULL;
-	queue = NULL;
+	file_tuile_tete = NULL;
+	file_tuile_queue = NULL;
 }
 
 extern int filevide(void){
-	return tete == NULL;
+	return file_tuile_tete == NULL;
 }
 
 extern void ajouter(case_plato_t * tuile){
@@ -18,19 +18,19 @@ extern void ajouter(case_plato_t * tuile){
 	nouv->tuile = tuile;
 	nouv->suivant = NULL;
 	if(filevide())
-		tete = nouv;
+		file_tuile_tete = nouv;
 	else
-		queue->suivant = nouv;
-	queue = nouv;
+		file_tuile_queue->suivant = nouv;
+	file_tuile_queue = nouv;
 }
 
 extern void retirer(case_plato_t ** tuile){
 file_t* premier;
 
 	if(!filevide()){
-		premier = tete;
+		premier = file_tuile_tete;
 		*tuile = premier->tuile;
-		tete = premier->suivant;
+		file_tuile_tete = premier->suivant;
 		free(premier);
 	}
 }
