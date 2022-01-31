@@ -1,15 +1,13 @@
 #ifndef <NOM FICHIER>_H_INCLUDED
 #define <NOM FICHIER>_H_INCLUDED
+#include "struct.h"
 /**
  *
  *
  *
  * stdlib et stdio deja dans struct
  */
-#ifndef STRUCT_H_INCLUDED
-#define STRUCT_H_INCLUDED
-#include "struct.h"
-#endif
+
 
 
 #endif

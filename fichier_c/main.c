@@ -1,8 +1,6 @@
 #include "../fichier_h/Board.h"
 #include "../fichier_h/struct.h"
 
-
-
 int main(){
     int mem = 1;
     int irrigation;
