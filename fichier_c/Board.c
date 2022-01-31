@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "../fichier_h/Board.h"
 
 int rentree(S_terrain coordonee[100][100]){

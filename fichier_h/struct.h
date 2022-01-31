@@ -6,6 +6,9 @@
  *
  *
  */
+/** Deffiniton des lib utiliser dans tout le programe */
+#include <stdio.h>
+#include <stdlib.h>
 
 /**Definition des constante*/
 #define MAXNB2J 9
@@ -36,22 +39,23 @@ case_plato_t * plateau[27][27];
 /** des structurs*/
 struct personnage{
         int x,y; //coordonnée
-        char image; //l'images du personne
-        char Type[10]; //nom du personnage
-        void (*deplacement)(case_plato_t * plateau[27][27]); // poiteur sur fonction de déplacement
+        char const image; //l'images du personne
+        char const Type[10]; //nom du personnage
+        void const (*deplacement)(void); // poiteur sur fonction de déplacement
+        void const (*gestionBamboo)(void); //ajout/supression des bamboopar le personnage
 };
 
 struct case_plato{
-        couleur C;
+        couleur const C;
         int iriguer;
         int nbBambou;
-        effet E;
+        effet const E;
 };
 
 struct carte{
- 	char desc;
- 	int nbRep;
- 	int point;
+ 	char const desc;
+ 	int const nbRep;
+ 	int const point;
 };
  
 struct joueur{
