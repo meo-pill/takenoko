@@ -56,6 +56,7 @@ struct carte{
  	char const desc;
  	int const nbRep;
  	int const point;
+        void (*valid)();
 };
  
 struct joueur{
