@@ -22,10 +22,10 @@ typedef struct carte carte_t;
 typedef struct joueur joueur_t;
 
 /**definition des type enumérer*/
-typedef enum couleur {jaune,rose,vert};
-typedef enum effet{rien,eau,stop,plus};
-typedef enum effDes{soleil,pluie,vent,orage,nuage,choixJ};
-typedef enum couleurJ{bleu,rouge,noir,vert};
+typedef enum couleur {jaune,rose,vert}couleur_E;
+typedef enum effet{rien,eau,stop,plus}effet_E;
+typedef enum effDes{soleil,pluie,vent,orage,nuage,choixJ}effDes_E;
+typedef enum couleurJ{bleu,rouge,noir,vert}couleurJ_E;
 
 /**variable globale*/
 joueur_t J[4];
@@ -47,10 +47,10 @@ struct personnage{
 };
 
 struct case_plato{
-        couleur const C;
+        couleur_E C;
         int iriguer;
         int nbBambou;
-        effet const E;
+        effet_E E;
 };
 
 struct carte{
@@ -61,13 +61,14 @@ struct carte{
  
 struct joueur{
         char nom_joueur[20];
-        carte * carte_panda[15];
-        carte * carte_jardinier[15];
-        carte * carte_parcelle[15];
+        carte_t * carte_panda[15];
+        carte_t * carte_jardinier[15];
+        carte_t * carte_parcelle[15];
 	int bambou [3];
 	int effSpe [3];
 	int nbIrigation;
         int nbObjectif;
+        couleurJ_E couleurJoueur;
 };
 
 #endif
