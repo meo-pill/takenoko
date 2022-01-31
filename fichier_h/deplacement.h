@@ -1,4 +1,4 @@
-typedef struct casse{};
-
-casse posible();
-casse generer();
+#ifndef DEPLACEMENT_H_INCLUDED
+#define DEPLACEMENT_H_INCLUDED
+#include "index.h"
+#endif

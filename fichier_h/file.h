@@ -1,7 +1,12 @@
 #ifndef file_H_INCLUDED
 #define file_H_INCLUDED
 
-#include "struct.h"
+#include "index.h"
+
+typedef struct file {
+	int nombre; 
+	struct file* suivant;
+} t_file;
 
 void initfile(void);
 void ajouter(int v);

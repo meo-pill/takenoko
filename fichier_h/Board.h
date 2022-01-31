@@ -1,7 +1,6 @@
 #ifndef BOARD_H_INCLUDED
 #define BOARD_H_INCLUDED
-
-#include "struct.h"
+#include "index.h"
 
  /** struct deja inculue et board pareile*/
 
