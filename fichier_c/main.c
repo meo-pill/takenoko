@@ -1,6 +1,4 @@
-#include "../fichier_h/Board.h"
-#include "../fichier_h/struct.h"
-#include "../fichier_h/init_fin.h"
+#include "../fichier_h/index.h"
 
 int main(){
     int mem = 1;

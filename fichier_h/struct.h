@@ -17,7 +17,8 @@
 typedef struct  personnage personnage_t;
 typedef struct case_plato case_plato_t;
 typedef struct carte carte_t;
-typedef struct joueur joueur_t;
+typedef struct joueur_ joueur_t;
+typedef struct file_s file_t;
 
 /**definition des type enumérer*/
 typedef enum couleur {jaune,rose,vert}couleur_E;

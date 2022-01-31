@@ -3,14 +3,14 @@
 
 #include "index.h"
 
-typedef struct file {
-	int nombre; 
-	struct file* suivant;
-} t_file;
+struct file_s{
+	case_plato_t * tuile; 
+	struct file_s * suivant;
+};
 
 void initfile(void);
-void ajouter(int v);
-void retirer(int* v);
+void ajouter(case_plato_t * tuile);
+void retirer(case_plato_t ** tuile);
 int filevide(void);
 
 #endif

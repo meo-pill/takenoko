@@ -5,4 +5,5 @@
 #include "../lib/SDL2/include/SDL2/SDL.h"
 #include "struct.h" // on ne met rien au dessu ces 4 la (il on tout ce sur quoi le programe repose)
 #include "file.h"
+#include "Board.h"
 #include "deplacement.h"
