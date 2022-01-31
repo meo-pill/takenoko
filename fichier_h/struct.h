@@ -6,6 +6,8 @@
  *
  *
  */
+/** Deffiniton des lib utiliser dans tout le programe */
+#include "index.h"
 
 /**Definition des constante*/
 #define MAXNB2J 9
@@ -18,10 +20,10 @@ typedef struct carte carte_t;
 typedef struct joueur joueur_t;
 
 /**definition des type enumérer*/
-typedef enum couleur {jaune,rose,vert};
-typedef enum effet{rien,eau,stop,plus};
-typedef enum effDes{soleil,pluie,vent,orage,nuage,choixJ};
-typedef enum couleurJ{bleu,rouge,noir,vert};
+typedef enum couleur {jaune,rose,vert}couleur_E;
+typedef enum effet{rien,eau,stop,plus}effet_E;
+typedef enum effDes{soleil,pluie,vent,orage,nuage,choixJ}effDes_E;
+typedef enum couleurJ{bleu,rouge,noir,vert}couleurJ_E;
 
 /**variable globale*/
 joueur_t J[4];
@@ -36,31 +38,35 @@ case_plato_t * plateau[27][27];
 /** des structurs*/
 struct personnage{
         int x,y; //coordonnée
-        char image; //l'images du personne
-        char Type[10]; //nom du personnage
+        char const image; //l'images du personne
+        char const Type[10]; //nom du personnage
+        void const (*deplacement)(void); // poiteur sur fonction de déplacement
+        void const (*gestionBamboo)(void); //ajout/supression des bamboopar le personnage
 };
 
 struct case_plato{
-         couleur C;
-         int iriguer;
-         int nbBambou;
-         effet E;
+        couleur_E C;
+        int iriguer;
+        int nbBambou;
+        effet_E E;
 };
+
 struct carte{
- 	char desc;
- 	int nbRep;
- 	int point;
+ 	char const desc;
+ 	int const nbRep;
+ 	int const point;
 };
  
 struct joueur{
         char nom_joueur[20];
-        carte * carte_panda[15];
-        carte * carte_jardinier[15];
-        carte * carte_parcelle[15];
+        carte_t * carte_panda[15];
+        carte_t * carte_jardinier[15];
+        carte_t * carte_parcelle[15];
 	int bambou [3];
 	int effSpe [3];
 	int nbIrigation;
         int nbObjectif;
+        couleurJ_E couleurJoueur;
 };
 
 #endif

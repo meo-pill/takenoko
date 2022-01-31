@@ -1,8 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "../fichier_h/Board.h"
-
-
+#include "../fichier_h/struct.h"
+#include "../fichier_h/init_fin.h"
 
 int main(){
     int mem = 1;
@@ -18,6 +16,7 @@ int main(){
 
     srand(time(NULL));
     nombreEtNom(Joueur);
+    initaliser();
 
 
     return(0);

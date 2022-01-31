@@ -1,7 +1,10 @@
 #ifndef BOARD_H_INCLUDED
 #define BOARD_H_INCLUDED
- // BOARD_H_INCLUDED
+#include "index.h"
 
+ /** struct deja inculue et board pareile*/
+
+/**\stuct */
 typedef struct T_Joueur{
     char username[100];
     int nbPoints;
