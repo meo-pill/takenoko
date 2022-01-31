@@ -8,8 +8,12 @@ static void extraction_fichier(void){
     /** création et ouverture des fichier contenant les tuile et les carte objectif */
     FILE * ficTuile = NULL;
     FILE * ficCarte = NULL;
+    char temp[7];
     
     ficTuile = fopen("../asset/carte_objectif.txt","r");
+    ficCarte = fopen("../asset/carte_objectif.txt","r");
+
+    
 }
 
 
