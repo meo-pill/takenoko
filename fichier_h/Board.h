@@ -19,16 +19,16 @@ typedef struct T_terrain{
     int valide;
 }S_terrain;
 
-int rentree(S_terrain coordonee[100][100]);
+extern int rentree(S_terrain coordonee[100][100]);
 
-int panda(S_terrain coordonee[100][100]);
+extern int panda(S_terrain coordonee[100][100]);
 
-int jardinier(S_terrain coordonee[100][100]);
+extern int jardinier(S_terrain coordonee[100][100]);
 
-int irriguer(S_terrain coordonee[100][100]);
+extern int irriguer(S_terrain coordonee[100][100]);
 
-void intialisation (S_terrain coordonee[100][100]);
+extern void intialisation (S_terrain coordonee[100][100]);
 
-void nombreEtNom(S_Joueur *Joueur);
+extern void nombreEtNom(S_Joueur *Joueur);
 
 #endif
