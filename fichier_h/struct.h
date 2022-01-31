@@ -47,6 +47,7 @@ struct case_plato{
         int nbBambou;
         effet E;
 };
+
 struct carte{
  	char desc;
  	int nbRep;
