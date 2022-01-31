@@ -28,12 +28,14 @@ typedef enum couleurJ{bleu,rouge,noir,vert}couleurJ_E;
 
 /**variable globale*/
 joueur_t J[4];
-case_plato_t piece[27];
+case_plato_t * piece[27];
 carte_t typeCartePanda[4];
 carte_t *cartePanda[15];
-carte_t carteParcelle[15];
-carte_t carteJardinier[15];
+carte_t * carteParcelle[15];
+carte_t * carteJardinier[15];
 case_plato_t * plateau[27][27];
+file_t * file_tuile_tete;
+file_t * file_tuile_queue;
 
 
 /** des structurs*/
@@ -46,10 +48,10 @@ struct personnage{
 };
 
 struct case_plato{
-        couleur_E C;
+        couleur_E Coul;
         int iriguer;
         int nbBambou;
-        effet_E E;
+        effet_E Eff;
 };
 
 struct carte{

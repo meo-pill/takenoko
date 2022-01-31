@@ -2,9 +2,6 @@
 
 #include "index.h"
 
-file_t* tete;
-file_t* queue;
-
 extern void initfile(void){
 	tete = NULL;
 	queue = NULL;
