@@ -9,6 +9,7 @@
 /** Deffiniton des lib utiliser dans tout le programe */
 #include <stdio.h>
 #include <stdlib.h>
+#include "../lib/SDL2/include/SDL2/SDL.h"
 
 /**Definition des constante*/
 #define MAXNB2J 9
