@@ -1,14 +1,14 @@
 #include "../lib/index.h"
-/** 
+/**
  * fichier avec les fonction d'initialisation et de supression du jeu
- * 
+ *
  */
 
 
 /**
  * @brief mélange le tableau
- * 
- *  
+ *
+ *
  */
 static void shuffleTuile(){
     /** 
@@ -41,8 +41,8 @@ static void shuffleTuile(){
 
 /**
  * @brief sert a extraire le contenue du fichier de memoire des tuile
- * 
- * 
+ *
+ *
  * @return int pour la gestion d'érreur
  */
 static int extraction_fichier_tuile(void){
@@ -65,10 +65,10 @@ static int extraction_fichier_tuile(void){
         /* création de la structure en allocation dinamque */
         piece[compteur] = malloc(sizeof(case_plato_t));
 
-        /** 
+        /**
          * attribution des valeur dans la structure
-         * 
-         * 
+         *
+         *
         */
         piece[compteur]->Coul = couleur;
         piece[compteur]->iriguer = iriguer;
@@ -126,6 +126,8 @@ static void suppression_tuile(void){
     }
 }
 
+int extraction_fichier_carte(){
+
 /**
  * @brief fonction d'apelle pour l'initialisation de la partie
  * 
@@ -148,4 +150,3 @@ extern void suprimer(void){
     videe_plateau();
     suppression_tuile();
 }
-
