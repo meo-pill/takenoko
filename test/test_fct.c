@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "./lib/fonction.h"
 
 /*
 
