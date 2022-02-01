@@ -3,7 +3,7 @@
 
 #include "index.h"
 
-extern void initaliser(void);
+extern void initaliser(int const nb_joueur);
 extern void suprimer(void);
 
 #endif

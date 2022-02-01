@@ -1,13 +1,13 @@
 #include "../lib/index.h"
 /**
  * fichier avec les fonction d'initialisation et de supression du jeu
- *
+ * Mewen / Leo
  */
 
 
 /**
  * @brief mélange le tableau
- *
+ * Mewen
  *
  */
 static void shuffleTuile(){
@@ -41,7 +41,7 @@ static void shuffleTuile(){
 
 /**
  * @brief sert a extraire le contenue du fichier de memoire des tuile
- *
+ * Mewen
  *
  * @return int pour la gestion d'érreur
  */
@@ -92,13 +92,28 @@ static int extraction_fichier_tuile(void){
 
 /**
  * @brief fonction de mise en file des tuile de terrains
- * 
+ * Mewen
  * 
  */
 static void mise_en_file(void){
     for(int i=0; i<NBTUILE; i++){
         ajouter(piece[i]);
     }
+}
+
+/**
+ * @brief création des structur de joueur
+ * Mewen
+ * @param nb_joueur 
+ */
+static void creation_joueur(int const nb_joueur){
+    for (int i = 0; i < nb_joueur; i++){
+        J[i] = malloc(sizeof(joueur_t));
+    }
+}
+
+int extraction_fichier_carte(){
+
 }
 
 static void creation_plateau(void){
@@ -114,11 +129,19 @@ static void creation_plateau(void){
     plateau[LACPOS][LACPOS]= &lac;
 }
 
+/**
+ * @brief mise a nul des poiteur pour éviter les poiteur fous
+ * Mewen
+ */
 static void videe_plateau(void){
     creation_plateau();
     plateau[LACPOS][LACPOS]= NULL;
 }
 
+/**
+ * @brief free des tuile en alocation dinamque
+ * Mewen
+ */
 static void suppression_tuile(void){
     for(int i=0; i<NBTUILE; i++){
         free(piece[i]);
@@ -126,25 +149,25 @@ static void suppression_tuile(void){
     }
 }
 
-int extraction_fichier_carte(){
-
 /**
  * @brief fonction d'apelle pour l'initialisation de la partie
- * 
+ * Mewen / Leo
  */
-extern void initaliser(void){
+extern void initaliser(int const nb_joueur){
     initfile();
     if (!extraction_fichier_tuile()){
         printf("ereur d'ouverture fichier tuile");
     }
     shuffleTuile();
     mise_en_file();
-    création_plateau();
+    creation_plateau();
+    creation_joueur(nb_joueur);
+
 }
 
 /**
  * @brief fonction d'appelle pour la libération de fin de partie
- * 
+ * Mewen / Leo
  */
 extern void suprimer(void){
     videe_plateau();

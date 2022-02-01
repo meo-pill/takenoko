@@ -34,7 +34,7 @@ typedef enum effDes_s{soleil,pluie,vent,orage,nuage,choixJ}effDes_E;
 typedef enum couleurJ_s{bleu,rouge,noir,vert}couleurJ_E;
 
 /**variable globale*/
-joueur_t J[4];
+joueur_t * J[4];
 case_plato_t * piece[NBTUILE];
 carte_t * cartePanda[15];
 carte_t * carteParcelle[15];
@@ -55,11 +55,11 @@ struct personnage_s{
 };
 
 struct case_plato_s{
-        couleur_E Coul;
-        int iriguer;
-        int nbBambou;
-        effet_E Eff;
-        char const image [LONGPATH];
+  couleur_E Coul;
+  int iriguer;
+  int nbBambou;
+  effet_E Eff;
+  char const image [LONGPATH];
 };
 
 struct carte_s{
