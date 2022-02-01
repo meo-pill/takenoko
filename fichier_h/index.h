@@ -8,10 +8,10 @@
 #include <time.h>
 #include "../lib/SDL2/include/SDL2/SDL.h"
 #include "struct.h" // on ne met rien au dessu ces 6 la (il on tout ce sur quoi le programe repose)
-#include "file.h"
+#include "file.h" // après struct
 #include "Board.h"
-#include "deplacement.h"
+#include "deplacement.h"// après struct
 #include "init_fin.h"
-#include "bambo.h"
+#include "bamboo.h"// après struct
 
 #endif
