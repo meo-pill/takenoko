@@ -13,6 +13,9 @@
 #define MAXNB2J 9
 #define MAXNB3J 8
 #define MAXNB4J 7
+#define LACPOS 14
+#define NBTUILE 27
+
 /**definition des structurs*/
 typedef struct  personnage_s personnage_t;
 typedef struct case_plato_s case_plato_t;
@@ -21,19 +24,20 @@ typedef struct joueur_s joueur_t;
 typedef struct file_s file_t;
 
 /**definition des type enumérer*/
-typedef enum couleur_s{jaune,rose,vert}couleur_E;
-typedef enum effet_s{rien,eau,stop,plus}effet_E;
+typedef enum couleur_s{jaune,rose,vert,lac}couleur_E;
+typedef enum effet_s{rien,eau,stop,plus,lac}effet_E;
 typedef enum effDes_s{soleil,pluie,vent,orage,nuage,choixJ}effDes_E;
 typedef enum couleurJ_s{bleu,rouge,noir,vert}couleurJ_E;
 
 /**variable globale*/
 joueur_t J[4];
-case_plato_t * piece[27];
+case_plato_t * piece[NBTUILE];
 carte_t typeCartePanda[4];
 carte_t *cartePanda[15];
 carte_t * carteParcelle[15];
 carte_t * carteJardinier[15];
-case_plato_t * plateau[27][27];
+case_plato_t * plateau[NBTUILE][NBTUILE];
+case_plato_t lac;
 file_t * file_tuile_tete;
 file_t * file_tuile_queue;
 

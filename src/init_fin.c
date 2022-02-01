@@ -28,18 +28,16 @@ static void shuffleTuile(){
      * 
      * 
      */
-    for (i = 0; i < 100; i++){
+    for (i = 0; i < (NBTUILE * 4); i++){
         while (k == j){
-            j = rand() % (27);
-            k = rand() % (27);
+            j = rand() % (NBTUILE);
+            k = rand() % (NBTUILE);
         }
         t = piece[j];
         piece[j] = piece[k];
         piece[k] = t;
     }
 }
-
-
 
 /**
  * @brief sert a extraire le contenue du fichier de memoire des tuile
@@ -63,7 +61,7 @@ static int extraction_fichier_tuile(void){
     }
 
     /** boucle de remplisage du tableaux des tuile */
-    while (fscanf(ficTuile,"%d,%d,%d,%d,%s\n",&couleur,&iriguer,&bambou,&effet) != EOF){
+    while (fscanf(ficTuile,"%d,%d,%d,%d,%s\n",&couleur,&iriguer,&bambou,&effet,&valeur) != EOF){
         /* création de la structure en allocation dinamque */
         piece[compteur] = malloc(sizeof(case_plato_t));
 
@@ -76,7 +74,7 @@ static int extraction_fichier_tuile(void){
         piece[compteur]->iriguer = iriguer;
         piece[compteur]->nbBambou = bambou;
         piece[compteur]->Eff = effet;
-        piece[compteur]->image = valeur;
+        strcpy(piece[compteur]->image, valeur);
 
         compteur ++;
     }
@@ -92,19 +90,56 @@ static int extraction_fichier_tuile(void){
     return (0);
 }
 
-static int mise_en_pile(void){
-    
+/**
+ * @brief fonction de mise en file des tuile de terrains
+ * 
+ * 
+ */
+static void mise_en_file(void){
+    for(int i=0; i<NBTUILE; i++){
+        ajouter(piece[i]);
+    }
 }
 
+static void creation_plateau(void){
+    for(int i=0; i<27; i++){
+        for(int j=0; j<NBTUILE; j++){
+            plateau[i][j] = NULL;
+        }
+    }
+    lac.Coul="lac";
+    lac.Eff="lac";
+    lac.iriguer="-1";
+
+    plateau[LACPOS][LACPOS]= &lac;
+}
+
+static void suppression_tuile(void){
+    for(int i=0; i<NBTUILE; i++){
+        free(piece[i]);
+        piece[i] = NULL;
+    }
+}
+
+/**
+ * @brief fonction d'apelle pour l'initialisation de la partie
+ * 
+ */
 extern void initaliser(void){
     initfile();
     if (!extraction_fichier_tuile()){
         printf("ereur d'ouverture fichier tuile");
     }
     shuffleTuile();
+    mise_en_file();
+    création_plateau();
 }
 
+/**
+ * @brief fonction d'appelle pour la libération de fin de partie
+ * 
+ */
 extern void suprimer(void){
-
+    suppression_tuile();
 }
 
