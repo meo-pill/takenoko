@@ -12,5 +12,6 @@
 #include "Board.h"
 #include "deplacement.h"
 #include "init_fin.h"
+#include "bambo.h"
 
 #endif
