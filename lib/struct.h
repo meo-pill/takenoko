@@ -52,6 +52,7 @@ struct case_plato_s{
         int iriguer;
         int nbBambou;
         effet_E Eff;
+        char image[30];
 };
 
 struct carte_s{
