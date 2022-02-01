@@ -1,4 +1,4 @@
-#include "../fichier_h/index.h"
+#include "../lib/index.h"
 
 int rentree(S_terrain coordonee[100][100]){
     int lat = -1, lon = -1;
