@@ -124,7 +124,6 @@ static void suppression_tuile(void){
         free(piece[i]);
         piece[i] = NULL;
     }
-    for()
 }
 
 /**
