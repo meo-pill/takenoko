@@ -11,5 +11,6 @@
 #include "file.h"
 #include "Board.h"
 #include "deplacement.h"
+#include "init_fin.h"
 
 #endif
