@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "../lib/index.h"
 
 /********************
 fonction opérationnel
@@ -16,9 +16,6 @@ char lancer_meteo(){
 	char meteo = (effDes_E)( rand()%6 );
 	return meteo;
 }
-
-
-
 
 
 
