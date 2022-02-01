@@ -142,6 +142,7 @@ static void videe_plateau(void){
  * @brief free des tuile en alocation dinamque
  * Mewen
  */
+
 static void suppression_tuile(void){
     for(int i=0; i<NBTUILE; i++){
         free(piece[i]);
@@ -162,7 +163,6 @@ extern void initaliser(int const nb_joueur){
     mise_en_file();
     creation_plateau();
     creation_joueur(nb_joueur);
-
 }
 
 /**
