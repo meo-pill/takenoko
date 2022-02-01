@@ -1,4 +1,4 @@
-#include "../fichier_h/index.h"
+#include "../lib/index.h"
 /** 
  * fichier avec les fonction d'initialisation et de supression du jeu
  * 

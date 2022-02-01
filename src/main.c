@@ -1,4 +1,4 @@
-#include "../fichier_h/index.h"
+#include "../lib/index.h"
 
 int main(){
     int mem = 1;
