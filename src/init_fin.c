@@ -114,11 +114,17 @@ static void creation_plateau(void){
     plateau[LACPOS][LACPOS]= &lac;
 }
 
+static void videe_plateau(void){
+    creation_plateau();
+    plateau[LACPOS][LACPOS]= NULL;
+}
+
 static void suppression_tuile(void){
     for(int i=0; i<NBTUILE; i++){
         free(piece[i]);
         piece[i] = NULL;
     }
+    for()
 }
 
 /**
@@ -140,6 +146,7 @@ extern void initaliser(void){
  * 
  */
 extern void suprimer(void){
+    videe_plateau();
     suppression_tuile();
 }
 

@@ -33,7 +33,7 @@ typedef enum couleurJ_s{bleu,rouge,noir,vert}couleurJ_E;
 joueur_t J[4];
 case_plato_t * piece[NBTUILE];
 carte_t typeCartePanda[4];
-carte_t *cartePanda[15];
+carte_t * cartePanda[15];
 carte_t * carteParcelle[15];
 carte_t * carteJardinier[15];
 case_plato_t * plateau[NBTUILE][NBTUILE];
