@@ -14,17 +14,17 @@
 #define MAXNB3J 8
 #define MAXNB4J 7
 /**definition des structurs*/
-typedef struct  personnage personnage_t;
-typedef struct case_plato case_plato_t;
-typedef struct carte carte_t;
-typedef struct joueur_ joueur_t;
+typedef struct  personnage_s personnage_t;
+typedef struct case_plato_s case_plato_t;
+typedef struct carte_s carte_t;
+typedef struct joueur_s joueur_t;
 typedef struct file_s file_t;
 
 /**definition des type enumérer*/
-typedef enum couleur {jaune,rose,vert}couleur_E;
-typedef enum effet{rien,eau,stop,plus}effet_E;
-typedef enum effDes{soleil,pluie,vent,orage,nuage,choixJ}effDes_E;
-typedef enum couleurJ{bleu,rouge,noir,vert}couleurJ_E;
+typedef enum couleur_s{jaune,rose,vert}couleur_E;
+typedef enum effet_s{rien,eau,stop,plus}effet_E;
+typedef enum effDes_s{soleil,pluie,vent,orage,nuage,choixJ}effDes_E;
+typedef enum couleurJ_s{bleu,rouge,noir,vert}couleurJ_E;
 
 /**variable globale*/
 joueur_t J[4];
@@ -39,7 +39,7 @@ file_t * file_tuile_queue;
 
 
 /** des structurs*/
-struct personnage{
+struct personnage_s{
         int x,y; //coordonnée
         char const image; //l'images du personne
         char const Type[10]; //nom du personnage
@@ -47,21 +47,21 @@ struct personnage{
         void const (*gestionBamboo)(void); //ajout/supression des bamboopar le personnage
 };
 
-struct case_plato{
+struct case_plato_s{
         couleur_E Coul;
         int iriguer;
         int nbBambou;
         effet_E Eff;
 };
 
-struct carte{
+struct carte_s{
  	char const desc;
  	int const nbRep;
  	int const point;
         void (*valid)();
 };
  
-struct joueur{
+struct joueur_s{
         char nom_joueur[20];
         carte_t * carte_panda[15];
         carte_t * carte_jardinier[15];
