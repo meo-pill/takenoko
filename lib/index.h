@@ -13,5 +13,6 @@
 #include "deplacement.h"// après struct
 #include "init_fin.h"
 #include "bamboo.h"// après struct
+#include "fonction.h"
 
 #endif
