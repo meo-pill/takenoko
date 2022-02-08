@@ -1,46 +1,46 @@
 /* type; image; description; point*/
-panda-vert ; ../image/carte_panda_vert ;obtenez deux bambou vert pour valider ; 3
-panda-vert ; ../image/carte_panda_vert ;obtenez deux bambou vert pour valider ; 3
-panda-vert  ; ../image/carte_panda_vert ;obtenez deux bambou vert pour valider ; 3
-panda-vert  ; ../image/carte_panda_vert ;obtenez deux bambou vert pour valider ; 3
-panda-vert  ; ../image/carte_panda_vert ;obtenez deux bambou vert pour valider ; 3
-panda-jaune ; ../image/carte_panda_jaune ;obtenez deux bambou jaune pour valider ; 4
-panda-jaune ; ../image/carte_panda_jaune ;obtenez deux bambou jaune pour valider ; 4
-panda-jaune ; ../image/carte_panda_jaune ;obtenez deux bambou jaune pour valider ; 4
-panda-jaune ; ../image/carte_panda_jaune ;obtenez deux bambou jaune pour valider ; 4
-panda-rose ; ../image/carte_panda_rose ;obtenez deux bambou rose pour valider ; 5
-panda-rose ; ../image/carte_panda_rose ;obtenez deux bambou rose pour valider ; 5
-panda-rose ; ../image/carte_panda_rose ;obtenez deux bambou rose pour valider ; 5
-panda-multi ; ../image/carte_panda_multi ;obtenez un bambou de chaque couleur pour valider ; 6
-panda-multi ; ../image/carte_panda_multi ;obtenez un bambou de chaque couleur pour valider ; 6
-panda-multi ; ../image/carte_panda_multi ;obtenez un bambou de chaque couleur pour valider ; 6
-parcelle-verte-triangle ; ../image/parcelle_1 ; reproduisez la forme affichée avec les tuiles pour valider ; 2
-parcelle-verte-losange ; ../image/parcelle_2 ; reproduisez la forme affichée avec les tuiles pour valider; 3
-parcelle-jaune/rose-losange ; ../image/parcelle_3 ; reproduisez la forme affichée avec les tuiles pour valider; 5
-parcelle-rose/verte-losange ; ../image/parcelle_4 ; reproduisez la forme affichée avec les tuiles pour valider; 4
-parcelle-jaune/verte-losange ; ../image/parcelle_5 ; reproduisez la forme affichée avec les tuiles pour valider; 3
-parcelle-jaune-ligne ; ../image/parcelle_6 ; reproduisez la forme affichée avec les tuiles pour valider; 3
-parcelle-jaune-losange ; ../image/parcelle_7 ; reproduisez la forme affichée avec les tuiles pour valider; 4
-parcelle-jaune-arc ; ../image/parcelle_8 ; reproduisez la forme affichée avec les tuiles pour valider; 3
-parcelle-verte-ligne ; ../image/parcelle_9 ; reproduisez la forme affichée avec les tuiles pour valider; 2
-parcelle-verte-arc ; ../image/parcelle_10 ; reproduisez la forme affichée avec les tuiles pour valider; 2
-parcelle-rose-arc ; ../image/parcelle_11 ; reproduisez la forme affichée avec les tuiles pour valider; 4
-parcelle-rose-triangle ; ../image/parcelle_12 ; reproduisez la forme affichée avec les tuiles pour valider; 4
-parcelle-rose-losange; ../image/parcelle_13 ; reproduisez la forme affichée avec les tuiles pour valider; 5
-parcelle-rose-ligne ; ../image/parcelle_14 ; reproduisez la forme affichée avec les tuiles pour valider; 4
-parcelle-jaune-triangle; ../image/parcelle_15 ; reproduisez la forme affichée avec les tuiles pour valider; 3
-jardinier-jaune-4-bassin ; ../image/jardinier_1 ; faite poussez un bambou jaune d'une hauteur de 4 sur une tuile avec un bassin pour valider ; 5
-jardinier-jaune-4-sans ; ../image/jardinier_2 ; faite poussez un bambou jaune d'une hauteur de 4 pour valider sans aménagement; 6
-jardinier-rose-3-double ; ../image/jardinier_3 ; faite poussez deux bambou rose d'une hauteur de 3 exactement pour valider ; 6
-jardinier-jaune-3-triple ; ../image/jardinier_4 ; faite poussez trois bambou jaune d'une hauteur de 3 exactement pour valider ; 7
-jardinier-vert-3-quatre ; ../image/jardinier_5 ; faite poussez quatre bambou vert d'une hauteur de 3 exactement pour valider ; 8
-jardinier-vert-4-enclos ; ../image/jardinier_6 ; faite poussez un bambou vert d'une hauteur de 4 sur une tuile avec un enclos pour valider ; 4
-jardinier-vert-4-bassin ; ../image/jardinier_7 ; faite poussez un bambou vert d'une hauteur de 4 sur une tuile avec un bassin pour valider ; 4
-jardinier-vert-4-sans ; ../image/jardinier_8 ; faite poussez un bambou vert d'une hauteur de 4 sur une tuile sans aménagement pour valider ; 5
-jardinier-jaune-4-engrais ; ../image/jardinier_9 ; faite poussez un bambou jaune d'une hauteur de 4 sur une tuile avec de l'engrais pour valider ; 4
-jardinier-jaune-4-enclos ; ../image/jardinier_10 ; faite poussez un bambou jaune d'une hauteur de 4 sur une tuile avec un enclos pour valider ; 5
-jardinier-rose-4-engrais ; ../image/jardinier_11 ; faite poussez un bambou rose d'une hauteur de 4 sur une tuile avec de l'engrais pour valider ; 5
-jardinier-rose-4-bassin ; ../image/jardinier_12 ; faite poussez un bambou rose d'une hauteur de 4 sur une tuile avec un bassin pour valider ; 6
-jardinier-rose-4-enclos ; ../image/jardinier_13 ; faite poussez un bambou rose d'une hauteur de 4 sur une tuile avec un enclos pour valider ; 6
-jardinier-rose-4-sans ; ../image/jardinier_14 ; faite poussez un bambou rose d'une hauteur de 4 sur une tuile sans aménagement pour valider ; 7
-jardinier-vert-4-engrais ; ../image/jardinier_15 ; faite poussez un bambou vert d'une hauteur de 4 sur une tuile avec de l'engrais pour valider ; 3
+panda-vert ;../image/carte_panda/1.png; obtenez deux bambou vert pour valider ; 3
+panda-vert ;../image/carte_panda/1.png; obtenez deux bambou vert pour valider ; 3
+panda-vert ;../image/carte_panda/1.png; obtenez deux bambou vert pour valider ; 3
+panda-vert ;../image/carte_panda/1.png; obtenez deux bambou vert pour valider ; 3
+panda-vert ;../image/carte_panda/1.png; obtenez deux bambou vert pour valider ; 3
+panda-jaune ;../image/carte_panda/2.png; obtenez deux bambou jaune pour valider ; 4
+panda-jaune ;../image/carte_panda/2.png; obtenez deux bambou jaune pour valider ; 4
+panda-jaune ;../image/carte_panda/2.png; obtenez deux bambou jaune pour valider ; 4
+panda-jaune ;../image/carte_panda/2.png; obtenez deux bambou jaune pour valider ; 4
+panda-rose ;../image/carte_panda/3.png; obtenez deux bambou rose pour valider ; 5
+panda-rose ;../image/carte_panda/3.png; obtenez deux bambou rose pour valider ; 5
+panda-rose ;../image/carte_panda/3.png; obtenez deux bambou rose pour valider ; 5
+panda-multi ;../image/carte_panda/4.png; obtenez un bambou de chaque couleur pour valider ; 6
+panda-multi ;../image/carte_panda/4.png; obtenez un bambou de chaque couleur pour valider ; 6
+panda-multi ;../image/carte_panda/4.png; obtenez un bambou de chaque couleur pour valider ; 6
+parcelle-verte-triangle ;../image/carte_tuile/1.png; reproduisez la forme affichée avec les tuiles pour valider ; 2
+parcelle-verte-losange ;../image/carte_tuile/2.png; reproduisez la forme affichée avec les tuiles pour valider; 3
+parcelle-jaune/rose-losange ;../image/carte_tuile/3.png; reproduisez la forme affichée avec les tuiles pour valider; 5
+parcelle-rose/verte-losange ;../image/carte_tuile/4.png; reproduisez la forme affichée avec les tuiles pour valider; 4
+parcelle-jaune/verte-losange ;../image/carte_tuile/5.png; reproduisez la forme affichée avec les tuiles pour valider; 3
+parcelle-jaune-ligne ;../image/carte_tuile/6.png; reproduisez la forme affichée avec les tuiles pour valider; 3
+parcelle-jaune-losange ;../image/carte_tuile/7.png; reproduisez la forme affichée avec les tuiles pour valider; 4
+parcelle-jaune-arc ;../image/carte_tuile/8.png; reproduisez la forme affichée avec les tuiles pour valider; 3
+parcelle-verte-ligne ;../image/carte_tuile/9.png; reproduisez la forme affichée avec les tuiles pour valider; 2
+parcelle-verte-arc ;../image/carte_tuile/10.png; reproduisez la forme affichée avec les tuiles pour valider; 2
+parcelle-rose-arc ;../image/carte_tuile/11.png; reproduisez la forme affichée avec les tuiles pour valider; 4
+parcelle-rose-triangle ;../image/carte_tuile/12.png; reproduisez la forme affichée avec les tuiles pour valider; 4
+parcelle-rose-losange;../image/carte_tuile/13.png; reproduisez la forme affichée avec les tuiles pour valider; 5
+parcelle-rose-ligne ;../image/carte_tuile/14.png; reproduisez la forme affichée avec les tuiles pour valider; 4
+parcelle-jaune-triangle ;../image/carte_tuile/15.png; reproduisez la forme affichée avec les tuiles pour valider; 3
+jardinier-jaune-4-bassin ;../image/carte_jardinier/1.png; faite poussez un bambou jaune d'une hauteur de 4 sur une tuile avec un bassin pour valider ; 5
+jardinier-jaune-4-sans ;../image/carte_jardinier/2.png; faite poussez un bambou jaune d'une hauteur de 4 pour valider sans aménagement; 6
+jardinier-rose-3-double ;../image/carte_jardinier/3.png; faite poussez deux bambou rose d'une hauteur de 3 exactement pour valider ; 6
+jardinier-jaune-3-triple ;../image/carte_jardinier/4.png; faite poussez trois bambou jaune d'une hauteur de 3 exactement pour valider ; 7
+jardinier-vert-3-quatre ;../image/carte_jardinier/5.png; faite poussez quatre bambou vert d'une hauteur de 3 exactement pour valider ; 8
+jardinier-vert-4-enclos ;../image/carte_jardinier/6.png; faite poussez un bambou vert d'une hauteur de 4 sur une tuile avec un enclos pour valider ; 4
+jardinier-vert-4-bassin ;../image/carte_jardinier/7.png; faite poussez un bambou vert d'une hauteur de 4 sur une tuile avec un bassin pour valider ; 4
+jardinier-vert-4-sans ;../image/carte_jardinier/8.png; faite poussez un bambou vert d'une hauteur de 4 sur une tuile sans aménagement pour valider ; 5
+jardinier-jaune-4-engrais ;../image/carte_jardinier/9.png; faite poussez un bambou jaune d'une hauteur de 4 sur une tuile avec de l'engrais pour valider ; 4
+jardinier-jaune-4-enclos ;../image/carte_jardinier/10.png; faite poussez un bambou jaune d'une hauteur de 4 sur une tuile avec un enclos pour valider ; 5
+jardinier-rose-4-engrais ;../image/carte_jardinier/11.png; faite poussez un bambou rose d'une hauteur de 4 sur une tuile avec de l'engrais pour valider ; 5
+jardinier-rose-4-bassin ;../image/carte_jardinier/12.png; faite poussez un bambou rose d'une hauteur de 4 sur une tuile avec un bassin pour valider ; 6
+jardinier-rose-4-enclos ;../image/carte_jardinier/13.png; faite poussez un bambou rose d'une hauteur de 4 sur une tuile avec un enclos pour valider ; 6
+jardinier-rose-4-sans ;../image/carte_jardinier/14.png; faite poussez un bambou rose d'une hauteur de 4 sur une tuile sans aménagement pour valider ; 7
+jardinier-vert-4-engrais ;../image/carte_jardinier/15.png; faite poussez un bambou vert d'une hauteur de 4 sur une tuile avec de l'engrais pour valider ; 3
