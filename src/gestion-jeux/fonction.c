@@ -1,4 +1,4 @@
-#include "../lib/index.h"
+#include "../../lib/index.h"
 
 /********************
 fonction opérationnel

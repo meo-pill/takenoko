@@ -1,4 +1,4 @@
-#include <../lib/index.h>
+#include "../../lib/index.h"
 
 int verif_panda (carte_t const * carte, joueur_t const * joueur){
   switch (carte->type[6]){
