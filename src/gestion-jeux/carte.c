@@ -21,7 +21,7 @@ carte_t * creer_carte(char * type, char * descrip, char * image, int pt ){
 
   strcpy(carte->type,type);
   strcpy(carte->image,image);
-  strcpy(carte->desc,describ);
+  strcpy(carte->desc,descrip);
   carte->point = pt;
 
 
