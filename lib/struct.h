@@ -43,6 +43,8 @@ case_plato_t * plateau[NBTUILE][NBTUILE];
 case_plato_t lac;
 file_t * file_tuile_tete;
 file_t * file_tuile_queue;
+personnage_t panda;
+personnage_t jardinier;
 
 
 /** des structurs*/
@@ -50,8 +52,8 @@ struct personnage_s{
   void const (*deplacement)(void); // poiteur sur fonction de déplacement
   void const (*gestionBamboo)(void); //ajout/supression des bamboopar le personnage
   int x,y; //coordonnée
-  char const image; //l'images du personne
-  char const Type[10]; //nom du personnage
+  char image[LONGPATH]; //l'images du personne
+  char Type[10]; //nom du personnage
 };
 
 struct case_plato_s{

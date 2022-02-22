@@ -5,6 +5,12 @@
  */
 
 
+/*
+ ****************************************************************************************
+ * partie initialitation
+ ****************************************************************************************
+ */
+
 /**
  * @brief mélange le tableau
  * Mewen
@@ -112,12 +118,9 @@ static void creation_joueur(int const nb_joueur){
     }
 }
 
-int extraction_fichier_carte(){
-
-}
 /**
  * @brief mise en place de la case lac et inisialisaiton des poiteur
- * 
+ * MEWEN
  */
 static void creation_plateau(void){
     for(int i=0; i<27; i++){
@@ -132,25 +135,9 @@ static void creation_plateau(void){
     plateau[LACPOS][LACPOS]= &lac;
 }
 
-/**
- * @brief mise a nul des poiteur pour éviter les poiteur fous
- * Mewen
- */
-static void videe_plateau(void){
-    creation_plateau();
-    plateau[LACPOS][LACPOS]= NULL;
-}
 
-/**
- * @brief free des tuile en alocation dinamque
- * Mewen
- */
+int extraction_fichier_carte(){
 
-static void suppression_tuile(void){
-    for(int i=0; i<NBTUILE; i++){
-        free(piece[i]);
-        piece[i] = NULL;
-    }
 }
 
 /**
@@ -166,6 +153,32 @@ extern void initaliser(int const nb_joueur){
     mise_en_file();
     creation_plateau();
     creation_joueur(nb_joueur);
+}
+
+/*
+ ****************************************************************************************
+ * partie destruction
+ ****************************************************************************************
+ */
+
+/**
+ * @brief mise a nul des poiteur pour éviter les poiteur fous
+ * Mewen
+ */
+static void videe_plateau(void){
+    creation_plateau();
+    plateau[LACPOS][LACPOS]= NULL;
+}
+
+/**
+ * @brief free des tuile en alocation dinamque
+ * Mewen
+ */
+static void suppression_tuile(void){
+    for(int i=0; i<NBTUILE; i++){
+        free(piece[i]);
+        piece[i] = NULL;
+    }
 }
 
 /**

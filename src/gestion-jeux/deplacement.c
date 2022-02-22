@@ -129,6 +129,7 @@ static int ligne_existe(int const xa, int const ya, int const xn, int const yn){
  * @param yn nouvelle position y voulue
  * @return int 
  *  retour d'un int de validation
+ *  0= tout c'est bien passer le déplacement est possible
  *  1= la case selectioner n'existe pas;
  *  2= les case sont identique
  *  3= la case selectioner n'est pas une coordoné de déplacement valide
@@ -147,4 +148,9 @@ extern int deplacement_posible(int const xa, int const ya, int const xn, int con
     if(!ligne_existe(xa,ya,xn,yn)){
         return(4);
     }
+    return(0);
+}
+
+extern int deplacement_personage(){
+    
 }

@@ -9,12 +9,9 @@ int main(){
     int nbPanda=0;
     int nbBambous=0;
     int nbJoueurs;
-    S_terrain takenoko[100];
-    S_Joueur * Joueur;
 
     srand(time(NULL));
-    nombreEtNom(Joueur);
-    initaliser();
+    initaliser(nbJoueurs);
 
 
     return(0);
