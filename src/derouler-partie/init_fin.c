@@ -115,7 +115,10 @@ static void creation_joueur(int const nb_joueur){
 int extraction_fichier_carte(){
 
 }
-
+/**
+ * @brief mise en place de la case lac et inisialisaiton des poiteur
+ * 
+ */
 static void creation_plateau(void){
     for(int i=0; i<27; i++){
         for(int j=0; j<NBTUILE; j++){
