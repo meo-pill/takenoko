@@ -8,13 +8,17 @@ INCS=-I${SDL_INC_DIR}
 PROG=bin/Takenoko
 FENETRE=bin/fenetre.o
 CREATION:=bin/Creation.o
+MENU=bin/menu.o
 cache:all
 all:clean ${PROG} laugth
-${PROG}: src/main.c  ${CREATION}
-	${CC} -o ${PROG} src/main.c src/Creation.c ${LIBS} ${INCS} ${FLAGS}
+${PROG}: src/main.c  ${CREATION} ${FENETRE} ${MENU}
+	${CC} -o ${PROG} src/main.c ${CREATION} ${FENETRE} ${MENU} ${LIBS} ${INCS} ${FLAGS}
 ${FENETRE}:src/fenetre.c lib/fenetre.h 
-	${CC} src/fenetre.c ${LIBS} ${INCS} ${FLAGS}
+	${CC} -c src/fenetre.c ${LIBS} ${INCS} ${FLAGS}
 ${CREATION}:src/Creation.c lib/Creation.h
+	${CC} -c src/Creation.c ${LIBS} ${INCS} ${FLAGS}
+${MENU}:src/menu.c lib/menu.h
+	${CC} -c src/menu.c ${LIBS} ${INCS} ${FLAGS}
 clean:
 	clear
 	rm -f ${PROG}
