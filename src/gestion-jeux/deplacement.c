@@ -125,7 +125,7 @@ static int ligne_existe(int const xa, int const ya, int const xn, int const yn){
             }
         }
     }
-
+    retun(1);
 }
 
 /**
@@ -168,7 +168,7 @@ extern int deplacement_imposible(int const xa, int const ya, int const xn, int c
  * retour d'un int de validation/erreur
  * 0= la posse de la tuile est possible
  * 1= une tuile se trouve deja a l'emplacement
- * 2= l'emmplacement n'a pas 2 voisin
+ * 2= l'emmplacement a moin de 2 voisin
  */
 extern int pose_tuile_impossible(int const x, int const y){
     int validation = 0;
@@ -189,8 +189,49 @@ extern int pose_tuile_impossible(int const x, int const y){
     return(2);
 }
 
-extern int pose_canal_impossible(int const xa, int const ya, int const xb, int const yb){
-    
+/**
+ * @brief verfication de la contiguité entre deux case
+ * MEWEN
+ * @param xa 
+ * @param ya coordonné de la premier case
+ * @param xb 
+ * @param yb coordonné de la seconde case
+ * @return int 
+ * O = les case ne sont pas contigue
+ * 1 = les case sont contigue
+ */
+extern int contigue(int const xa, int const ya, int const xb, int const yb){
+    if(!case_existe(xa,ya) || !case_existe(xb,yb)){
+        retun (0);
+    }
+    return( (xa == xb-1 && ya == yb) || (xa == xb+1 && ya == yb) || 
+    (xa == xb && ya == yb-1) || (xa == xb && ya == yb+1) ||
+    (xa == xb-1 && ya == yb-1) || (xa == xb+1 && ya == yb+1) );
+}
+
+/**
+ * @brief fonction récursive de verfication d'access au lac
+ * MEWEN
+ * @param xa 
+ * @param ya 
+ * @param xb 
+ * @param yb coordoné des casse
+ * @return int 
+ * 0 = la case n'a pas acces au lac
+ * 1 = la case a acces au lac
+ */
+extern int access_lac(int const xa, int const ya, int const xb, int const yb){
+    if (!case_existe(xa,ya) || !case_existe(xa,yb)){
+        return(0);
+    }
+    if (!contigue(xa,ya,xb,yb)){
+        return(0);
+    }
+    if (contigue(xa,ya,LACPOS,LACPOS)&&contigue(xb,yb,LACPOS,LACPOS)){
+        return (1);
+    }
+
+
 }
 
 extern int deplacement_personage(){
