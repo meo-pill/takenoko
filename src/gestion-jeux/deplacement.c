@@ -210,7 +210,7 @@ extern int contigue(int const xa, int const ya, int const xb, int const yb){
 }
 
 /**
- * @brief fonction récursive de verfication d'access au lac
+ * @brief fonction de verfication d'access au lac
  * MEWEN
  * @param xa 
  * @param ya 
@@ -230,7 +230,15 @@ extern int access_lac(int const xa, int const ya, int const xb, int const yb){
     if (contigue(xa,ya,LACPOS,LACPOS)&&contigue(xb,yb,LACPOS,LACPOS)){
         return (1);
     }
+    //a copier plein de foi
+    if (contigue(xa,ya,xb,yb)){
+        for (int i=0; i <20 && irig[i]!= NULL; i++){
+            if (irig[i]->xa == xa && irig[i]->ya == ya &&
+            irig[i]->xb == xb && irig[i]-yb == yb){
 
+            }
+        }
+    }
 
 }
 
