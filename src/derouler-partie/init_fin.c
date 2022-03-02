@@ -67,7 +67,7 @@ static int extraction_fichier_tuile(void){
     }
 
     /** boucle de remplisage du tableaux des tuile */
-    while (fscanf(ficTuile,"%d,%d,%d,%d,%s\n",&couleur,&iriguer,&bambou,&effet,&valeur) != EOF){
+    while (fscanf(ficTuile,"%d,%d,%d,%d,%s\n",&couleur,&iriguer,&bambou,&effet,valeur) != EOF){
         /* création de la structure en allocation dinamque */
         piece[compteur] = malloc(sizeof(case_plato_t));
 
@@ -128,15 +128,55 @@ static void creation_plateau(void){
             plateau[i][j] = NULL;
         }
     }
-    lac.Coul="lac";
-    lac.Eff="lac";
-    lac.iriguer="-1";
+    lac.Coul= centre;
+    lac.Eff= debut;
+    lac.iriguer= -1;
 
     plateau[LACPOS][LACPOS]= &lac;
 }
 
 
 int extraction_fichier_carte(){
+    int nb_panda = 0;
+    int nb_parc = 0;
+    int nb_jard = 0;
+
+    char type [30];
+    char image [50];
+    char desc [100];
+    int pt;
+
+    FILE * fich;
+    fich = fopen("../asset/carte_objectif.txt","r");
+    if(fich == NULL)
+        printf("\n --------------------- \n erreur lors de l'ouverture du fichier \" carte_objectif.txt \" \n ---------------------\n");
+    fscanf(fich,"--");
+    while(!feof(fich)){
+        fscanf(fich,"\n%[^;]",type);
+        fscanf(fich,"%[^;]",image);
+        fscanf(fich,"%[^;]",desc);
+        fscanf(fich,"%d",&pt);
+        if(type[5] == '-'){
+            cartePanda[nb_panda] = creer_carte(type,image,desc,pt);
+            nb_panda ++;
+        }
+        else if (type[8] == '-'){
+            carteParcelle[nb_parc] = creer_carte(type,image,desc,pt);
+            nb_parc ++;
+        }
+        else if (type[9] == '-'){
+            carteJardinier[nb_jard] = creer_carte(type,image,desc,pt);
+        }
+        else{
+            printf("\n --------------------- \n erreur de recuperation des cartes (type mal informé)\n -------------- \n");
+            break;
+        }
+        if(nb_panda > 15 || nb_parc > 15 || nb_jard > 15){
+            printf("\n --------------------- \n erreur de recuperation des types de cartes (trop d'un type) \n panda : %d \n parcelles : %d \n jardinier : %d \n  --------------------- \n",nb_panda,nb_parc,nb_jard);
+            break;
+        }
+    }
+
 
 }
 
@@ -144,7 +184,7 @@ int extraction_fichier_carte(){
  * @brief fonction d'apelle pour l'initialisation de la partie
  * Mewen / Leo
  */
-extern void initaliser(int const nb_joueur){
+void initaliser(int const nb_joueur){
     initfile();
     if (!extraction_fichier_tuile()){
         printf("ereur d'ouverture fichier tuile");
@@ -185,7 +225,7 @@ static void suppression_tuile(void){
  * @brief fonction d'appelle pour la libération de fin de partie
  * Mewen / Leo
  */
-extern void suprimer(void){
+void suprimer(void){
     videe_plateau();
     suppression_tuile();
 }
