@@ -30,10 +30,10 @@ typedef struct file_s file_t;
 typedef struct irigation_s irigation_t;
 
 /**definition des type enumérer*/
-typedef enum couleur_s{jaune,rose,vert,lac}couleur_E;
-typedef enum effet_s{rien,bassin,enclos,engrais,lac}effet_E;
+typedef enum couleur_s{jaune,rose,vert,centre}couleur_E;
+typedef enum effet_s{rien,bassin,enclos,engrais,debut}effet_E;
 typedef enum effDes_s{soleil,pluie,vent,orage,nuage,choixJ}effDes_E;
-typedef enum couleurJ_s{bleu,rouge,noir,vert}couleurJ_E;
+typedef enum couleurJ_s{bleu,rouge,noir,blanc}couleurJ_E;
 
 /**variable globale*/
 joueur_t * J[4];
@@ -63,7 +63,7 @@ struct case_plato_s{
   int iriguer;
   int nbBambou;
   effet_E Eff;
-  char const image [LONGPATH];
+  char image [LONGPATH];
 };
 
 struct carte_s{
@@ -71,7 +71,7 @@ struct carte_s{
   char const type [LONGTYPE];
   char const image [LONGPATH];
  	char const desc [DESCRIPTION];
- 	int const point;
+ 	int point;
 };
 
 struct joueur_s{
