@@ -227,55 +227,17 @@ extern int access_lac(int const xa, int const ya, int const xb, int const yb){
     if (contigue(xa,ya,LACPOS,LACPOS)&&contigue(xb,yb,LACPOS,LACPOS)){
         return (1);
     }
-    //a copier plein de foi
-    if (contigue(xa-1,ya,xb,yb)){
-        for (int i=0; i <20 && irig[i]!= NULL; i++){
-            if (irig[i]->xa == xa-1 && irig[i]->ya == ya &&
-            irig[i]->xb == xb && irig[i]-yb == yb){
-                return(1);
-            }
-        }
+    
+    if(xa == xb){
+
     }
-    if (contigue(xa+1,ya,xb,yb)){
-        for (int i=0; i <20 && irig[i]!= NULL; i++){
-            if (irig[i]->xa == xa+1 && irig[i]->ya == ya &&
-            irig[i]->xb == xb && irig[i]-yb == yb){
-                return(1);
-            }
-        }
+    else if (ya == yb){
+
     }
-    if (contigue(xa,ya-1,xb,yb)){
-        for (int i=0; i <20 && irig[i]!= NULL; i++){
-            if (irig[i]->xa == xa && irig[i]->ya == ya-1 &&
-            irig[i]->xb == xb && irig[i]-yb == yb){
-                return(1);
-            }
-        }
+    else if (xa-xb == ya-yb){
+        
     }
-    if (contigue(xa,ya+1,xb,yb)){
-        for (int i=0; i <20 && irig[i]!= NULL; i++){
-            if (irig[i]->xa == xa && irig[i]->ya == ya+1 &&
-            irig[i]->xb == xb && irig[i]-yb == yb){
-                return(1);
-            }
-        }
-    }
-    if (contigue(xa-1,ya-1,xb,yb)){
-        for (int i=0; i <20 && irig[i]!= NULL; i++){
-            if (irig[i]->xa == xa-1 && irig[i]->ya == ya-1 &&
-            irig[i]->xb == xb && irig[i]-yb == yb){
-                return(1);
-            }
-        }
-    }
-    if (contigue(xa+1,ya+1,xb,yb)){
-        for (int i=0; i <20 && irig[i]!= NULL; i++){
-            if (irig[i]->xa == xa+1 && irig[i]->ya+1 == ya &&
-            irig[i]->xb == xb && irig[i]-yb == yb){
-                return(1);
-            }
-        }
-    }
+    
     return(0);
 }
 
