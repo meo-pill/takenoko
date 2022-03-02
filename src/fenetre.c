@@ -2,9 +2,23 @@
 #include "../lib/Creation.h"
 #include "../lib/menu.h"
 
-void affiche_option(SDL_Window* pWindow,SDL_Renderer *renderer,int W,int H){
+void affiche_option(char *fond,int W,int H){
+	if (SDL_Init(SDL_INIT_TIMER |SDL_INIT_VIDEO)== -1 ){
+		fprintf(stdout,"Échec de l'initialisation de la SDL (%s)\n",SDL_GetError());
+		exit(EXIT_FAILURE );
+	}
+
+	if ( TTF_Init () == -1) {
+		fprintf ( stderr , " Erreur d ’ i nitialis ation de TTF_Init : %s \n " , TTF_GetError ());
+		exit ( EXIT_FAILURE );
+	}
+	SDL_Event event;//permet de voir les evenement sur la fenêtre
+	SDL_Window* pWindowInv = NULL; //pointeur sur la fenêtre invisible
+
+	SDL_Renderer *rendererInv=NULL;
 	char fond_option[]="image/en_plus/Fond_option.png";
 
+	SDL_Texture* Texture=NULL;//pour avoir un fond
 	SDL_Texture* pTexture =NULL;//pour ajouter une animation
 	SDL_Texture *  bouton =NULL;
 	SDL_Texture *  bouton2 =NULL;
@@ -14,64 +28,138 @@ void affiche_option(SDL_Window* pWindow,SDL_Renderer *renderer,int W,int H){
 	SDL_Rect tailBouton;
 	SDL_Rect tailBouton2;
 
-	int h=1,x=0,y=0;
+	int h=0,x=0,y=0;
 
-	printf("Ok1\n");
+	pWindowInv = SDL_CreateWindow("Option",SDL_WINDOWPOS_UNDEFINED,
+											SDL_WINDOWPOS_UNDEFINED,
+											W,
+											H,
+											SDL_WINDOW_SHOWN |SDL_WINDOW_RESIZABLE);
+	rendererInv = SDL_CreateRenderer(pWindowInv,-1,SDL_RENDERER_ACCELERATED); // Création d'un SDL_Renderer utilisant l'accélération matérielle
 
-	bouton =CreationText(renderer,&tailBouton,"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"Quiter",Noir,580,750);
+	bouton =CreationText(rendererInv,&tailBouton,"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"<-Retour",Noir,580,750);
 	if ( bouton == NULL ){
 		exit ( EXIT_FAILURE );
 	}
 
-	bouton2 =CreationText(renderer,&tailBouton2,"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Quiter",Noir,580,750);
+	bouton2 =CreationText(rendererInv,&tailBouton2,"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"<-Retour",Noir,580,750);
 	if ( bouton == NULL ){
 		exit ( EXIT_FAILURE );
 	}
 
-	printf("Ok2\n");
-	pTexture = IMG_LoadTexture(renderer, fond_option);
-	if(pTexture==NULL){
+	pTexture = IMG_LoadTexture(rendererInv, fond_option);
+	Texture = IMG_LoadTexture(rendererInv, fond);
+	if(pTexture==NULL||Texture==NULL){
 		fprintf ( stderr , " Erreur au niveau de l'image: %s \n " , TTF_GetError ());
 		exit ( EXIT_FAILURE );
 	}
 
-	printf("Ok3\n");
-	while(h<H){
-		//permet de faire bouger l'animation
-		h+=100;
-		printf("ok4 h=%d\n",h);
-		SDL_Rect annimation = { 1,h,W-138,H};
-		SDL_Rect crop={138,H,W-138, H };
-		//on pose l'animation sur la fenêtre
-		SDL_RenderCopy(renderer,pTexture,&annimation,&crop);// Copie du sprite grâce au SDL_Renderer
-		SDL_RenderPresent(renderer);
-		sleep(5);
-	}
-	
+	int fullscreen=0;
 	while(1){
+	if(h!=H){
+		//permet de faire bouger l'animation
+		h+=10;
+		SDL_Rect annimation = { 0,0,W,h};
+		SDL_Rect crop={0, H, W, H };
+		//on pose l'animation sur la fenêtre
+		SDL_RenderCopy(rendererInv,Texture,NULL,NULL);
+		SDL_RenderCopy(rendererInv,pTexture,&crop,&annimation);// Copie du sprite grâce au SDL_Renderer
+		//sleep(1);
+	}
+	else{
 		Uint32 Clic = SDL_GetMouseState(&x,&y);
 		//création de la "fenêtre ou nous verons une partie de l'image
-	
-		SDL_RenderCopy(renderer, pTexture, NULL, NULL);
+		SDL_RenderCopy(rendererInv,Texture,NULL,NULL);
+		SDL_RenderCopy(rendererInv, pTexture, NULL, NULL);
 		if((x>=tailBouton.x && x<=(tailBouton.w+tailBouton.x)) && (y>=tailBouton.y && y<=(tailBouton.h+tailBouton.y))){
 			if(Clic==1){
+				while(h>=0){
+					h-=10;
+					SDL_Rect annimation = { 0,0,W,h};
+					SDL_Rect crop={0, H, W, H };
+					SDL_RenderCopy(rendererInv,Texture,NULL,NULL);
+					SDL_RenderCopy(rendererInv,pTexture,&crop,&annimation);
+				}
 				if(NULL!=bouton) 
 					SDL_DestroyTexture(bouton);
 				if(NULL!=bouton2) 
 					SDL_DestroyTexture(bouton2);
 				if(NULL!=pTexture)
 					SDL_DestroyTexture(pTexture);
+				if(NULL!=Texture) 
+					SDL_DestroyTexture(Texture);
+				if(NULL!=rendererInv)
+					SDL_DestroyRenderer(rendererInv);
+				if(NULL!=pWindowInv)
+					SDL_DestroyWindow(pWindowInv);
+				IMG_Quit();
+				TTF_Quit();
+				SDL_Quit();
 				menu();
-
 			}
 			else
-				SDL_RenderCopy(renderer, bouton2,NULL,&tailBouton2);
+				SDL_RenderCopy(rendererInv, bouton2,NULL,&tailBouton2);
 		}
 		else
-			SDL_RenderCopy(renderer, bouton,NULL,&tailBouton);
+			SDL_RenderCopy(rendererInv, bouton,NULL,&tailBouton);
 	
+	}
 		//présentation final
-		SDL_RenderPresent(renderer);
-		printf("option: %d %d\n",x,y);
+		SDL_RenderPresent(rendererInv);
+		if (SDL_PollEvent(&event)){
+			 switch(event.type){
+				case SDL_QUIT:
+					if(NULL!=bouton) 
+						SDL_DestroyTexture(bouton);
+					if(NULL!=bouton2) 
+						SDL_DestroyTexture(bouton2);
+					if(NULL!=pTexture)
+						SDL_DestroyTexture(pTexture);
+					if(NULL!=Texture) 
+						SDL_DestroyTexture(Texture);
+					if(NULL!=rendererInv)
+						SDL_DestroyRenderer(rendererInv);
+					if(NULL!=pWindowInv)
+						SDL_DestroyWindow(pWindowInv);
+					IMG_Quit();
+					TTF_Quit();
+					SDL_Quit();
+					exit(EXIT_SUCCESS);
+					break;
+				case SDL_KEYUP:
+					switch(event.key.keysym.sym){
+						case SDLK_q:
+							if(fullscreen==1)
+								SDL_SetWindowFullscreen(pWindowInv,0);
+							if(NULL!=bouton) 
+								SDL_DestroyTexture(bouton);
+							if(NULL!=bouton2) 
+								SDL_DestroyTexture(bouton2);
+							if(NULL!=pTexture)
+								SDL_DestroyTexture(pTexture);
+							if(NULL!=Texture) 
+								SDL_DestroyTexture(Texture);
+							if(NULL!=rendererInv)
+								SDL_DestroyRenderer(rendererInv);
+							if(NULL!=pWindowInv)
+								SDL_DestroyWindow(pWindowInv);
+							IMG_Quit();
+							TTF_Quit();
+							SDL_Quit();
+							menu();
+						case SDLK_F11:
+						 	if(fullscreen==0){
+								SDL_SetWindowFullscreen(pWindowInv,SDL_WINDOW_FULLSCREEN);
+								fullscreen++;
+							 }
+							else{
+								SDL_SetWindowFullscreen(pWindowInv,0);
+								fullscreen--;
+							}
+						     	break;
+					}
+					break;
+			 }
+		}
 	}
 }
