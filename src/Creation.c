@@ -1,4 +1,5 @@
 #include "../lib/Creation.h"
+#include "../lib/index.h"
 
 /*int creabouton(int position_x, int position_y, int w, int h, SDL_Surface* ecran, int couleura, int couleurb, int couleurc)
 {

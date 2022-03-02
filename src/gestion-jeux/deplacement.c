@@ -135,7 +135,7 @@ static int ligne_existe(int const xa, int const ya, int const xn, int const yn){
  *  3= la case selectioner n'est pas une coordoné de déplacement valide
  *  4= la ligne entre les deux case n'est pas continue
  */
-extern int deplacement_posible(int const xa, int const ya, int const xn, int const yn){
+extern int deplacement_imposible(int const xa, int const ya, int const xn, int const yn){
     if(!case_existe(xn,yn)){
         return(1);
     }
@@ -149,6 +149,40 @@ extern int deplacement_posible(int const xa, int const ya, int const xn, int con
         return(4);
     }
     return(0);
+}
+
+/**
+ * @brief verifiaction des la posibllité de posser une tuile
+ * MEWEN
+ * @param x coordoné x de la tuile
+ * @param y coordoné y de la tuile
+ * @return int 
+ * retour d'un int de validation/erreur
+ * 0= la posse de la tuile est possible
+ * 1= une tuile se trouve deja a l'emplacement
+ * 2= l'emmplacement n'a pas 2 voisin
+ */
+extern int pose_tuile_impossible(int const x, int const y){
+    int validation = 0;
+    if (!case_existe(x,y)){
+        return(1);    
+    }
+    // test de toute les position voisine et ajjout dans un compteur
+    validation += case_existe(x-1,y-1);
+    validation += case_existe(x-1,y);
+    validation += case_existe(x,y-1);
+    validation += case_existe(x,y+1);
+    validation += case_existe(x+1,y);
+    validation += case_existe(x+1,y+1);
+    // pour que la posse soit possible la casse doit avoir minimum 2 voissine donc le compteur doit ètre >= a 2
+    if(validation >= 2){
+        return(0);
+    }
+    return(2);
+}
+
+extern int pose_canal_impossible(int const xa, int const ya, int const xb, int const yb){
+    
 }
 
 extern int deplacement_personage(){
