@@ -1,3 +1,11 @@
+/**
+ * @file deplacement.c
+ * @author MEWEN
+ * @brief fonction de calcul pour le delacement est la gestion de pose sur le plateau
+ * @version 0.1
+ * @date 2022-03-02
+ * 
+ */
 #include "../../lib/index.h"
 
 /**
