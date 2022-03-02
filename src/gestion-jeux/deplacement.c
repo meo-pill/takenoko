@@ -201,9 +201,6 @@ extern int pose_tuile_impossible(int const x, int const y){
  * 1 = les case sont contigue
  */
 extern int contigue(int const xa, int const ya, int const xb, int const yb){
-    if(!case_existe(xa,ya) || !case_existe(xb,yb)){
-        retun (0);
-    }
     return( (xa == xb-1 && ya == yb) || (xa == xb+1 && ya == yb) || 
     (xa == xb && ya == yb-1) || (xa == xb && ya == yb+1) ||
     (xa == xb-1 && ya == yb-1) || (xa == xb+1 && ya == yb+1) );
@@ -221,7 +218,7 @@ extern int contigue(int const xa, int const ya, int const xb, int const yb){
  * 1 = la case a acces au lac
  */
 extern int access_lac(int const xa, int const ya, int const xb, int const yb){
-    if (!case_existe(xa,ya) || !case_existe(xa,yb)){
+    if (!case_existe(xa,ya) && !case_existe(xa,yb)){
         return(0);
     }
     if (!contigue(xa,ya,xb,yb)){
