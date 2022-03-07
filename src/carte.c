@@ -18,16 +18,16 @@ int verif_panda (carte_t const * carte, joueur_t const * joueur){
 
 int verif_parcelle_triangle (couleur_E couleur){
   int i,j;
-  for(i=0;i<NB_TUILE;i++){
-    for(j=0;j<NB_TUILE;j++){
-      if(plateau[i][j]->Coul == couleur && plateau[i][j]->irriguer){
+  for(i=0;i<NBTUILE;i++){
+    for(j=0;j<NBTUILE;j++){
+      if(plateau[i][j]->Coul == couleur && plateau[i][j]->iriguer){
         return (plateau[i][j+1]->Coul == couleur && plateau[i+1][j+1]->Coul == couleur);
       }
     }
   }
 }
 
-carte_t * creer_carte(char * type, char * descrip, char * image, int pt ){
+carte_t * creer_carte(char * type, char * describ, char * image, int pt ){
   carte_t * carte = malloc(sizeof(carte_t));
 
   strcpy(carte->type,type);
@@ -35,5 +35,5 @@ carte_t * creer_carte(char * type, char * descrip, char * image, int pt ){
   strcpy(carte->desc,describ);
   carte->point = pt;
 
-
+  return carte ;
 }

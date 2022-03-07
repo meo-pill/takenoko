@@ -1,4 +1,4 @@
-/* type; image; description; point*/
+/* type; image; description; point*/ --
 panda-vert;image/carte_panda/1.png; obtenez deux bambou vert pour valider ; 3
 panda-vert;image/carte_panda/1.png; obtenez deux bambou vert pour valider ; 3
 panda-vert;image/carte_panda/1.png; obtenez deux bambou vert pour valider ; 3
