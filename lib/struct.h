@@ -22,7 +22,7 @@
 #define NBIRIG 20
 
 /**definition des structurs*/
-typedef struct  personnage_s personnage_t;
+typedef struct personnage_s personnage_t;
 typedef struct case_plato_s case_plato_t;
 typedef struct carte_s carte_t;
 typedef struct joueur_s joueur_t;
@@ -42,7 +42,6 @@ carte_t * cartePanda[15];
 carte_t * carteParcelle[15];
 carte_t * carteJardinier[15];
 case_plato_t * plateau[NBTUILE][NBTUILE];
-case_plato_t lac;
 file_t * file_tuile_tete;
 file_t * file_tuile_queue;
 personnage_t panda;
@@ -78,10 +77,10 @@ struct joueur_s{
   char nom_joueur[20];
   carte_t * main[5];
   carte_t * valide[MAXNB2J];
-	int bambou [3];
-	int effSpe [3];
-	int nbIrigation;
-  int nbObjectif;
+	  int bambou [3];
+	  int effSpe [3];
+	  int nbIrigation;
+    int nbObjectif;
   couleurJ_E couleurJoueur;
 };
 
