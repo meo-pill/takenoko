@@ -19,6 +19,7 @@
 #define NBTUILES 27
 #define LACPOS 14
 #define NBTUILE 27
+#define NBIRIG 20
 
 /**definition des structurs*/
 typedef struct personnage_s personnage_t;
@@ -26,10 +27,11 @@ typedef struct case_plato_s case_plato_t;
 typedef struct carte_s carte_t;
 typedef struct joueur_s joueur_t;
 typedef struct file_s file_t;
+typedef struct irigation_s irigation_t;
 
 /**definition des type enumérer*/
-typedef enum couleur_s{jaune,rose,vert}couleur_E;
-typedef enum effet_s{rien,bassin,enclos,engrais,lac}effet_E;
+typedef enum couleur_s{jaune,rose,vert,centre}couleur_E;
+typedef enum effet_s{rien,bassin,enclos,engrais,debut}effet_E;
 typedef enum effDes_s{soleil,pluie,vent,orage,nuage,choixJ}effDes_E;
 typedef enum couleurJ_s{bleu,rouge,noir,blanc}couleurJ_E;
 
@@ -44,7 +46,7 @@ file_t * file_tuile_tete;
 file_t * file_tuile_queue;
 personnage_t panda;
 personnage_t jardinier;
-
+irigation_t * irig[20];
 
 /** des structurs*/
 struct personnage_s{
@@ -60,7 +62,7 @@ struct case_plato_s{
   int iriguer;
   int nbBambou;
   effet_E Eff;
-  char const image [LONGPATH];
+  char image [LONGPATH];
 };
 
 struct carte_s{
@@ -68,7 +70,7 @@ struct carte_s{
   char const type [LONGTYPE];
   char const image [LONGPATH];
  	char const desc [DESCRIPTION];
- 	int const point;
+ 	int point;
 };
 
 struct joueur_s{
@@ -80,6 +82,13 @@ struct joueur_s{
 	  int nbIrigation;
     int nbObjectif;
   couleurJ_E couleurJoueur;
+};
+
+struct irigation_s{
+  int xa;
+  int ya;
+  int xb;
+  int yb;
 };
 
 #endif

@@ -1,5 +1,5 @@
 #include "../lib/menu.h"
 int main(){
-	init();
 	menu();
+	return 0;
 }

@@ -15,5 +15,7 @@
 #include "init_fin.h" // après struct, file, deplacement
 #include "bamboo.h"// après struct
 #include "fonction.h"
+#include "carte.h"
+
 
 #endif
