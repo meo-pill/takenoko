@@ -1,3 +1,11 @@
+/**
+ * @file deplacement.c
+ * @author MEWEN
+ * @brief fonction de calcul pour le delacement est la gestion de pose sur le plateau
+ * @version 0.1
+ * @date 2022-03-02
+ * 
+ */
 #include "../../lib/index.h"
 
 /**
@@ -65,14 +73,14 @@ static int ligne_existe(int const xa, int const ya, int const xn, int const yn){
         if (ya < yn){
             for(yTmp = ya+1; yTmp<yn; yTmp++){
                 if (plateau[xa][yTmp]==NULL){
-                    retun(0);
+                    return(0);
                 }
             }
         }
         if (ya > yn){
             for(yTmp = yn+1; yTmp<ya; yTmp++){
                 if (plateau[xa][yTmp]==NULL){
-                    retun(0);
+                    return(0);
                 }
             }
         }
@@ -81,14 +89,14 @@ static int ligne_existe(int const xa, int const ya, int const xn, int const yn){
         if (xa < xn){
             for(xTmp = xa+1; xTmp<yn; xTmp++){
                 if (plateau[xTmp][ya]==NULL){
-                    retun(0);
+                    return(0);
                 }
             }
         }
         if (xa > xn){
             for(xTmp = xn+1; xTmp<ya; xTmp++){
                 if (plateau[xTmp][ya]==NULL){
-                    retun(0);
+                    return(0);
                 }
             }
         }
@@ -97,27 +105,28 @@ static int ligne_existe(int const xa, int const ya, int const xn, int const yn){
         if (xa < xn){
             xTmp = xa+1;
             yTmp = ya+1;
-            while(nb_rep < xn){
+            while(xTmp < xn){
                 if (plateau[xTmp][yTmp]==NULL){
-                    retun(0);
+                    return(0);
                 }
                 xTmp ++;
                 yTmp ++;
+                nb_rep ++;
             }
         }
         if (xa > xn){
             xTmp = xn+1;
             yTmp = yn+1;
-            while(nb_rep < xa){
+            while(xTmp < xa){
                 if (plateau[xTmp][yTmp]==NULL){
-                    retun(0);
+                    return(0);
                 }
                 xTmp ++;
                 yTmp ++;
             }
         }
     }
-
+    return(1);
 }
 
 /**
@@ -160,7 +169,7 @@ extern int deplacement_imposible(int const xa, int const ya, int const xn, int c
  * retour d'un int de validation/erreur
  * 0= la posse de la tuile est possible
  * 1= une tuile se trouve deja a l'emplacement
- * 2= l'emmplacement n'a pas 2 voisin
+ * 2= l'emmplacement a moin de 2 voisin
  */
 extern int pose_tuile_impossible(int const x, int const y){
     int validation = 0;
@@ -181,10 +190,65 @@ extern int pose_tuile_impossible(int const x, int const y){
     return(2);
 }
 
-extern int pose_canal_impossible(int const xa, int const ya, int const xb, int const yb){
+/**
+ * @brief verfication de la contiguité entre deux case
+ * MEWEN
+ * @param xa 
+ * @param ya coordonné de la premier case
+ * @param xb 
+ * @param yb coordonné de la seconde case
+ * @return int 
+ * O = les case ne sont pas contigue
+ * 1 = les case sont contigue
+ */
+extern int contigue(int const xa, int const ya, int const xb, int const yb){
+    return( (xa == xb-1 && ya == yb) || (xa == xb+1 && ya == yb) || 
+    (xa == xb && ya == yb-1) || (xa == xb && ya == yb+1) ||
+    (xa == xb-1 && ya == yb-1) || (xa == xb+1 && ya == yb+1) );
+}
+
+/**
+ * @brief fonction de verfication d'access au lac
+ * MEWEN
+ * @param xa 
+ * @param ya 
+ * @param xb 
+ * @param yb coordoné des casse la plus en haut a gauche dabord
+ * @return int 
+ * 0 = la case n'a pas acces au lac
+ * 1 = la case a acces au lac
+ */
+extern int access_lac(int const xa, int const ya, int const xb, int const yb){
+    int i;
+    if (!case_existe(xa,ya) && !case_existe(xa,yb)){
+        return(0);
+    }
+    if (!contigue(xa,ya,xb,yb)){
+        return(0);
+    }
+    if (contigue(xa,ya,LACPOS,LACPOS)&&contigue(xb,yb,LACPOS,LACPOS)){
+        return (1);
+    }
     
+    if(xa == xb){
+        for(i=0; i<NBIRIG && irig[i]!=NULL; i++){
+            if(irig[i]->xa==xa-1 && irig[i]->ya==ya &&
+            irig[i]->xb == xa && irig[i]->yb == yb){
+                return (1);
+            }
+            
+        }
+    }
+    else if (ya == yb){
+
+    }
+    else if (xa-xb == ya-yb){
+
+    }
+    
+    return(0);
 }
 
 extern int deplacement_personage(){
-    
+    return(0);
 }

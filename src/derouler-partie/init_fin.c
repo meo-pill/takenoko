@@ -135,6 +135,15 @@ static void creation_plateau(void){
     plateau[LACPOS][LACPOS]= &lac;
 }
 
+/**
+ * @brief initalisation du tableau des irigation
+ * MEWEN
+ */
+static void init_irigation(void){
+    for(int i=0; i < NBIRIG; i++){
+        irig[i]= NULL;
+    }
+}
 
 int extraction_fichier_carte(){
     int nb_panda = 0;
@@ -193,6 +202,7 @@ void initaliser(int const nb_joueur){
     mise_en_file();
     creation_plateau();
     creation_joueur(nb_joueur);
+    init_irigation();
 }
 
 /*
@@ -221,6 +231,13 @@ static void suppression_tuile(void){
     }
 }
 
+static void suppression_irig(void){
+    for(int i=0; i < NBIRIG; i++){
+        free(irig[i]);
+    }
+    init_irigation;
+}
+
 /**
  * @brief fonction d'appelle pour la libération de fin de partie
  * Mewen / Leo
@@ -228,4 +245,5 @@ static void suppression_tuile(void){
 void suprimer(void){
     videe_plateau();
     suppression_tuile();
+    suppression_irig();
 }
