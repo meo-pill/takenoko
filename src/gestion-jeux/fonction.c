@@ -1,4 +1,4 @@
-#include "../lib/index.h"
+#include "fonction.h"
 
 /**********************
 fonction opérationnelle
@@ -28,7 +28,7 @@ fonction à finir et à tester
 
 /* * choix pour 1 joueur */
 
-void choixactionduJ ( joueur_t * Joueur, const char meteo){}
+void choixactionduJ ( joueur_t * Joueur, const char meteo);
 
 
 void ajout_irrigation_stock ( joueur_t * Joueur){
@@ -70,36 +70,36 @@ void retrait_effspe_stock(joueur_t * Joueur, const effet_E eff) {
 }
 
 
-void ajout_bambou_stock ( joueur_t * Joueur, const int x, const int y){	 /** avec l'ordre jaune,rose,vert */
-  if (plateau[x][y]->Coul == jaune )
-    Joueur-> bambou [ 0 ] ++;
-  else if (plateau[x][y]->Coul == rose )
-    Joueur-> bambou [ 1 ] ++;
-  else if (plateau[x][y]->Coul == vert )
-    Joueur-> bambou [ 2 ] ++;
+void ajout_bambou_stock ( joueur_t Joueur, const int coul, const int nb_B){	 /** coul : avec l'ordre jaune,rose,vert */
+  if ( coul == 1 )
+    Joueur. bambou [ 0 ] ++;
+  else if ( coul == 2 )
+    Joueur. bambou [ 1 ] ++;
+  else if ( coul == 3 )
+    Joueur. bambou [ 2 ] ++;
   else
     printf ( " erreur d'ajout sur bambou " );
 }
-void  retrait_bambou_stock ( joueur_t * Joueur, const int nb_bb_jaune, const int nb_bb_rose, const int nb_bb_vert){
-  if (Joueur->bambou[0] >= nb_bb_jaune)
-    Joueur-> bambou[0] -= nb_bb_jaune;
+void  retire_bambou_stock ( joueur_t Joueur, const int nb_bb_jaune, const int nb_bb_rose, const int nb_bb_vert){
+  if (Joueur. bambou[0] >= nb_bb_jaune)
+    Joueur. bambou[0] -= nb_bb_jaune;
   else
     printf(" pas asser de bambou jaune ");
   
-  if (Joueur->bambou[1] >= nb_bb_rose)
-    Joueur-> bambou[1] -= nb_bb_rose;
+  if (Joueur. bambou[1] >= nb_bb_rose)
+    Joueur. bambou[1] -= nb_bb_rose;
   else
     printf(" pas asser de bambou rose ");
   
-  if (Joueur->bambou[2] >= nb_bb_vert)
-    Joueur-> bambou[2] -= nb_bb_vert;
+  if (Joueur. bambou[2] >= nb_bb_vert)
+    Joueur. bambou[2] -= nb_bb_vert;
   else
     printf(" pas asser de bambou vert ");
 }
 
 
 int Verif_deplacer_perso( personnage_t * perso, const int x_a, const int y_a){	 /** jardinier ou Panda et renvoyé 1 si c'est bon */
-  int x_d = (&perso -> x), y_d = (&perso -> y);
+  int x_d = perso -> x, y_d = perso -> y;
   int dist_x = x_a - x_d , dist_y = y_a - y_d ;
   
   if (dist_x == 0 && dist_y == 0)
@@ -213,7 +213,7 @@ int verif_pose_case( const int x, const int y){	 /** Vérifie qu'on peu poser un
 }
 void ajout_case_plato ( case_plato_t * case_a, const int x, const int y){
   if (verif_pose_case( x, y) == 1){
-	 plateau[x][y] = case_a;
+	  plateau[x][y] = case_a;
   }
   else
     printf(" erreur pour poser une case ");
@@ -228,7 +228,7 @@ void ajout_irrigation_plateau ( const int x, const int y){	/** Vérifie qu'on pe
 }
 void ajout_effspe_plato( effet_E * effet, const int x, const int y){		/** Vérifie qu'on peu poser un effet spécial et s'éxécute si c'est bon */
   if (plateau[x][y] != NULL && plateau[x][y]-> Eff == rien)
-    plateau[x][y]-> Eff = effet;
+    plateau[x][y]-> Eff = *effet;
   else
     printf(" erreur pour poser une irrigation ");
 }
@@ -239,6 +239,6 @@ void ajout_effspe_plato( effet_E * effet, const int x, const int y){		/** Vérif
 
 void retrait_case_plato ( const int x, const int y){
   free(plateau[x][y]);
-  plateau[x][y] == NULL;
+  plateau[x][y] = NULL;
 }
 

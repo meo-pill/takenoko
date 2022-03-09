@@ -60,7 +60,7 @@ static int extraction_fichier_tuile(void){
     /** création et ouverture des fichier contenant les tuile */
     FILE * ficTuile = NULL;
 
-    ficTuile = fopen("../asset/carte_objectif.txt","r");
+    ficTuile = fopen("../../asset/tuile.txt","r");
 
     if(ficTuile == NULL){
         return(1);
@@ -131,6 +131,7 @@ static void creation_plateau(void){
     lac.Coul= centre;
     lac.Eff= debut;
     lac.iriguer= -1;
+    lac.image="image/en_plus/Depart.png";
 
     plateau[LACPOS][LACPOS]= &lac;
 }
@@ -150,34 +151,61 @@ int extraction_fichier_carte(){
     int nb_parc = 0;
     int nb_jard = 0;
 
-    char type [30];
-    char image [50];
-    char desc [100];
+    int i;
+
+    char type [LONGTYPE];
+    char image [LONGPATH];
+    char desc [DESCRIPTION];
     int pt;
 
     FILE * fich;
-    fich = fopen("../asset/carte_objectif.txt","r");
+    fpos_t position;
+
+    fich = fopen("asset/carte_objectif.txt","r");
     if(fich == NULL)
-        printf("\n --------------------- \n erreur lors de l'ouverture du fichier \" carte_objectif.txt \" \n ---------------------\n");
-    fscanf(fich,"--");
+        printf("\n --------------------- \n erreur lors de l'ouverture du fichier \"carte_objectif.txt \" \n ---------------------\n");
+    
+    //fgetpos(fich,&position);
+    //fread(desc,36,200,fich);
+    fscanf(fich,"%s\n",desc);
+
     while(!feof(fich)){
-        fscanf(fich,"\n%[^;]",type);
-        fscanf(fich,"%[^;]",image);
-        fscanf(fich,"%[^;]",desc);
-        fscanf(fich,"%d",&pt);
+        fgetpos(fich,&position);
+        printf("on avance dans le fichier : on est à %li\n",position.__pos);
+        for(i=0; type[i-1] !=';';i++){
+            fscanf(fich,"%c",&type[i]);
+        }
+        type[i-1] = '\0';
+        
+        printf("type : %s \n",type);
+
+        for(i=0;image[i-1]!=';';i++){
+            fscanf(fich,"%c",&image[i]);
+        }
+        image[i-1] = '\0';
+        printf("image : %s\n",image);
+
+
+        for(i=0;desc[i-1]!=';';i++)
+            fscanf(fich,"%c",&desc[i]);
+
+        desc[i-1] = '\0';
+
+        fscanf(fich,"%d\n",&pt);
         if(type[5] == '-'){
-            cartePanda[nb_panda] = creer_carte(type,image,desc,pt);
+            cartePanda[nb_panda] = creer_carte(type,desc,image,pt);
             nb_panda ++;
         }
         else if (type[8] == '-'){
-            carteParcelle[nb_parc] = creer_carte(type,image,desc,pt);
+            carteParcelle[nb_parc] = creer_carte(type,desc,image,pt);
             nb_parc ++;
         }
         else if (type[9] == '-'){
-            carteJardinier[nb_jard] = creer_carte(type,image,desc,pt);
+            carteJardinier[nb_jard] = creer_carte(type,desc,image,pt);
+            nb_jard ++;
         }
         else{
-            printf("\n --------------------- \n erreur de recuperation des cartes (type mal informé)\n -------------- \n");
+            printf("\n --------------------- \n erreur de recuperation des cartes (type mal informé)\n type contient : \"%s\"\n -------------- \n",type);
             break;
         }
         if(nb_panda > 15 || nb_parc > 15 || nb_jard > 15){
@@ -185,6 +213,7 @@ int extraction_fichier_carte(){
             break;
         }
     }
+    fclose(fich);
 
 
 }
@@ -198,6 +227,7 @@ void initaliser(int const nb_joueur){
     if (!extraction_fichier_tuile()){
         printf("ereur d'ouverture fichier tuile");
     }
+    
     shuffleTuile();
     mise_en_file();
     creation_plateau();

@@ -1,7 +1,7 @@
 /**
- * @file deplacement.c
+ * @file back_pose.c
  * @author MEWEN
- * @brief fonction de calcul pour le delacement est la gestion de pose sur le plateau
+ * @brief fonction pour les pose des case et des irigation
  * @version 0.1
  * @date 2022-03-02
  * 
@@ -144,7 +144,7 @@ static int ligne_existe(int const xa, int const ya, int const xn, int const yn){
  *  3= la case selectioner n'est pas une coordoné de déplacement valide
  *  4= la ligne entre les deux case n'est pas continue
  */
-extern int deplacement_imposible(int const xa, int const ya, int const xn, int const yn){
+static int deplacement_imposible(int const xa, int const ya, int const xn, int const yn){
     if(!case_existe(xn,yn)){
         return(1);
     }
@@ -175,6 +175,9 @@ extern int pose_tuile_impossible(int const x, int const y){
     int validation = 0;
     if (!case_existe(x,y)){
         return(1);    
+    }
+    if(contigue(x,y,LACPOS,LACPOS)){
+        return (0);
     }
     // test de toute les position voisine et ajjout dans un compteur
     validation += case_existe(x-1,y-1);
@@ -223,6 +226,9 @@ extern int access_lac(int const xa, int const ya, int const xb, int const yb){
     if (!case_existe(xa,ya) && !case_existe(xa,yb)){
         return(0);
     }
+    if ((xa == LACPOS && ya == LACPOS) || xb == (LACPOS && yb == LACPOS)){
+        return(0);
+    }
     if (!contigue(xa,ya,xb,yb)){
         return(0);
     }
@@ -232,23 +238,64 @@ extern int access_lac(int const xa, int const ya, int const xb, int const yb){
     
     if(xa == xb){
         for(i=0; i<NBIRIG && irig[i]!=NULL; i++){
-            if(irig[i]->xa==xa-1 && irig[i]->ya==ya &&
-            irig[i]->xb == xa && irig[i]->yb == yb){
+            if(irig[i]->x_haut_gauche == xa-1 && irig[i]->y_haut_gauche == ya &&
+            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb-1){
                 return (1);
             }
-            
+            if(irig[i]->x_haut_gauche == xa-1 && irig[i]->y_haut_gauche == ya &&
+            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb){
+                return (1);
+            }
+            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya &&
+            irig[i]->x_bas_droit == xb+1 && irig[i]->y_bas_droit == yb){
+                return (1);
+            }
+            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya+1 &&
+            irig[i]->x_bas_droit == xb+1 && irig[i]->y_bas_droit == yb){
+                return (1);
+            }
         }
     }
     else if (ya == yb){
-
+        for(i=0; i<NBIRIG && irig[i]!=NULL; i++){
+            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya-1 &&
+            irig[i]->x_bas_droit == xb-1 && irig[i]->y_bas_droit == yb){
+                return (1);
+            }
+            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya-1 &&
+            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb){
+                return (1);
+            }
+            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya &&
+            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb+1){
+                return (1);
+            }
+            if(irig[i]->x_haut_gauche == xa+1 && irig[i]->y_haut_gauche == ya &&
+            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb+1){
+                return (1);
+            }
+        }
     }
     else if (xa-xb == ya-yb){
-
+        for(i=0; i<NBIRIG && irig[i]!=NULL; i++){
+            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya &&
+            irig[i]->x_bas_droit == xb-1 && irig[i]->y_bas_droit == yb){
+                return (1);
+            }
+            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya+1 &&
+            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb){
+                return (1);
+            }
+            if(irig[i]->x_haut_gauche == xa+1 && irig[i]->y_haut_gauche == ya &&
+            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb){
+                return (1);
+            }
+            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya &&
+            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb-1){
+                return (1);
+            }
+        }
     }
     
-    return(0);
-}
-
-extern int deplacement_personage(){
     return(0);
 }
