@@ -1,6 +1,7 @@
 #include "../lib/index.h"
 #include "../lib/Creation.h"
 #include "../lib/Option.h"
+#include "../lib/Plato.h"
 #include "../lib/texture.h"
 void menu(){
 	if (SDL_Init(SDL_INIT_TIMER |SDL_INIT_VIDEO)== -1 ){
@@ -16,15 +17,6 @@ void menu(){
 
 	SDL_Renderer *renderer=NULL;//pour créer une fennêtre 
 
-//	SDL_image->Table[] *image->Table[]=NULL;//pour mettre l'image de fond en texture
-//	SDL_image->Table[]* image->Table[] =NULL;//pour ajouter une animation
-//	SDL_image->Table[] * bouton->Table[0] =NULL;
-//	SDL_image->Table[] *  bouton1 =NULL;
-//	SDL_image->Table[] *  bouton2 =NULL;
-//	SDL_image->Table[] *  bouton3 =NULL;
-//	SDL_image->Table[] *  bouton4 =NULL;
-//	SDL_image->Table[] *  bouton5 =NULL;
-//	SDL_image->Table[] *  bouton6 =NULL;
 
 	text_t* image=NULL;
 	text_t* bouton=NULL;
@@ -116,8 +108,8 @@ void menu(){
 
 	if(pSprite==NULL){
 		printf("ERR pour le chargement de l'animation\n");
+		exit(EXIT_FAILURE );
 	}
-	else{
 		//suppretion de l'image animation
 		rwop->close(rwop);
 		rwop=NULL;
@@ -150,7 +142,7 @@ void menu(){
 				SDL_RenderCopy(renderer, bouton->Table[0], NULL,&tailText);
 				if((x>=tailBouton1.x && x<=(tailBouton1.w+tailBouton1.x)) && (y>=tailBouton1.y && y<=(tailBouton1.h+tailBouton1.y))){
 					if(boutons==1)
-						printf("C'est Partie\n");//affiche_Jeu();
+						affiche_Plato(Width,Height);
 					else
 						SDL_RenderCopy(renderer, bouton->Table[4],NULL,&tailBouton4);
 				}
@@ -243,5 +235,4 @@ void menu(){
 				}
 			}
 		}
-	}
 }
