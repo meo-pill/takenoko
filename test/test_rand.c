@@ -10,11 +10,12 @@ int main(){
 
     if(fich == NULL)
         printf("\n --------------------- \n erreur lors de l'ouverture du fichier \"carte_objectif.txt \" \n ---------------------\n");
+    fscanf(fich,"%s\n",tab);
     while(!feof(fich)){
         fscanf(fich,"%c",&tab[i]);
         i++;
     }
     fclose(fich);
     tab[i] = '\0';
-    printf("valeur final : %s",tab);
+    printf("valeur final : \n %s",tab);
 }

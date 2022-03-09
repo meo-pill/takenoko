@@ -29,17 +29,32 @@ int main(){
 
     printf("panda :\n");
     for(i = 0; i< NBCARTE;i++){
-        printf("    TYPE : %s IMAGE : %s DESC : %s PT :%d\n",cartePanda[i]->type,cartePanda[i]->image,cartePanda[i]->desc,cartePanda[i]->point);
+        afficher_carte(cartePanda[i]);
     }
     printf("\n parcelle : \n");
     for(i = 0; i< NBCARTE;i++){
-        printf("    %s\n",carteParcelle[i]->type);
+       afficher_carte(carteParcelle[i]);
     }
     printf("\n jardinier : \n");
     for(i = 0; i< NBCARTE;i++){
-        printf("    %s\n",carteJardinier[i]->type);
+        afficher_carte(carteJardinier[i]);
     }
 
     detruire_carte();
 
+    printf("affichage des tableaux APRES la destruction (les adresses) :\n");
+
+    printf("panda :\n");
+    for(i = 0; i< NBCARTE;i++){
+        printf("    %d\n",cartePanda[i]);
+    }
+    printf("\n parcelle : \n");
+    for(i = 0; i< NBCARTE;i++){
+        printf("    %d\n",carteParcelle[i]);
+    }
+    printf("\n jardinier : \n");
+    for(i = 0; i< NBCARTE;i++){
+        printf("    %d\n",carteJardinier[i]);
+    }
+    a_null_carte();
 }
