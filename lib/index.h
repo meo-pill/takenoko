@@ -13,7 +13,7 @@
 */
 #include "struct.h" // on ne met rien au dessu ces 6 la (il on tout ce sur quoi le programe repose)
 #include "file.h" // après struct
-#include "deplacement.h"// après struct 
+#include "pose.h"// après struct 
 #include "init_fin.h" // après struct, file, deplacement
 #include "bamboo.h"// après struct
 #include "fonction.h"

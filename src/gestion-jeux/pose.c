@@ -50,7 +50,7 @@ extern int case_differente(int const xa, int const ya, int const xn, int const y
  * 0 la case n'est pas sur la ligne
  * 1 la case se trouve sur la ligne
  */
-extern int sur_la_ligne(int const xa, int const ya, int const xn, int const yn){
+static int sur_la_ligne(int const xa, int const ya, int const xn, int const yn){
     return (xa == xn || ya == yn || xa-ya == xn-yn);
 }
 
@@ -66,7 +66,7 @@ extern int sur_la_ligne(int const xa, int const ya, int const xn, int const yn){
  * 0 la ligne n'est pas continue
  * 1 la ligne est continue
  */
-extern int ligne_existe(int const xa, int const ya, int const xn, int const yn){
+static int ligne_existe(int const xa, int const ya, int const xn, int const yn){
     int nb_rep;
     int xTmp, yTmp;
     if (!(xa-xn)){
@@ -144,7 +144,7 @@ extern int ligne_existe(int const xa, int const ya, int const xn, int const yn){
  *  3= la case selectioner n'est pas une coordoné de déplacement valide
  *  4= la ligne entre les deux case n'est pas continue
  */
-extern int deplacement_imposible(int const xa, int const ya, int const xn, int const yn){
+static int deplacement_imposible(int const xa, int const ya, int const xn, int const yn){
     if(!case_existe(xn,yn)){
         return(1);
     }
