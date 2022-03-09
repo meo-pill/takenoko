@@ -232,21 +232,70 @@ extern int access_lac(int const xa, int const ya, int const xb, int const yb){
     
     if(xa == xb){
         for(i=0; i<NBIRIG && irig[i]!=NULL; i++){
-            if(irig[i]->xa==xa-1 && irig[i]->ya==ya &&
-            irig[i]->xb == xa && irig[i]->yb == yb){
+            if(irig[i]->x_haut_gauche == xa-1 && irig[i]->y_haut_gauche == ya &&
+            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb-1){
                 return (1);
             }
-            
+            if(irig[i]->x_haut_gauche == xa-1 && irig[i]->y_haut_gauche == ya &&
+            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb){
+                return (1);
+            }
+            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya &&
+            irig[i]->x_bas_droit == xb+1 && irig[i]->y_bas_droit == yb){
+                return (1);
+            }
+            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya+1 &&
+            irig[i]->x_bas_droit == xb+1 && irig[i]->y_bas_droit == yb){
+                return (1);
+            }
         }
     }
     else if (ya == yb){
-
+        for(i=0; i<NBIRIG && irig[i]!=NULL; i++){
+            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya-1 &&
+            irig[i]->x_bas_droit == xb-1 && irig[i]->y_bas_droit == yb){
+                return (1);
+            }
+            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya-1 &&
+            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb){
+                return (1);
+            }
+            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya &&
+            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb+1){
+                return (1);
+            }
+            if(irig[i]->x_haut_gauche == xa+1 && irig[i]->y_haut_gauche == ya &&
+            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb+1){
+                return (1);
+            }
+        }
     }
     else if (xa-xb == ya-yb){
-
+        for(i=0; i<NBIRIG && irig[i]!=NULL; i++){
+            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya &&
+            irig[i]->x_bas_droit == xb-1 && irig[i]->y_bas_droit == yb){
+                return (1);
+            }
+            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya+1 &&
+            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb){
+                return (1);
+            }
+            if(irig[i]->x_haut_gauche == xa+1 && irig[i]->y_haut_gauche == ya &&
+            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb){
+                return (1);
+            }
+            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya &&
+            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb-1){
+                return (1);
+            }
+        }
     }
     
     return(0);
+}
+
+extern void pose_lac(){
+    
 }
 
 extern int deplacement_personage(){

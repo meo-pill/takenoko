@@ -85,10 +85,10 @@ struct joueur_s{
 };
 
 struct irigation_s{
-  int xa;
-  int ya;
-  int xb;
-  int yb;
+  int x_haut_gauche;
+  int y_haut_gauche;
+  int x_bas_droit;
+  int y_bas_droit;
 };
 
 #endif
