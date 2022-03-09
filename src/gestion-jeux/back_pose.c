@@ -1,7 +1,7 @@
 /**
- * @file deplacement.c
+ * @file back_pose.c
  * @author MEWEN
- * @brief fonction de calcul pour le delacement est la gestion de pose sur le plateau
+ * @brief fonction pour les pose des case et des irigation
  * @version 0.1
  * @date 2022-03-02
  * 
@@ -50,7 +50,7 @@ extern int case_differente(int const xa, int const ya, int const xn, int const y
  * 0 la case n'est pas sur la ligne
  * 1 la case se trouve sur la ligne
  */
-static int sur_la_ligne(int const xa, int const ya, int const xn, int const yn){
+extern int sur_la_ligne(int const xa, int const ya, int const xn, int const yn){
     return (xa == xn || ya == yn || xa-ya == xn-yn);
 }
 
@@ -66,7 +66,7 @@ static int sur_la_ligne(int const xa, int const ya, int const xn, int const yn){
  * 0 la ligne n'est pas continue
  * 1 la ligne est continue
  */
-static int ligne_existe(int const xa, int const ya, int const xn, int const yn){
+extern int ligne_existe(int const xa, int const ya, int const xn, int const yn){
     int nb_rep;
     int xTmp, yTmp;
     if (!(xa-xn)){
@@ -176,6 +176,9 @@ extern int pose_tuile_impossible(int const x, int const y){
     if (!case_existe(x,y)){
         return(1);    
     }
+    if(contigue(x,y,LACPOS,LACPOS)){
+        return (0);
+    }
     // test de toute les position voisine et ajjout dans un compteur
     validation += case_existe(x-1,y-1);
     validation += case_existe(x-1,y);
@@ -223,6 +226,7 @@ extern int access_lac(int const xa, int const ya, int const xb, int const yb){
     if (!case_existe(xa,ya) && !case_existe(xa,yb)){
         return(0);
     }
+    if ((xa == LACPOS && ya == LACPOS) || xb == (LACPOS && yb == LACPOS))
     if (!contigue(xa,ya,xb,yb)){
         return(0);
     }
@@ -291,13 +295,5 @@ extern int access_lac(int const xa, int const ya, int const xb, int const yb){
         }
     }
     
-    return(0);
-}
-
-extern void pose_lac(){
-    
-}
-
-extern int deplacement_personage(){
     return(0);
 }
