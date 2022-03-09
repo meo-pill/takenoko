@@ -13,13 +13,14 @@
 #define MAXNB2J 9
 #define MAXNB3J 8
 #define MAXNB4J 7
-#define LONGPATH 30
-#define LONGTYPE 20
+#define LONGPATH 70
+#define LONGTYPE 40
 #define DESCRIPTION 100
 #define NBTUILES 27
 #define LACPOS 14
 #define NBTUILE 27
 #define NBIRIG 20
+#define NBCARTE 15
 
 /**definition des structurs*/
 typedef struct personnage_s personnage_t;
@@ -38,11 +39,11 @@ typedef enum couleurJ_s{bleu,rouge,noir,blanc}couleurJ_E;
 /**variable globale*/
 joueur_t * J[4];
 case_plato_t * piece[NBTUILE];
-case_plato_t lac;
-carte_t * cartePanda[15];
-carte_t * carteParcelle[15];
-carte_t * carteJardinier[15];
+carte_t * cartePanda[NBCARTE];
+carte_t * carteParcelle[NBCARTE];
+carte_t * carteJardinier[NBCARTE];
 case_plato_t * plateau[NBTUILE][NBTUILE];
+case_plato_t lac;
 file_t * file_tuile_tete;
 file_t * file_tuile_queue;
 personnage_t panda;
@@ -68,9 +69,9 @@ struct case_plato_s{
 
 struct carte_s{
   int (*verif)(struct carte_s const *);
-  char const type [LONGTYPE];
-  char const image [LONGPATH];
- 	char const desc [DESCRIPTION];
+  char type [LONGTYPE];
+  char image [LONGPATH];
+ 	char desc [DESCRIPTION];
  	int point;
 };
 
