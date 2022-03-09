@@ -38,16 +38,7 @@ void remplir_plateau(){
 }
 
 
+
 int main(){
-    if (!extraction_fichier_tuile()){
-        printf("ereur d'ouverture fichier tuile");
-    }
-    remplir_plateau();
-    afficher_plateau();
-    if(test_triangle() == 0){
-        printf("ça marche !");
-    }
-    else{
-        printf("il doit encore rester un problème quelque part");
-    }
+    
 }
