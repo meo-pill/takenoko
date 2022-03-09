@@ -226,7 +226,9 @@ extern int access_lac(int const xa, int const ya, int const xb, int const yb){
     if (!case_existe(xa,ya) && !case_existe(xa,yb)){
         return(0);
     }
-    if ((xa == LACPOS && ya == LACPOS) || xb == (LACPOS && yb == LACPOS))
+    if ((xa == LACPOS && ya == LACPOS) || xb == (LACPOS && yb == LACPOS)){
+        return(0);
+    }
     if (!contigue(xa,ya,xb,yb)){
         return(0);
     }

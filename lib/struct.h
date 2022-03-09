@@ -38,6 +38,7 @@ typedef enum couleurJ_s{bleu,rouge,noir,blanc}couleurJ_E;
 /**variable globale*/
 joueur_t * J[4];
 case_plato_t * piece[NBTUILE];
+case_plato_t lac;
 carte_t * cartePanda[15];
 carte_t * carteParcelle[15];
 carte_t * carteJardinier[15];
