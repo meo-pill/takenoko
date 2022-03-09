@@ -1,6 +1,6 @@
-#ifndef fonction_H_INCLUDED
-#define fonction_H_INCLUDED
-#include "index.h"
+#ifndef _FONCTION_H_
+#define _FONCTION_H_
+#include "struc.h"
 
 /**
 *
@@ -46,8 +46,8 @@ void pioche_effspe( joueur_t * Joueur);
 void ajout_effspe_stock( joueur_t * Joueur, const effet_E eff);
 void retrait_effspe_stock( joueur_t * Joueur, const effet_E eff);
 
-void ajout_bambou_stock( joueur_t * Joueur, const int x, const int y);
-void retire_bambou_stock( joueur_t * Joueur, const int nb_bb_jaune, const int nb_bb_rose, const int nb_bb_vert);
+void ajout_bambou_stock( joueur_t Joueur, const int x, const int y);
+void retire_bambou_stock( joueur_t Joueur, const int nb_bb_jaune, const int nb_bb_rose, const int nb_bb_vert);
 
 int Verif_deplacer_perso( personnage_t * perso, const int x_a, const int y_a);
 /* * jardinier ou Panda et renvoye 1 si c'est bon */

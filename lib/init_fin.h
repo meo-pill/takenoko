@@ -5,5 +5,6 @@
 
 void initaliser(int const nb_joueur);
 void suprimer(void);
+int extraction_fichier_carte();
 
 #endif
