@@ -1,6 +1,7 @@
 #include "../lib/index.h"
 #include "../lib/Creation.h"
-#include "../lib/fenetre.h"
+#include "../lib/Option.h"
+#include "../lib/texture.h"
 void menu(){
 	if (SDL_Init(SDL_INIT_TIMER |SDL_INIT_VIDEO)== -1 ){
 		fprintf(stdout,"Échec de l'initialisation de la SDL (%s)\n",SDL_GetError());
@@ -15,15 +16,19 @@ void menu(){
 
 	SDL_Renderer *renderer=NULL;//pour créer une fennêtre 
 
-	SDL_Texture *Texture=NULL;//pour mettre l'image de fond en texture
-	SDL_Texture* pTexture =NULL;//pour ajouter une animation
-	SDL_Texture * texte_tex =NULL;
-	SDL_Texture *  bouton1 =NULL;
-	SDL_Texture *  bouton2 =NULL;
-	SDL_Texture *  bouton3 =NULL;
-	SDL_Texture *  bouton4 =NULL;
-	SDL_Texture *  bouton5 =NULL;
-	SDL_Texture *  bouton6 =NULL;
+//	SDL_image->Table[] *image->Table[]=NULL;//pour mettre l'image de fond en texture
+//	SDL_image->Table[]* image->Table[] =NULL;//pour ajouter une animation
+//	SDL_image->Table[] * bouton->Table[0] =NULL;
+//	SDL_image->Table[] *  bouton1 =NULL;
+//	SDL_image->Table[] *  bouton2 =NULL;
+//	SDL_image->Table[] *  bouton3 =NULL;
+//	SDL_image->Table[] *  bouton4 =NULL;
+//	SDL_image->Table[] *  bouton5 =NULL;
+//	SDL_image->Table[] *  bouton6 =NULL;
+
+	text_t* image=NULL;
+	text_t* bouton=NULL;
+
 
 	SDL_Surface* pSprite =NULL;//ajout d'une image par dessus le fond
 
@@ -61,38 +66,45 @@ void menu(){
 											Height,
 											SDL_WINDOW_SHOWN |SDL_WINDOW_RESIZABLE);
 	renderer = SDL_CreateRenderer(pWindow,-1,SDL_RENDERER_ACCELERATED); // Création d'un SDL_Renderer utilisant l'accélération matérielle
+	/**Creation de la table de texture*/
+	image=Crea_table_Tex(2);
+	bouton=Crea_table_Tex(6);
+	if(image== NULL && bouton==NULL){
+		printf("la table ne c'est pas creer\n");
+		exit ( EXIT_FAILURE );
+	}
 	//création du titre
 	//chargement de la police
-	texte_tex=CreationText(renderer,&tailText,"image/police/Takenoko.TTF",80,TTF_STYLE_BOLD,"Takenoko", Noir,Width/4,10);
-	if(texte_tex==NULL)
+	bouton->Table[0]=CreationText(renderer,&tailText,"image/police/Takenoko.TTF",80,TTF_STYLE_BOLD,"Takenoko", Noir,Width/4,10);
+	if(bouton->Table[0]==NULL)
 		exit(EXIT_FAILURE );
 
-	bouton1 =CreationText(renderer,&tailBouton1,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD,"Jouer",Bleu,569,700);
-	if ( bouton1 == NULL ){
+	bouton->Table[1] =CreationText(renderer,&tailBouton1,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD,"Jouer",Bleu,569,700);
+	if ( bouton->Table[1] == NULL ){
 		exit ( EXIT_FAILURE );
 	}
 
-	bouton2 =CreationText(renderer,&tailBouton2,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD,"Option",Bleu,569,650);
-	if ( bouton2 == NULL ){
+	bouton->Table[2] =CreationText(renderer,&tailBouton2,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD,"Option",Bleu,569,650);
+	if ( bouton->Table[2] == NULL ){
 		exit ( EXIT_FAILURE );
 	}
 
-	bouton3 =CreationText(renderer,&tailBouton3,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD,"Quiter",Bleu,569,750);
-	if ( bouton3 == NULL ){
+	bouton->Table[3] =CreationText(renderer,&tailBouton3,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD,"Quiter",Bleu,569,750);
+	if ( bouton->Table[3] == NULL ){
 		exit ( EXIT_FAILURE );
 	}
 
-	bouton4 =CreationText(renderer,&tailBouton4,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Jouer",Orange,569,700);
-	if ( bouton4 == NULL ){
+	bouton->Table[4] =CreationText(renderer,&tailBouton4,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Jouer",Orange,569,700);
+	if ( bouton->Table[4] == NULL ){
 		exit ( EXIT_FAILURE );
 	}
-	bouton5 =CreationText(renderer,&tailBouton5,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Option",Orange,569,650);
-	if ( bouton5 == NULL ){
+	bouton->Table[5] =CreationText(renderer,&tailBouton5,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Option",Orange,569,650);
+	if ( bouton->Table[5] == NULL ){
 		exit ( EXIT_FAILURE );
 	}
 
-	bouton6 =CreationText(renderer,&tailBouton6,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Quiter",Orange,569,750);
-	if ( bouton6 == NULL ){
+	bouton->Table[6] =CreationText(renderer,&tailBouton6,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Quiter",Orange,569,750);
+	if ( bouton->Table[6] == NULL ){
 		exit ( EXIT_FAILURE );
 	}
 
@@ -112,9 +124,9 @@ void menu(){
 
 		//chargement de la nouvelle image
 		rwop=SDL_RWFromFile(fond, "rb");
-		Texture = IMG_LoadTexture(renderer, fond);
-		pTexture = SDL_CreateTextureFromSurface(renderer,pSprite);
-		if(Texture==NULL||pTexture==NULL){
+		image->Table[0] = IMG_LoadTexture(renderer, fond);
+		image->Table[1] = SDL_CreateTextureFromSurface(renderer,pSprite);
+		if(image->Table[0]==NULL||image->Table[1]==NULL){
 			printf("ERR chargement image\n");
 			if(renderer==NULL)
 				printf("ERR au nv du renderer\n");
@@ -134,50 +146,48 @@ void menu(){
 				SDL_Rect annimation = { sprite*120,0,120,100};
 				SDL_Rect crop={Width/10, Height/100, 120, 100 };
 				//on pose le fond sur la fenêtre
-				SDL_RenderCopy(renderer, Texture, NULL, NULL);
-				SDL_RenderCopy(renderer, texte_tex, NULL,&tailText);
+				SDL_RenderCopy(renderer, image->Table[0], NULL, NULL);
+				SDL_RenderCopy(renderer, bouton->Table[0], NULL,&tailText);
 				if((x>=tailBouton1.x && x<=(tailBouton1.w+tailBouton1.x)) && (y>=tailBouton1.y && y<=(tailBouton1.h+tailBouton1.y))){
 					if(boutons==1)
 						printf("C'est Partie\n");//affiche_Jeu();
 					else
-						SDL_RenderCopy(renderer, bouton4,NULL,&tailBouton4);
+						SDL_RenderCopy(renderer, bouton->Table[4],NULL,&tailBouton4);
 				}
 				else
-					SDL_RenderCopy(renderer, bouton1,NULL,&tailBouton1);
+					SDL_RenderCopy(renderer, bouton->Table[1],NULL,&tailBouton1);
 
 				if((x>=tailBouton2.x && x<=(tailBouton2.w+tailBouton2.x)) && (y>=tailBouton2.y && y<=(tailBouton2.h+tailBouton2.y))){
 					if(boutons==1){
-						if(NULL!=Texture) 
-							SDL_DestroyTexture(Texture);
 						if(NULL!=renderer)
 							SDL_DestroyRenderer(renderer);
 						if(NULL!=pWindow)
 							SDL_DestroyWindow(pWindow);
-						if(NULL!=pTexture)
-							SDL_DestroyTexture(pTexture);
 						if(NULL!=pSprite)
 							SDL_FreeSurface(pSprite);
+						bouton->det(bouton);
+						image->det(image);
 						IMG_Quit();
 						TTF_Quit();
 						SDL_Quit();
 						affiche_option(fond,Width,Height);
 					}
 					else
-						SDL_RenderCopy(renderer,bouton5,NULL,&tailBouton5);
+						SDL_RenderCopy(renderer,bouton->Table[5],NULL,&tailBouton5);
 				}
 				else
-					SDL_RenderCopy(renderer, bouton2,NULL,&tailBouton2);
+					SDL_RenderCopy(renderer, bouton->Table[2],NULL,&tailBouton2);
 
 				if((x>=tailBouton3.x && x<=(tailBouton3.w+tailBouton3.x)) && (y>=tailBouton3.y && y<=(tailBouton3.h+tailBouton3.y))){
 					if(boutons==1)
 						exit(EXIT_SUCCESS);
 					else
-						SDL_RenderCopy(renderer, bouton6,NULL,&tailBouton6);
+						SDL_RenderCopy(renderer, bouton->Table[6],NULL,&tailBouton6);
 				}
 				else
-					SDL_RenderCopy(renderer, bouton3,NULL,&tailBouton3);
+					SDL_RenderCopy(renderer, bouton->Table[3],NULL,&tailBouton3);
 				//on pose l'animation sur la fenêtre
-				SDL_RenderCopy(renderer,pTexture,&annimation,&crop);// Copie du sprite grâce au SDL_Renderer
+				SDL_RenderCopy(renderer,image->Table[1],&annimation,&crop);// Copie du sprite grâce au SDL_Renderer
 				//présentation final
 				SDL_RenderPresent(renderer);
 				//affiche la position de l'endroit ou la sourie à cliquer
@@ -187,15 +197,37 @@ void menu(){
 				if (SDL_PollEvent(&event)){
 					 switch(event.type){
 						case SDL_QUIT:
+							if(NULL!=renderer)
+								SDL_DestroyRenderer(renderer);
+							if(NULL!=pWindow)
+								SDL_DestroyWindow(pWindow);
+							if(NULL!=pSprite)
+								SDL_FreeSurface(pSprite);
+							bouton->det(bouton);
+							image->det(image);
+							IMG_Quit();
+							TTF_Quit();
+							SDL_Quit();
 							exit(EXIT_SUCCESS);
 						case SDL_KEYUP:
 							switch(event.key.keysym.sym){
-								      case SDLK_q:
+								case SDLK_q:
 									 if(fullscreen==1)
 										SDL_SetWindowFullscreen(pWindow,0);
+									if(NULL!=renderer)
+										SDL_DestroyRenderer(renderer);
+									if(NULL!=pWindow)
+										SDL_DestroyWindow(pWindow);
+									if(NULL!=pSprite)
+										SDL_FreeSurface(pSprite);
+									bouton->det(bouton);
+									image->det(image);
+									IMG_Quit();
+									TTF_Quit();
+									SDL_Quit();
 									exit(EXIT_SUCCESS);
-								      	break;
-								      case SDLK_F11:
+									break;
+								case SDLK_F11:
 								      	if(fullscreen==0){
 								 		SDL_SetWindowFullscreen(pWindow,SDL_WINDOW_FULLSCREEN);
 										fullscreen++;
@@ -211,18 +243,5 @@ void menu(){
 				}
 			}
 		}
-		if(NULL!=Texture) 
-			SDL_DestroyTexture(Texture);
-		if(NULL!=renderer)
-			SDL_DestroyRenderer(renderer);
-		if(NULL!=pWindow)
-			SDL_DestroyWindow(pWindow);
-		if(NULL!=pTexture)
-			SDL_DestroyTexture(pTexture);
-		if(NULL!=pSprite)
-			SDL_FreeSurface(pSprite);
-		IMG_Quit();
-		TTF_Quit();
 	}
-	SDL_Quit();
 }
