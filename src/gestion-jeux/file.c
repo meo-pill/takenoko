@@ -12,9 +12,8 @@ extern int filevide(void){
 }
 
 extern void ajouter(case_plato_t * tuile){
-	file_t* nouv;
-
-	nouv = malloc(sizeof(file_t));
+	file_t* nouv=malloc(sizeof(file_t));
+	
 	nouv->tuile = tuile;
 	nouv->suivant = NULL;
 	if(filevide())
@@ -25,7 +24,7 @@ extern void ajouter(case_plato_t * tuile){
 }
 
 extern void retirer(case_plato_t ** tuile){
-file_t* premier;
+file_t* premier=NULL;
 
 	if(!filevide()){
 		premier = file_tuile_tete;
