@@ -131,6 +131,7 @@ static void creation_plateau(void){
     lac.Coul= centre;
     lac.Eff= debut;
     lac.iriguer= -1;
+    lac.image="image/en_plus/Depart.png";
 
     plateau[LACPOS][LACPOS]= &lac;
 }
