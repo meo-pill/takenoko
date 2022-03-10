@@ -19,18 +19,15 @@ void menu(){
 
 
 	text_t* image=NULL;
-	text_t* bouton=NULL;
+	text_t* titre=NULL;
+	text_t* bouton1=NULL;
+	text_t* bouton2=NULL;
+	text_t* bouton3=NULL;
 
 
 	SDL_Surface* pSprite =NULL;//ajout d'une image par dessus le fond
 
 	SDL_Rect tailText;
-	SDL_Rect tailBouton1;
-	SDL_Rect tailBouton2;
-	SDL_Rect tailBouton3;
-	SDL_Rect tailBouton4;
-	SDL_Rect tailBouton5;
-	SDL_Rect tailBouton6;
 
 	//SDL_Color maron ={95,67,36};
 	SDL_Color Noir = {0 , 0 , 0};
@@ -60,43 +57,37 @@ void menu(){
 	renderer = SDL_CreateRenderer(pWindow,-1,SDL_RENDERER_ACCELERATED); // Création d'un SDL_Renderer utilisant l'accélération matérielle
 	/**Creation de la table de texture*/
 	image=Crea_table_Tex(2);
-	bouton=Crea_table_Tex(6);
+	titre=Crea_table_Tex(1);
+	bouton1=Crea_table_Tex(2);
+	bouton2=Crea_table_Tex(2);
+	bouton3=Crea_table_Tex(2);
+
 	if(image== NULL && bouton==NULL){
 		printf("la table ne c'est pas creer\n");
 		exit ( EXIT_FAILURE );
 	}
 	//création du titre
 	//chargement de la police
-	bouton->Table[0]=CreationText(renderer,&tailText,"image/police/Takenoko.TTF",80,TTF_STYLE_BOLD,"Takenoko", Noir,Width/4,10);
-	if(bouton->Table[0]==NULL)
-		exit(EXIT_FAILURE );
-
-	bouton->Table[1] =CreationText(renderer,&tailBouton1,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD,"Jouer",Bleu,569,700);
-	if ( bouton->Table[1] == NULL ){
+	tirte->Table[0]->texture=CreationText(renderer,(titre->Table[0])->Place2,"image/police/Takenoko.TTF",80,TTF_STYLE_BOLD,"Takenoko", Noir,Width/4,10);
+	if ( tirte->Table[0]->texture){
 		exit ( EXIT_FAILURE );
 	}
 
-	bouton->Table[2] =CreationText(renderer,&tailBouton2,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD,"Option",Bleu,569,650);
-	if ( bouton->Table[2] == NULL ){
+	bouton1->Table[1]->t =CreationText(renderer,bouton1->Table[1]->place2,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD,"Option",Bleu,569,650);¶
+	bouton1->Table[1]->t =CreationText(renderer,(bouton1->Table[1])->Place2,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Option",Orange,569,650);
+	if ( bouton1->Table[0]->t == NULL||bouton1->Table[1]->t == NULL ){
 		exit ( EXIT_FAILURE );
 	}
 
-	bouton->Table[3] =CreationText(renderer,&tailBouton3,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD,"Quiter",Bleu,569,750);
-	if ( bouton->Table[3] == NULL ){
+	bouton2->Table[0]->t =CreationText(renderer,bouton2->Table[0]->place2,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD,"Jouer",Bleu,569,700);
+	bouton2->Table[1]->t =CreationText(renderer,bouton2->Table[1]->place2,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Jouer",Bleu,569,700);
+	if ( bouton2->Table[0]->t == NULL||bouton2->Table[1]->t == NULL ){
 		exit ( EXIT_FAILURE );
 	}
 
-	bouton->Table[4] =CreationText(renderer,&tailBouton4,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Jouer",Orange,569,700);
-	if ( bouton->Table[4] == NULL ){
-		exit ( EXIT_FAILURE );
-	}
-	bouton->Table[5] =CreationText(renderer,&tailBouton5,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Option",Orange,569,650);
-	if ( bouton->Table[5] == NULL ){
-		exit ( EXIT_FAILURE );
-	}
-
-	bouton->Table[6] =CreationText(renderer,&tailBouton6,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Quiter",Orange,569,750);
-	if ( bouton->Table[6] == NULL ){
+	bouton3->Table[0]->t =CreationText(renderer,bouton3->Table[0]->place2,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD,"Quiter",Bleu,569,750);
+	bouton3->Table[1]->t =CreationText(renderer,bouton3->Table[1]->place2,"image/police/Takenoko.TTF",40,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Quiter",Orange,569,750);
+	if ( bouton3->Table[0]->t == NULL||bouton3->Table[1]->t == NULL ){
 		exit ( EXIT_FAILURE );
 	}
 
@@ -116,9 +107,9 @@ void menu(){
 
 		//chargement de la nouvelle image
 		rwop=SDL_RWFromFile(fond, "rb");
-		image->Table[0] = IMG_LoadTexture(renderer, fond);
-		image->Table[1] = SDL_CreateTextureFromSurface(renderer,pSprite);
-		if(image->Table[0]==NULL||image->Table[1]==NULL){
+		image->Table[0]->t = IMG_LoadTexture(renderer, fond);
+		image->Table[1]->t = SDL_CreateTextureFromSurface(renderer,pSprite);
+		if(image->Table[0]->t==NULL||image->Table[1]->t==NULL){
 			printf("ERR chargement image\n");
 			if(renderer==NULL)
 				printf("ERR au nv du renderer\n");
@@ -128,58 +119,70 @@ void menu(){
 			//boucle des evenments permet defaire diférente action sur la fenêtre
 			while (1) {
 				//permet de savoir où et si on clique avec la souri
-				Uint32 boutons = SDL_GetMouseState(&x,&y);
+				Uint32 Clic = SDL_GetMouseState(&x,&y);
 
 				//permet de faire bouger l'animation
 				Uint32 ticks = SDL_GetTicks();
 				Uint32 seconds = ticks / 230;
 				Uint32 sprite = seconds % 4;
 				//création de la "fenêtre ou nous verons une partie de l'image
-				SDL_Rect annimation = { sprite*120,0,120,100};
-				SDL_Rect crop={Width/10, Height/100, 120, 100 };
-				//on pose le fond sur la fenêtre
-				SDL_RenderCopy(renderer, image->Table[0], NULL, NULL);
+				//animation
+				((image->Table[1])->Place)->x=sprite*120;
+				((image->Table[1])->Place)->y=0;
+				((image->Table[1])->Place)->w=120;
+				((image->Table[1])->Place)->h=100;
+				//crop
+				((image->Table[1])->Place2)->x=Width/10;
+				((image->Table[1])->Place2)->y=Height/100;
+				((image->Table[1])->Place2)->w=120;
+				((image->Table[1])->Place2)->h=100;
+				/** on affiche les image*/
+				image->aff(tab,render);
+				/**on gère les boutons*/
 				SDL_RenderCopy(renderer, bouton->Table[0], NULL,&tailText);
-				if((x>=tailBouton1.x && x<=(tailBouton1.w+tailBouton1.x)) && (y>=tailBouton1.y && y<=(tailBouton1.h+tailBouton1.y))){
-					if(boutons==1)
-						affiche_Plato(Width,Height);
-					else
-						SDL_RenderCopy(renderer, bouton->Table[4],NULL,&tailBouton4);
+				if(Push(renderer,x,y,bouton1)==1 && Clic==1){
+					if(NULL!=renderer)
+						SDL_DestroyRenderer(renderer);
+					if(NULL!=pWindow)
+						SDL_DestroyWindow(pWindow);
+					if(NULL!=pSprite)
+						SDL_FreeSurface(pSprite);
+					titre->det(titre);
+					bouton1->det(bouton1);
+					bouton2->det(bouton2);
+					bouton3->det(bouton3);
+					affiche_option(Width,Height);
 				}
-				else
-					SDL_RenderCopy(renderer, bouton->Table[1],NULL,&tailBouton1);
 
-				if((x>=tailBouton2.x && x<=(tailBouton2.w+tailBouton2.x)) && (y>=tailBouton2.y && y<=(tailBouton2.h+tailBouton2.y))){
-					if(boutons==1){
-						if(NULL!=renderer)
-							SDL_DestroyRenderer(renderer);
-						if(NULL!=pWindow)
-							SDL_DestroyWindow(pWindow);
-						if(NULL!=pSprite)
-							SDL_FreeSurface(pSprite);
-						bouton->det(bouton);
-						image->det(image);
-						IMG_Quit();
-						TTF_Quit();
-						SDL_Quit();
-						affiche_option(fond,Width,Height);
-					}
-					else
-						SDL_RenderCopy(renderer,bouton->Table[5],NULL,&tailBouton5);
+				if(Push(renderer,x,y,bouton2)==1 && Clic==1){
+					if(NULL!=renderer)
+						SDL_DestroyRenderer(renderer);
+					if(NULL!=pWindow)
+						SDL_DestroyWindow(pWindow);
+					if(NULL!=pSprite)
+						SDL_FreeSurface(pSprite);
+					titre->det(titre);
+					bouton1->det(bouton1);
+					bouton2->det(bouton2);
+					bouton3->det(bouton3);
+					affiche_option(Width,Height);
 				}
-				else
-					SDL_RenderCopy(renderer, bouton->Table[2],NULL,&tailBouton2);
+				
+				
+				if(Push(renderer,x,y,bouton3)==1 && Clic==1){
+					if(NULL!=renderer)
+						SDL_DestroyRenderer(renderer);
+					if(NULL!=pWindow)
+						SDL_DestroyWindow(pWindow);
+					if(NULL!=pSprite)
+						SDL_FreeSurface(pSprite);
+					titre->det(titre);
+					bouton1->det(bouton1);
+					bouton2->det(bouton2);
+					bouton3->det(bouton3);
+					affiche_option(Width,Height);
+				}
 
-				if((x>=tailBouton3.x && x<=(tailBouton3.w+tailBouton3.x)) && (y>=tailBouton3.y && y<=(tailBouton3.h+tailBouton3.y))){
-					if(boutons==1)
-						exit(EXIT_SUCCESS);
-					else
-						SDL_RenderCopy(renderer, bouton->Table[6],NULL,&tailBouton6);
-				}
-				else
-					SDL_RenderCopy(renderer, bouton->Table[3],NULL,&tailBouton3);
-				//on pose l'animation sur la fenêtre
-				SDL_RenderCopy(renderer,image->Table[1],&annimation,&crop);// Copie du sprite grâce au SDL_Renderer
 				//présentation final
 				SDL_RenderPresent(renderer);
 				//affiche la position de l'endroit ou la sourie à cliquer

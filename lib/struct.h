@@ -67,11 +67,11 @@ struct case_plato_s{
 };
 
 struct carte_s{
-  int (*verif)(struct carte_s const *);
-  char const type [LONGTYPE];
-  char const image [LONGPATH];
-  char const desc [DESCRIPTION];
-  int const point;
+  int (*verif)(struct carte_s * const);
+  char type [LONGTYPE];
+  char image [LONGPATH];
+ 	char desc [DESCRIPTION];
+ 	int point;
 };
 
 struct joueur_s{
