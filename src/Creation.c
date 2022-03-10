@@ -20,3 +20,12 @@ extern SDL_Texture* CreationText(SDL_Renderer *renderer,SDL_Rect *tailText,const
 	TTF_CloseFont(font);
 	return texte_tex;
 }
+
+extern int Push(SDL_Renderer *renderer,int x,int y,text_t* bouton){
+				if((x>=((bouton->Table->)place2)->x && x<=(((bouton->Table->)place2)->w+((bouton->Table->)place2)->x)) && (y>=((bouton->Table->)place2)->y && y<=(((bouton->Table->)place2)->h+((bouton->Table->)place2)->.y))){
+					SDL_RenderCopy(renderer, bouton->Table[1],NULL,&tailBouton1);
+					return 1;
+				}
+				SDL_RenderCopy(renderer, bouton->Table[0],NULL,&tailBouton1);
+				return 0;
+}
