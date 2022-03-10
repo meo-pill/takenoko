@@ -1,6 +1,6 @@
 #ifndef _FONCTION_H_
 #define _FONCTION_H_
-#include "struc.h"
+#include "index.h"
 
 /**
 *
