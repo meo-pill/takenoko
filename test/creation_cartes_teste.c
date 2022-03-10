@@ -5,7 +5,7 @@
 
 int main(){
     int i = 0;
-
+    srand(time(NULL));
     a_null_carte();
 
     printf("affichage des tableaux AVANT l'initialisation (les adresses) :\n");
@@ -39,6 +39,22 @@ int main(){
     for(i = 0; i< NBCARTE;i++){
         afficher_carte(carteJardinier[i]);
     }
+
+    melanger_carte();
+
+    printf("affichage des tableaux APRES mélange :\n");
+
+    printf("panda :\n");
+    for(i = 0; i< NBCARTE;i++){
+        afficher_carte(cartePanda[i]);
+    }
+    printf("\n parcelle : \n");
+    for(i = 0; i< NBCARTE;i++){
+       afficher_carte(carteParcelle[i]);
+    }
+    printf("\n jardinier : \n");
+    for(i = 0; i< NBCARTE;i++)
+        afficher_carte(carteJardinier[i]);
 
     detruire_carte();
 
