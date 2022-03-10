@@ -12,15 +12,15 @@ int main(){
 
     printf("panda :\n");
     for(i = 0; i< NBCARTE;i++){
-        printf("    %d\n",cartePanda[i]);
+        printf("    %d\n",(int)cartePanda[i]);
     }
     printf("\n parcelle : \n");
     for(i = 0; i< NBCARTE;i++){
-        printf("    %d\n",carteParcelle[i]);
+        printf("    %d\n",(int)carteParcelle[i]);
     }
     printf("\n jardinier : \n");
     for(i = 0; i< NBCARTE;i++){
-        printf("    %d\n",carteJardinier[i]);
+        printf("    %d\n",(int)carteJardinier[i]);
     }
 
     extraction_fichier_carte();
@@ -46,15 +46,15 @@ int main(){
 
     printf("panda :\n");
     for(i = 0; i< NBCARTE;i++){
-        printf("    %d\n",cartePanda[i]);
+        printf("    %d\n",(int)cartePanda[i]);
     }
     printf("\n parcelle : \n");
     for(i = 0; i< NBCARTE;i++){
-        printf("    %d\n",carteParcelle[i]);
+        printf("    %d\n",(int)carteParcelle[i]);
     }
     printf("\n jardinier : \n");
     for(i = 0; i< NBCARTE;i++){
-        printf("    %d\n",carteJardinier[i]);
+        printf("    %d\n",(int)carteJardinier[i]);
     }
     a_null_carte();
 }

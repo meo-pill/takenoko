@@ -213,7 +213,7 @@ int extraction_fichier_carte(){
         }
     }
     fclose(fich);
-
+    return 0;
 
 }
 
