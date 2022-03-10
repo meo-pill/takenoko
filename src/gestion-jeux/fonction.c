@@ -6,45 +6,10 @@ fonction opérationnelle
 
 /** à chaque tour d'un joueur */
 
-/* ne pas oublier
-	#include <heure.h>
-et dans main
-	srand( heure(NULL));
-*/
-
 char  lancer_meteo (){
 	char meteo = (effDes_E)( rand ()% 6 );
 	return meteo;
 }
-
-
-
-
-
-/***************************
-fonction à finir et à tester
-****************************/
-
-
-/* * choix pour 1 joueur */
-
-void choixactionduJ ( joueur_t * Joueur, const char meteo);
-
-
-void ajout_irrigation_stock ( joueur_t * Joueur){
-	Joueur-> nbIrigation ++;
-}
-void retire_irrigation_stock ( joueur_t * Joueur){
-  if (Joueur-> nbIrigation > 0)
-    Joueur-> nbIrigation --;
-  else
-    printf ( " erreur pour retier 1 irrigation " );
-}
-
-
-void pioche_1case (){}
-void pioche_objetif ( joueur_t * Joueur){}
-void pioche_effspe( joueur_t * Joueur){}
 
 
 void ajout_effspe_stock( joueur_t * Joueur, const effet_E eff){	 /* * avec l'ordre bassin,enclos,engrais */
@@ -60,42 +25,75 @@ void ajout_effspe_stock( joueur_t * Joueur, const effet_E eff){	 /* * avec l'ord
 }
 void retrait_effspe_stock(joueur_t * Joueur, const effet_E eff) {
   if (eff == bassin )
-    Joueur->effSpe[0] --;
+    Joueur-> effSpe[0] --;
   else if (eff == enclos )
-    Joueur->effSpe[1] --;
+    Joueur-> effSpe[1] --;
   else if (eff == engrais )
-    Joueur->effSpe[2] --;
+    Joueur-> effSpe[2] --;
   else
     printf(" erreur de suprimer sur eff spé ");
 }
 
 
-void ajout_bambou_stock ( joueur_t Joueur, const int coul, const int nb_B){	 /** coul : avec l'ordre jaune,rose,vert */
-  if ( coul == 1 )
-    Joueur. bambou [ 0 ] ++;
-  else if ( coul == 2 )
-    Joueur. bambou [ 1 ] ++;
-  else if ( coul == 3 )
-    Joueur. bambou [ 2 ] ++;
+void ajout_bambou_stock ( joueur_t * Joueur, const couleur_E coul, const int nb_B){	 /** coul : avec l'ordre jaune,rose,vert */
+  if ( coul == jaune )
+    Joueur-> bambou [ 0 ] ++;
+  else if ( coul == rose )
+    Joueur-> bambou [ 1 ] ++;
+  else if ( coul == vert )
+    Joueur-> bambou [ 2 ] ++;
   else
     printf ( " erreur d'ajout sur bambou " );
 }
-void  retire_bambou_stock ( joueur_t Joueur, const int nb_bb_jaune, const int nb_bb_rose, const int nb_bb_vert){
-  if (Joueur. bambou[0] >= nb_bb_jaune)
-    Joueur. bambou[0] -= nb_bb_jaune;
+void  retire_bambou_stock ( joueur_t * Joueur, const int nb_bb_jaune, const int nb_bb_rose, const int nb_bb_vert){
+  if (Joueur-> bambou[0] >= nb_bb_jaune)
+    Joueur-> bambou[0] -= nb_bb_jaune;
   else
-    printf(" pas asser de bambou jaune ");
+    printf(" pas asser de bambou jaune \n");
   
-  if (Joueur. bambou[1] >= nb_bb_rose)
-    Joueur. bambou[1] -= nb_bb_rose;
+  if (Joueur-> bambou[1] >= nb_bb_rose)
+    Joueur-> bambou[1] -= nb_bb_rose;
   else
-    printf(" pas asser de bambou rose ");
+    printf(" pas asser de bambou rose \n");
   
-  if (Joueur. bambou[2] >= nb_bb_vert)
-    Joueur. bambou[2] -= nb_bb_vert;
+  if (Joueur-> bambou[2] >= nb_bb_vert)
+    Joueur-> bambou[2] -= nb_bb_vert;
   else
-    printf(" pas asser de bambou vert ");
+    printf(" pas asser de bambou vert \n");
 }
+
+
+void ajout_irrigation_stock ( joueur_t * Joueur){
+	Joueur-> nbIrigation ++;
+}
+void retire_irrigation_stock ( joueur_t * Joueur){
+  if (Joueur-> nbIrigation > 0)
+    Joueur-> nbIrigation --;
+  else
+    printf ( " erreur pour retier 1 irrigation " );
+}
+
+
+
+/** à chaque déplacement d'un personnage */
+
+
+
+
+/***************************
+fonction à finir et à tester
+****************************/
+
+
+/* * choix pour 1 joueur */
+
+void choixactionduJ ( joueur_t * Joueur, const char meteo);
+
+
+void pioche_1case (){}
+void pioche_objetif ( joueur_t * Joueur){}
+void pioche_effspe( joueur_t * Joueur){}
+
 
 
 int Verif_deplacer_perso( personnage_t * perso, const int x_a, const int y_a){	 /** jardinier ou Panda et renvoyé 1 si c'est bon */
