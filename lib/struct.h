@@ -21,7 +21,8 @@
 #define DESCRIPTION 100
 #define NBTUILES 27
 #define LACPOS 14
-#define NBTUILE 27
+#define NBIRIG 20
+#define NBCARTE 15
 
 /**definition des structurs*/
 typedef struct  personnage_s personnage_t;
@@ -37,12 +38,13 @@ typedef enum effDes_s{soleil,pluie,vent,orage,nuage,choixJ}effDes_E;
 typedef enum couleurJ_s{bleu,rouge,noir,blanc}couleurJ_E;
 
 /**variable globale*/
-joueur_t * J_tab[4];
-case_plato_t * piece[NBTUILE];
-carte_t * cartePanda[15];
-carte_t * carteParcelle[15];
-carte_t * carteJardinier[15];
-case_plato_t * plateau[NBTUILE][NBTUILE];
+joueur_t * J[4];
+case_plato_t * piece[NBTUILES];
+carte_t * cartePanda[NBCARTE];
+carte_t * carteParcelle[NBCARTE];
+carte_t * carteJardinier[NBCARTE];
+case_plato_t * plateau[NBTUILES][NBTUILES];
+case_plato_t lac;
 file_t * file_tuile_tete;
 file_t * file_tuile_queue;
 personnage_t panda;
