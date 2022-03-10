@@ -25,8 +25,8 @@ static void shuffleTuile(){
      */
     case_plato_t * t;
     int i;
-    int j;
-    int k;
+    int j = 0;
+    int k = 0;
 
     /**
      * @brief boucle servant a donnée 100 répétion
@@ -34,14 +34,15 @@ static void shuffleTuile(){
      * 
      * 
      */
-    for (i = 0; i < (NBTUILE * 4); i++){
+    for (i = 0; i < (NBTUILES * 6); i++){
         while (k == j){
-            j = rand() % (NBTUILE);
-            k = rand() % (NBTUILE);
+            j = rand() % (NBTUILES);
+            k = rand() % (NBTUILES);
         }
         t = piece[j];
         piece[j] = piece[k];
         piece[k] = t;
+        k = j;
     }
 }
 
@@ -102,7 +103,7 @@ static int extraction_fichier_tuile(void){
  * 
  */
 static void mise_en_file(void){
-    for(int i=0; i<NBTUILE; i++){
+    for(int i=0; i<NBTUILES; i++){
         ajouter(piece[i]);
     }
 }
@@ -124,14 +125,14 @@ static void creation_joueur(int const nb_joueur){
  */
 static void creation_plateau(void){
     for(int i=0; i<27; i++){
-        for(int j=0; j<NBTUILE; j++){
+        for(int j=0; j<NBTUILES; j++){
             plateau[i][j] = NULL;
         }
     }
     lac.Coul= centre;
     lac.Eff= debut;
     lac.iriguer= -1;
-    lac.image="image/en_plus/Depart.png";
+    strcpy(lac.image,"image/en_plus/Depart");
 
     plateau[LACPOS][LACPOS]= &lac;
 }
@@ -255,7 +256,7 @@ static void videe_plateau(void){
  * Mewen
  */
 static void suppression_tuile(void){
-    for(int i=0; i<NBTUILE; i++){
+    for(int i=0; i<NBTUILES; i++){
         free(piece[i]);
         piece[i] = NULL;
     }

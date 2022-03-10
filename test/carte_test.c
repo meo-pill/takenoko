@@ -2,14 +2,14 @@
 void afficher_plateau(){
     int i,j;
     int balance = 0;
-    for(i = 0; i<NBTUILE;i++){
+    for(i = 0; i<NBTUILES;i++){
         if(balance == 1){
             printf("    ");
             balance =0;
         }
         else
             balance = 1;
-        for(j=0;j<NBTUILE;j++){
+        for(j=0;j<NBTUILES;j++){
             if(plateau[i][j] != NULL)
                 printf("  %d  ",plateau[i][j]->Coul);
             else
@@ -25,8 +25,8 @@ int test_triangle(){
 
 void remplir_plateau(){
     int i,j;
-    for(i=0;i<NBTUILE;i++){
-        for(j=0;j<NBTUILE;j++){
+    for(i=0;i<NBTUILES;i++){
+        for(j=0;j<NBTUILES;j++){
             plateau[i][j] = NULL;
         }
     }

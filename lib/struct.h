@@ -18,7 +18,6 @@
 #define DESCRIPTION 100
 #define NBTUILES 27
 #define LACPOS 14
-#define NBTUILE 27
 #define NBIRIG 20
 #define NBCARTE 15
 
@@ -38,11 +37,11 @@ typedef enum couleurJ_s{bleu,rouge,noir,blanc}couleurJ_E;
 
 /**variable globale*/
 joueur_t * J[4];
-case_plato_t * piece[NBTUILE];
+case_plato_t * piece[NBTUILES];
 carte_t * cartePanda[NBCARTE];
 carte_t * carteParcelle[NBCARTE];
 carte_t * carteJardinier[NBCARTE];
-case_plato_t * plateau[NBTUILE][NBTUILE];
+case_plato_t * plateau[NBTUILES][NBTUILES];
 case_plato_t lac;
 file_t * file_tuile_tete;
 file_t * file_tuile_queue;
