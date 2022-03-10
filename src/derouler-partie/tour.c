@@ -17,7 +17,7 @@
  * @param maxpoint 
  * @return int 
  */
-extern int debut_partie(int * nb_joueur, int * maxpoint){
+static int debut_partie(int * nb_joueur, int * maxpoint){
     *nb_joueur = 0;
     while(nb_joueur>4 || nb_joueur < 1){
         printf("donner le nb joueur :\n");
@@ -42,4 +42,15 @@ extern int debut_partie(int * nb_joueur, int * maxpoint){
         return(1);
         break;
     }
+    return(0);
+}
+
+extern void tour_jeux(void){
+    int nb_joueur, maxpoint;
+    if (debut_partie(&nb_joueur, &maxpoint)){
+        printf("problème de selection du nb joueur");
+        return;
+    }
+
+    
 }

@@ -223,7 +223,7 @@ int extraction_fichier_carte(){
  * @brief fonction d'apelle pour l'initialisation de la partie
  * Mewen / Leo
  */
-void initaliser(int const nb_joueur){
+extern void initaliser(int const nb_joueur){
     initfile();
     if (!extraction_fichier_tuile()){
         printf("ereur d'ouverture fichier tuile");
