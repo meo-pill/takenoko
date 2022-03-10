@@ -27,8 +27,8 @@ int verif_panda (carte_t const * carte, joueur_t const * joueur){
 
 int verif_parcelle_triangle (couleur_E couleur){
   int i,j;
-  for(i=0;i<NBTUILE;i++){
-    for(j=0;j<NBTUILE;j++){
+  for(i=0;i<NBTUILES;i++){
+    for(j=0;j<NBTUILES;j++){
       if(plateau[i][j]->Coul == couleur && plateau[i][j]->iriguer){
         return (plateau[i][j+1]->Coul == couleur && plateau[i+1][j+1]->Coul == couleur);
       }
