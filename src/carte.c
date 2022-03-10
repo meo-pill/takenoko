@@ -9,33 +9,6 @@ void a_null_carte(){
   }
 }
 
-int verif_panda (carte_t const * carte, joueur_t const * joueur){
-  switch (carte->type[6]){
-    case 'v' :
-      return joueur->bambou[vert] > 2;
-      break;
-    case 'r' :
-      return joueur->bambou[rose] > 2;
-      break;
-    case 'j' :
-      return joueur->bambou[jaune] > 2;
-      break;
-    case 'm' :
-      break;
-  }
-}
-
-int verif_parcelle_triangle (couleur_E couleur){
-  int i,j;
-  for(i=0;i<NBTUILE;i++){
-    for(j=0;j<NBTUILE;j++){
-      if(plateau[i][j]->Coul == couleur && plateau[i][j]->iriguer){
-        return (plateau[i][j+1]->Coul == couleur && plateau[i+1][j+1]->Coul == couleur);
-      }
-    }
-  }
-}
-
 int inserer_carte(carte_t * carte){
   //prend une carte et l'insère dans le bon tableau
   //retourne 1 si il y a eu une erreur; 0 sinon
@@ -90,6 +63,8 @@ carte_t * creer_carte(char * type, char * describ, char * image, int pt ){
   strcpy(carte->desc,describ);
   carte->point = pt;
 
+  carte -> verif = recherche_fonction_verif(carte);
+
   return carte ;
 }
 
@@ -111,4 +86,111 @@ void detruire_carte(){
 
 void afficher_carte(carte_t * const c){
   printf("----------------------\n TYPE : %s \n IMAGE : %s \n DESCRIPTION : %s\n VALEUR : %d \n----------------------\n",c->type,c->image,c->desc,c->point);
+}
+
+static void melanger_deck (carte_t * deck [NBCARTE]){
+  // cette fonction mélange un deck de carte, en passant par un tableau neutre
+  carte_t * tab[NBCARTE];
+  int i;
+  int place;
+
+  for(i = 0; i<NBCARTE;i++)
+    tab[i] = NULL;
+
+  i = 0;
+  while(i < NBCARTE){
+    place = rand()%NBCARTE;
+    if(tab[place] == NULL){
+      tab[place] = deck[i];
+      i++;
+    }
+  }
+
+  for(i = 0;i<NBCARTE;i++){
+    deck[i] = tab[i];
+  }
+}
+
+void melanger_carte (){
+  melanger_deck(cartePanda);
+  melanger_deck(carteParcelle);
+  melanger_deck(carteJardinier);
+}
+
+int (* recherche_fonction_verif(carte_t * const carte))(carte_t * const){
+  if(carte -> type[0] == 'j'){
+    return verif_jardinier;
+  }
+  if(carte -> type[2] == 'n'){
+    return verif_panda;
+  }
+  else if(carte -> type[2] == 'r')
+    return recherche_fonction_parcelle(carte);
+  else{
+    printf("\n--------------------------\n erreur dans la recherche de fonction de recherche de la fonction de verification \n ----------------------------\n");
+    return NULL;
+  }
+}
+
+int (*recherche_fonction_parcelle(carte_t * const carte))(carte_t * const){
+  //regarde le type d'une carte et renvoie la bonne fonction de verification
+
+  char forme [10];
+  sscanf(carte->type,"%[^;-];",forme);
+  if(strcmp(forme,"triangle")){
+    return verif_parcelle_triangle;
+  }
+  else if (strcmp(forme,"losange")){
+    return verif_parcelle_losange;
+  }
+  else if (strcmp(forme,"ligne")){
+    return verif_parcelle_ligne;
+  }
+  else if (strcmp(forme,"arc")){
+    return verif_parcelle_arc;
+  }
+  else{
+    printf("\n-----------------------\n erreur dans la recherche de fonction parcelle, type non correct \n------------------------\n");
+    return NULL;
+  }
+}
+
+int verif_jardinier(carte_t * const carte){
+  printf("on lance la vérification d'une carte jardinier\n");
+  return 0;
+}
+
+int verif_panda(carte_t * const carte){
+  printf("on lance la vérification d'une carte panda\n");
+  return 0;
+}
+
+int verif_parcelle_triangle (carte_t * const carte){
+  printf("on lance la vérification d'une carte parcelle triangle\n");
+  int i,j;
+
+  couleur_E couleur;
+
+  for(i=0;i<NBTUILE;i++){
+    for(j=0;j<NBTUILE;j++){
+      if(plateau[i][j]->Coul == couleur && plateau[i][j]->iriguer){
+        return (plateau[i][j+1]->Coul == couleur && plateau[i+1][j+1]->Coul == couleur);
+      }
+    }
+  }
+  return 0;
+}
+
+int verif_parcelle_losange(carte_t * const carte){
+  printf("on lance la vérification d'une carte parcelle losange\n");
+  return 0;
+}
+
+int verif_parcelle_ligne(carte_t * const carte){
+  printf("on lance la vérification d'une carte parcelle ligne\n");
+  return 0;
+}
+int verif_parcelle_arc(carte_t * const carte){
+  printf("on lance la vérification d'une carte parcelle arc\n");
+  return 0;
 }

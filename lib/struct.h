@@ -68,7 +68,7 @@ struct case_plato_s{
 };
 
 struct carte_s{
-  int (*verif)(struct carte_s const *);
+  int (*verif)(struct carte_s * const);
   char type [LONGTYPE];
   char image [LONGPATH];
  	char desc [DESCRIPTION];

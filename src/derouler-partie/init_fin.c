@@ -131,7 +131,7 @@ static void creation_plateau(void){
     lac.Coul= centre;
     lac.Eff= debut;
     lac.iriguer= -1;
-    lac.image="image/en_plus/Depart.png";
+    strcpy(lac.image,"image/en_plus/Depart.png");
 
     plateau[LACPOS][LACPOS]= &lac;
 }
@@ -171,19 +171,19 @@ int extraction_fichier_carte(){
 
     while(!feof(fich)){
         fgetpos(fich,&position);
-        printf("on avance dans le fichier : on est à %li\n",position.__pos);
+        //printf("on avance dans le fichier : on est à %li\n",position.__pos);
         for(i=0; type[i-1] !=';';i++){
             fscanf(fich,"%c",&type[i]);
         }
         type[i-1] = '\0';
         
-        printf("type : %s \n",type);
+        //printf("type : %s \n",type);
 
         for(i=0;image[i-1]!=';';i++){
             fscanf(fich,"%c",&image[i]);
         }
         image[i-1] = '\0';
-        printf("image : %s\n",image);
+        //printf("image : %s\n",image);
 
 
         for(i=0;desc[i-1]!=';';i++)
@@ -214,7 +214,7 @@ int extraction_fichier_carte(){
         }
     }
     fclose(fich);
-
+    return 0;
 
 }
 
