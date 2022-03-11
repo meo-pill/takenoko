@@ -6,8 +6,8 @@ fonction opérationnelle
 
 /** à chaque tour d'un joueur */
 
-char  lancer_meteo (){
-	char meteo = (effDes_E)( rand ()% 6 );
+effDes_E  lancer_meteo (){
+	effDes_E meteo = (effDes_E)( rand ()% 6 );
 	return meteo;
 }
 
@@ -87,7 +87,7 @@ fonction à finir et à tester
 
 /* * choix pour 1 joueur */
 
-void choixactionduJ ( joueur_t * Joueur, const char meteo);
+void choixactionduJ ( joueur_t * Joueur, effDes_E const meteo);
 
 
 void pioche_1case (){}
@@ -224,6 +224,7 @@ void ajout_irrigation_plateau ( const int x, const int y){	/** Vérifie qu'on pe
   else
     printf(" erreur pour poser une irrigation ");
 }
+
 void ajout_effspe_plato( effet_E * effet, const int x, const int y){		/** Vérifie qu'on peu poser un effet spécial et s'éxécute si c'est bon */
   if (plateau[x][y] != NULL && plateau[x][y]-> Eff == rien)
     plateau[x][y]-> Eff = *effet;

@@ -30,12 +30,15 @@ typedef struct case_plato_s case_plato_t;
 typedef struct carte_s carte_t;
 typedef struct joueur_s joueur_t;
 typedef struct file_s file_t;
+typedef struct irig_s irig_t;
 
 /**definition des type enumérer*/
 typedef enum couleur_s{jaune,rose,vert}couleur_E;
 typedef enum effet_s{rien,bassin,enclos,engrais,lac}effet_E;
-typedef enum effDes_s{soleil,pluie,vent,orage,nuage,choixJ}effDes_E;
 typedef enum couleurJ_s{bleu,rouge,noir,blanc}couleurJ_E;
+
+typedef enum effDes_s{soleil,pluie,vent,orage,nuage,choixJ}effDes_E;
+typedef enum choixJ_s{rien,parcelle,irrigation,jardinier,panda,objectif}choixJ_E;
 
 /**variable globale*/
 joueur_t * J[4];
@@ -49,6 +52,8 @@ file_t * file_tuile_tete;
 file_t * file_tuile_queue;
 personnage_t panda;
 personnage_t jardinier;
+irig_t * irig[NBIRIG];
+
 
 
 /** des structurs*/
@@ -85,6 +90,13 @@ struct joueur_s{
 	int nbIrigation;
   int nbObjectif;
   couleurJ_E couleurJoueur;
+};
+
+struct irig_s{
+  int x_haut_gauche;
+  int y_haut_gauche;
+  int x_bas_droit;
+  int y_bas_droit;
 };
 
 #endif
