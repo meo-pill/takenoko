@@ -21,7 +21,7 @@ et dans main
 	srand( heure(NULL));
 */
 
-char lancer_meteo();
+effDes_E lancer_meteo();
 
 void ajout_effspe_stock( joueur_t * Joueur, const effet_E eff);
 void retrait_effspe_stock( joueur_t * Joueur, const effet_E eff);
@@ -48,7 +48,7 @@ fonction à finir et à tester
 
 /* * choix pour 1 joueur */
 
-void choixactionduJ( joueur_t * Joueur, const char meteo);
+void choixactionduJ( joueur_t * Joueur, effDes_E const meteo);
 
 void pioche_1case ();
 void pioche_objetif( joueur_t * Joueur);
