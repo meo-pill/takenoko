@@ -4,9 +4,9 @@
 
 typedef struct Texture_s{
 	SDL_Texture* t;
-	SDL_Rect* Place;
-	SDL_Rect* Place2;
-}Texture_t
+	SDL_Rect* place;
+	SDL_Rect* place2;
+}Texture_t;
 
 typedef struct text_s{
 	void (*quit)(SDL_Texture *);

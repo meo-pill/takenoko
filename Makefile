@@ -10,6 +10,8 @@ PROG=Takenoko
 GESTION=src/Creation.c src/menu.c src/Option.c src/main.c src/texture.c src/Plato.c
 LIB=lib/Creation.h lib/menu.h lib/Option.h lib/texture.h lib/Plato.h
 
+DATE=date +%Y-%m-%d
+
 cache:all
 all:clean ${PROG} laugth
 
@@ -24,10 +26,18 @@ PATH:
 PULL:
 	git pull
 COM:
-	git commit -m 'mise à jour'
-PUSH:
+	git commit -m '${USER} ${DATE}  mise à jour'
+ME:
+	git push origin mewen
+LE:
+	git push origin leo
+MA:
+	git push origin maxime
+MO:
 	git push origin fortuna
 ADD:
 	git add .
+TEST:
+	${DATE}
 laugth:
 	./${PROG}

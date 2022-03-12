@@ -25,12 +25,12 @@ void aff_Texture(text_t *tab,SDL_Renderer *renderer){
 /**Creer une table de texture*/
 text_t* Crea_table_Tex(int nb_text){
 	text_t* tab=malloc(sizeof(text_t));
-	tab->Table=(SDL_Texture**) malloc(nb_text*sizeof(SDL_Texture*));
+	tab->Table=(Texture_t **) malloc(nb_text*sizeof(Texture_t*));
 	printf("Ok\n");
 	for(int i=0;i<nb_text;i++){
 		(tab->Table[i])->t=NULL;
-		(tab->Table[i])->Place=NULL;
-		(tab->Table[i])->Place2=NULL;
+		(tab->Table[i])->place=NULL;
+		(tab->Table[i])->place2=NULL;
 	}
 	tab->Taille=nb_text;
 	tab->quit=SDL_DestroyTexture;

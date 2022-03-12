@@ -127,17 +127,17 @@ void menu(){
 				Uint32 sprite = seconds % 4;
 				//création de la "fenêtre ou nous verons une partie de l'image
 				//animation
-				((image->Table[1])->Place)->x=sprite*120;
-				((image->Table[1])->Place)->y=0;
-				((image->Table[1])->Place)->w=120;
-				((image->Table[1])->Place)->h=100;
+				((image->Table[1])->place)->x=sprite*120;
+				((image->Table[1])->place)->y=0;
+				((image->Table[1])->place)->w=120;
+				((image->Table[1])->place)->h=100;
 				//crop
-				((image->Table[1])->Place2)->x=Width/10;
-				((image->Table[1])->Place2)->y=Height/100;
-				((image->Table[1])->Place2)->w=120;
-				((image->Table[1])->Place2)->h=100;
+				((image->Table[1])->place2)->x=Width/10;
+				((image->Table[1])->place2)->y=Height/100;
+				((image->Table[1])->place2)->w=120;
+				((image->Table[1])->place2)->h=100;
 				/** on affiche les image*/
-				image->aff(tab,render);
+				image->aff(tab,renderer);
 				/**on gère les boutons*/
 				SDL_RenderCopy(renderer, bouton->Table[0], NULL,&tailText);
 				if(Push(renderer,x,y,bouton1)==1 && Clic==1){
