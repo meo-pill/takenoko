@@ -1,7 +1,7 @@
 #include <unistd.h>
 #include "../lib/Creation.h"
 #include "../lib/menu.h"
-#include "../lib/texture.h"
+#include "../lib/texture2.h"
 
 
 void affiche_Plato(int W,int H){
@@ -24,8 +24,6 @@ void affiche_Plato(int W,int H){
 
 	SDL_Color Noir = {0 , 0 , 0};
 
-	SDL_Rect tailBouton;
-	SDL_Rect tailBouton2;
 
 	int x=0,y=0;
 
@@ -36,18 +34,18 @@ void affiche_Plato(int W,int H){
 											SDL_WINDOW_SHOWN |SDL_WINDOW_RESIZABLE);
 	renderer = SDL_CreateRenderer(pWindow,-1,SDL_RENDERER_ACCELERATED); // Création d'un SDL_Renderer utilisant l'accélération matérielle
 
-	image=Crea_table_Tex(1);
+	image=Crea_Tex(1);
 	//Tuile=Crea_table_tex(13);il 13 image de tuille
-	bouton=Crea_table_Tex(2);
-	bouton->Table[0]=CreationText(renderer,&tailBouton2,"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"<-Retour",Noir,109,71);
-	bouton->Table[1]=CreationText(renderer,&tailBouton2,"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"<-Retour",Noir,109,71);
+	bouton=Crea_Tex(2);
+	bouton->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"<-Retour",Noir,W*1/3,10);
+	bouton->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"<-Retour",Noir,W*1/3,10);
 
 	if ((bouton->Table[0]) == NULL || bouton->Table[1]==NULL){
 		exit ( EXIT_FAILURE );
 	}
 
-	(image->Table[0]) = IMG_LoadTexture(renderer, fond_Plato);
-	if((image->Table[0])==NULL){
+	(*image->Table)->t = IMG_LoadTexture(renderer, fond_Plato);
+	if((*image->Table)->t==NULL){
 		fprintf ( stderr , " Erreur au niveau de l'image: %s \n " , TTF_GetError ());
 		exit ( EXIT_FAILURE );
 	}
@@ -55,25 +53,19 @@ void affiche_Plato(int W,int H){
 	while(1){
 		Uint32 Clic = SDL_GetMouseState(&x,&y);
 		//création de la "fenêtre ou nous verons une partie de l'image
-		image->aff(image,renderer,NULL,NULL);
-		if((x>=tailBouton.x && x<=(tailBouton.w+tailBouton.x)) && (y>=tailBouton.y && y<=(tailBouton.h+tailBouton.y))){
-			if(Clic==1){
-				bouton->det(bouton);
-				image->det(image);
-				if(NULL!=renderer)
-					SDL_DestroyRenderer(renderer);
-				if(NULL!=pWindow)
-					SDL_DestroyWindow(pWindow);
-				IMG_Quit();
-				TTF_Quit();
-				SDL_Quit();
-				menu();
-			}
-			else
-				SDL_RenderCopy(renderer, bouton->Table[1],NULL,&tailBouton2);
+		SDL_RenderCopy(renderer,(*image->Table)->t,NULL,NULL);
+		if(bout(renderer,bouton,x,y) && Clic){
+			bouton->det(bouton);
+			image->det(image);
+			if(NULL!=renderer)
+				SDL_DestroyRenderer(renderer);
+			if(NULL!=pWindow)
+				SDL_DestroyWindow(pWindow);
+			IMG_Quit();
+			TTF_Quit();
+			SDL_Quit();
+			menu();
 		}
-		else
-			SDL_RenderCopy(renderer, bouton->Table[0],NULL,&tailBouton);
 	
 		//présentation final
 		SDL_RenderPresent(renderer);
