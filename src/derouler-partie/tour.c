@@ -18,19 +18,7 @@
  * @param maxpoint atribution du nombre de carte a valider en conséquence
  * @return int pour le retour d'erreur
  */
-static int debut_partie(int * nb_joueur, int * maxpoint){
-    // mise a 0 pour la boucle
-    *nb_joueur = 0;
-
-    /**
-     * @brief boucle de selection du nb de joueur
-     * 
-     */
-    while(nb_joueur>4 || nb_joueur < 1){
-        printf("donner le nb joueur :\n");
-        scanf("%d",nb_joueur);
-    }
-
+static int debut_partie(int const * nb_joueur, int * maxpoint){
     initaliser(*nb_joueur);
     /**
      * @brief établisement la variable du maxpoint en fonciton du nb de joueur
@@ -60,8 +48,8 @@ static int victoire_joueur(joueur_t const * J, int const maxpoint){
 
 
 
-extern void tour_jeux(void){
-    int nb_joueur, maxpoint, victoire_j=0, i, j, limite_action;
+extern void tour_jeux(int const nb_joueur){
+    int maxpoint, victoire_j=0, i, j, limite_action;
     effDes_E meteo;
     /**
      * @brief souvenir des dernière acction effectuer par le joueur
