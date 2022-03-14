@@ -16,8 +16,8 @@
 #define MAXNB2J 9
 #define MAXNB3J 8
 #define MAXNB4J 7
-#define LONGPATH 30
-#define LONGTYPE 20
+#define LONGPATH 100
+#define LONGTYPE 100
 #define DESCRIPTION 100
 #define NBTUILES 27
 #define LACPOS 14
@@ -33,7 +33,7 @@ typedef struct file_s file_t;
 typedef struct irig_s irig_t;
 
 /**definition des type enumérer*/
-typedef enum couleur_s{jaune,rose,vert}couleur_E;
+typedef enum couleur_s{jaune,rose,vert,water}couleur_E;
 typedef enum effet_s{sans_effet,bassin,enclos,engrais,effet_lac}effet_E;
 typedef enum couleurJ_s{bleu,rouge,noir,blanc}couleurJ_E;
 
@@ -70,7 +70,7 @@ struct case_plato_s{
   int iriguer;
   int nbBambou;
   effet_E Eff;
-  char const image [LONGPATH];
+  char image [LONGPATH];
 };
 
 struct carte_s{

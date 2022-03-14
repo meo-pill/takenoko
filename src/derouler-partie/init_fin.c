@@ -129,8 +129,8 @@ static void creation_plateau(void){
             plateau[i][j] = NULL;
         }
     }
-    lac.Coul= centre;
-    lac.Eff= debut;
+    lac.Coul= water;
+    lac.Eff= effet_lac;
     lac.iriguer= -1;
     strcpy(lac.image,"image/en_plus/Depart.png");
 
@@ -275,6 +275,7 @@ static void suppression_irig(void){
  */
 void suprimer(void){
     videe_plateau();
+    detruire_carte();
     suppression_tuile();
     suppression_irig();
 }
