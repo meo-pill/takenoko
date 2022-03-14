@@ -135,8 +135,10 @@ int (* recherche_fonction_verif(carte_t * const carte))(carte_t * const){
 int (*recherche_fonction_parcelle(carte_t * const carte))(carte_t * const){
   //regarde le type d'une carte et renvoie la bonne fonction de verification
 
+  printf("------------------ Lancement de la fonction <recherche fonction parcelle> ---------------\n");
   char forme [10];
   sscanf(carte->type,"%[^;-];",forme);
+  printf("après sscanf : forme = %s\n",forme);
   if(strcmp(forme,"triangle")){
     return verif_parcelle_triangle;
   }
@@ -171,8 +173,8 @@ int verif_parcelle_triangle (carte_t * const carte){
 
   couleur_E couleur;
 
-  for(i=0;i<NBTUILE;i++){
-    for(j=0;j<NBTUILE;j++){
+  for(i=0;i<NBTUILES;i++){
+    for(j=0;j<NBTUILES;j++){
       if(plateau[i][j]->Coul == couleur && plateau[i][j]->iriguer){
         return (plateau[i][j+1]->Coul == couleur && plateau[i+1][j+1]->Coul == couleur);
       }
