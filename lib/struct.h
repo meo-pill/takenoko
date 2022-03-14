@@ -34,11 +34,11 @@ typedef struct irig_s irig_t;
 
 /**definition des type enumérer*/
 typedef enum couleur_s{jaune,rose,vert}couleur_E;
-typedef enum effet_s{rien,bassin,enclos,engrais,lac}effet_E;
+typedef enum effet_s{sans_effet,bassin,enclos,engrais,effet_lac}effet_E;
 typedef enum couleurJ_s{bleu,rouge,noir,blanc}couleurJ_E;
 
 typedef enum effDes_s{soleil,pluie,vent,orage,nuage,choixJ}effDes_E;
-typedef enum choixJ_s{rien,parcelle,irrigation,jardinier,panda,objectif}choixJ_E;
+typedef enum choixJ_s{rien,parcelle,irrigation,choix_jardinier,choix_panda,objectif}choixJ_E;
 
 /**variable globale*/
 joueur_t * J[4];
