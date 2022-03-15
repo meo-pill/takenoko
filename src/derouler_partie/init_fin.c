@@ -52,7 +52,7 @@ static void shuffleTuile(){
  *
  * @return int pour la gestion d'érreur
  */
-static int extraction_fichier_tuile(void){
+extern int extraction_fichier_tuile(void){
     /** création des variable */
     int couleur,iriguer,bambou,effet;
     int compteur = 0;
@@ -61,12 +61,11 @@ static int extraction_fichier_tuile(void){
     /** création et ouverture des fichier contenant les tuile */
     FILE * ficTuile = NULL;
 
-    ficTuile = fopen("../../asset/tuile.txt","r");
+    ficTuile = fopen("asset/tuile.txt","r");
 
     if(ficTuile == NULL){
         return(1);
     }
-
     /** boucle de remplisage du tableaux des tuile */
     while (fscanf(ficTuile,"%d,%d,%d,%d,%s\n",&couleur,&iriguer,&bambou,&effet,valeur) != EOF){
         /* création de la structure en allocation dinamque */
@@ -85,13 +84,13 @@ static int extraction_fichier_tuile(void){
 
         compteur ++;
     }
-    if(compteur != 26){
+    if(compteur != 27){
         return(1);
     }
     /** mise en aléatoire du tableaux */
 
-    fclose(ficTuile);
-    if(ficTuile != NULL){
+    
+    if(fclose(ficTuile)==EOF){
         return (1);
     }
     return (0);
@@ -102,7 +101,7 @@ static int extraction_fichier_tuile(void){
  * Mewen
  * 
  */
-static void mise_en_file(void){
+extern void mise_en_file(void){
     for(int i=0; i<NBTUILES; i++){
         ajouter(piece[i]);
     }
@@ -129,8 +128,8 @@ static void creation_plateau(void){
             plateau[i][j] = NULL;
         }
     }
-    lac.Coul= centre;
-    lac.Eff= debut;
+    lac.Coul= water;
+    lac.Eff= effet_lac;
     lac.iriguer= -1;
     strcpy(lac.image,"image/en_plus/Depart.png");
 
@@ -266,7 +265,7 @@ static void suppression_irig(void){
     for(int i=0; i < NBIRIG; i++){
         free(irig[i]);
     }
-    init_irigation;
+    init_irigation();
 }
 
 /**
