@@ -90,4 +90,4 @@ MA:
 MO:
 	git push origin fortuna
 TEST:
-	echo $+
+	echo > $@
