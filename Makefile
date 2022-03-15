@@ -51,9 +51,9 @@ object/tour.o: src/derouler_partie/tour.c
 
 #test des fonction du jeux
 test_Maxime: test/test_fonc.c object/fonction.o 
-	${CC} -o bin/test_Maxime test/test_fonc.c object/fonction.o
+	${CC} -o bin/test_Maxime test/test_fonc.c object/fonction.o ${FLAGS}
 test_creation_carte:object/carte.o test/test_cration_carte.o object/init_fin.o object/file.o
-	${CC} -o bin/test_creation_carte object/carte.o test/test_cration_carte.o object/init_fin.o object/file.o
+	${CC} -o bin/test_creation_carte object/carte.o test/test_cration_carte.o object/init_fin.o object/file.o ${FLAGS}
 
 test_carte:object/carte.o test/test_carte.o object/init_fin.o object/file.o
 	${CC} -o bin/test_carte object/carte.o test/test_carte.o object/init_fin.o object/file.o
@@ -90,4 +90,4 @@ MA:
 MO:
 	git push origin fortuna
 TEST:
-	echo $+
+	echo > $@
