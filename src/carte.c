@@ -119,9 +119,19 @@ void detruire_carte(){
     carteParcelle[i] = NULL;
   }
 }
-
+/**
+ * @brief cette fonction affiche une carte sur la sortie standard
+ * 
+ * @param c 
+ * si le paramètre est NULL, la fonction affiche NULL à la place
+ */
 void afficher_carte(carte_t * const c){
-  printf("----------------------\n TYPE : %s \n IMAGE : %s \n DESCRIPTION : %s\n VALEUR : %d \n----------------------\n",c->type,c->image,c->desc,c->point);
+  printf("----------------------\n");
+  if(c == NULL)
+    printf("NULL\n");
+  else
+    printf("TYPE : %s \n IMAGE : %s \n DESCRIPTION : %s\n VALEUR : %d \n",c->type,c->image,c->desc,c->point);
+  printf("---------------------\n");
 }
 /**
  * @brief 
@@ -198,11 +208,11 @@ int (* recherche_fonction_verif(carte_t * const carte))(carte_t * const){
  */
 int (*recherche_fonction_parcelle(carte_t * const carte))(carte_t * const){
 
-  printf("------------------ Lancement de la fonction <recherche fonction parcelle> ---------------\n");
+  //printf("------------------ Lancement de la fonction <recherche fonction parcelle> ---------------\n");
   char forme [20];
   char buffer [50];
   sscanf(carte->type,"%[^-]-%[^-]-%s",buffer,buffer,forme);
-  printf("après sscanf :\n buffer = %s \n forme = %s\n",buffer,forme);
+  //printf("après sscanf :\n buffer = %s \n forme = %s\n",buffer,forme);
   if(!strcmp(forme,"triangle")){
     return verif_parcelle_triangle;
   }
@@ -308,14 +318,34 @@ int verif_jardinier(carte_t * const carte){
 /**
  * @brief 
  * fonction de verification pour une carte panda
+ * pour cela, on prend le joueur courant, et on vérifie s'il a asser de bambou de la bonne couleur
  * 
  * @param carte 
+ * ce qui nous intéresse ici, c'est la couleur (spécifié dans le type sous forme de "panda-[couleur]")
  * 
  * @return int 
  * on retourne 1 si la contrainte est vérifié, -1 en cas d'erreur,  0 sinon
  */
 int verif_panda(carte_t * const carte){
   printf("on lance la vérification d'une carte panda\n");
+  char couleur = carte->type[6];
+  switch (couleur)
+  {
+  case 'j':
+    /* code */
+    break;
+  case 'v':
+
+    break;
+  case 'r':
+
+    break;
+
+  default:
+    printf("------------------erreur dans la fonction verif_panda, la couleur ne semble pas bonne----------------------\n");
+    return -1;
+  }
+
   return 0;
 }
 
