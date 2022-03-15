@@ -84,9 +84,9 @@ COM:
 ME:
 	git push origin mewen
 LE:
-	git push origin leo
+	git push origin leopolde
 MA:
-	git push origin maxime
+	git push origin max
 MO:
 	git push origin fortuna
 TEST:
