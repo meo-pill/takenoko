@@ -82,7 +82,7 @@ ADD:
 COM:
 	git commit -m '${USER} ${DATE}  mise à jour'
 ME:
-	git push origin mewen
+	git push origin meo
 LE:
 	git push origin leopolde
 MA:
