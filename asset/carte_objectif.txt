@@ -30,7 +30,7 @@ parcelle-rose-losange;image/carte_tuile/13.png; reproduisez la forme affichée a
 parcelle-rose-ligne;image/carte_tuile/14.png; reproduisez la forme affichée avec les tuiles pour valider; 4
 parcelle-jaune-triangle;image/carte_tuile/15.png; reproduisez la forme affichée avec les tuiles pour valider; 3
 jardinier-jaune-4-bassin;image/carte_jardinier/1.png; faite poussez un bambou jaune d'une hauteur de 4 sur une tuile avec un bassin pour valider ; 5
-jardinier-jaune-4-sans;image/carte_jardinier/2.png; faite poussez un bambou jaune d'une hauteur de 4 pour valider sans aménagement; 6
+jardinier-jaune-4-sans;image/carte_jardinier/2.png; faite poussez un bambou jaune d'une hauteur de 4 sur une tuile sans aménagement pour valider; 6
 jardinier-rose-3-double;image/carte_jardinier/3.png; faite poussez deux bambou rose d'une hauteur de 3 exactement pour valider ; 6
 jardinier-jaune-3-triple;image/carte_jardinier/4.png; faite poussez trois bambou jaune d'une hauteur de 3 exactement pour valider ; 7
 jardinier-vert-3-quatre;image/carte_jardinier/5.png; faite poussez quatre bambou vert d'une hauteur de 3 exactement pour valider ; 8
