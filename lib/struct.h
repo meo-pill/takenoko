@@ -16,8 +16,8 @@
 #define MAXNB2J 9
 #define MAXNB3J 8
 #define MAXNB4J 7
-#define LONGPATH 30
-#define LONGTYPE 20
+#define LONGPATH 100
+#define LONGTYPE 100
 #define DESCRIPTION 100
 #define NBTUILES 27
 #define LACPOS 14
