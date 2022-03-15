@@ -56,7 +56,7 @@ extern void tour_jeux(int const nb_joueur){
      * action numéroté de 1 a 5
      * 0 égal action nul
      */
-    choixJ_E mem_action[3];
+    choixJ_E mem_action[2];
 
     /**
      * @brief if pour verifier la bonne initialisation de la partie
@@ -75,7 +75,6 @@ extern void tour_jeux(int const nb_joueur){
             limite_action = 2;
             mem_action[0] = 0;
             mem_action[1] = 0;
-            mem_action[2] = 0;
 
 
             printf("tour du j%d",i+1);
@@ -113,10 +112,15 @@ extern void tour_jeux(int const nb_joueur){
                 goto choix;
                 break;
             }
-            victoire_joueur(J[i],maxpoint);
 
             for(j=0; j<limite_action;j++){
-                choixactionduJ(J[i],meteo);
+                choixactionduJ(J[i],meteo,mem_action);
+            }
+
+            validation_objectif(J[i]);
+            if(J[i]->nbObjectif >= maxpoint){
+                victoire_j = 1;
+                printf("J%d a valider %d objectif dernier tour",i+1,maxpoint);
             }
         }
     }
