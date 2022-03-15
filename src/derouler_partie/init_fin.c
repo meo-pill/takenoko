@@ -281,6 +281,7 @@ static void suppression_irig(void){
  */
 void suprimer(void){
     videe_plateau();
+    detruire_carte();
     suppression_tuile();
     suppression_irig();
 }
