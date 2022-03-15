@@ -19,8 +19,11 @@ DATE=$(shell date +%Y-%m-%d)
 cache:all
 all:clean ${PROG} laugth
 
+#Compilation du programme final
 ${PROG}: ${OBJ} ${LIB}
 	${CC} -o ${PROG} ${OBJ} ${LIBS} ${INCS} ${FLAGS}
+
+#Compilation des fenetres
 object/menu.o:src/menu.c CREA.o
 	${CCOBJ} ${CFLAGS} ${LIBS} ${INCS} src/menu.c CREA.o -o object/menu.o
 object/Plato.o: src/Plato.c lib/Plato.h object/aff_table.o
@@ -28,15 +31,15 @@ object/Plato.o: src/Plato.c lib/Plato.h object/aff_table.o
 object/aff_table.o: src/aff_table.c object/CREA.o object/init_fin.o object/file.o
 	${CCOBJ} ${CFLAGS} ${LIBS} ${INCS} src/aff_table.c object/CREA.o object/init_fin.o object/file.o -o object/aff_table.o
 
-
+#compilation des objets
 object/CREA.o: src/Creation.c object/texture.o
-	${CCOBJ} ${CFLAGS} ${LIBS} ${INCS} src/Creation.c object/texture.o -o object/CREA.o
+	${CCOBJ} ${CFLAGS} ${LIBS} ${INCS} src/Creation.c object/texture.o -o $@
 object/texture.o: src/texture.c
-	${CCOBJ} ${CFLAGS} ${LIBS} ${INCS} src/texture.c -o object/texture.o
+	${CCOBJ} ${CFLAGS} ${LIBS} ${INCS} src/texture.c -o $@
 object/carte.o:src/carte.c
-	${CCOBJ} ${CFLAGS} src/carte.c -o object/carte.o
+	${CCOBJ} ${CFLAGS} $@ -o object/carte.o
 object/file.o: src/gestion_jeux/file.c
-	${CCOBJ} ${CFLAGS} src/gestion_jeux/file.c -o object/file.o
+	${CCOBJ} ${CFLAGS} $@ -o object/file.o
 object/fonction.o: src/gestion_jeux/fonction.c
 	${CCOBJ} ${CFLAGS} src/gestion_jeux/fonction.c -o object/fonction.o
 object/pose.o: src/gestion_jeux/pose.c
@@ -46,6 +49,20 @@ object/init_fin.o:src/derouler_partie/init_fin.c
 object/tour.o: src/derouler_partie/tour.c
 	${CCOBJ} ${CFLAGS} src/derouler_partie/tour.c -o object/tour.o
 
+#test des fonction du jeux
+test_Maxime: test/test_fonc.c object/fonction.o 
+	${CC} -o bin/test_Maxime test/test_fonc.c object/fonction.o
+test_creation_carte:object/carte.o test/test_cration_carte.o object/init_fin.o object/file.o
+	${CC} -o bin/test_creation_carte object/carte.o test/test_cration_carte.o object/init_fin.o object/file.o
+
+test_carte:object/carte.o test/test_carte.o object/init_fin.o object/file.o
+	${CC} -o bin/test_carte object/carte.o test/test_carte.o object/init_fin.o object/file.o
+
+object/test_carte.o:test/test_carte.c
+	${CCOBJ} ${CFLAGS} test/test_carte.c -o object/test_carte.o
+
+object/test_cration_carte.o: test/test_cration_carte.c
+	 ${CCOBJ} ${CFLAGS} test/test_cration_carte.c  -o object/test_cration_carte.o
 #supression des fichier obeselette
 clean:
 	clear
@@ -73,4 +90,4 @@ MA:
 MO:
 	git push origin fortuna
 TEST:
-	${CC} -o prog_test test.c  src/texture.c src/Creation.c ${LIBS} ${INCS} ${FLAGS}
+	echo $+
