@@ -1,10 +1,8 @@
 #ifndef _FONCTION_H_
 #define _FONCTION_H_
-#include "index.h"
+#include "struct.h"
 
 /**
-*
-*
 *
 * stdlib et stdio déjà dans index
 */
@@ -15,13 +13,8 @@ fonction opérationnelle
 
 /** à chaque tour d'un joueur*/
 
-/* ne pas oublier
-	#include <heure.h>
-et dans main
-	srand( heure(NULL));
-*/
 
-effDes_E lancer_meteo();
+char lancer_meteo();
 
 void ajout_effspe_stock( joueur_t * Joueur, const effet_E eff);
 void retrait_effspe_stock( joueur_t * Joueur, const effet_E eff);
@@ -48,7 +41,7 @@ fonction à finir et à tester
 
 /* * choix pour 1 joueur */
 
-void choixactionduJ( joueur_t * Joueur, effDes_E const meteo);
+void choixactionduJ( joueur_t * Joueur, const char meteo, choixJ_E mem_action[2]);
 
 void pioche_1case ();
 void pioche_objetif( joueur_t * Joueur);
@@ -68,11 +61,11 @@ void deplacer_personnage( personnage_t * perso, const int x_a, const int y_a);
 int verif_pose_case( const int x, const int y);
 /* * Vérifie qu'on peu poser une case (case vide + | - 2 case non vide adjasante| - bassin ) et renvoie 1 si c'est bon */
 
-void ajout_case_plato ( case_plato_t * case_a, const int x, const int y);
+void ajout_case_plato ( case_plato_t case_a, const int x, const int y);
 
 int verif_pose_irrigation_plateau ( const int x, const int y);	/* * Vérifie qu'on peu poser une irrigation et renvoie 1 si c'est bon */
 
-void ajout_irrigation_plateau ( const int x, const int y);
+void ajout_irrigation_case ( const int x, const int y);
 
 void ajout_effspe_plato( effet_E * effet, const int x, const int y);
 
