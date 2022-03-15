@@ -37,9 +37,9 @@ object/CREA.o: src/Creation.c object/texture.o
 object/texture.o: src/texture.c
 	${CCOBJ} ${CFLAGS} ${LIBS} ${INCS} src/texture.c -o $@
 object/carte.o:src/carte.c
-	${CCOBJ} ${CFLAGS} $@ -o object/carte.o
+	${CCOBJ} ${CFLAGS} src/carte.c -o object/carte.o
 object/file.o: src/gestion_jeux/file.c
-	${CCOBJ} ${CFLAGS} $@ -o object/file.o
+	${CCOBJ} ${CFLAGS} src/gestion_jeux/file.c -o object/file.o
 object/fonction.o: src/gestion_jeux/fonction.c
 	${CCOBJ} ${CFLAGS} src/gestion_jeux/fonction.c -o object/fonction.o
 object/pose.o: src/gestion_jeux/pose.c
@@ -55,11 +55,11 @@ test_Maxime: test/test_fonc.c object/fonction.o
 test_creation_carte:object/carte.o test/test_cration_carte.o object/init_fin.o object/file.o
 	${CC} -o bin/test_creation_carte object/carte.o test/test_cration_carte.o object/init_fin.o object/file.o ${FLAGS}
 
-test_carte:object/carte.o test/test_carte.o object/init_fin.o object/file.o
-	${CC} -o bin/test_carte object/carte.o test/test_carte.o object/init_fin.o object/file.o
+carte_test:object/carte.o object/carte_test.o object/init_fin.o object/file.o
+	${CC} -o bin/carte_test object/carte.o object/carte_test.o object/init_fin.o object/file.o ${FLAGS}
 
-object/test_carte.o:test/test_carte.c
-	${CCOBJ} ${CFLAGS} test/test_carte.c -o object/test_carte.o
+object/carte_test.o:test/carte_test.c
+	${CCOBJ} ${CFLAGS} test/carte_test.c -o object/carte_test.o
 
 object/test_cration_carte.o: test/test_cration_carte.c
 	 ${CCOBJ} ${CFLAGS} test/test_cration_carte.c  -o object/test_cration_carte.o
