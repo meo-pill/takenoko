@@ -38,9 +38,6 @@ object/carte.o:src/carte.c
 	${CCOBJ} ${CFLAGS} src/carte.c -o $@
 object/file.o: src/gestion_jeux/file.c
 	${CCOBJ} ${CFLAGS}  src/gestion_jeux/file.c -o $@
-	${CCOBJ} ${CFLAGS} src/carte.c -o object/carte.o
-object/file.o: src/gestion_jeux/file.c
-	${CCOBJ} ${CFLAGS} src/gestion_jeux/file.c -o object/file.o
 object/fonction.o: src/gestion_jeux/fonction.c
 	${CCOBJ} ${CFLAGS} src/gestion_jeux/fonction.c -o $@
 object/pose.o: src/gestion_jeux/pose.c
@@ -63,9 +60,6 @@ object/carte_test.o: test/carte_test.c
 	${CCOBJ} ${CFLAGS} test/carte_test.c -o $@
 carte_test:object/carte.o object/carte_test.o object/init_fin.o object/file.o
 	${CC} -o bin/carte_test object/carte.o object/carte_test.o object/init_fin.o object/file.o ${FLAGS}
-
-object/carte_test.o:test/carte_test.c
-	${CCOBJ} ${CFLAGS} test/carte_test.c -o object/carte_test.o
 
 object/test_cration_carte.o: test/test_cration_carte.c
 	 ${CCOBJ} ${CFLAGS} test/test_cration_carte.c  -o object/test_cration_carte.o
