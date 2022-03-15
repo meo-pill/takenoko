@@ -1,7 +1,6 @@
 #include "../lib/Creation.h"
-#include "../lib/index.h"
 
-extern SDL_Texture* CreationText(SDL_Renderer *renderer,SDL_Rect *tailText,const char *police,const int tailPolice,const int style,const char *texte,const SDL_Color couleur,const int position_x,const int position_y ){
+SDL_Texture* Creation_Text(SDL_Renderer *renderer,SDL_Rect *tailText,const char *police,const int tailPolice,const int style,const char *texte,const SDL_Color couleur,const int position_x,const int position_y ){
 	TTF_Font* font=NULL;
 	SDL_Texture * texte_tex =NULL;
 	SDL_Surface * ecrire=NULL;
@@ -21,11 +20,14 @@ extern SDL_Texture* CreationText(SDL_Renderer *renderer,SDL_Rect *tailText,const
 	return texte_tex;
 }
 
-extern int Push(SDL_Renderer *renderer,int x,int y,text_t* bouton){
-				if((x>=((bouton->Table->)place2)->x && x<=(((bouton->Table->)place2)->w+((bouton->Table->)place2)->x)) && (y>=((bouton->Table->)place2)->y && y<=(((bouton->Table->)place2)->h+((bouton->Table->)place2)->.y))){
-					SDL_RenderCopy(renderer, bouton->Table[1],NULL,&tailBouton1);
-					return 1;
-				}
-				SDL_RenderCopy(renderer, bouton->Table[0],NULL,&tailBouton1);
-				return 0;
+
+int bout(SDL_Renderer * renderer, text_t * bouton,int x,int y){
+	SDL_Rect* rect=lire_Rect(bouton->Table[0],1);
+	if((x>=(rect->x) && x<=((rect->w)+(rect->x))) && (y>=rect->y && y<=(rect->h+rect->y))){
+		SDL_RenderCopy(renderer, (bouton->Table[1])->t,NULL,(bouton->Table[1])->place2);
+		return 1;
+	}
+	SDL_RenderCopy( renderer, (bouton->Table[0])->t,NULL,(bouton->Table[0])->place2);
+	return 0;
 }
+
