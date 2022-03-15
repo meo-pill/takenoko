@@ -332,7 +332,26 @@ int verif_parcelle_triangle (carte_t * const carte){
   printf("on lance la vérification d'une carte parcelle triangle\n");
   int i,j;
 
+  char buff_couleur[10];
   couleur_E couleur;
+
+  sscanf(carte->type,"parcelle-%[^-]-",buff_couleur);
+
+  switch (buff_couleur[1])
+  {
+  case 'r':
+    couleur = rose;
+    break;
+  case 'j':
+    couleur = jaune;
+    break;
+  case 'v':
+    couleur = vert;
+    break;
+  default:
+    printf("---------------erreur de vérification de la couleur dans la fonction verif_parcelle triangle ------------------\n");
+    return -1;
+  }
 
   for(i=0;i<NBTUILES;i++){
     for(j=0;j<NBTUILES;j++){
