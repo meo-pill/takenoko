@@ -1,7 +1,6 @@
 #include <unistd.h>
-#include "../lib/Creation.h"
+#include"../lib/aff_table.h"
 #include "../lib/menu.h"
-#include "../lib/texture2.h"
 
 
 void affiche_Plato(int W,int H){
@@ -50,6 +49,7 @@ void affiche_Plato(int W,int H){
 		exit ( EXIT_FAILURE );
 	}
 	int fullscreen=0;
+	printf("Affichage du plato\n");
 	while(1){
 		Uint32 Clic = SDL_GetMouseState(&x,&y);
 		//création de la "fenêtre ou nous verons une partie de l'image
@@ -66,9 +66,10 @@ void affiche_Plato(int W,int H){
 			SDL_Quit();
 			menu();
 		}
-	
+		afficher_table(renderer,W,H);
 		//présentation final
 		SDL_RenderPresent(renderer);
+		printf("remise sur plato\n");
 		if (SDL_PollEvent(&event)){
 			 switch(event.type){
 				case SDL_QUIT:

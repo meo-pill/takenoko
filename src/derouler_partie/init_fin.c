@@ -58,15 +58,19 @@ extern int extraction_fichier_tuile(void){
     int compteur = 0;
     char valeur[30];
 
+    printf("Extraction lancé\n");
+
     /** création et ouverture des fichier contenant les tuile */
     FILE * ficTuile = NULL;
 
     ficTuile = fopen("asset/tuile.txt","r");
 
     if(ficTuile == NULL){
+	printf("le fichier ne c'est pas ouvert\n");
         return(1);
     }
     /** boucle de remplisage du tableaux des tuile */
+    printf("Enregistrement en cour\n");
     while (fscanf(ficTuile,"%d,%d,%d,%d,%s\n",&couleur,&iriguer,&bambou,&effet,valeur) != EOF){
         /* création de la structure en allocation dinamque */
         piece[compteur] = malloc(sizeof(case_plato_t));
@@ -85,14 +89,17 @@ extern int extraction_fichier_tuile(void){
         compteur ++;
     }
     if(compteur != 27){
+	printf("Mauvais nombre de tuile %d\n",compteur);
         return(1);
     }
     /** mise en aléatoire du tableaux */
 
     
     if(fclose(ficTuile)==EOF){
+	printf("Le fichier c'est mal fermet\n");
         return (1);
     }
+    printf("Fin de l'extraction\n");
     return (0);
 }
 
@@ -224,8 +231,8 @@ int extraction_fichier_carte(){
  */
 extern void initaliser(int const nb_joueur){
     initfile();
-    if (!extraction_fichier_tuile()){
-        printf("ereur d'ouverture fichier tuile");
+    if (extraction_fichier_tuile()){
+        printf("ereur d'ouverture fichier tuile\n");
     }
     
     shuffleTuile();
