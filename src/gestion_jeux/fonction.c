@@ -87,7 +87,7 @@ fonction à finir et à tester
 
 /* * choix pour 1 joueur */
 
-void choixactionduJ ( joueur_t * Joueur, const char meteo){}
+void choixactionduJ ( joueur_t * Joueur, const char meteo,choixJ_E mem_action[2]){}
 
 
 void pioche_1case (){}
