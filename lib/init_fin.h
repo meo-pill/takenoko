@@ -3,8 +3,10 @@
 
 #include "index.h"
 
-void initaliser(int const nb_joueur);
-void suprimer(void);
-int extraction_fichier_carte();
+extern void initaliser(int const nb_joueur);
+extern void suprimer(void);
+int extraction_fichier_carte(void);
+extern int extraction_fichier_tuile(void);
+extern void mise_en_file(void);
 
 #endif

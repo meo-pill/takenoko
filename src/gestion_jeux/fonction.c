@@ -6,8 +6,8 @@ fonction opérationnelle
 
 /** à chaque tour d'un joueur */
 
-effDes_E  lancer_meteo (){
-	effDes_E meteo = (effDes_E)( rand ()% 6 );
+char  lancer_meteo (){
+	char meteo = (effDes_E)( rand ()% 6 );
 	return meteo;
 }
 
@@ -87,7 +87,7 @@ fonction à finir et à tester
 
 /* * choix pour 1 joueur */
 
-void choixactionduJ ( joueur_t * Joueur, effDes_E const meteo);
+void choixactionduJ ( joueur_t * Joueur, const char meteo,choixJ_E mem_action[2]){}
 
 
 void pioche_1case (){}
@@ -98,7 +98,7 @@ void pioche_effspe( joueur_t * Joueur){}
 
 int Verif_deplacer_perso( personnage_t * perso, const int x_a, const int y_a){	 /** jardinier ou Panda et renvoyé 1 si c'est bon */
   int x_d = perso -> x, y_d = perso -> y;
-  int dist_x = x_a - x_d , dist_y = y_a - y_d ;
+  int dist_x = x_a - x_d , dist_y = y_a - y_d;
   
   if (dist_x == 0 && dist_y == 0)
     return 0;
@@ -166,70 +166,70 @@ void deplacer_personnage( personnage_t * perso, const int x_a, const int y_a){
 /* ajout au plateau */
 
 int verif_pose_case( const int x, const int y){	 /** Vérifie qu'on peu poser une case	(case vide +	| - 2 case non vide adjasante) et renvoyé 1 si c'est bon
-												(		| - bassin 		      )			*/
-  int nb_case_autour = 0, facteur_temp = 0;
+											                                                                        	(		| - bassin 		      )			*/
   
-  while (nb_case_autour > 1 || facteur_temp > 0){
-    if (plateau[x+1][y]-> Eff == lac)		/** case à droite et gauche : départ */
-      nb_case_autour += 2;
-    if (plateau[x-1][y]-> Eff == lac)
-      nb_case_autour += 2;
+  if (plateau[x][y+1] != NULL && plateau[x][y+1]-> Eff == debut)		/** case à droite et gauche : départ */
+    return 1;
+  if (plateau[x][y-1] != NULL && plateau[x][y-1]-> Eff == debut )
+    return 1;
   
-    if (plateau[x-1][y]-> Eff == lac)		/** case en haut-droite et bas-gauche : départ */
-      nb_case_autour += 2;
-    if (plateau[x+1][y]-> Eff == lac)
-      nb_case_autour += 2;
+  if (plateau[x+1][y] != NULL && plateau[x+1][y]-> Eff == debut)		/** case en haut-droite et bas-gauche : départ */
+    return 1;
+  if (plateau[x-11][y] != NULL && plateau[x-1][y]-> Eff == debut)
+    return 1;
   
-    if (plateau[x-1][y-1]-> Eff == lac)	/** case en haut-gauche et bas-droite : départ */
-      nb_case_autour += 2;
-    if (plateau[x+1][y+1]-> Eff == lac)
-      nb_case_autour += 2;
+  if (plateau[x-1][y-1] != NULL && plateau[x-1][y-1]-> Eff == debut)	/** case en haut-gauche et bas-droite : départ */
+    return 1;
+  if (plateau[x+1][y+1] != NULL && plateau[x+1][y+1]-> Eff == debut)
+    return 1;
+  
+  int nb_case_autour = 0;
+  
+  if (plateau[x+1][y] != NULL)		/** case à droite et gauche : en cour de partie */
+    nb_case_autour ++;
+  if (plateau[x-1][y] != NULL)
+    nb_case_autour ++;
+  
+  if (plateau[x][y-1] != NULL)		/** case en haut-droite et bas-gauche : en cour de partie */
+    nb_case_autour ++;
+  if (plateau[x][y+1] != NULL)
+  nb_case_autour ++;
     
-    
-    if (plateau[x+1][y] != NULL)		/** case à droite et gauche : en cour de partie */
-      nb_case_autour ++;
-    if (plateau[x-1][y] != NULL)
-      nb_case_autour ++;
-    
-    if (plateau[x][y-1] != NULL)		/** case en haut-droite et bas-gauche : en cour de partie */
-      nb_case_autour ++;
-    if (plateau[x][y+1] != NULL)
-      nb_case_autour ++;
-    
-    if (plateau[x-1][y-1] != NULL)		/** case en haut-gauche et bas-droite : en cour de partie */
-      nb_case_autour ++;
-    if (plateau[x+1][y+1] != NULL)
-      nb_case_autour ++;
-	
-	facteur_temp = 1;
-  }
-
+  if (plateau[x-1][y-1] != NULL)		/** case en haut-gauche et bas-droite : en cour de partie */
+    nb_case_autour ++;
+  if (plateau[x+1][y+1] != NULL)
+    nb_case_autour ++;
+  
   if (plateau[x][y] == NULL && (nb_case_autour > 1))
     return 1;
   else
     return 0;
 }
-void ajout_case_plato ( case_plato_t * case_a, const int x, const int y){
+void ajout_case_plato ( case_plato_t case_a, const int x, const int y){
   if (verif_pose_case( x, y) == 1){
-	  plateau[x][y] = case_a;
+	  plateau[x][y] = &case_a;
   }
   else
-    printf(" erreur pour poser une case ");
+    printf(" erreur pour poser une case \n");
+
+  if(plateau[x][y] != NULL)
+    printf("%5d", plateau[x][y] -> iriguer);
+  else
+    printf("%5d", 0);
 }
 
 
-void ajout_irrigation_plateau ( const int x, const int y){	/** Vérifie qu'on peu poser une irrigation et s'éxécute si c'est bon */
-  if (plateau[x][y] != NULL && plateau[x][y]-> iriguer == 0)
+void ajout_irrigation_case ( const int x, const int y){	/** Vérifie qu'on peu poser une irrigation et s'éxécute si c'est bon */
+  if (plateau[x][y] != NULL && plateau[x][y]-> iriguer == -1)
     plateau[x][y]-> iriguer = 1;
   else
-    printf(" erreur pour poser une irrigation ");
+    printf(" erreur pour poser une irrigation \n");
 }
-
 void ajout_effspe_plato( effet_E * effet, const int x, const int y){		/** Vérifie qu'on peu poser un effet spécial et s'éxécute si c'est bon */
   if (plateau[x][y] != NULL && plateau[x][y]-> Eff == rien)
     plateau[x][y]-> Eff = *effet;
   else
-    printf(" erreur pour poser une irrigation ");
+    printf(" erreur pour poser une irrigation \n");
 }
 
 
@@ -240,4 +240,6 @@ void retrait_case_plato ( const int x, const int y){
   free(plateau[x][y]);
   plateau[x][y] = NULL;
 }
+
+
 
