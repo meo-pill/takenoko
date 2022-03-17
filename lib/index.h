@@ -11,13 +11,13 @@
 #include "SDL2/include/SDL2/SDL_ttf.h"
 #include "SDL2/include/SDL2/SDL_image.h"
 */
-#include "struct.h" // on ne met rien au dessu ces 6 la (il on tout ce sur quoi le programe repose)
-#include "file.h" // après struct
-#include "pose.h"// après struct 
-#include "init_fin.h" // après struct, file, pose
-#include "bamboo.h"// après struct
-#include "fonction.h"// après struct
-#include "carte.h"// après struct
+#include "struct.h"
+#include "file.h"
+#include "pose.h"
+#include "init_fin.h"
+#include "bamboo.h"
+#include "fonction.h"
+#include "carte.h"
 
 
 #endif
