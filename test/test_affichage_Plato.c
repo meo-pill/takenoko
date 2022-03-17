@@ -1,9 +1,5 @@
-#include <unistd.h>
-#include"../lib/aff_table.h"
-#include "../lib/menu.h"
-
-
-void affiche_Plato(int W,int H){
+#include "../lib/aff_table.h"
+int main(){
 	if (SDL_Init(SDL_INIT_TIMER |SDL_INIT_VIDEO)== -1 ){
 		fprintf(stdout,"Échec de l'initialisation de la SDL (%s)\n",SDL_GetError());
 		exit(EXIT_FAILURE );
@@ -23,6 +19,7 @@ void affiche_Plato(int W,int H){
 
 	SDL_Color Noir = {0 , 0 , 0};
 
+	int W=1000,H=1000;
 
 	int x=0,y=0;
 
@@ -48,7 +45,6 @@ void affiche_Plato(int W,int H){
 		fprintf ( stderr , " Erreur au niveau de l'image: %s \n " , TTF_GetError ());
 		exit ( EXIT_FAILURE );
 	}
-	int fullscreen=0;
 	while(1){
 		Uint32 Clic = SDL_GetMouseState(&x,&y);
 		//création de la "fenêtre ou nous verons une partie de l'image
@@ -63,15 +59,13 @@ void affiche_Plato(int W,int H){
 			IMG_Quit();
 			TTF_Quit();
 			SDL_Quit();
-			menu();
+			break;
 		}
-		//pose du tableau
 		text_t* Tuile=enregistre_table(renderer, W,H);
 		for(int i=0;i<Tuile->Taille;i++){
-			SDL_Rect * rect=lire_Rect((Tuile->Table[i]),1);
-			SDL_RenderCopy(renderer,(Tuile->Table[i])->t,NULL,rect);
+			SDL_RenderCopy(renderer,(Tuile->Table[i])->t,NULL,(Tuile->Table[i])->place2);
 		}
-		//présentation final
+		Tuile->det(Tuile);
 		SDL_RenderPresent(renderer);
 		if (SDL_PollEvent(&event)){
 			 switch(event.type){
@@ -90,8 +84,6 @@ void affiche_Plato(int W,int H){
 				case SDL_KEYUP:
 					switch(event.key.keysym.sym){
 						case SDLK_q:
-							if(fullscreen==1)
-								SDL_SetWindowFullscreen(pWindow,0);
 							bouton->det(bouton);
 							image->det(image);
 							if(NULL!=renderer)
@@ -101,21 +93,11 @@ void affiche_Plato(int W,int H){
 							IMG_Quit();
 							TTF_Quit();
 							SDL_Quit();
-							menu();
-						case SDLK_F11:
-						 	if(fullscreen==0){
-								SDL_SetWindowFullscreen(pWindow,SDL_WINDOW_FULLSCREEN);
-								fullscreen++;
-							 }
-							else{
-								SDL_SetWindowFullscreen(pWindow,0);
-								fullscreen--;
-							}
-						     	break;
+							break;
 					}
 					break;
 			 }
 		}
 	}
-
+	return 0;
 }

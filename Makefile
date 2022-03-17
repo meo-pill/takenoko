@@ -63,6 +63,8 @@ carte_test:object/carte.o object/carte_test.o object/init_fin.o object/file.o
 
 object/test_cration_carte.o: test/test_cration_carte.c
 	 ${CCOBJ} ${CFLAGS} test/test_cration_carte.c  -o object/test_cration_carte.o
+test_aff:test/test_affichage_Plato.c object/aff_table.o object/CREA.o object/texture.o  object/file.o object/carte.o object/init_fin.o
+	${CC} -o bin/$@ test/test_affichage_Plato.c object/aff_table.o object/CREA.o object/texture.o  object/file.o object/carte.o object/init_fin.o ${LIBS} ${INCS} ${FLAGS}
 #supression des fichier obeselette
 clean:
 	clear
