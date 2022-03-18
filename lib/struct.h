@@ -1,9 +1,6 @@
 #ifndef _STRUC_H_
 #define _STRUC_H_
 
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
 /**
  *
  *
