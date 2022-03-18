@@ -1,2 +1,3 @@
 #include "../lib/index.h"
-void pioche_1case ();
+
+void pioche_une_case ();
