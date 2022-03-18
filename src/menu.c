@@ -102,7 +102,6 @@ void menu(){
 	rwop=NULL;
 
 	//chargement de la nouvelle image
-	rwop=SDL_RWFromFile(fond, "rb");
 	image->Table[0]->t = IMG_LoadTexture(renderer, fond);
 	image->Table[1]->t = SDL_CreateTextureFromSurface(renderer,pSprite);
 	if(image->Table[0]->t==NULL||image->Table[1]->t==NULL){
@@ -156,6 +155,7 @@ void menu(){
 			IMG_Quit();
 			TTF_Quit();
 			SDL_Quit();
+			initaliser(1);
 			affiche_Plato(Width,Height);
 		}
 		if(bout(renderer,bouton2,x,y)==1 && Clic==1){
