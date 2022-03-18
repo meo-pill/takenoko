@@ -117,8 +117,8 @@ extern void tour_jeux(int const nb_joueur){
                 choixactionduJ(J[i],meteo,mem_action);
             }
 
-            validation_objectif(J[i]);
-            if(J[i]->nbObjectif >= maxpoint){
+            validation_objectif(&J[i]);
+            if(victoire_joueur()){
                 victoire_j = 1;
                 printf("J%d a valider %d objectif dernier tour",i+1,maxpoint);
             }
