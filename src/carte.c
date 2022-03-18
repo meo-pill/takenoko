@@ -359,7 +359,7 @@ int verif_panda(carte_t * const carte){
  * on retourne 1 si la contrainte est vérifié, -1 en cas d'erreur,  0 sinon
  */
 int verif_parcelle_triangle (carte_t * const carte){
-  printf("on lance la vérification d'une carte parcelle triangle\n");
+  /*printf("on lance la vérification d'une carte parcelle triangle\n");
   int i,j;
 
   char buff_couleur[10];
@@ -389,7 +389,7 @@ int verif_parcelle_triangle (carte_t * const carte){
         return (plateau[i][j+1]->Coul == couleur && plateau[i+1][j+1]->Coul == couleur);
       }
     }
-  }
+  }*/
   return 0;
 }
 
