@@ -57,7 +57,6 @@ void affiche_Plato(int W,int H){
 	int i=0;
 	SDL_Rect * position;
 //	SDL_Rect * Pre_position=NULL;
-	initaliser(4);
 	palt_test();
 //	Pre_position->x=0;
 //	Pre_position->y=0;
@@ -111,7 +110,7 @@ void affiche_Plato(int W,int H){
 		}
 		//présentation final
 		SDL_RenderPresent(renderer);
-		if(evenment(event,pWindow)==quit){
+		if(evenment(event,pWindow)==QUIT){
 			Tex_Tuile->det(Tex_Tuile);
 			bouton->det(bouton);
 			image->det(image);

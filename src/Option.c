@@ -101,47 +101,6 @@ void affiche_option(char *fond,int W,int H){
 		//présentation final
 		SDL_RenderPresent(rendererInv);
 		if (SDL_PollEvent(&event)){
-			 switch(event.type){
-				case SDL_QUIT:
-					bouton->det(bouton);
-					image->det(image);
-					if(NULL!=rendererInv)
-						SDL_DestroyRenderer(rendererInv);
-					if(NULL!=pWindowInv)
-						SDL_DestroyWindow(pWindowInv);
-					IMG_Quit();
-					TTF_Quit();
-					SDL_Quit();
-					exit(EXIT_SUCCESS);
-					break;
-				case SDL_KEYUP:
-					switch(event.key.keysym.sym){
-						case SDLK_q:
-							if(fullscreen==1)
-								SDL_SetWindowFullscreen(pWindowInv,0);
-							bouton->det(bouton);
-							image->det(image);
-							if(NULL!=rendererInv)
-								SDL_DestroyRenderer(rendererInv);
-							if(NULL!=pWindowInv)
-								SDL_DestroyWindow(pWindowInv);
-							IMG_Quit();
-							TTF_Quit();
-							SDL_Quit();
-							menu();
-						case SDLK_F11:
-						 	if(fullscreen==0){
-								SDL_SetWindowFullscreen(pWindowInv,SDL_WINDOW_FULLSCREEN);
-								fullscreen++;
-							 }
-							else{
-								SDL_SetWindowFullscreen(pWindowInv,0);
-								fullscreen--;
-							}
-						     	break;
-					}
-					break;
-			 }
 		}
 	}
 }

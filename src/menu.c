@@ -1,5 +1,6 @@
 //#include "../lib/index.h"
 #include "../lib/Creation.h"
+#include "../lib/commande.h"
 //#include "../lib/Option.h"
 #include "../lib/Plato.h"
 void menu(){
@@ -36,7 +37,6 @@ void menu(){
 
 	char fond[]="image/en_plus/Fond_menu.png";//chemin vers l'image de fond
 	char animation[]="image/animation/oiseau.bmp";//chemin vers l'animation
-	int fullscreen=0;
 
 	//permet de prendre la taille de l'écran
 	SDL_DisplayMode DM;
@@ -202,57 +202,22 @@ void menu(){
 		if(Clic ==1){
 			fprintf(stdout, "Position de la souris : %d;%d\n",x,y);
 		}
-		if (SDL_PollEvent(&event)){
-			 switch(event.type){
-				case SDL_QUIT:
-					if(NULL!=renderer)
-						SDL_DestroyRenderer(renderer);
-					if(NULL!=pWindow)
-						SDL_DestroyWindow(pWindow);
-					if(NULL!=pSprite)
-						SDL_FreeSurface(pSprite);
-					titre->det(titre);
-					bouton1->det(bouton1);
-					bouton2->det(bouton2);
-					bouton3->det(bouton3);
-					image->det(image);
-					IMG_Quit();
-					TTF_Quit();
-					SDL_Quit();
-					exit(EXIT_SUCCESS);
-				case SDL_KEYUP:
-					switch(event.key.keysym.sym){
-						case SDLK_q:
-							 if(fullscreen==1)
-								SDL_SetWindowFullscreen(pWindow,0);
-							if(NULL!=renderer)
-								SDL_DestroyRenderer(renderer);
-							if(NULL!=pWindow)
-								SDL_DestroyWindow(pWindow);
-							if(NULL!=pSprite)
-								SDL_FreeSurface(pSprite);
-							bouton1->det(bouton1);
-							bouton2->det(bouton2);
-							bouton3->det(bouton3);
-							image->det(image);
-							IMG_Quit();
-							TTF_Quit();
-							SDL_Quit();
-							exit(EXIT_SUCCESS);
-							break;
-						case SDLK_F11:
-						      	if(fullscreen==0){
-						 		SDL_SetWindowFullscreen(pWindow,SDL_WINDOW_FULLSCREEN);
-								fullscreen++;
-						     	 }
-						     	 else{
-							      SDL_SetWindowFullscreen(pWindow,0);
-							      fullscreen--;
-							}
-						     	break;
-					      }
-					break;
-			 }
+		if(evenment(event,pWindow)==QUIT){
+			if(NULL!=renderer)
+				SDL_DestroyRenderer(renderer);
+			if(NULL!=pWindow)
+				SDL_DestroyWindow(pWindow);
+			if(NULL!=pSprite)
+				SDL_FreeSurface(pSprite);
+			titre->det(titre);
+			bouton1->det(bouton1);
+			bouton2->det(bouton2);
+			bouton3->det(bouton3);
+			image->det(image);
+			IMG_Quit();
+			TTF_Quit();
+			SDL_Quit();
+			exit(EXIT_SUCCESS);
 		}
 	}
 }
