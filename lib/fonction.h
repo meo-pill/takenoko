@@ -1,6 +1,6 @@
 #ifndef _FONCTION_H_
 #define _FONCTION_H_
-#include "struct.h"
+#include "../lib/index.h"
 
 /********************
 fonction opérationnelle
