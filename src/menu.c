@@ -155,7 +155,7 @@ void menu(){
 			IMG_Quit();
 			TTF_Quit();
 			SDL_Quit();
-			initaliser(1);
+			initialiser(1);
 			affiche_Plato(Width,Height);
 		}
 		if(bout(renderer,bouton2,x,y)==1 && Clic==1){
