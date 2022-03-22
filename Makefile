@@ -1,13 +1,14 @@
-CC=gcc
-CCOBJ=${CC} -c
-CFLAGS=-Wall 
-FLAGS=-Wall -g
+include Makefile.compilation
+
 SDL_DIR=lib/SDL2
 EXECU_DIR=bin
+
 SDL_LIB_DIR=${SDL_DIR}/lib
 SDL_INC_DIR=${SDL_DIR}/include
+
 LIBS=-L${SDL_LIB_DIR} -lSDL2 -lSDL2_image -lSDL2_ttf
 INCS=-I${SDL_INC_DIR}
+
 PROG=Takenoko
 GESTION=src/menu.c src/texture.c src/Creation.c  src/main.c #src/Option.c
 OBJ=object/Plato.o object/menu.o object/aff_table.o object/CREA.o object/texture.o object/carte.o object/file.o object/init_fin.o
