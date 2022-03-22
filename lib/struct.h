@@ -71,7 +71,7 @@ struct case_plato_s{
 };
 
 struct carte_s{
-  int (*verif)(struct carte_s * const);
+  int (*verif)(struct carte_s * const,joueur_t * const);
   char type [LONGTYPE];
   char image [LONGPATH];
  	char desc [DESCRIPTION];
@@ -82,8 +82,8 @@ struct joueur_s{
   char * nom_joueur;
   carte_t * main_J[5];
   carte_t * valide[MAXNB2J];
-	int bambou [3];
-	int effSpe [3];
+	int bambou [3]; /*dans l'ordre : jaune rose vert*/
+	int effSpe [3]; 
 	int nbIrigation;
   int nbObjectif;
   couleurJ_E couleurJoueur;

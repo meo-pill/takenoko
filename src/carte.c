@@ -178,10 +178,10 @@ void melanger_carte (){
  * 
  * @param carte 
  * on cherche la fonction de vérification pour quelle carte (type doit être remplit correctement)
- * @return int(*)(carte_t* const) 
+ * @return int(*)(carte_t* const,joueur_t * const) 
  * renvoie un pointeur sur la fonction trouvée (NULL si il ne trouve rien)
  */
-int (* recherche_fonction_verif(carte_t * const carte))(carte_t * const){
+int (* recherche_fonction_verif(carte_t * const carte))(carte_t * const,joueur_t * const){
   if(carte -> type[0] == 'j'){
     return verif_jardinier;
   }
@@ -203,10 +203,10 @@ int (* recherche_fonction_verif(carte_t * const carte))(carte_t * const){
  * @param carte 
  * cette carte doit-être de type parcelle
  * 
- * @return int(*)(carte_t* const) 
+ * @return int(*)(carte_t* const, joueur_t * const) 
  * renvoie un pointeur sur la fonction trouvée (NULL si il ne trouve rien)
  */
-int (*recherche_fonction_parcelle(carte_t * const carte))(carte_t * const){
+int (*recherche_fonction_parcelle(carte_t * const carte))(carte_t * const, joueur_t * const){
 
   //printf("------------------ Lancement de la fonction <recherche fonction parcelle> ---------------\n");
   char forme [20];
@@ -238,10 +238,13 @@ int (*recherche_fonction_parcelle(carte_t * const carte))(carte_t * const){
  * @param carte 
  * quel est la carte objectif (précisément)
  * 
+ * @param J
+ * joueur dont c'est le tour
+ * 
  * @return int 
  * on retourne 1 si la contrainte est vérifié, -1 en cas d'erreur,  0 sinon
  */
-int verif_jardinier(carte_t * const carte){
+int verif_jardinier(carte_t * const carte,joueur_t * const J){
   //printf("on lance la vérification d'une carte jardinier\n");
 
   char buff_couleur[10];
@@ -320,27 +323,35 @@ int verif_jardinier(carte_t * const carte){
  * fonction de verification pour une carte panda
  * pour cela, on prend le joueur courant, et on vérifie s'il a asser de bambou de la bonne couleur
  * 
- * @param carte 
+ * @param carte
  * ce qui nous intéresse ici, c'est la couleur (spécifié dans le type sous forme de "panda-[couleur]")
+ * 
+ * @param J
+ * joueur dont c'est le tour, il est important pour cet objectif
  * 
  * @return int 
  * on retourne 1 si la contrainte est vérifié, -1 en cas d'erreur,  0 sinon
  */
-int verif_panda(carte_t * const carte){
-  printf("on lance la vérification d'une carte panda\n");
+int verif_panda(carte_t * const carte,joueur_t * const J){
+  //printf("on lance la vérification d'une carte panda\n");
   char couleur = carte->type[6];
   switch (couleur)
   {
   case 'j':
-    /* code */
+    if(J->bambou[0] >= 2)
+      return 1;
     break;
   case 'v':
-
+    if(J->bambou[2] >= 2)
+      return 1;
     break;
   case 'r':
-
+    if(J->bambou[1] >= 2)
     break;
-
+  case 'm':
+    if(J->bambou[0]>=1 && J->bambou[1] >= 1 && J->bambou[2] >= 1)
+      return 1;
+    break;
   default:
     printf("------------------erreur dans la fonction verif_panda, la couleur ne semble pas bonne----------------------\n");
     return -1;
@@ -355,11 +366,14 @@ int verif_panda(carte_t * const carte){
  * 
  * @param carte 
  * 
+ * @param J
+ * joueur dont c'est le tour
+ * 
  * @return int 
  * on retourne 1 si la contrainte est vérifié, -1 en cas d'erreur,  0 sinon
  */
-int verif_parcelle_triangle (carte_t * const carte){
-  /*printf("on lance la vérification d'une carte parcelle triangle\n");
+int verif_parcelle_triangle (carte_t * const carte, joueur_t * const J){
+  /*printf("on lance la vérification d'une carte parcelle triangle\n");*/
   int i,j;
 
   char buff_couleur[10];
@@ -385,11 +399,11 @@ int verif_parcelle_triangle (carte_t * const carte){
 
   for(i=0;i<NBTUILES;i++){
     for(j=0;j<NBTUILES;j++){
-      if(plateau[i][j]->Coul == couleur && plateau[i][j]->iriguer){
-        return (plateau[i][j+1]->Coul == couleur && plateau[i+1][j+1]->Coul == couleur);
-      }
+        if(plateau[i][j]->iriguer){
+          
+        }
     }
-  }*/
+  }
   return 0;
 }
 
@@ -399,10 +413,13 @@ int verif_parcelle_triangle (carte_t * const carte){
  * 
  * @param carte 
  * 
+ * @param J
+ * joueur dont c'est le tour
+ * 
  * @return int 
  * on retourne 1 si la contrainte est vérifié, -1 en cas d'erreur,  0 sinon
  */
-int verif_parcelle_losange(carte_t * const carte){
+int verif_parcelle_losange(carte_t * const carte,joueur_t * const J){
   printf("on lance la vérification d'une carte parcelle losange\n");
   return 0;
 }
@@ -413,10 +430,13 @@ int verif_parcelle_losange(carte_t * const carte){
  * 
  * @param carte 
  * 
+ * @param J
+ * joueur dont c'est le tour
+ * 
  * @return int 
  * on retourne 1 si la contrainte est vérifié, -1 en cas d'erreur,  0 sinon
  */
-int verif_parcelle_ligne(carte_t * const carte){
+int verif_parcelle_ligne(carte_t * const carte,joueur_t * const J){
   printf("on lance la vérification d'une carte parcelle ligne\n");
   return 0;
 }
@@ -427,10 +447,13 @@ int verif_parcelle_ligne(carte_t * const carte){
  * 
  * @param carte 
  * 
+ * @param J
+ * joueur dont c'est le tour
+ * 
  * @return int 
  * on retourne 1 si la contrainte est vérifié, -1 en cas d'erreur,  0 sinon
  */
-int verif_parcelle_arc(carte_t * const carte){
+int verif_parcelle_arc(carte_t * const carte,joueur_t * const J){
   printf("on lance la vérification d'une carte parcelle arc\n");
   return 0;
 }
