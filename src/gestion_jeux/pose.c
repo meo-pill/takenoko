@@ -10,7 +10,7 @@
 
 /**
  * @brief verfication qu'il y a une tuile au coordoné
- * MEWEN
+ * 
  * @param x position x a vérifier
  * @param y position y a vérifier
  * @return int 
@@ -24,7 +24,7 @@ extern int case_existe(int const x, int const y){
 
 /**
  * @brief verifaction si deux casse sont différent
- * MEWEN
+ * 
  * @param xa position x actuel
  * @param ya position y actuel
  * @param xn nouvelle position x voulue
@@ -40,7 +40,7 @@ extern int case_differente(int const xa, int const ya, int const xn, int const y
 
 /**
  * @brief verification que la case pointer est sur la ligne
- * MEWEN
+ * 
  * @param xa position x actuel
  * @param ya position y actuel
  * @param xn nouvelle position x voulue
@@ -56,7 +56,7 @@ static int sur_la_ligne(int const xa, int const ya, int const xn, int const yn){
 
 /**
  * @brief verification du fait que la ligne entre les deux tuile soit continue
- * MEWEN
+ * 
  * @param xa position x actuel
  * @param ya position y actuel
  * @param xn nouvelle position x voulue
@@ -131,7 +131,7 @@ static int ligne_existe(int const xa, int const ya, int const xn, int const yn){
 
 /**
  * @brief verification de validité des coordonée
- * MEWEN
+ * 
  * @param xa position x actuel
  * @param ya position y actuel
  * @param xn nouvelle position x voulue
@@ -162,7 +162,7 @@ static int deplacement_imposible(int const xa, int const ya, int const xn, int c
 
 /**
  * @brief verifiaction des la posibllité de posser une tuile
- * MEWEN
+ * 
  * @param x coordoné x de la tuile
  * @param y coordoné y de la tuile
  * @return int 
@@ -193,9 +193,13 @@ extern int pose_tuile_impossible(int const x, int const y){
     return(2);
 }
 
+int ajout_tuile(case_plato_t * case, int const x, int const y){
+
+}
+
 /**
  * @brief verfication de la contiguité entre deux case
- * MEWEN
+ * 
  * @param xa 
  * @param ya coordonné de la premier case
  * @param xb 
@@ -212,7 +216,7 @@ extern int contigue(int const xa, int const ya, int const xb, int const yb){
 
 /**
  * @brief fonction de verfication d'access au lac
- * MEWEN
+ * 
  * @param xa 
  * @param ya 
  * @param xb 
