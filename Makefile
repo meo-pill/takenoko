@@ -18,8 +18,11 @@ TEST= bin/carte_test bin/creation_carte_test bin/plateau_test bin/sdl_test bin/t
 LIEN= ${PWD}/lib/SDL2/lib
 DATE=$(shell date +%Y-%m-%d)
 
-cache:all
-all:${PROG} laugth
+#lancement automatique pour vim
+cache:takenoko
+
+all:${PROG} ${TEST}
+takenoko:clean ${PROG} laugth
 
 #Compilation du programme final
 ${PROG}: ${OBJ} ${LIB}
