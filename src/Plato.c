@@ -89,6 +89,7 @@ void affiche_Plato(int W,int H){
 		}
 	}
 	while(1){
+		SDL_PumpEvents();
 		Uint32 Clic = SDL_GetMouseState(&x,&y);
 		//création de la "fenêtre ou nous verons une partie de l'image
 		SDL_RenderCopy(renderer,(*image->Table)->t,NULL,NULL);
