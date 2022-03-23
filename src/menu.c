@@ -44,6 +44,7 @@ void menu(){
 	auto int Width = DM.w;
 	auto int Height = DM.h;
 
+	int fullscreen=0;
 	//création d'une fênetre
 	pWindow = SDL_CreateWindow("takenoko",SDL_WINDOWPOS_UNDEFINED,
 											SDL_WINDOWPOS_UNDEFINED,
@@ -116,6 +117,7 @@ void menu(){
 	SDL_Rect* crop = lire_Rect(image->Table[1],1);
 	//boucle des evenments permet defaire diférente action sur la fenêtre
 	while (1) {
+		SDL_PumpEvents();
 		//permet de savoir où et si on clique avec la souri
 		Uint32 Clic = SDL_GetMouseState(&x,&y);
 
@@ -200,9 +202,10 @@ void menu(){
 		SDL_RenderPresent(renderer);
 		//affiche la position de l'endroit ou la sourie à cliquer
 		if(Clic ==1){
-			fprintf(stdout, "Position de la souris : %d;%d\n",x,y);
+			fprintf(stdout, "\t\tavec clic Position de la souris : %d;%d\n",x,y);
 		}
-		if(evenment(event,pWindow)==QUIT){
+		if(evenment(event,pWindow,&fullscreen)==QUIT){
+			printf("adieu\n");
 			if(NULL!=renderer)
 				SDL_DestroyRenderer(renderer);
 			if(NULL!=pWindow)

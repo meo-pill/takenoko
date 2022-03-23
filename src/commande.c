@@ -1,32 +1,33 @@
 #include "../lib/commande.h"
 
-extern qui_t evenment(SDL_Event event,SDL_Window* pWindow){
-	int fullscreen=0;
+extern quit_t evenment(SDL_Event event,SDL_Window* pWindow,int * fullscreen){
 	 switch(event.type){
 		case SDL_QUIT:
-			if(fullscreen==1){
+	printf("coucou\n");
+			if(*fullscreen==1)
 				SDL_SetWindowFullscreen(pWindow,0);
-			}
 			return QUIT;
 		case SDL_KEYUP:
 			switch(event.key.keysym.sym){
 				case SDLK_q:
-					if(fullscreen==1){
+	printf("coucou\n");
+					if(*fullscreen==1){
 						SDL_SetWindowFullscreen(pWindow,0);
 					}
 					return QUIT;
 				case SDLK_F11:
-				 	if(fullscreen==0){
+				 	if(*fullscreen==0){
 						SDL_SetWindowFullscreen(pWindow,SDL_WINDOW_FULLSCREEN);
-						fullscreen++;
+						*fullscreen++;
 					 }
 					else{
 						SDL_SetWindowFullscreen(pWindow,0);
-						fullscreen--;
+						*fullscreen--;
 					}
 				     	break;
 			}
 			break;
+		default:
+			return CONT;
 	 }
-	 return CONT;
 }

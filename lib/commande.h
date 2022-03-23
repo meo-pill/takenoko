@@ -1,9 +1,9 @@
 #ifndef _COMMANDE_H_
 #define _COMMANDE_H_
 #include "bibl_SDL.h"
-#define QUIT 0
+#define QUIT -1
 #define CONT 1
-typedef int qui_t;
+typedef int quit_t;
 
-extern qui_t evenment(SDL_Event event,SDL_Window* pWindow);
+extern quit_t evenment( SDL_Event event,SDL_Window* pWindow,int * fullscreen);
 #endif

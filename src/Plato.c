@@ -28,6 +28,7 @@ void affiche_Plato(int W,int H){
 
 
 	int x=0,y=0;
+	int fullscreen=0;
 
 	pWindow = SDL_CreateWindow("Takenoko",SDL_WINDOWPOS_UNDEFINED,
 											SDL_WINDOWPOS_UNDEFINED,
@@ -110,7 +111,7 @@ void affiche_Plato(int W,int H){
 		}
 		//présentation final
 		SDL_RenderPresent(renderer);
-		if(evenment(event,pWindow)==QUIT){
+		if(evenment(event,pWindow,&fullscreen)==QUIT){
 			Tex_Tuile->det(Tex_Tuile);
 			bouton->det(bouton);
 			image->det(image);
