@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2022
  * 
  */
-#include "../../lib/index.h"
+#include "../../lib/tour.h"
 
 /**
  * @brief premier fonction d'inisialisaiton pour donner une valeur au varible

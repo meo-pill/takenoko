@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2022
  * 
  */
-#include "../lib/index.h"
+#include "../lib/carte.h"
 
 /**
  * @brief met tout les deck à NULL

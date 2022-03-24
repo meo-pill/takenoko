@@ -49,7 +49,7 @@ fonction à finir et à tester
 
 /* * choix pour 1 joueur */
 
-void choixactionduJ( joueur_t * Joueur, char const meteo);
+void choixactionduJ( joueur_t * Joueur, char const meteo, choixJ_E memaction[2]);
 
 void pioche_objetif( joueur_t * Joueur);
 void pioche_effspe( joueur_t * Joueur);
