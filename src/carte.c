@@ -379,9 +379,14 @@ int verif_parcelle_triangle (carte_t * const carte, joueur_t * const J){
   char buff_couleur[10];
   couleur_E couleur;
 
+  int ligne_impaire;
+
   sscanf(carte->type,"parcelle-%[^-]-",buff_couleur);
 
-  switch (buff_couleur[1])
+  /*printf("dans buff_couleur : %s \ndans buff couleur[0] : %c\n",buff_couleur,buff_couleur[0]);*/
+
+
+  switch (buff_couleur[0])
   {
   case 'r':
     couleur = rose;
@@ -399,9 +404,28 @@ int verif_parcelle_triangle (carte_t * const carte, joueur_t * const J){
 
   for(i=0;i<NBTUILES;i++){
     for(j=0;j<NBTUILES;j++){
-        if(plateau[i][j]->iriguer){
-          
+        ligne_impaire = i%2;
+        if(plateau[i][j] != NULL && plateau[i][j]->iriguer && plateau[i][j]->Coul == couleur){
+          if(j < NBTUILES-1  && i < NBTUILES-1 && j>0 &&
+            plateau[i+1][j+ligne_impaire] != NULL &&
+            plateau[i+1][j-1+ligne_impaire] != NULL &&
+            plateau[i+1][j-1+ligne_impaire]->iriguer &&
+            plateau[i+1][j-1+ligne_impaire]->Coul == couleur &&
+            plateau[i+1][j+ligne_impaire]->iriguer &&
+            plateau[i+1][j+ligne_impaire]->Coul == couleur)
+            return 1;
+          else if( i > 0 && j < NBTUILES-1 && j>0 &&
+            plateau[i-1][j-1+ligne_impaire] != NULL &&
+            plateau[i-1][j+ligne_impaire] != NULL &&
+            plateau[i-1][j-1+ligne_impaire]->iriguer &&
+            plateau[i-1][j-1+ligne_impaire]->Coul == couleur &&
+            plateau[i-1][j+ligne_impaire]->iriguer &&
+            plateau[i-1][j+ligne_impaire]->Coul == couleur)
+            return 1;
         }
+        /*if(i < 3 && j < 5)
+          if(plateau[i][j] != NULL)
+            printf("teste avec la case {%i;%i} qui a irriguer = %i\n",i,j,plateau[i][j]->iriguer);*/
     }
   }
   return 0;
@@ -420,7 +444,98 @@ int verif_parcelle_triangle (carte_t * const carte, joueur_t * const J){
  * on retourne 1 si la contrainte est vérifié, -1 en cas d'erreur,  0 sinon
  */
 int verif_parcelle_losange(carte_t * const carte,joueur_t * const J){
-  printf("on lance la vérification d'une carte parcelle losange\n");
+  /*printf("on lance la vérification d'une carte parcelle losange\n");*/
+
+  int i,j;
+
+  char buff_couleur1[10];
+  char buff_couleur2[10] = "000000000\0";
+  couleur_E couleur1;
+  couleur_E couleur2;
+
+  int ligne_impaire;
+
+  sscanf(carte->type,"parcelle-%[^/]/%[^-]-",buff_couleur1,buff_couleur2);
+
+  /*printf("dans buff_couleur : %s \ndans buff couleur 1[0] : %c\n",buff_couleur 1,buff_couleur 1[0]);*/
+
+
+  switch (buff_couleur1[0])
+  {
+  case 'r':
+    couleur1 = rose;
+    break;
+  case 'j':
+    couleur1 = jaune;
+    break;
+  case 'v':
+    couleur1 = vert;
+    break;
+  default:
+    printf("---------------erreur de vérification de la couleur 1 dans la fonction verif_parcelle losange ------------------\n");
+    return -1;
+  }
+
+  /*printf("dans buff_couleur2 : %s \ndans buff_couleur2[0] : %c\n",buff_couleur2,buff_couleur2[0]);*/
+
+  if(buff_couleur2[1] == '0')
+    couleur2 = couleur1;
+  
+  else{
+    switch (buff_couleur2[0])
+    {
+    case 'r':
+      couleur2 = rose;
+      break;
+    case 'j':
+      couleur2 = jaune;
+      break;
+    case 'v':
+      couleur2 = vert;
+      break;
+    default:
+      printf("---------------erreur de vérification de la couleur 2 dans la fonction verif_parcelle losange ------------------\n");
+      return -1;
+    }
+  }
+
+
+   for(i=0;i<NBTUILES;i++){
+    for(j=0;j<NBTUILES;j++){
+      ligne_impaire = i%2;
+      if(plateau[i][j] != NULL && plateau[i][j]->iriguer){
+        if(plateau[i][j]->Coul == couleur1){
+          if((j>0-1+ligne_impaire) && (j<(NBTUILES-ligne_impaire)) && i<NBTUILES-2 &&
+            plateau[i+1][j+ligne_impaire] != NULL &&
+            plateau[i+1][j-1+ligne_impaire] != NULL &&
+            plateau[i+2][j] != NULL &&
+            plateau[i+1][j+ligne_impaire]->iriguer == 1 &&
+            plateau[i+1][j+ligne_impaire]->Coul == couleur1 &&
+            plateau[i+1][j-1+ligne_impaire]->iriguer == 1 &&
+            plateau[i+1][j-1+ligne_impaire]->Coul == couleur2 &&
+            plateau[i+2][j]->iriguer == 1 &&
+            plateau[i+2][j]->Coul == couleur2
+            )
+              return 1;
+        }
+        if(plateau[i][j]->Coul == couleur2){
+          if((j>0-1+ligne_impaire) && (j<(NBTUILES-ligne_impaire)) && i<NBTUILES-2 &&
+            plateau[i+1][j+ligne_impaire] != NULL &&
+            plateau[i+1][j-1+ligne_impaire] != NULL &&
+            plateau[i+2][j] != NULL &&
+            plateau[i+1][j+ligne_impaire]->iriguer == 1 &&
+            plateau[i+1][j+ligne_impaire]->Coul == couleur2 &&
+            plateau[i+1][j-1+ligne_impaire]->iriguer == 1 &&
+            plateau[i+1][j-1+ligne_impaire]->Coul == couleur1 &&
+            plateau[i+2][j]->iriguer == 1 &&
+            plateau[i+2][j]->Coul == couleur1
+            )
+              return 1;
+        }
+      }
+    }
+  }
+
   return 0;
 }
 
@@ -437,7 +552,71 @@ int verif_parcelle_losange(carte_t * const carte,joueur_t * const J){
  * on retourne 1 si la contrainte est vérifié, -1 en cas d'erreur,  0 sinon
  */
 int verif_parcelle_ligne(carte_t * const carte,joueur_t * const J){
-  printf("on lance la vérification d'une carte parcelle ligne\n");
+  /*printf("on lance la vérification d'une carte parcelle ligne\n");*/
+
+  int i,j;
+
+  char buff_couleur[10];
+  couleur_E couleur;
+
+  int ligne_impaire;
+
+  sscanf(carte->type,"parcelle-%[^-]-",buff_couleur);
+
+  /*printf("dans buff_couleur : %s \ndans buff couleur[0] : %c\n",buff_couleur,buff_couleur[0]);*/
+
+
+  switch (buff_couleur[0])
+  {
+  case 'r':
+    couleur = rose;
+    break;
+  case 'j':
+    couleur = jaune;
+    break;
+  case 'v':
+    couleur = vert;
+    break;
+  default:
+    printf("---------------erreur de vérification de la couleur dans la fonction verif_parcelle ligne ------------------\n");
+    return -1;
+  }
+
+  for(i=0;i<NBTUILES;i++){
+    for(j=0;j<NBTUILES;j++){
+      ligne_impaire = i%2;
+      if(plateau[i][j] != NULL && plateau[i][j]->iriguer && plateau[i][j]->Coul == couleur){
+        /*verticale gauche*/
+        if(i < NBTUILES-2 && j>0 &&
+          plateau[i+1][j-1+ligne_impaire] != NULL &&
+          plateau[i+2][j-1] != NULL &&
+          plateau[i+1][j-1+ligne_impaire]->iriguer &&
+          plateau[i+1][j-1+ligne_impaire]->Coul == couleur &&
+          plateau[i+2][j-1]->iriguer &&
+          plateau[i+2][j-1]->Coul == couleur)
+            return 1;
+        /*verticale droit*/
+        else if( i < NBTUILES-2 && j < NBTUILES-1 &&
+          plateau[i+1][j+ligne_impaire] != NULL &&
+          plateau[i+2][j+1] != NULL &&
+          plateau[i+1][j+ligne_impaire]->iriguer &&
+          plateau[i+1][j+ligne_impaire]->Coul == couleur &&
+          plateau[i+2][j+1]->iriguer &&
+          plateau[i+2][j+1]->Coul == couleur)
+            return 1;
+        /*horizontale*/
+        else if(j < NBTUILES-2&&
+          plateau[i][j+1] != NULL &&
+          plateau[i][j+2] != NULL&&
+          plateau[i][j+1]->iriguer&&
+          plateau[i][j+2]->iriguer&&
+          plateau[i][j+1]->Coul == couleur &&
+          plateau[i][j+2]->Coul == couleur)
+            return 1;
+      }
+    }
+  }
+
   return 0;
 }
 
@@ -454,6 +633,64 @@ int verif_parcelle_ligne(carte_t * const carte,joueur_t * const J){
  * on retourne 1 si la contrainte est vérifié, -1 en cas d'erreur,  0 sinon
  */
 int verif_parcelle_arc(carte_t * const carte,joueur_t * const J){
-  printf("on lance la vérification d'une carte parcelle arc\n");
+  /*printf("on lance la vérification d'une carte parcelle arc\n");*/
+
+  int i,j;
+
+  char buff_couleur[10];
+  couleur_E couleur;
+
+  int ligne_impaire;
+
+  sscanf(carte->type,"parcelle-%[^-]-",buff_couleur);
+
+  /*printf("dans buff_couleur : %s \ndans buff couleur[0] : %c\n",buff_couleur,buff_couleur[0]);*/
+
+
+  switch (buff_couleur[0])
+  {
+  case 'r':
+    couleur = rose;
+    break;
+  case 'j':
+    couleur = jaune;
+    break;
+  case 'v':
+    couleur = vert;
+    break;
+  default:
+    printf("---------------erreur de vérification de la couleur dans la fonction verif_parcelle_arc ------------------\n");
+    return -1;
+  }
+
+  for(i=0;i<NBTUILES;i++){
+    for(j=0;j<NBTUILES;j++){
+      ligne_impaire = i%2;
+      if(plateau[i][j] != NULL && plateau[i][j]->iriguer && plateau[i][j]->Coul == couleur){
+        /*verticale gauche*/
+        if(i < NBTUILES-2 && j>0 &&
+          plateau[i+1][j-1+ligne_impaire] != NULL &&
+          plateau[i+2][j] != NULL &&
+          plateau[i+1][j-1+ligne_impaire]->iriguer &&
+          plateau[i+1][j-1+ligne_impaire]->Coul == couleur &&
+          plateau[i+2][j]->iriguer &&
+          plateau[i+2][j]->Coul == couleur)
+            return 1;
+        /*verticale droit*/
+        else if( i < NBTUILES-2 && j < NBTUILES-1 &&
+          plateau[i+1][j+ligne_impaire] != NULL &&
+          plateau[i+2][j] != NULL &&
+          plateau[i+1][j+ligne_impaire]->iriguer &&
+          plateau[i+1][j+ligne_impaire]->Coul == couleur &&
+          plateau[i+2][j]->iriguer &&
+          plateau[i+2][j]->Coul == couleur)
+            return 1;
+      }
+    }
+  }
   return 0;
+}
+
+carte_t * carte_suivante (){
+  
 }
