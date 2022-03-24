@@ -88,7 +88,7 @@ COM:
 ME:
 	git push origin meo
 LE:
-	git push origin leopolde
+	git push origin leo
 MA:
 	git push origin max
 MO:

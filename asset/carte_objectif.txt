@@ -15,18 +15,18 @@ panda-multi;image/carte_panda/4.png; obtenez un bambou de chaque couleur pour va
 panda-multi;image/carte_panda/4.png; obtenez un bambou de chaque couleur pour valider ; 6
 panda-multi;image/carte_panda/4.png; obtenez un bambou de chaque couleur pour valider ; 6
 parcelle-verte-triangle;image/carte_tuile/1.png; reproduisez la forme affichée avec les tuiles pour valider ; 2
-parcelle-verte-losange;image/carte_tuile/2.png; reproduisez la forme affichée avec les tuiles pour valider; 3
+parcelle-verte/verte-losange;image/carte_tuile/2.png; reproduisez la forme affichée avec les tuiles pour valider; 3
 parcelle-jaune/rose-losange;image/carte_tuile/3.png; reproduisez la forme affichée avec les tuiles pour valider; 5
 parcelle-rose/verte-losange;image/carte_tuile/4.png; reproduisez la forme affichée avec les tuiles pour valider; 4
 parcelle-jaune/verte-losange;image/carte_tuile/5.png; reproduisez la forme affichée avec les tuiles pour valider; 3
 parcelle-jaune-ligne;image/carte_tuile/6.png; reproduisez la forme affichée avec les tuiles pour valider; 3
-parcelle-jaune-losange;image/carte_tuile/7.png; reproduisez la forme affichée avec les tuiles pour valider; 4
+parcelle-jaune/jaune-losange;image/carte_tuile/7.png; reproduisez la forme affichée avec les tuiles pour valider; 4
 parcelle-jaune-arc;image/carte_tuile/8.png; reproduisez la forme affichée avec les tuiles pour valider; 3
 parcelle-verte-ligne;image/carte_tuile/9.png; reproduisez la forme affichée avec les tuiles pour valider; 2
 parcelle-verte-arc;image/carte_tuile/10.png; reproduisez la forme affichée avec les tuiles pour valider; 2
 parcelle-rose-arc;image/carte_tuile/11.png; reproduisez la forme affichée avec les tuiles pour valider; 4
 parcelle-rose-triangle;image/carte_tuile/12.png; reproduisez la forme affichée avec les tuiles pour valider; 4
-parcelle-rose-losange;image/carte_tuile/13.png; reproduisez la forme affichée avec les tuiles pour valider; 5
+parcelle-rose/rose-losange;image/carte_tuile/13.png; reproduisez la forme affichée avec les tuiles pour valider; 5
 parcelle-rose-ligne;image/carte_tuile/14.png; reproduisez la forme affichée avec les tuiles pour valider; 4
 parcelle-jaune-triangle;image/carte_tuile/15.png; reproduisez la forme affichée avec les tuiles pour valider; 3
 jardinier-jaune-4-bassin;image/carte_jardinier/1.png; faite poussez un bambou jaune d'une hauteur de 4 sur une tuile avec un bassin pour valider ; 5
