@@ -1,4 +1,5 @@
 #include "../lib/aff_table.h"
+#include "../lib/commande.h"
 int main(){
 	if (SDL_Init(SDL_INIT_TIMER |SDL_INIT_VIDEO)== -1 ){
 		fprintf(stdout,"Échec de l'initialisation de la SDL (%s)\n",SDL_GetError());
@@ -16,10 +17,13 @@ int main(){
 
 	text_t* image=NULL;
 	text_t* bouton=NULL;
+	text_t* Tex_Tuile=NULL;
 
 	SDL_Color Noir = {0 , 0 , 0};
-
-	int W=1000,H=1000;
+	SDL_DisplayMode DM;
+	SDL_GetCurrentDisplayMode(0, &DM);
+	auto int W = DM.w;
+	auto int H = DM.h;
 
 	int x=0,y=0;
 
@@ -31,7 +35,6 @@ int main(){
 	renderer = SDL_CreateRenderer(pWindow,-1,SDL_RENDERER_ACCELERATED); // Création d'un SDL_Renderer utilisant l'accélération matérielle
 
 	image=Crea_Tex(1);
-	//Tuile=Crea_table_tex(13);il 13 image de tuille
 	bouton=Crea_Tex(2);
 	bouton->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"<-Retour",Noir,W*1/3,10);
 	bouton->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"<-Retour",Noir,W*1/3,10);
@@ -39,13 +42,52 @@ int main(){
 	if ((bouton->Table[0]) == NULL || bouton->Table[1]==NULL){
 		exit ( EXIT_FAILURE );
 	}
+	IMG_Init(IMG_INIT_PNG);
 
 	(*image->Table)->t = IMG_LoadTexture(renderer, fond_Plato);
 	if((*image->Table)->t==NULL){
 		fprintf ( stderr , " Erreur au niveau de l'image: %s \n " , TTF_GetError ());
 		exit ( EXIT_FAILURE );
 	}
+//	unsigned int tempdeb= SDL_GetTicks();
+//	unsigned int tempfin= SDL_GetTicks();
+//	double delta =0;
+	int i=0;
+	SDL_Rect * position;
+//	SDL_Rect * Pre_position=NULL;
+	initialiser(4);
+	palt_test();
+//	Pre_position->x=0;
+//	Pre_position->y=0;
+	Tex_Tuile=Crea_Tex(NBTUILES);
+
+	for(int pos_x=1;pos_x<NBTUILES;pos_x++){
+		for(int pos_y =0;pos_y<NBTUILES ;pos_y++){
+			if(plateau[pos_x][pos_y] != NULL){
+	printf("Coucou\n");
+				(Tex_Tuile->Table[i])->t = IMG_LoadTexture(renderer, plateau[pos_x][pos_y]->image);
+//				printf (" Erreur au niveau de l'image: %s \n ",plateau[x][y]->image);
+				if((Tex_Tuile->Table[i])->t==NULL){
+					fprintf ( stderr , " Erreur au niveau de l'image: %s \n " , TTF_GetError ());
+					exit ( EXIT_FAILURE );
+				}
+				position=lire_Rect(Tex_Tuile->Table[i],1);
+//				if(i>0){
+//					Pre_position=lire_Rect(Tex_Tuile->Table[i-1],1);
+//					position->x=Pre_position->x+W/9;
+//					position->y=Pre_position->x+H/9;
+//				}
+//				else{
+					position->x=W/2;
+					position->y=H/2;
+//				}
+				(Tex_Tuile->Table[i])->place2=position;
+				i++;
+			}
+		}
+	}
 	while(1){
+		SDL_PumpEvents();
 		Uint32 Clic = SDL_GetMouseState(&x,&y);
 		//création de la "fenêtre ou nous verons une partie de l'image
 		SDL_RenderCopy(renderer,(*image->Table)->t,NULL,NULL);
@@ -59,44 +101,26 @@ int main(){
 			IMG_Quit();
 			TTF_Quit();
 			SDL_Quit();
-			break;
 		}
-		text_t* Tuile=enregistre_table(renderer, W,H);
-		for(int i=0;i<Tuile->Taille;i++){
-			SDL_RenderCopy(renderer,(Tuile->Table[i])->t,NULL,(Tuile->Table[i])->place2);
+		//pose du tableau
+		for(int i=1;i<Tex_Tuile->Taille;i++){
+			SDL_Rect * rect=lire_Rect(Tex_Tuile->Table[i],1);
+			SDL_RenderCopy(renderer,Tex_Tuile->Table[i]->t,NULL,rect);
 		}
-		Tuile->det(Tuile);
+		//présentation final
 		SDL_RenderPresent(renderer);
-		if (SDL_PollEvent(&event)){
-			 switch(event.type){
-				case SDL_QUIT:
-					bouton->det(bouton);
-					image->det(image);
-					if(NULL!=renderer)
-						SDL_DestroyRenderer(renderer);
-					if(NULL!=pWindow)
-						SDL_DestroyWindow(pWindow);
-					IMG_Quit();
-					TTF_Quit();
-					SDL_Quit();
-					exit(EXIT_SUCCESS);
-					break;
-				case SDL_KEYUP:
-					switch(event.key.keysym.sym){
-						case SDLK_q:
-							bouton->det(bouton);
-							image->det(image);
-							if(NULL!=renderer)
-								SDL_DestroyRenderer(renderer);
-							if(NULL!=pWindow)
-								SDL_DestroyWindow(pWindow);
-							IMG_Quit();
-							TTF_Quit();
-							SDL_Quit();
-							break;
-					}
-					break;
-			 }
+		if(evenment(event,pWindow)==QUIT){
+			Tex_Tuile->det(Tex_Tuile);
+			bouton->det(bouton);
+			image->det(image);
+			if(NULL!=renderer)
+				SDL_DestroyRenderer(renderer);
+			if(NULL!=pWindow)
+				SDL_DestroyWindow(pWindow);
+			IMG_Quit();
+			TTF_Quit();
+			SDL_Quit();
+			exit(EXIT_SUCCESS);
 		}
 	}
 	return 0;
