@@ -216,7 +216,7 @@ void test_ligne(){
 void test_losange(){
     printf("début du test sur les carte parcelle losange");
     printf("----------------creation de la carte------------------\n");
-    carte_t * carte_verte = creer_carte("parcelle-verte-losange","desc","img",3);
+    carte_t * carte_verte = creer_carte("parcelle-verte/verte-losange","desc","img",3);
     carte_t * carte_multi = creer_carte("parcelle-jaune/verte-losange","des","img",3);
 
     printf("--------creation et initialisation du plateau---------\n");
@@ -474,13 +474,96 @@ void test_panda(){
     free(J[0]);
 }
 
+/**
+ * @brief cette fonction sert à tester les cartes parcelles ayant une forme d'arc
+ * 
+ */
+void test_arc(){
+    printf("début du test sur les carte parcelle arc");
+    printf("----------------creation de la carte------------------\n");
+    carte_t * carte = creer_carte("parcelle-verte-arc","desc","img",4);
+
+    printf("--------creation et initialisation du plateau---------\n");
+    plateau[0][1] = piece[26];
+    plateau[1][0] = piece[23];
+    plateau[1][1] = piece[22];
+    plateau[2][1] = piece[20];
+    plateau[2][2] = piece[19];
+    plateau[3][1] = piece[17];
+
+    plateau[0][1]->iriguer = 0;
+    plateau[1][0]->iriguer = 0;
+    plateau[1][1]->iriguer = 0;
+    plateau[2][1]->iriguer = 0;
+    plateau[2][2]->iriguer = 0;
+    plateau[3][1]->iriguer = 0;
+
+    printf("-------------------------afichage du plateau-----------------------------\n");
+    afficher_plateau();
+    
+    printf("----------------------------test sans irigation--------------------------\n");
+
+    if(carte->verif(carte,J[0]) == 1){
+        printf("l'objectif est accomplie\n");
+    }
+    else
+        printf("l'objectif n'est pas accomplie\n");
+
+    printf("-----------------------------test vertical gauche(ligne paire)------------\n");
+    plateau[0][1]->iriguer = 1;
+    plateau[1][0]->iriguer = 1;
+    plateau[2][1]->iriguer = 1;
+
+    afficher_plateau();
+
+    if(carte->verif(carte,J[0]) == 1)
+        printf("l'objectif est accomplie\n");
+    else
+        printf("l'objectif n'est pas accomplie\n");
+    
+    printf("-----------------------------test vertical droit(ligne paire)------------\n");
+    plateau[1][1]->iriguer = 1;
+    plateau[1][0]->iriguer = 0;
+
+    afficher_plateau();
+
+    if(carte->verif(carte,J[0]) == 1)
+        printf("l'objectif est accomplie\n");
+    else
+        printf("l'objectif n'est pas accomplie\n");
+    
+    printf("-----------------------------test vertical gauche(ligne impaire)------------\n");
+    plateau[0][1]->iriguer = 0;
+    plateau[3][1]->iriguer = 1;
+    
+
+    afficher_plateau();
+
+    if(carte->verif(carte,J[0]) == 1)
+        printf("l'objectif est accomplie\n");
+    else
+        printf("l'objectif n'est pas accomplie\n");
+    
+    printf("-----------------------------test vertical droit(ligne impaire)------------\n");
+    plateau[2][2]->iriguer = 1;
+    plateau[2][1]->iriguer = 0;
+
+    afficher_plateau();
+
+    if(carte->verif(carte,J[0]) == 1)
+        printf("l'objectif est accomplie\n");
+    else
+        printf("l'objectif n'est pas accomplie\n");
+
+}
 
 int main(){
     extraction_fichier_tuile();
     /*test_jardinier();*/
     /*test_panda();*/
     /*test_ligne();*/
-    test_losange();
+    /*test_losange*/
+    test_arc();
     
     suprimer();
 }
