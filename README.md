@@ -6,6 +6,11 @@ AUTOR
 	PARET	Maxime
 	PECHON	Morgane
 
+commande a copier pour intégrée la sdl (make PATH)
+
+compilation de tout les executable (make all)
+compilation du projet + execution (make takenoko)
+
 il s'agit d'un projet d'étude.
 nous devons crée un version vidéoludique d'un jeux appeler takenoko
 
