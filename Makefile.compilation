@@ -1,0 +1,16 @@
+#
+# Option compilation 
+#
+
+ CCOBJ=gcc -c
+ CCLNK=gcc 
+
+# Valeurs possibles : yes , no  
+DEBUG=yes
+
+
+ifeq ($(DEBUG),yes)
+	 CFLAGS=-Wall -g 
+else
+	 CFLAGS=-Wall  
+endif
