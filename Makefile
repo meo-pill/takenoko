@@ -98,15 +98,15 @@ PULL:
 	git pull
 ADD:
 	git add .
-COM:
+COM: clean
 	git commit -m '${USER} ${DATE}  mise à jour'
-ME:
+ME: clean
 	git push origin meo
-LE:
+LE: clean
 	git push origin leo
-MA:
+MA: clean
 	git push origin max
-MO:
+MO: clean
 	git push origin fortuna
 TEST:
 	echo > $@
