@@ -57,39 +57,38 @@ void affiche_Plato(int W,int H){
 //	double delta =0;
 	int i=0;
 	SDL_Rect * position;
-//	SDL_Rect * Pre_position=NULL;
+	SDL_Rect * Pre_position=NULL;
 	palt_test();
-//	Pre_position->x=0;
-//	Pre_position->y=0;
+	Pre_position->x=0;
+	Pre_position->y=0;
 	Tex_Tuile=Crea_Tex(NBTUILES);
 
-	for(int pos_x=1;pos_x<NBTUILES;pos_x++){
+	for(int pos_x=0;pos_x<NBTUILES;pos_x++){
 		for(int pos_y =0;pos_y<NBTUILES ;pos_y++){
 			if(plateau[pos_x][pos_y] != NULL){
-	printf("Coucou\n");
 				(Tex_Tuile->Table[i])->t = IMG_LoadTexture(renderer, plateau[pos_x][pos_y]->image);
-//				printf (" Erreur au niveau de l'image: %s \n ",plateau[x][y]->image);
 				if((Tex_Tuile->Table[i])->t==NULL){
 					fprintf ( stderr , " Erreur au niveau de l'image: %s \n " , TTF_GetError ());
 					exit ( EXIT_FAILURE );
 				}
 				position=lire_Rect(Tex_Tuile->Table[i],1);
-//				if(i>0){
-//					Pre_position=lire_Rect(Tex_Tuile->Table[i-1],1);
-//					position->x=Pre_position->x+W/9;
-//					position->y=Pre_position->x+H/9;
-//				}
-//				else{
+			//	if(i>0){
+			//		Pre_position=lire_Rect(Tex_Tuile->Table[i-1],1);
+			//		position->x=Pre_position->x+W/9;
+			//		position->y=Pre_position->x+H/9;
+			//	}
+			//	else{
 					position->x=W/2;
 					position->y=H/2;
-//				}
-				(Tex_Tuile->Table[i])->place2=position;
+			//	}
+				//(Tex_Tuile->Table[i])->place2=position;
 				i++;
 			}
+			else
+				printf("\t\tPas d'image à la position: x=%d y=%d\n",pos_x,pos_y);
 		}
 	}
 	while(1){
-		SDL_PumpEvents();
 		Uint32 Clic = SDL_GetMouseState(&x,&y);
 		//création de la "fenêtre ou nous verons une partie de l'image
 		SDL_RenderCopy(renderer,(*image->Table)->t,NULL,NULL);
@@ -112,18 +111,23 @@ void affiche_Plato(int W,int H){
 		}
 		//présentation final
 		SDL_RenderPresent(renderer);
-		if(evenment(event,pWindow,&fullscreen)==QUIT){
-			Tex_Tuile->det(Tex_Tuile);
-			bouton->det(bouton);
-			image->det(image);
-			if(NULL!=renderer)
-				SDL_DestroyRenderer(renderer);
-			if(NULL!=pWindow)
-				SDL_DestroyWindow(pWindow);
-			IMG_Quit();
-			TTF_Quit();
-			SDL_Quit();
-			exit(EXIT_SUCCESS);
+		if(SDL_PollEvent(&event)){
+			if(evenment(event,pWindow,&fullscreen)==QUIT){
+				if(fullscreen==1){
+					SDL_SetWindowFullscreen(pWindow,0);
+				}
+				Tex_Tuile->det(Tex_Tuile);
+				bouton->det(bouton);
+				image->det(image);
+				if(NULL!=renderer)
+					SDL_DestroyRenderer(renderer);
+				if(NULL!=pWindow)
+					SDL_DestroyWindow(pWindow);
+				IMG_Quit();
+				TTF_Quit();
+				SDL_Quit();
+				exit(EXIT_SUCCESS);
+			}
 		}
 	}
 

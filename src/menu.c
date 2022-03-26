@@ -117,7 +117,6 @@ void menu(){
 	SDL_Rect* crop = lire_Rect(image->Table[1],1);
 	//boucle des evenments permet defaire diférente action sur la fenêtre
 	while (1) {
-		SDL_PumpEvents();
 		//permet de savoir où et si on clique avec la souri
 		Uint32 Clic = SDL_GetMouseState(&x,&y);
 
@@ -204,23 +203,28 @@ void menu(){
 		if(Clic ==1){
 			fprintf(stdout, "\t\tavec clic Position de la souris : %d;%d\n",x,y);
 		}
-		if(evenment(event,pWindow,&fullscreen)==QUIT){
-			printf("adieu\n");
-			if(NULL!=renderer)
-				SDL_DestroyRenderer(renderer);
-			if(NULL!=pWindow)
-				SDL_DestroyWindow(pWindow);
-			if(NULL!=pSprite)
-				SDL_FreeSurface(pSprite);
-			titre->det(titre);
-			bouton1->det(bouton1);
-			bouton2->det(bouton2);
-			bouton3->det(bouton3);
-			image->det(image);
-			IMG_Quit();
-			TTF_Quit();
-			SDL_Quit();
-			exit(EXIT_SUCCESS);
+		if(SDL_PollEvent(&event)){
+			if(evenment(event,pWindow,&fullscreen)==QUIT){
+				if(fullscreen==1){
+					SDL_SetWindowFullscreen(pWindow,0);
+				}
+				printf("adieu\n");
+				if(NULL!=renderer)
+					SDL_DestroyRenderer(renderer);
+				if(NULL!=pWindow)
+					SDL_DestroyWindow(pWindow);
+				if(NULL!=pSprite)
+					SDL_FreeSurface(pSprite);
+				titre->det(titre);
+				bouton1->det(bouton1);
+				bouton2->det(bouton2);
+				bouton3->det(bouton3);
+				image->det(image);
+				IMG_Quit();
+				TTF_Quit();
+				SDL_Quit();
+				exit(EXIT_SUCCESS);
+			}
 		}
 	}
 }
