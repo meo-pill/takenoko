@@ -92,6 +92,9 @@ LE:
 MA:
 	git push origin max
 MO:
+	make clean
+	make ADD
+	make COM
 	git push origin Morgane
 TEST:
 	echo > $@
