@@ -24,6 +24,11 @@ extern SDL_Rect* lire_Rect(Texture_t* texture,int type_rect){
 	return NULL;
 }
 
+/*! permet de voir si la texture existe*/
+extern int texture_existe(Texture_t* texture){
+	return(texture->t !=NULL);
+}
+
 /*! defini à null la structure Texture*/
 static Texture_t* Crea_Texture(){
 	Texture_t* Texture=malloc(sizeof(Texture_t));

@@ -60,37 +60,44 @@ static void affiche_Plato(int W,int H){
 //	unsigned int tempfin= SDL_GetTicks();
 //	double delta =0;
 	int i=0;
-	SDL_Rect * position;
-//	SDL_Rect * Pre_position=NULL;
+	SDL_Rect * position=NULL;
+	position=malloc(sizeof(SDL_Rect));
+	SDL_Rect * Pre_position=NULL;
+	Pre_position=malloc(sizeof(SDL_Rect));
 	palt_test();
-	printf("\n\n\t\tJe debug\n\n");
-//	Pre_position->x=0;
-//	Pre_position->y=0;
+	Pre_position->x=0;
+	Pre_position->y=0;
 	Tex_Tuile=Crea_Tex(NBTUILES);
 
 	for(int pos_x=0;pos_x<NBTUILES;pos_x++){
 		for(int pos_y =0;pos_y<NBTUILES ;pos_y++){
 			if(plateau[pos_x][pos_y] != NULL){
+				printf("Je charge une image à la position x= %d y= %d\n",pos_x,pos_y);
 				(Tex_Tuile->Table[i])->t = IMG_LoadTexture(renderer, plateau[pos_x][pos_y]->image);
-				if((Tex_Tuile->Table[i])->t==NULL){
+				printf("pose dans la table %d nom image-> %s\n",i,plateau[pos_x][pos_y]->image);
+				if(!texture_existe(Tex_Tuile->Table[i])){
 					fprintf ( stderr , " Erreur au niveau de l'image: %s \n " , TTF_GetError ());
 					exit ( EXIT_FAILURE );
 				}
 				position=lire_Rect(Tex_Tuile->Table[i],1);
-			//	if(i>0){
-			//		Pre_position=lire_Rect(Tex_Tuile->Table[i-1],1);
-			//		position->x=Pre_position->x+W/9;
-			//		position->y=Pre_position->x+H/9;
-			//	}
-			//	else{
+				if(i>0){
+					Pre_position=lire_Rect(Tex_Tuile->Table[i-1],1);
+					position->x=Pre_position->x+W/9;
+					position->y=Pre_position->x+H/9;
+				}
+				else{
 					position->x=W/2;
 					position->y=H/2;
-			//	}
-				//(Tex_Tuile->Table[i])->place2=position;
+				}
+				position->h=10;
+				position->w=10;
+				(Tex_Tuile->Table[i])->place2=position;
+				if((Tex_Tuile->Table[i])->place2==NULL){
+					printf("Non prise en charge de la taille de l'image et de ça position\n");
+					exit ( EXIT_FAILURE );
+				}
 				i++;
 			}
-			else
-				printf("\t\tPas d'image à la position: x=%d y=%d\n",pos_x,pos_y);
 		}
 	}
 	while(1){
@@ -110,9 +117,13 @@ static void affiche_Plato(int W,int H){
 			selecte_nb_joueur(W,H);
 		}
 		//pose du tableau
-		for(int i=1;i<Tex_Tuile->Taille;i++){
-			SDL_Rect * rect=lire_Rect(Tex_Tuile->Table[i],1);
-			SDL_RenderCopy(renderer,Tex_Tuile->Table[i]->t,NULL,rect);
+		for(int t=0;t<i;t++){
+			if(!texture_existe(Tex_Tuile->Table[t])){
+				printf("Un Problème dans la boucle\n");
+				exit ( EXIT_FAILURE );
+			}
+			position=lire_Rect(Tex_Tuile->Table[t],1);
+			SDL_RenderCopy(renderer,Tex_Tuile->Table[t]->t,NULL,position);
 		}
 		//présentation final
 		SDL_RenderPresent(renderer);

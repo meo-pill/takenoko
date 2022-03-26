@@ -38,5 +38,7 @@ extern SDL_Rect* lire_Rect(Texture_t* texture,int type_rect);
 /*! Acces a la création d'une table Texture */
 extern text_t* Crea_Tex(const int nb_text);
 
+/*! Regarde l'existance d'une texture*/
+extern int texture_existe(Texture_t* texture);
 
 #endif
