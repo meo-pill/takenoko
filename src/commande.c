@@ -31,4 +31,5 @@ extern quit_t evenment(SDL_Event event,SDL_Window* pWindow,int * fullscreen){
 			return CONT;
 			break;
 	 }
+	 return CONT;
 }

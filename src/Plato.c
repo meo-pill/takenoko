@@ -4,6 +4,9 @@
 #include "../lib/Creation.h"
 #include "../lib/menu.h"
 #include "../lib/commande.h"
+
+extern void selecte_nb_joueur(int W,int H);
+
 static void affiche_Plato(int W,int H){
 	if (SDL_Init(SDL_INIT_TIMER |SDL_INIT_VIDEO)== -1 ){
 		fprintf(stdout,"Échec de l'initialisation de la SDL (%s)\n",SDL_GetError());
@@ -24,7 +27,7 @@ static void affiche_Plato(int W,int H){
 	text_t* bouton=NULL;
 	text_t* Tex_Tuile=NULL;
 
-	SDL_Color Bleu = {3,0,103};
+	SDL_Color Bleu = {150,255,234};
 
 
 	int x=0,y=0;
@@ -39,8 +42,9 @@ static void affiche_Plato(int W,int H){
 
 	image=Crea_Tex(1);
 	bouton=Crea_Tex(2);
-	bouton->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"<-Retour",Bleu,W*1/3,10);
-	bouton->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"<-Retour",Bleu,W*1/3,10);
+
+	bouton->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton->Table[0],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,"<-Retour",Bleu,W*1/3,10);
+	bouton->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton->Table[1],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"<-Retour",Bleu,W*1/3,10);
 
 	if ((bouton->Table[0]) == NULL || bouton->Table[1]==NULL){
 		exit ( EXIT_FAILURE );
@@ -57,10 +61,11 @@ static void affiche_Plato(int W,int H){
 //	double delta =0;
 	int i=0;
 	SDL_Rect * position;
-	SDL_Rect * Pre_position=NULL;
+//	SDL_Rect * Pre_position=NULL;
 	palt_test();
-	Pre_position->x=0;
-	Pre_position->y=0;
+	printf("\n\n\t\tJe debug\n\n");
+//	Pre_position->x=0;
+//	Pre_position->y=0;
 	Tex_Tuile=Crea_Tex(NBTUILES);
 
 	for(int pos_x=0;pos_x<NBTUILES;pos_x++){
@@ -102,7 +107,7 @@ static void affiche_Plato(int W,int H){
 			IMG_Quit();
 			TTF_Quit();
 			SDL_Quit();
-			menu();
+			selecte_nb_joueur(W,H);
 		}
 		//pose du tableau
 		for(int i=1;i<Tex_Tuile->Taille;i++){
@@ -148,7 +153,7 @@ extern void selecte_nb_joueur(int W,int H){
 
 	SDL_Renderer *renderer=NULL;
 
-	SDL_Color Bleu = {3,0,103};
+	SDL_Color Bleu = {150,255,234};
 
 	char fond_Plato[]="image/en_plus/Fond_Plato.png";
 
@@ -172,19 +177,36 @@ extern void selecte_nb_joueur(int W,int H){
 	bouton1=Crea_Tex(2);
 	bouton2=Crea_Tex(2);
 	bouton3=Crea_Tex(2);
+	bouton4=Crea_Tex(2);
 
 
-	bouton1->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton1->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"2 Joueur",Bleu,W*1/2+(H*2/18),H*1/2);
-	bouton1->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton1->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Select 2 J",Bleu,W*1/2+(H*2/18),H*1/2);
+	bouton1->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton1->Table[0],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,"2 Joueur",Bleu,W*1/3,H*1/5);
+	bouton1->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton1->Table[1],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Select 2 J",Bleu,W*1/3,H*1/5);
+	if ( bouton1->Table[0]->t == NULL||bouton1->Table[1]->t == NULL ){
+		printf("\t\tJe n'arrive pas à charger bouton1\n");
+		exit ( EXIT_FAILURE );
+	}
 
-	bouton2->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton2->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"3 Jouer",Bleu,W*1/2,H*1/2);
-	bouton2->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton2->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Select 3 J",Bleu,W*1/2+(H*2/18),H*1/2);
+	bouton2->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton2->Table[0],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,"3 Jouer",Bleu,W*1/3,H*1/5+H*1/9);
+	bouton2->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton2->Table[1],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Select 3 J",Bleu,W*1/3,H*1/5+H*1/9);
+	if ( bouton2->Table[0]->t == NULL||bouton2->Table[1]->t == NULL ){
+		printf("\t\tJe n'arrive pas à charger bouton2\n");
+		exit ( EXIT_FAILURE );
+	}
 
-	bouton3->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton3->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"4 Joueur",Bleu,W*1/2,H*1/2);
-	bouton3->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton3->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Select 4 J",Bleu,W*1/2+(H*2/18),H*1/2);
+	bouton3->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton3->Table[0],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,"4 Joueur",Bleu,W*1/3,H*1/5+H*2/9);
+	bouton3->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton3->Table[1],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Select 4 J",Bleu,W*1/3,H*1/5+H*2/9);
+	if ( bouton3->Table[0]->t == NULL||bouton3->Table[1]->t == NULL ){
+		printf("\t\tJe n'arrive pas à charger bouton3\n");
+		exit ( EXIT_FAILURE );
+	}
 
-	bouton4->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton4->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"<-Retour",Bleu,W*1/2,H*1/2);
-	bouton4->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton4->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Select Menu",Bleu,W*1/2+(H*2/18),H*(1/2));
+	bouton4->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton4->Table[0],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,"<-Retour",Bleu,W*1/3,H*1/5+H*3/9);
+	bouton4->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton4->Table[1],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"~Retour vers Le Menu~",Bleu,W*1/9,H*1/5+H*3/9);
+	if ( bouton4->Table[0]->t == NULL||bouton4->Table[1]->t == NULL ){
+		printf("\t\tJe n'arrive pas à charger bouton4\n");
+		exit ( EXIT_FAILURE );
+	}
 
 	(*image->Table)->t = IMG_LoadTexture(renderer, fond_Plato);
 	if((*image->Table)->t==NULL){
@@ -199,6 +221,7 @@ extern void selecte_nb_joueur(int W,int H){
 			bouton1->det(bouton1);
 			bouton2->det(bouton2);
 			bouton3->det(bouton3);
+			bouton4->det(bouton4);
 			image->det(image);
 			if(NULL!=renderer)
 				SDL_DestroyRenderer(renderer);
@@ -214,6 +237,7 @@ extern void selecte_nb_joueur(int W,int H){
 			bouton1->det(bouton1);
 			bouton2->det(bouton2);
 			bouton3->det(bouton3);
+			bouton4->det(bouton4);
 			image->det(image);
 			if(NULL!=renderer)
 				SDL_DestroyRenderer(renderer);
@@ -229,6 +253,7 @@ extern void selecte_nb_joueur(int W,int H){
 			bouton1->det(bouton1);
 			bouton2->det(bouton2);
 			bouton3->det(bouton3);
+			bouton4->det(bouton4);
 			image->det(image);
 			if(NULL!=renderer)
 				SDL_DestroyRenderer(renderer);
@@ -239,6 +264,21 @@ extern void selecte_nb_joueur(int W,int H){
 			SDL_Quit();
 			initialiser(4);
 			affiche_Plato(W,H);
+		}
+		if(bout(renderer,bouton4,x,y) && Clic){
+			bouton1->det(bouton1);
+			bouton2->det(bouton2);
+			bouton3->det(bouton3);
+			bouton4->det(bouton4);
+			image->det(image);
+			if(NULL!=renderer)
+				SDL_DestroyRenderer(renderer);
+			if(NULL!=pWindow)
+				SDL_DestroyWindow(pWindow);
+			IMG_Quit();
+			TTF_Quit();
+			SDL_Quit();
+			menu();
 		}
 		//présentation final
 		SDL_RenderPresent(renderer);
