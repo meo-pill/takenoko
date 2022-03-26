@@ -19,7 +19,7 @@
  * @return int pour le retour d'erreur
  */
 static int debut_partie(int const * nb_joueur, int * maxpoint){
-    initaliser(*nb_joueur);
+    initialiser(*nb_joueur);
     /**
      * @brief établisement la variable du maxpoint en fonciton du nb de joueur
      * 

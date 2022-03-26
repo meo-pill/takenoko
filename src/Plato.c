@@ -1,11 +1,10 @@
 #include <unistd.h>
+#include "../lib/index.h"
 #include"../lib/aff_table.h"
 #include "../lib/Creation.h"
 #include "../lib/menu.h"
 #include "../lib/commande.h"
-
-
-void affiche_Plato(int W,int H){
+static void affiche_Plato(int W,int H){
 	if (SDL_Init(SDL_INIT_TIMER |SDL_INIT_VIDEO)== -1 ){
 		fprintf(stdout,"Échec de l'initialisation de la SDL (%s)\n",SDL_GetError());
 		exit(EXIT_FAILURE );
@@ -18,13 +17,14 @@ void affiche_Plato(int W,int H){
 	SDL_Window* pWindow = NULL; //pointeur sur la fenêtre invisible
 
 	SDL_Renderer *renderer=NULL;
+
 	char fond_Plato[]="image/en_plus/Fond_Plato.png";
 
 	text_t* image=NULL;
 	text_t* bouton=NULL;
 	text_t* Tex_Tuile=NULL;
 
-	SDL_Color Noir = {0 , 0 , 0};
+	SDL_Color Bleu = {3,0,103};
 
 
 	int x=0,y=0;
@@ -39,8 +39,8 @@ void affiche_Plato(int W,int H){
 
 	image=Crea_Tex(1);
 	bouton=Crea_Tex(2);
-	bouton->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"<-Retour",Noir,W*1/3,10);
-	bouton->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"<-Retour",Noir,W*1/3,10);
+	bouton->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"<-Retour",Bleu,W*1/3,10);
+	bouton->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"<-Retour",Bleu,W*1/3,10);
 
 	if ((bouton->Table[0]) == NULL || bouton->Table[1]==NULL){
 		exit ( EXIT_FAILURE );
@@ -132,3 +132,136 @@ void affiche_Plato(int W,int H){
 	}
 
 }
+
+extern void selecte_nb_joueur(int W,int H){
+	if (SDL_Init(SDL_INIT_TIMER |SDL_INIT_VIDEO)== -1 ){
+		fprintf(stdout,"Échec de l'initialisation de la SDL (%s)\n",SDL_GetError());
+		exit(EXIT_FAILURE );
+	}
+	if ( TTF_Init () == -1) {
+		fprintf ( stderr , " Erreur d ’ i nitialis ation de TTF_Init : %s \n " , TTF_GetError ());
+		exit ( EXIT_FAILURE );
+	}
+	IMG_Init(IMG_INIT_PNG);
+	SDL_Event event;//permet de voir les evenement sur la fenêtre
+	SDL_Window* pWindow = NULL; //pointeur sur la fenêtre invisible
+
+	SDL_Renderer *renderer=NULL;
+
+	SDL_Color Bleu = {3,0,103};
+
+	char fond_Plato[]="image/en_plus/Fond_Plato.png";
+
+	text_t* image=NULL;
+	text_t* bouton1=NULL;
+	text_t* bouton2=NULL;
+	text_t* bouton3=NULL;
+	text_t* bouton4=NULL;
+
+	int x,y;
+	int fullscreen=0;
+
+	pWindow = SDL_CreateWindow("Takenoko",SDL_WINDOWPOS_UNDEFINED,
+											SDL_WINDOWPOS_UNDEFINED,
+											W,
+											H,
+											SDL_WINDOW_SHOWN |SDL_WINDOW_RESIZABLE);
+	renderer = SDL_CreateRenderer(pWindow,-1,SDL_RENDERER_ACCELERATED); // Création d'un SDL_Renderer utilisant l'accélération matérielle
+
+	image=Crea_Tex(1);
+	bouton1=Crea_Tex(2);
+	bouton2=Crea_Tex(2);
+	bouton3=Crea_Tex(2);
+
+
+	bouton1->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton1->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"2 Joueur",Bleu,W*1/2+(H*2/18),H*1/2);
+	bouton1->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton1->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Select 2 J",Bleu,W*1/2+(H*2/18),H*1/2);
+
+	bouton2->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton2->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"3 Jouer",Bleu,W*1/2,H*1/2);
+	bouton2->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton2->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Select 3 J",Bleu,W*1/2+(H*2/18),H*1/2);
+
+	bouton3->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton3->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"4 Joueur",Bleu,W*1/2,H*1/2);
+	bouton3->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton3->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Select 4 J",Bleu,W*1/2+(H*2/18),H*1/2);
+
+	bouton4->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton4->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"<-Retour",Bleu,W*1/2,H*1/2);
+	bouton4->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton4->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Select Menu",Bleu,W*1/2+(H*2/18),H*(1/2));
+
+	(*image->Table)->t = IMG_LoadTexture(renderer, fond_Plato);
+	if((*image->Table)->t==NULL){
+		fprintf ( stderr , " Erreur au niveau de l'image: %s \n " , TTF_GetError ());
+		exit ( EXIT_FAILURE );
+	}
+	while(1){
+		Uint32 Clic = SDL_GetMouseState(&x,&y);
+		//création de la "fenêtre ou nous verons une partie de l'image
+		SDL_RenderCopy(renderer,(*image->Table)->t,NULL,NULL);
+		if(bout(renderer,bouton1,x,y) && Clic){
+			bouton1->det(bouton1);
+			bouton2->det(bouton2);
+			bouton3->det(bouton3);
+			image->det(image);
+			if(NULL!=renderer)
+				SDL_DestroyRenderer(renderer);
+			if(NULL!=pWindow)
+				SDL_DestroyWindow(pWindow);
+			IMG_Quit();
+			TTF_Quit();
+			SDL_Quit();
+			initialiser(2);
+			affiche_Plato(W,H);
+		}
+		if(bout(renderer,bouton2,x,y) && Clic){
+			bouton1->det(bouton1);
+			bouton2->det(bouton2);
+			bouton3->det(bouton3);
+			image->det(image);
+			if(NULL!=renderer)
+				SDL_DestroyRenderer(renderer);
+			if(NULL!=pWindow)
+				SDL_DestroyWindow(pWindow);
+			IMG_Quit();
+			TTF_Quit();
+			SDL_Quit();
+			initialiser(3);
+			affiche_Plato(W,H);
+		}
+		if(bout(renderer,bouton3,x,y) && Clic){
+			bouton1->det(bouton1);
+			bouton2->det(bouton2);
+			bouton3->det(bouton3);
+			image->det(image);
+			if(NULL!=renderer)
+				SDL_DestroyRenderer(renderer);
+			if(NULL!=pWindow)
+				SDL_DestroyWindow(pWindow);
+			IMG_Quit();
+			TTF_Quit();
+			SDL_Quit();
+			initialiser(4);
+			affiche_Plato(W,H);
+		}
+		//présentation final
+		SDL_RenderPresent(renderer);
+		if(SDL_PollEvent(&event)){
+			if(evenment(event,pWindow,&fullscreen)==QUIT){
+				if(fullscreen==1){
+					SDL_SetWindowFullscreen(pWindow,0);
+				}
+				bouton1->det(bouton1);
+				bouton2->det(bouton2);
+				bouton3->det(bouton3);
+				image->det(image);
+				if(NULL!=renderer)
+					SDL_DestroyRenderer(renderer);
+				if(NULL!=pWindow)
+					SDL_DestroyWindow(pWindow);
+				IMG_Quit();
+				TTF_Quit();
+				SDL_Quit();
+				exit(EXIT_SUCCESS);
+			}
+		}
+	}
+
+}
+

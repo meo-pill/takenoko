@@ -1,8 +1,8 @@
-//#include "../lib/index.h"
 #include "../lib/Creation.h"
 #include "../lib/commande.h"
 //#include "../lib/Option.h"
 #include "../lib/Plato.h"
+
 void menu(){
 	if (SDL_Init(SDL_INIT_TIMER |SDL_INIT_VIDEO)== -1 ){
 		fprintf(stdout,"Échec de l'initialisation de la SDL (%s)\n",SDL_GetError());
@@ -156,8 +156,7 @@ void menu(){
 			IMG_Quit();
 			TTF_Quit();
 			SDL_Quit();
-			initialiser(1);
-			affiche_Plato(Width,Height);
+			selecte_nb_joueur(Width,Height);
 		}
 		if(bout(renderer,bouton2,x,y)==1 && Clic==1){
 			if(NULL!=renderer)
@@ -194,7 +193,6 @@ void menu(){
 			TTF_Quit();
 			SDL_Quit();
 			exit(EXIT_SUCCESS);
-	//affiche_option(Width,Height);
 		}
 
 		//présentation final

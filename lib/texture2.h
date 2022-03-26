@@ -1,8 +1,10 @@
 #ifndef _TEXTURE_H_
 #define _TEXTURE_H_
 #include "bibl_SDL.h"
-/*! \file texture.h
-  \brief Permet de gérer la table de texture
+/*!
+ * \author Morgane Pechon
+ * \file texture.h
+ * \brief Permet de gérer la table de texture
 */
 
 /*!
@@ -30,7 +32,7 @@ typedef struct text_s{
 	Texture_t ** Table;
 	int Taille;
 }text_t;
-
+/*! Lecture d'un rectangle */
 extern SDL_Rect* lire_Rect(Texture_t* texture,int type_rect);
 
 /*! Acces a la création d'une table Texture */
