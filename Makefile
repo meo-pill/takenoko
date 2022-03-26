@@ -92,6 +92,6 @@ LE:
 MA:
 	git push origin max
 MO:
-	git push origin fortuna
+	git push origin Morgane
 TEST:
 	echo > $@
