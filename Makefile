@@ -9,15 +9,20 @@ SDL_LIB_DIR=${SDL_DIR}/lib
 SDL_INC_DIR=${SDL_DIR}/include
 LIBS=-L${SDL_LIB_DIR} -lSDL2 -lSDL2_image -lSDL2_ttf
 INCS=-I${SDL_INC_DIR}
+
 PROG=Takenoko
+
 OBJ=object/Plato.o object/menu.o object/aff_table.o object/CREA.o object/texture.o object/carte.o object/file.o object/init_fin.o object/commande.o
 LIB=lib/menu.h lib/texture2.h lib/Creation.h  lib/Plato.h #lib/Option.hi
+TEST= bin/carte_test bin/creation_carte_test bin/plateau_test bin/sdl_test bin/test_affichage_Plato bin/test_fct bin/test_init bin/test_rand bin/test_shuffle bin/test
+
 
 LIEN= ${PWD}/lib/SDL2/lib
 DATE=$(shell date +%Y-%m-%d)
 
-cache:all
-all:clean ${PROG} laugth
+cache:ProgFinal
+all: mr_proper ${PROG} ${TEST}
+ProgFinal:clean ${PROG} laugth
 
 #Compilation du programme final
 ${PROG}: ${OBJ} ${LIB}
@@ -72,6 +77,9 @@ clean:
 	clear
 	rm -r -f ${PROG}
 	rm  -f object/*.o
+mr_proper:
+	make clean
+	rm -r -f ${TEST}
 
 #lancement du programme
 laugth:
@@ -86,10 +94,19 @@ ADD:
 COM:
 	git commit -m '${USER} ${DATE}  mise à jour'
 ME:
+	make clean
+	make ADD
+	make COM
 	git push origin meo
 LE:
+	make clean
+	make ADD
+	make COM
 	git push origin leopolde
 MA:
+	make clean
+	make ADD
+	make COM
 	git push origin max
 MO:
 	make clean
