@@ -1,6 +1,8 @@
 
 #ifndef _H_PLATO_INCLUDED
 #define _H_PLATO__INCLUDED
+#include "Creation.h"
+#include "commande.h"
 /*!
  * \author Morgane Pechon
  * \file Plato.h

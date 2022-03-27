@@ -1,11 +1,9 @@
 #include <unistd.h>
 #include "../lib/index.h"
 #include"../lib/aff_table.h"
-#include "../lib/Creation.h"
 #include "../lib/menu.h"
-#include "../lib/commande.h"
+#include "../lib/Plato.h"
 
-extern void selecte_nb_joueur(int W,int H);
 
 static void affiche_Plato(int W,int H){
 	if (SDL_Init(SDL_INIT_TIMER |SDL_INIT_VIDEO)== -1 ){
@@ -22,12 +20,16 @@ static void affiche_Plato(int W,int H){
 	SDL_Renderer *renderer=NULL;
 
 	char fond_Plato[]="image/en_plus/Fond_Plato.png";
+	char contour_tuile[]="image/case/SelectCase.png";
 
 	text_t* image=NULL;
 	text_t* bouton=NULL;
-	text_t* Tex_Tuile=NULL;
+	text_t** hexagonal=NULL;
+	hexagonal=malloc(sizeof(text_t*));
 
 	SDL_Color Bleu = {150,255,234};
+	
+	int TAILTUILE=H/27;
 
 
 	int x=0,y=0;
@@ -52,54 +54,31 @@ static void affiche_Plato(int W,int H){
 	IMG_Init(IMG_INIT_PNG);
 
 	(*image->Table)->t = IMG_LoadTexture(renderer, fond_Plato);
+	palt_test();
 	if((*image->Table)->t==NULL){
 		fprintf ( stderr , " Erreur au niveau de l'image: %s \n " , TTF_GetError ());
 		exit ( EXIT_FAILURE );
 	}
-//	unsigned int tempdeb= SDL_GetTicks();
-//	unsigned int tempfin= SDL_GetTicks();
-//	double delta =0;
-	int i=0;
-	SDL_Rect * position=NULL;
-	position=malloc(sizeof(SDL_Rect));
-	SDL_Rect * Pre_position=NULL;
-	Pre_position=malloc(sizeof(SDL_Rect));
-	palt_test();
-	Pre_position->x=0;
-	Pre_position->y=0;
-	Tex_Tuile=Crea_Tex(NBTUILES);
-
-	for(int pos_x=0;pos_x<NBTUILES;pos_x++){
-		for(int pos_y =0;pos_y<NBTUILES ;pos_y++){
-			if(plateau[pos_x][pos_y] != NULL){
-				printf("Je charge une image à la position x= %d y= %d\n",pos_x,pos_y);
-				(Tex_Tuile->Table[i])->t = IMG_LoadTexture(renderer, plateau[pos_x][pos_y]->image);
-				printf("pose dans la table %d nom image-> %s\n",i,plateau[pos_x][pos_y]->image);
-				if(!texture_existe(Tex_Tuile->Table[i])){
+		for(int pos_y=0;pos_y<NBTUILES;pos_y++){
+			hexagonal[pos_y]=Crea_Tex(NBTUILES);
+			for(int pos_x=0;pos_x<NBTUILES;pos_x++){
+				if(plateau[pos_x][pos_y]!=NULL)
+					(hexagonal[pos_y]->Table[pos_x])->t= IMG_LoadTexture(renderer, plateau[pos_x][pos_y]->image);
+				else
+					(hexagonal[pos_y]->Table[pos_x])->t = IMG_LoadTexture(renderer, contour_tuile);
+				if((hexagonal[pos_y]->Table[pos_x])->t==NULL){
 					fprintf ( stderr , " Erreur au niveau de l'image: %s \n " , TTF_GetError ());
 					exit ( EXIT_FAILURE );
 				}
-				position=lire_Rect(Tex_Tuile->Table[i],1);
-				if(i>0){
-					Pre_position=lire_Rect(Tex_Tuile->Table[i-1],1);
-					position->x=Pre_position->x+W/9;
-					position->y=Pre_position->x+H/9;
-				}
-				else{
-					position->x=W/2;
-					position->y=H/2;
-				}
-				position->h=10;
-				position->w=10;
-				(Tex_Tuile->Table[i])->place2=position;
-				if((Tex_Tuile->Table[i])->place2==NULL){
-					printf("Non prise en charge de la taille de l'image et de ça position\n");
-					exit ( EXIT_FAILURE );
-				}
-				i++;
+				if(pos_y%2!=0)
+					positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),(TAILTUILE)*pos_x+(TAILTUILE/2),((TAILTUILE)*pos_y)*3/4+W/18,TAILTUILE,TAILTUILE);
+				else
+					positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),(TAILTUILE)*pos_x,((TAILTUILE)*pos_y)*3/4+W/18,TAILTUILE,TAILTUILE);
 			}
 		}
-	}
+
+	SDL_Rect* anime=NULL;
+
 	while(1){
 		Uint32 Clic = SDL_GetMouseState(&x,&y);
 		//création de la "fenêtre ou nous verons une partie de l'image
@@ -107,6 +86,10 @@ static void affiche_Plato(int W,int H){
 		if(bout(renderer,bouton,x,y) && Clic){
 			bouton->det(bouton);
 			image->det(image);
+			for(int pos_y=0;pos_y<NBTUILES;pos_y++){
+				hexagonal[pos_y]->det(hexagonal[pos_y]);
+			}
+			//suppression_tuile();
 			if(NULL!=renderer)
 				SDL_DestroyRenderer(renderer);
 			if(NULL!=pWindow)
@@ -117,13 +100,19 @@ static void affiche_Plato(int W,int H){
 			selecte_nb_joueur(W,H);
 		}
 		//pose du tableau
-		for(int t=0;t<i;t++){
-			if(!texture_existe(Tex_Tuile->Table[t])){
-				printf("Un Problème dans la boucle\n");
-				exit ( EXIT_FAILURE );
+		if(Clic)
+			positionne_rect(anime,x,y,TAILTUILE,TAILTUILE);
+		for(int pos_y=0;pos_y<NBTUILES;pos_y++){
+			for(int pos_x=0;pos_x<NBTUILES;pos_x++){
+				if(pos_y%2!=0)
+					positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),(TAILTUILE)*pos_x+(TAILTUILE/2),((TAILTUILE)*pos_y)*3/4+W/18,TAILTUILE,TAILTUILE);
+				else
+					positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),(TAILTUILE)*pos_x,((TAILTUILE)*pos_y)*3/4+W/18,TAILTUILE,TAILTUILE);
+				if(anime!=NULL)
+					SDL_RenderCopy(renderer,lire_Texture(hexagonal[pos_y]->Table[pos_x]),anime,lire_Rect((hexagonal[pos_y]->Table[pos_x]),1));
+				else
+					SDL_RenderCopy(renderer,lire_Texture(hexagonal[pos_y]->Table[pos_x]),NULL,lire_Rect((hexagonal[pos_y]->Table[pos_x]),1));
 			}
-			position=lire_Rect(Tex_Tuile->Table[t],1);
-			SDL_RenderCopy(renderer,Tex_Tuile->Table[t]->t,NULL,position);
 		}
 		//présentation final
 		SDL_RenderPresent(renderer);
@@ -132,12 +121,15 @@ static void affiche_Plato(int W,int H){
 				if(fullscreen==1){
 					SDL_SetWindowFullscreen(pWindow,0);
 				}
-				Tex_Tuile->det(Tex_Tuile);
 				bouton->det(bouton);
 				image->det(image);
-				if(NULL!=renderer)
+				for(int pos_y=0;pos_y<NBTUILES;pos_y++){
+					hexagonal[pos_y]->det(hexagonal[pos_y]);
+				}
+				//suppression_tuile();
+				if(renderer!=NULL)
 					SDL_DestroyRenderer(renderer);
-				if(NULL!=pWindow)
+				if(pWindow!=NULL)
 					SDL_DestroyWindow(pWindow);
 				IMG_Quit();
 				TTF_Quit();

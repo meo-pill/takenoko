@@ -10,8 +10,6 @@ extern int palt_test(){
     retirer(&tuile);
     plateau[LACPOS][LACPOS-1] = tuile;
     retirer(&tuile);
-    plateau[LACPOS][LACPOS] = tuile;
-    retirer(&tuile);
     plateau[LACPOS][LACPOS+1] = tuile;
     retirer(&tuile);
     plateau[LACPOS-1][LACPOS-1] = tuile;
@@ -22,5 +20,4 @@ extern int palt_test(){
     return 9;
 
 }
-
 

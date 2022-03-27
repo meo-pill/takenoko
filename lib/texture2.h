@@ -35,8 +35,17 @@ typedef struct text_s{
 /*! Lecture d'un rectangle */
 extern SDL_Rect* lire_Rect(Texture_t* texture,int type_rect);
 
+/*! Permet de lire la texture*/
+extern SDL_Texture* lire_Texture(Texture_t* texture);
+
+/*! Permet de copier les valeur d'un rectangle*/
+extern void copie_rect(SDL_Rect* rect_cible,const SDL_Rect* rect_source);
+
 /*! Acces a la création d'une table Texture */
 extern text_t* Crea_Tex(const int nb_text);
+
+/*! Permet de deffinir un rectangle*/
+extern void positionne_rect(SDL_Rect* rect,const int x,const int y,const int h,const int w);
 
 /*! Regarde l'existance d'une texture*/
 extern int texture_existe(Texture_t* texture);

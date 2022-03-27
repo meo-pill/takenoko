@@ -1,5 +1,3 @@
-#include "../lib/Creation.h"
-#include "../lib/commande.h"
 //#include "../lib/Option.h"
 #include "../lib/Plato.h"
 
@@ -113,8 +111,6 @@ void menu(){
 	}
 	int x=0,y=0;
 
-	SDL_Rect* anim= lire_Rect(image->Table[1],0);
-	SDL_Rect* crop = lire_Rect(image->Table[1],1);
 	//boucle des evenments permet defaire diférente action sur la fenêtre
 	while (1) {
 		//permet de savoir où et si on clique avec la souri
@@ -126,18 +122,12 @@ void menu(){
 		Uint32 sprite = seconds % 4;
 		//création de la "fenêtre ou nous verons une partie de l'image
 		//animation
-		anim->x=sprite*120;
-		anim->y=0;
-		anim->w=120;
-		anim->h=100;
+		positionne_rect(lire_Rect(image->Table[1],0),sprite*120,0,100,120);
 		//crop
-		crop->x=Width/10;
-		crop->y=Height/100;
-		crop->w=120;
-		crop->h=100;
+		positionne_rect(lire_Rect(image->Table[1],1),Width/10,Height/100,100,120);
 		/** on affiche les image*/
 		SDL_RenderCopy(renderer,(image->Table[0])->t,NULL,NULL);
-		SDL_RenderCopy(renderer,(image->Table[1])->t,anim,crop);
+		SDL_RenderCopy(renderer,(image->Table[1])->t,lire_Rect(image->Table[1],0),lire_Rect(image->Table[1],1));
 		/** titre*/
 		SDL_RenderCopy(renderer,(*titre->Table)->t,NULL,(*titre->Table)->place2);
 		/**on gère les boutons*/
