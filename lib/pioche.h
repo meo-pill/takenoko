@@ -1,4 +1,5 @@
 #include "../lib/index.h"
 
 extern int pioche_une_case (void);
-extern carte_t * pioche_carte (int type);
+
+extern void joueur_pioche_carte(joueur_t * joueur, int type);
