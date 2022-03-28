@@ -1,5 +1,5 @@
 #include "fonction.h"
-#include "pose.c"
+#include "pose.h"
 
 
 /**********************
@@ -126,75 +126,62 @@ void retire_irrigation_stock ( joueur_t * Joueur){
 
 /*   ajout au plateau */
 
-/**
- * @brief Vérifie qu'on peu poser une case : case vide +	| - 2 case non vide adjasante
- *                                                        | - bassin 
- * @author MAXIME
- * @param x position x voulue pour poser
- * @param y position y voulue pour poser
- * @return int
- * retour d'un booléen de validaiton
- * 0 le déplacement n'est pas valide
- * 1 le déplacement est valide
- */
-int verif_pose_case( int const x, int const y){
-  
-  if (case_existe(x, y))
-    return 0;
 
-  if (case_existe(x, y+1) && plateau[x][y+1]-> Eff == debut)		/* case à droite et gauche : départ */
-    return 1;
-  if (case_existe(x, y-1) && plateau[x][y-1]-> Eff == debut )
-    return 1;
-  
-  if (case_existe(x+1, y) && plateau[x+1][y]-> Eff == debut)		/* case en haut-droite et bas-gauche : départ */
-    return 1;
-  if (case_existe(x-1, y) && plateau[x-1][y]-> Eff == debut)
-    return 1;
-  
-  if (case_existe(x-1, y-1) && plateau[x-1][y-1]-> Eff == debut)	/* case en haut-gauche et bas-droite : départ */
-    return 1;
-  if (case_existe(x+1, y+1) && plateau[x+1][y+1]-> Eff == debut)
-    return 1;
-  
-  int nb_case_autour = 0;
-  
-  if (case_existe(x+1, y))		/* case à droite et gauche : en cour de partie */
-    nb_case_autour ++;
-  if (case_existe(x-1, y))
-    nb_case_autour ++;
-  
-  if (case_existe(x, y-1))		/* case en haut-droite et bas-gauche : en cour de partie */
-    nb_case_autour ++;
-  if (case_existe(x, y+1))
-    nb_case_autour ++;
-    
-  if (case_existe(x-1, y-1))		/* case en haut-gauche et bas-droite : en cour de partie */
-    nb_case_autour ++;
-  if (case_existe(x+1, y+1))
-    nb_case_autour ++;
-  
-  if (nb_case_autour > 1)
-    return 1;
-  else
-    return 0;
-}
+///**
+// * @brief Vérifie qu'on peu poser une case : case vide +  | - 2 case non vide adjasante
+// *                                                        | - bassin 
+// * @author MAXIME
+// * @param x position x voulue pour poser
+// * @param y position y voulue pour poser
+// * @return int
+// * retour d'un booléen de validaiton
+// * 0 le déplacement n'est pas valide
+// * 1 le déplacement est valide
+// */
+//int verif_pose_case( int const x, int const y){
+//  
+//  if (case_existe(x, y))
+//    return 0;
+//
+//  if (case_existe(x, y+1) && plateau[x][y+1]-> Eff == debut)		/* case à droite et gauche : départ */
+//    return 1;
+//  if (case_existe(x, y-1) && plateau[x][y-1]-> Eff == debut )
+//    return 1;
+//  
+//  if (case_existe(x+1, y) && plateau[x+1][y]-> Eff == debut)		/* case en haut-droite et bas-gauche : départ */
+//    return 1;
+//  if (case_existe(x-1, y) && plateau[x-1][y]-> Eff == debut)
+//    return 1;
+//  
+//  if (case_existe(x-1, y-1) && plateau[x-1][y-1]-> Eff == debut)	/* case en haut-gauche et bas-droite : départ */
+//    return 1;
+//  if (case_existe(x+1, y+1) && plateau[x+1][y+1]-> Eff == debut)
+//    return 1;
+//  
+//  int nb_case_autour = 0;
+//  
+//  if (case_existe(x+1, y))		/* case à droite et gauche : en cour de partie */
+//    nb_case_autour ++;
+//  if (case_existe(x-1, y))
+//    nb_case_autour ++;
+//  
+//  if (case_existe(x, y-1))		/* case en haut-droite et bas-gauche : en cour de partie */
+//    nb_case_autour ++;
+//  if (case_existe(x, y+1))
+//    nb_case_autour ++;
+//    
+//  if (case_existe(x-1, y-1))		/* case en haut-gauche et bas-droite : en cour de partie */
+//    nb_case_autour ++;
+//  if (case_existe(x+1, y+1))
+//    nb_case_autour ++;
+//  
+//  if (nb_case_autour > 1)
+//    return 1;
+//  else
+//    return 0;
+//}
 
-/**
- * @brief ajoute au plateau une case sélectionner
- * @author MAXIME
- * @param case_a la case à atribuer aux coordonnées du tableau
- * @param x position x voulue pour poser
- * @param y position y voulue pour poser
- */
-void ajout_case_plato ( case_plato_t * case_a, int const x, int const y){
-  if (verif_pose_case( x, y)){
-    plateau[x][y] = case_a;
-	  
-  }
-  else
-    printf(" erreur pour poser une case \n");
-}
+
 
 /**
  * @brief ajoute a la case du plateau sélectionner l'atribue irriguer( 1 ) et lui donne un bambou
@@ -282,7 +269,7 @@ fonction à finir et à tester
 
 /* * choix pour 1 joueur */
 
-void choixactionduJ ( joueur_t * Joueur, char const meteo){}
+void choixactionduJ ( joueur_t * Joueur, char const meteo, choixJ_E memaction[2]){}
 
 
 void pioche_objetif ( joueur_t * Joueur){}

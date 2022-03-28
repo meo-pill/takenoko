@@ -1,3 +1,3 @@
 #include "../lib/index.h"
 
-void pioche_une_case ();
+extern int pioche_une_case (void);

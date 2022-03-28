@@ -3,31 +3,33 @@
 extern quit_t evenment(SDL_Event event,SDL_Window* pWindow,int * fullscreen){
 	 switch(event.type){
 		case SDL_QUIT:
-	printf("coucou\n");
 			if(*fullscreen==1)
 				SDL_SetWindowFullscreen(pWindow,0);
 			return QUIT;
+			break;
 		case SDL_KEYUP:
 			switch(event.key.keysym.sym){
 				case SDLK_q:
-	printf("coucou\n");
 					if(*fullscreen==1){
 						SDL_SetWindowFullscreen(pWindow,0);
 					}
 					return QUIT;
+					break;
 				case SDLK_F11:
 				 	if(*fullscreen==0){
 						SDL_SetWindowFullscreen(pWindow,SDL_WINDOW_FULLSCREEN);
-						*fullscreen++;
+						*fullscreen=1;
 					 }
 					else{
 						SDL_SetWindowFullscreen(pWindow,0);
-						*fullscreen--;
+						*fullscreen=0;
 					}
-				     	break;
+					break;
 			}
 			break;
 		default:
 			return CONT;
+			break;
 	 }
+	 return CONT;
 }
