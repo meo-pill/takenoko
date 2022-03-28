@@ -12,7 +12,7 @@ INCS=-I${SDL_INC_DIR}
 
 PROG=Takenoko
 
-OBJ=object/Plato.o object/menu.o object/aff_table.o object/CREA.o object/texture.o object/carte.o object/file.o object/init_fin.o object/commande.o
+OBJ=object/file.o object/init_fin.o object/tour.o object/carte.o object/commande.o object/texture.o object/CREA.o object/Plato.o object/menu.o
 LIB=lib/menu.h lib/texture2.h lib/Creation.h  lib/Plato.h #lib/Option.hi
 TEST= bin/carte_test bin/creation_carte_test bin/plateau_test bin/sdl_test bin/test_affichage_Plato bin/test_fct bin/test_init bin/test_rand bin/test_shuffle bin/test
 

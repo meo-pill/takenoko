@@ -44,7 +44,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 
 	
 	int TAILTUILE=200;
-
+	int debug=0;
 
 	int x=0,y=0;
 	int fullscreen=0;
@@ -71,20 +71,37 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	Orage=Crea_Tex(2);
 	Nuage=Crea_Tex(2);
 
+	printf("%d\n",debug++);
 	Soleil->Table[0]->t=Creation_Text(renderer,lire_Rect(Soleil->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"Soleil",Bleu,10,H*3/8);
 	Soleil->Table[1]->t=Creation_Text(renderer,lire_Rect(Soleil->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"Soleil",Bleu,10,H*3/8);
+	printf("%d\n",debug++);
+
 
 	Pluie->Table[0]->t=Creation_Text(renderer,lire_Rect(Pluie->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"pluie",Bleu,10,H*4/8);
 	Pluie->Table[1]->t=Creation_Text(renderer,lire_Rect(Pluie->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"pluie",Bleu,10,H*4/8);
+	printf("%d\n",debug++);
 
 	Vent->Table[0]->t=Creation_Text(renderer,lire_Rect(Vent->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"vent",Bleu,10,H*5/8);
 	Vent->Table[1]->t=Creation_Text(renderer,lire_Rect(Vent->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"vent",Bleu,10,H*5/8);
+	printf("%d\n",debug++);
 
 	Orage->Table[0]->t=Creation_Text(renderer,lire_Rect(Orage->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"orage",Bleu,10,H*6/8);
 	Orage->Table[1]->t=Creation_Text(renderer,lire_Rect(Orage->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"orage",Bleu,10,H*6/8);
+	printf("%d\n",debug++);
 
 	Nuage->Table[0]->t=Creation_Text(renderer,lire_Rect(Nuage->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"nuage",Bleu,10,H*7/8);
 	Nuage->Table[1]->t=Creation_Text(renderer,lire_Rect(Nuage->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"nuage",Bleu,10,H*7/8);
+	printf("%d\n",debug++);
+
+	if ((Soleil->Table[0]) == NULL || Soleil->Table[1]==NULL ||
+			(Pluie->Table[0]) == NULL || Pluie->Table[1]==NULL ||
+			(Vent->Table[0]) == NULL || Vent->Table[1]==NULL ||
+			(Orage->Table[0]) == NULL || Orage->Table[1]==NULL ||
+			(Nuage->Table[0]) == NULL || Nuage->Table[1]==NULL ){
+		fprintf(stderr , " Erreur au niveau du Texte %s\n",TTF_GetError ());
+		exit ( EXIT_FAILURE );
+	}
+	printf("%d\n",debug++);
 
 	IMG_Init(IMG_INIT_PNG);
 
@@ -123,8 +140,11 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 
 	int new_x=0,new_y=0,dif_x,dif_y;
 	int victoirJ=0,compteur_tour=0,limit_action=2;
+	effDes_E meteo;
+	printf("%d\n",debug++);
 
 	while(1){
+	printf("while 1 %d\n",debug++);
 		Uint32 Clic = SDL_GetMouseState(&x,&y);
 		//création de la "fenêtre ou nous verons une partie de l'image
 		SDL_RenderCopy(renderer,(*image->Table)->t,NULL,NULL);
@@ -152,8 +172,9 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 //		}
 //		valida
 
-		if(!victoirJ && compteur_tour==0){
-			effet_E meteo=lancer_meteo();
+		if(!(victoirJ && compteur_tour==0)){
+	printf("while 2 %d\n",debug++);
+			meteo=rand()%6;
 			int modif_Pos=0;
 			choix : switch (meteo){
 					case soleil :
@@ -175,7 +196,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 						SDL_RenderCopy(renderer,lire_Texture(Nuage->Table[1]),NULL,lire_Rect(Nuage->Table[1],1));
 						//choix_amenagement(J[i]);
 						break;
-					case choixJ :
+					default:
 						if(bout(renderer,Soleil,x,y) && Clic)
 							meteo=soleil;
 						else if (bout(renderer,Pluie,x,y) && Clic)
@@ -223,13 +244,14 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 					SDL_RenderCopy(renderer,lire_Texture(hexagonal[pos_y]->Table[pos_x]),NULL,lire_Rect((hexagonal[pos_y]->Table[pos_x]),1));
 				}
 			}
-			if(victoire_joueur(J[compteur_tour],maxpoint))
-				victoirJ=1;
+		//	if(victoire_joueur(J[compteur_tour],maxpoint))
+		//		victoirJ=1;
 
 			compteur_tour= (compteur_tour+1)%nbJoueur;
 		}
 		//présentation final
 		SDL_RenderPresent(renderer);
+	printf("while 3 %d\n",debug++);
 		if(SDL_PollEvent(&event)){
 			if(evenment(event,pWindow,&fullscreen)==QUIT){
 				if(fullscreen==1){

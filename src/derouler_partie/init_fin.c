@@ -146,7 +146,7 @@ static void creation_joueur(int const nb_joueur){
         J[i] = malloc(sizeof(joueur_t));
         J[i]->nom_joueur=NomJ(i+1);
         for(j=0;j<3;j++){
-        	inserer_carte(J[i]->main_J[j]);
+        	//inserer_carte(J[i]->main_J[j]);
         	J[i]->bambou[j]=0;
         	J[i]->effSpe[j]=0;
         }
@@ -189,7 +189,7 @@ static void init_irigation(void){
     }
 }
 
-int extraction_fichier_carte(){
+extern int extraction_fichier_carte(){
     int nb_panda = 0;
     int nb_parc = 0;
     int nb_jard = 0;
@@ -265,7 +265,7 @@ int extraction_fichier_carte(){
  * @brief fonction d'apelle pour l'initialisation de la partie
  * Mewen / Leo
  */
-extern void initialiser(int const nb_joueur){
+static void initialiser(int const nb_joueur){
     initfile();
     if (extraction_fichier_tuile()){
         printf("ereur d'ouverture fichier tuile\n");
@@ -280,6 +280,37 @@ extern void initialiser(int const nb_joueur){
     creation_joueur(nb_joueur);
     init_irigation();
 }
+
+/**
+ * @brief premier fonction d'inisialisaiton pour donner une valeur au varible
+ * et faire appelle a la fonction d'inisialisation des tuile et carte
+ * 
+ * @param nb_joueur atribution du nombre de joueur
+ * @param maxpoint atribution du nombre de carte a valider en conséquence
+ * @return int pour le retour d'erreur
+ */
+extern int debut_partie(int const  nb_joueur, int * maxpoint){
+    initialiser(nb_joueur);
+    /**
+     * @brief établisement la variable du maxpoint en fonciton du nb de joueur
+     * 
+     */
+    switch (nb_joueur){
+    case 2:
+        *maxpoint = MAXNB2J;
+        break;
+    case 3:
+        *maxpoint = MAXNB3J;
+        break;
+    case 4:
+        *maxpoint = MAXNB4J;
+        break;
+    default:
+        return(0);
+    }
+    return(1);
+}
+
 
 /*
  ****************************************************************************************
@@ -318,7 +349,7 @@ static void suppression_irig(void){
  * @brief fonction d'appelle pour la libération de fin de partie
  * Mewen / Leo
  */
-void suprimer(void){
+extern void suprimer(void){
     videe_plateau();
     detruire_carte();
     suppression_tuile();

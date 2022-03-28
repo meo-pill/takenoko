@@ -18,6 +18,7 @@
 #include "bamboo.h"
 #include "fonction.h"
 #include "carte.h"
+#include "tour.h"
 
 
 #endif

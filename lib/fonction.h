@@ -8,7 +8,6 @@ fonction opérationnelle
 
 /** à chaque tour d'un joueur*/
 
-char lancer_meteo();
 
 void ajout_effspe_stock( joueur_t * Joueur, effet_E const eff);
 void retrait_effspe_stock( joueur_t * Joueur, effet_E const eff);
