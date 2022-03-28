@@ -144,7 +144,7 @@ static int ligne_existe(int const xa, int const ya, int const xn, int const yn){
  *  3= la case selectioner n'est pas une coordoné de déplacement valide
  *  4= la ligne entre les deux case n'est pas continue
  */
-static int deplacement_imposible(int const xa, int const ya, int const xn, int const yn){
+extern int deplacement_imposible(int const xa, int const ya, int const xn, int const yn){
     if(!case_existe(xn,yn)){
         return(1);
     }
@@ -193,9 +193,9 @@ extern int pose_tuile_impossible(int const x, int const y){
     return(2);
 }
 
-int ajout_tuile(case_plato_t * case, int const x, int const y){
+//int ajout_tuile(case_plato_t * place, int const x, int const y){
 
-}
+//}
 
 /**
  * @brief verfication de la contiguité entre deux case
