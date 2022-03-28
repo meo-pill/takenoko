@@ -27,10 +27,6 @@ void retire_irrigation_stock( joueur_t * Joueur);
 
 /* * ajout au plateau */
 
-int verif_pose_case( int const x, int const y);
-/* * Vérifie qu'on peu poser une case (case vide + | - 2 case non vide adjasante| - bassin ) et renvoie 1 si c'est bon */
-
-void ajout_case_plato ( case_plato_t * case_a, int const x, int const y);
 
 void ajout_irrigation_case ( int const x, int const y);
 
@@ -49,7 +45,7 @@ fonction à finir et à tester
 
 /* * choix pour 1 joueur */
 
-void choixactionduJ( joueur_t * Joueur, char const meteo);
+void choixactionduJ( joueur_t * Joueur, char const meteo, choixJ_E memaction[2]);
 
 void pioche_objetif( joueur_t * Joueur);
 void pioche_effspe( joueur_t * Joueur);

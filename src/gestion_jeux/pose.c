@@ -6,7 +6,7 @@
  * @date 2022-03-02
  * 
  */
-#include "../../lib/index.h"
+#include "../../lib/pose.h"
 
 /**
  * @brief verfication qu'il y a une tuile au coordoné
@@ -193,9 +193,18 @@ extern int pose_tuile_impossible(int const x, int const y){
     return(2);
 }
 
-//int ajout_tuile(case_plato_t * place, int const x, int const y){
+int ajout_tuile(case_plato_t const * case_choix, int const x, int const y){
+    if(!pose_tuile_impossible(x,y)){
+        plateau[x][y] = case_choix;
+        if(contigue(x,y,LACPOS,LACPOS)){
+            plateau[x][y]->iriguer = 1;
+        }
+        else
+        return 1;
+    }
+    return 0;
+}
 
-//}
 
 /**
  * @brief verfication de la contiguité entre deux case

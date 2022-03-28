@@ -1,5 +1,5 @@
-#include "../../lib/fonction.h"
-#include "pose.c"
+#include "fonction.h"
+#include "pose.h"
 
 
 /**********************
@@ -126,6 +126,7 @@ void retire_irrigation_stock ( joueur_t * Joueur){
 
 /*   ajout au plateau */
 
+
 ///**
 // * @brief Vérifie qu'on peu poser une case : case vide +  | - 2 case non vide adjasante
 // *                                                        | - bassin 
@@ -180,21 +181,7 @@ void retire_irrigation_stock ( joueur_t * Joueur){
 //    return 0;
 //}
 
-/**
- * @brief ajoute au plateau une case sélectionner
- * @author MAXIME
- * @param case_a la case à atribuer aux coordonnées du tableau
- * @param x position x voulue pour poser
- * @param y position y voulue pour poser
- */
-void ajout_case_plato ( case_plato_t * case_a, int const x, int const y){
-  if (verif_pose_case( x, y)){
-    plateau[x][y] = case_a;
-	  
-  }
-  else
-    printf(" erreur pour poser une case \n");
-}
+
 
 /**
  * @brief ajoute a la case du plateau sélectionner l'atribue irriguer( 1 ) et lui donne un bambou
@@ -282,7 +269,7 @@ fonction à finir et à tester
 
 /* * choix pour 1 joueur */
 
-void choixactionduJ ( joueur_t * Joueur, char const meteo){}
+void choixactionduJ ( joueur_t * Joueur, char const meteo, choixJ_E memaction[2]){}
 
 
 void pioche_objetif ( joueur_t * Joueur){}
