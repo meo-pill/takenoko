@@ -249,11 +249,11 @@ int extraction_fichier_carte(){
         }
         else{
             printf("\n --------------------- \n erreur de recuperation des cartes (type mal informé)\n type contient : \"%s\"\n -------------- \n",type);
-            break;
+            return 1;
         }
         if(nb_panda > 15 || nb_parc > 15 || nb_jard > 15){
             printf("\n --------------------- \n erreur de recuperation des types de cartes (trop d'un type) \n panda : %d \n parcelles : %d \n jardinier : %d \n  --------------------- \n",nb_panda,nb_parc,nb_jard);
-            break;
+            return 1;
         }
     }
     fclose(fich);
@@ -270,12 +270,17 @@ extern void initialiser(int const nb_joueur){
     if (extraction_fichier_tuile()){
         printf("ereur d'ouverture fichier tuile\n");
     }
-    
+    if(extraction_fichier_carte()){
+        printf("erreur dans l'ouvertur des cartes");
+    }
     shuffleTuile();
     mise_en_file();
     creation_plateau();
     creation_joueur(nb_joueur);
     init_irigation();
+    indique_carte[0] = 0;
+    indique_carte[1] = 0;
+    indique_carte[2] = 0;
 }
 
 /*
