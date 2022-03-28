@@ -82,21 +82,21 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	Orage=Crea_Tex(2);
 	Nuage=Crea_Tex(2);
 
-	Soleil->Table[0]->t=Creation_Text(renderer,lire_Rect(Soleil->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"Soleil",Bleu,10,H*2/8);
-	Soleil->Table[1]->t=Creation_Text(renderer,lire_Rect(Soleil->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Soleil",Bleu,10,H*2/8);
+	Soleil->Table[0]->t=Creation_Text(renderer,lire_Rect(Soleil->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"Soleil",Bleu,10,H*3/11);
+	Soleil->Table[1]->t=Creation_Text(renderer,lire_Rect(Soleil->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Soleil",Bleu,10,H*3/11);
 
 
-	Pluie->Table[0]->t=Creation_Text(renderer,lire_Rect(Pluie->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"pluie",Bleu,10,H*3/8);
-	Pluie->Table[1]->t=Creation_Text(renderer,lire_Rect(Pluie->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"pluie",Bleu,10,H*3/8);
+	Pluie->Table[0]->t=Creation_Text(renderer,lire_Rect(Pluie->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"pluie",Bleu,10,H*4/11);
+	Pluie->Table[1]->t=Creation_Text(renderer,lire_Rect(Pluie->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"pluie",Bleu,10,H*4/11);
 
-	Vent->Table[0]->t=Creation_Text(renderer,lire_Rect(Vent->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"vent",Bleu,10,H*4/8);
-	Vent->Table[1]->t=Creation_Text(renderer,lire_Rect(Vent->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"vent",Bleu,10,H*4/8);
+	Vent->Table[0]->t=Creation_Text(renderer,lire_Rect(Vent->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"vent",Bleu,10,H*5/11);
+	Vent->Table[1]->t=Creation_Text(renderer,lire_Rect(Vent->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"vent",Bleu,10,H*5/11);
 
-	Orage->Table[0]->t=Creation_Text(renderer,lire_Rect(Orage->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"orage",Bleu,10,H*5/8);
-	Orage->Table[1]->t=Creation_Text(renderer,lire_Rect(Orage->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"orage",Bleu,10,H*5/8);
+	Orage->Table[0]->t=Creation_Text(renderer,lire_Rect(Orage->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"orage",Bleu,10,H*6/11);
+	Orage->Table[1]->t=Creation_Text(renderer,lire_Rect(Orage->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"orage",Bleu,10,H*6/11);
 
-	Nuage->Table[0]->t=Creation_Text(renderer,lire_Rect(Nuage->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"nuage",Bleu,10,H*6/8);
-	Nuage->Table[1]->t=Creation_Text(renderer,lire_Rect(Nuage->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"nuage",Bleu,10,H*6/8);
+	Nuage->Table[0]->t=Creation_Text(renderer,lire_Rect(Nuage->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"nuage",Bleu,10,H*7/11);
+	Nuage->Table[1]->t=Creation_Text(renderer,lire_Rect(Nuage->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"nuage",Bleu,10,H*7/11);
 
 	if ((Soleil->Table[0]) == NULL || Soleil->Table[1]==NULL ||
 			(Pluie->Table[0]) == NULL || Pluie->Table[1]==NULL ||
