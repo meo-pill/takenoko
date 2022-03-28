@@ -1,4 +1,5 @@
 #include "../lib/aff_table.h"
+#include "../lib/index.h"
 #include "../lib/commande.h"
 int main(){
 	if (SDL_Init(SDL_INIT_TIMER |SDL_INIT_VIDEO)== -1 ){
@@ -26,6 +27,7 @@ int main(){
 	auto int H = DM.h;
 
 	int x=0,y=0;
+	int fullscreen=0;
 
 	pWindow = SDL_CreateWindow("Takenoko",SDL_WINDOWPOS_UNDEFINED,
 											SDL_WINDOWPOS_UNDEFINED,
@@ -109,18 +111,21 @@ int main(){
 		}
 		//présentation final
 		SDL_RenderPresent(renderer);
-		if(evenment(event,pWindow)==QUIT){
-			Tex_Tuile->det(Tex_Tuile);
-			bouton->det(bouton);
-			image->det(image);
-			if(NULL!=renderer)
-				SDL_DestroyRenderer(renderer);
-			if(NULL!=pWindow)
-				SDL_DestroyWindow(pWindow);
-			IMG_Quit();
-			TTF_Quit();
-			SDL_Quit();
-			exit(EXIT_SUCCESS);
+
+		if(SDL_PollEvent(&event)){
+			if(evenment(event,pWindow,&fullscreen)==QUIT){
+				Tex_Tuile->det(Tex_Tuile);
+				bouton->det(bouton);
+				image->det(image);
+				if(NULL!=renderer)
+					SDL_DestroyRenderer(renderer);
+				if(NULL!=pWindow)
+					SDL_DestroyWindow(pWindow);
+				IMG_Quit();
+				TTF_Quit();
+				SDL_Quit();
+				exit(EXIT_SUCCESS);
+			}
 		}
 	}
 	return 0;

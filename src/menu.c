@@ -1,8 +1,6 @@
-//#include "../lib/index.h"
-#include "../lib/Creation.h"
-#include "../lib/commande.h"
 //#include "../lib/Option.h"
 #include "../lib/Plato.h"
+
 void menu(){
 	if (SDL_Init(SDL_INIT_TIMER |SDL_INIT_VIDEO)== -1 ){
 		fprintf(stdout,"Échec de l'initialisation de la SDL (%s)\n",SDL_GetError());
@@ -113,11 +111,8 @@ void menu(){
 	}
 	int x=0,y=0;
 
-	SDL_Rect* anim= lire_Rect(image->Table[1],0);
-	SDL_Rect* crop = lire_Rect(image->Table[1],1);
 	//boucle des evenments permet defaire diférente action sur la fenêtre
 	while (1) {
-		SDL_PumpEvents();
 		//permet de savoir où et si on clique avec la souri
 		Uint32 Clic = SDL_GetMouseState(&x,&y);
 
@@ -127,18 +122,12 @@ void menu(){
 		Uint32 sprite = seconds % 4;
 		//création de la "fenêtre ou nous verons une partie de l'image
 		//animation
-		anim->x=sprite*120;
-		anim->y=0;
-		anim->w=120;
-		anim->h=100;
+		positionne_rect(lire_Rect(image->Table[1],0),sprite*120,0,100,120);
 		//crop
-		crop->x=Width/10;
-		crop->y=Height/100;
-		crop->w=120;
-		crop->h=100;
+		positionne_rect(lire_Rect(image->Table[1],1),Width/10,Height/100,100,120);
 		/** on affiche les image*/
 		SDL_RenderCopy(renderer,(image->Table[0])->t,NULL,NULL);
-		SDL_RenderCopy(renderer,(image->Table[1])->t,anim,crop);
+		SDL_RenderCopy(renderer,(image->Table[1])->t,lire_Rect(image->Table[1],0),lire_Rect(image->Table[1],1));
 		/** titre*/
 		SDL_RenderCopy(renderer,(*titre->Table)->t,NULL,(*titre->Table)->place2);
 		/**on gère les boutons*/
@@ -157,8 +146,7 @@ void menu(){
 			IMG_Quit();
 			TTF_Quit();
 			SDL_Quit();
-			initialiser(1);
-			affiche_Plato(Width,Height);
+			selecte_nb_joueur(Width,Height);
 		}
 		if(bout(renderer,bouton2,x,y)==1 && Clic==1){
 			if(NULL!=renderer)
@@ -195,7 +183,6 @@ void menu(){
 			TTF_Quit();
 			SDL_Quit();
 			exit(EXIT_SUCCESS);
-	//affiche_option(Width,Height);
 		}
 
 		//présentation final
@@ -204,23 +191,28 @@ void menu(){
 		if(Clic ==1){
 			fprintf(stdout, "\t\tavec clic Position de la souris : %d;%d\n",x,y);
 		}
-		if(evenment(event,pWindow,&fullscreen)==QUIT){
-			printf("adieu\n");
-			if(NULL!=renderer)
-				SDL_DestroyRenderer(renderer);
-			if(NULL!=pWindow)
-				SDL_DestroyWindow(pWindow);
-			if(NULL!=pSprite)
-				SDL_FreeSurface(pSprite);
-			titre->det(titre);
-			bouton1->det(bouton1);
-			bouton2->det(bouton2);
-			bouton3->det(bouton3);
-			image->det(image);
-			IMG_Quit();
-			TTF_Quit();
-			SDL_Quit();
-			exit(EXIT_SUCCESS);
+		if(SDL_PollEvent(&event)){
+			if(evenment(event,pWindow,&fullscreen)==QUIT){
+				if(fullscreen==1){
+					SDL_SetWindowFullscreen(pWindow,0);
+				}
+				printf("adieu\n");
+				if(NULL!=renderer)
+					SDL_DestroyRenderer(renderer);
+				if(NULL!=pWindow)
+					SDL_DestroyWindow(pWindow);
+				if(NULL!=pSprite)
+					SDL_FreeSurface(pSprite);
+				titre->det(titre);
+				bouton1->det(bouton1);
+				bouton2->det(bouton2);
+				bouton3->det(bouton3);
+				image->det(image);
+				IMG_Quit();
+				TTF_Quit();
+				SDL_Quit();
+				exit(EXIT_SUCCESS);
+			}
 		}
 	}
 }

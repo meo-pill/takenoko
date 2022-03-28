@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2022
  * 
  */
-#include "../lib/index.h"
+#include "../lib/carte.h"
 
 /**
  * @brief met tout les deck à NULL
@@ -691,6 +691,6 @@ int verif_parcelle_arc(carte_t * const carte,joueur_t * const J){
   return 0;
 }
 
-carte_t * carte_suivante (){
-  
-}
+//carte_t * carte_suivante (){
+//  
+//}
