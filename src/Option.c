@@ -1,4 +1,13 @@
-#include <unistd.h>
+/**
+ * @file Option.c
+ * @author MORGANE
+ * @brief 
+ * @version 0.1
+ * @date 2022-03-28
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "../lib/Creation.h"
 #include "../lib/menu.h"
 #include "../lib/texture.h"
