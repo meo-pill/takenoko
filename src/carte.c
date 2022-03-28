@@ -121,7 +121,7 @@ void detruire_carte(){
 }
 /**
  * @brief cette fonction affiche une carte sur la sortie standard
- * 
+ *  il s'agit d'une fonction de test
  * @param c 
  * si le paramètre est NULL, la fonction affiche NULL à la place
  */
