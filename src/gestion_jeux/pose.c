@@ -193,7 +193,7 @@ extern int pose_tuile_impossible(int const x, int const y){
     return(2);
 }
 
-int ajout_tuile(case_plato_t const * case_choix, int const x, int const y){
+int ajout_tuile(case_plato_t * case_choix, int const x, int const y){
     if(!pose_tuile_impossible(x,y)){
         plateau[x][y] = case_choix;
         if(contigue(x,y,LACPOS,LACPOS)){

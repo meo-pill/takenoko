@@ -1,6 +1,6 @@
 /**
  * @file pioche.c
- * @author Leo Nail et ???
+ * @author Leo Nail et Mewen Puren
  * @brief contient les fonctions qui permettent de piocher
  * @version 0.1
  * @date 2022-03-24
@@ -57,7 +57,7 @@ extern int pioche_une_case(void){
  *  un pointeur sur la carte qui a été pioché, ou NULL s'il y a eu une erreur
  */
 carte_t * pioche_carte (int type){
-    if(indique_carte[type] <= NBCARTE){
+    if(indique_carte[type] < NBCARTE){
         indique_carte[type] ++;
         switch (type)
         {

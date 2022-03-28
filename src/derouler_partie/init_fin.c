@@ -273,6 +273,8 @@ extern void initialiser(int const nb_joueur){
     if(extraction_fichier_carte()){
         printf("erreur dans l'ouvertur des cartes");
     }
+    srand(time(NULL));
+    melanger_carte();
     shuffleTuile();
     mise_en_file();
     creation_plateau();
