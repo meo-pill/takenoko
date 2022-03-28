@@ -55,7 +55,7 @@ void pioche_effspe( joueur_t * Joueur);
 
 int Verif_deplacer_perso( personnage_t perso, int const x_a, int const y_a);    /* jardinier ou Panda et renvoye 1 si c'est bon */
 
-void deplacer_personnage( personnage_t perso, int const x_a, int const y_a);
+void deplacer_personnage( personnage_t * perso, int const x_a, int const y_a);
 
 
 
