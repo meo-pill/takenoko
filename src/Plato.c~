@@ -5,7 +5,7 @@
 #include "../lib/Plato.h"
 
 
-static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
+static void affiche_Plato(int W,int H,int nbJoueur){
 	if (SDL_Init(SDL_INIT_TIMER |SDL_INIT_VIDEO)== -1 ){
 		fprintf(stdout,"Échec de l'initialisation de la SDL (%s)\n",SDL_GetError());
 		exit(EXIT_FAILURE );
@@ -22,15 +22,10 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	char fond_Plato[]="image/en_plus/Fond_Plato.png";
 	char contour_tuile[]="image/case/SelectCase.png";
 
-	SDL_Color Bleu = {150,255,234};
+	//SDL_Color Bleu = {150,255,234};
 
 	text_t* image=NULL;
 	//text_t* bouton=NULL;
-	text_t* Soleil=NULL;
-	text_t* Pluie=NULL;
-	text_t* Vent= NULL;
-	text_t* Orage= NULL;
-	text_t* Nuage=NULL;
 	text_t** hexagonal=NULL;
 	hexagonal=malloc(sizeof(text_t*));
 //	text_t** AffJoueur=NULL;
@@ -43,7 +38,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 //	}
 
 	
-	int TAILTUILE=200;
+	int TAILTUILE=H/27;
 
 
 	int x=0,y=0;
@@ -65,30 +60,10 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	//if ((bouton->Table[0]) == NULL || bouton->Table[1]==NULL){
 	//	exit ( EXIT_FAILURE );
 	//}
-	Soleil=Crea_Tex(2);
-	Pluie=Crea_Tex(2);
-	Vent=Crea_Tex(2);
-	Orage=Crea_Tex(2);
-	Nuage=Crea_Tex(2);
-
-	Soleil->Table[0]->t=Creation_Text(renderer,lire_Rect(Soleil->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"Soleil",Bleu,10,H*3/8);
-	Soleil->Table[1]->t=Creation_Text(renderer,lire_Rect(Soleil->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"Soleil",Bleu,10,H*3/8);
-
-	Pluie->Table[0]->t=Creation_Text(renderer,lire_Rect(Pluie->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"pluie",Bleu,10,H*4/8);
-	Pluie->Table[1]->t=Creation_Text(renderer,lire_Rect(Pluie->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"pluie",Bleu,10,H*4/8);
-
-	Vent->Table[0]->t=Creation_Text(renderer,lire_Rect(Vent->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"vent",Bleu,10,H*5/8);
-	Vent->Table[1]->t=Creation_Text(renderer,lire_Rect(Vent->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"vent",Bleu,10,H*5/8);
-
-	Orage->Table[0]->t=Creation_Text(renderer,lire_Rect(Orage->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"orage",Bleu,10,H*6/8);
-	Orage->Table[1]->t=Creation_Text(renderer,lire_Rect(Orage->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"orage",Bleu,10,H*6/8);
-
-	Nuage->Table[0]->t=Creation_Text(renderer,lire_Rect(Nuage->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"nuage",Bleu,10,H*7/8);
-	Nuage->Table[1]->t=Creation_Text(renderer,lire_Rect(Nuage->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"nuage",Bleu,10,H*7/8);
-
 	IMG_Init(IMG_INIT_PNG);
 
 	(*image->Table)->t = IMG_LoadTexture(renderer, fond_Plato);
+	palt_test();
 	if((*image->Table)->t==NULL){
 		fprintf ( stderr , " Erreur au niveau de l'image: %s \n " , TTF_GetError ());
 		exit ( EXIT_FAILURE );
@@ -122,7 +97,6 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 		}
 
 	int new_x=0,new_y=0,dif_x,dif_y;
-	int victoirJ=0,compteur_tour=0,limit_action=2;
 
 	while(1){
 		Uint32 Clic = SDL_GetMouseState(&x,&y);
@@ -150,84 +124,42 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 //				SDL_RenderCopy(renderer,lire_Texture(AffJoueur[i]->Table[j]),NULL,lire_Rect((AffJoueur[i]->Table[j]),1));
 //			}
 //		}
-//		valida
 
-		if(!victoirJ && compteur_tour==0){
-			effet_E meteo=lancer_meteo();
-			int modif_Pos=0;
-			choix : switch (meteo){
-					case soleil :
-						SDL_RenderCopy(renderer,lire_Texture(Soleil->Table[1]),NULL,lire_Rect(Soleil->Table[1],1));
-						limit_action ++;
-						break;
-					case pluie :
-						SDL_RenderCopy(renderer,lire_Texture(Pluie->Table[1]),NULL,lire_Rect(Pluie->Table[1],1));
-						//declancher_pluie();
-						break;
-					case vent :
-						SDL_RenderCopy(renderer,lire_Texture(Vent->Table[1]),NULL,lire_Rect(Vent->Table[1],1));
-						break;
-					case orage :
-						SDL_RenderCopy(renderer,lire_Texture(Orage->Table[1]),NULL,lire_Rect(Orage->Table[1],1));
-						//orage_panda();
-						break;
-					case nuage :
-						SDL_RenderCopy(renderer,lire_Texture(Nuage->Table[1]),NULL,lire_Rect(Nuage->Table[1],1));
-						//choix_amenagement(J[i]);
-						break;
-					case choixJ :
-						if(bout(renderer,Soleil,x,y) && Clic)
-							meteo=soleil;
-						else if (bout(renderer,Pluie,x,y) && Clic)
-							meteo=pluie;
-						else if (bout(renderer,Vent,x,y) && Clic)
-							meteo=vent;
-						else if (bout(renderer,Orage,x,y) && Clic)
-							meteo=orage;
-						else if(bout(renderer,Nuage,x,y) && Clic)
-							meteo=nuage;
-						goto choix;
-						break;
-			}
-			if(Clic){
-				if(x!=new_x && y!=new_y){
-					dif_x=x-new_x;
-					dif_y=y-new_y;
-					SDL_GetMouseState(&new_x,&new_y);
-					modif_Pos=1;
+		for(int pos_y=0;pos_y<NBTUILES;pos_y++){
+			for(int pos_x=0;pos_x<NBTUILES;pos_x++){
+				if(Clic){
+					if(x!=new_x && y!=new_y){
+						dif_x=x-new_x;
+						dif_y=y-new_y;
+						printf("position tuile x=%d y%d new_x=%d new_y=%d dif_x=%d dif_y=%d\n",x,y,new_x,new_y,dif_x,dif_y);
+						if(dif_x<0 && dif_y<=0)
+							positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),
+									lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->x-10,
+									lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->y-10,
+									TAILTUILE,TAILTUILE);
+						else if(dif_x>=0 && dif_y>0)
+							positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),
+									lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->x+10,
+									lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->y+10,
+									TAILTUILE,TAILTUILE);
+						else if(dif_x>=0 && dif_y<0)
+							positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),
+									lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->x+10,
+									lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->y-10,
+									TAILTUILE,TAILTUILE);
+						else if(dif_x<0 && dif_y>=0)
+							positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),
+									lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->x-10,
+									lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->y+10,
+									TAILTUILE,TAILTUILE);
+						SDL_GetMouseState(&new_x,&new_y);
+					}
 				}
+				
+				SDL_RenderCopy(renderer,lire_Texture(hexagonal[pos_y]->Table[pos_x]),NULL,lire_Rect((hexagonal[pos_y]->Table[pos_x]),1));
 			}
-			for(int pos_y=0;pos_y<NBTUILES;pos_y++){
-				for(int pos_x=0;pos_x<NBTUILES;pos_x++){
-							if(dif_x<0 && dif_y<=0 && modif_Pos)
-								positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),
-										lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->x-10,
-										lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->y-10,
-										TAILTUILE,TAILTUILE);
-							else if(dif_x>=0 && dif_y>0 && modif_Pos)
-								positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),
-										lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->x+10,
-										lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->y+10,
-										TAILTUILE,TAILTUILE);
-							else if(dif_x>=0 && dif_y<0 && modif_Pos)
-								positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),
-										lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->x+10,
-										lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->y-10,
-										TAILTUILE,TAILTUILE);
-							else if(dif_x<0 && dif_y>=0 && modif_Pos)
-								positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),
-										lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->x-10,
-										lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->y+10,
-										TAILTUILE,TAILTUILE);
-					
-					SDL_RenderCopy(renderer,lire_Texture(hexagonal[pos_y]->Table[pos_x]),NULL,lire_Rect((hexagonal[pos_y]->Table[pos_x]),1));
-				}
-			}
-			if(victoire_joueur(J[compteur_tour],maxpoint))
-				victoirJ=1;
-
-			compteur_tour= (compteur_tour+1)%nbJoueur;
 		}
+				//printf("position tuile x=%d y=%d\n",((hexagonal[0]->Table[0]),1)->x,lire_Rect((hexagonal[0]->Table[0]),1)->y);
 		//présentation final
 		SDL_RenderPresent(renderer);
 		if(SDL_PollEvent(&event)){
@@ -282,7 +214,6 @@ extern void selecte_nb_joueur(int W,int H){
 
 	int x,y;
 	int fullscreen=0;
-	int maxpoint=0;
 
 	pWindow = SDL_CreateWindow("Takenoko",SDL_WINDOWPOS_UNDEFINED,
 											SDL_WINDOWPOS_UNDEFINED,
@@ -348,8 +279,8 @@ extern void selecte_nb_joueur(int W,int H){
 			IMG_Quit();
 			TTF_Quit();
 			SDL_Quit();
-			debut_partie(2,&maxpoint);
-			affiche_Plato(W,H,2,maxpoint);
+			initialiser(2);
+			affiche_Plato(W,H,2);
 		}
 		if(bout(renderer,bouton2,x,y) && Clic){
 			bouton1->det(bouton1);
@@ -364,8 +295,8 @@ extern void selecte_nb_joueur(int W,int H){
 			IMG_Quit();
 			TTF_Quit();
 			SDL_Quit();
-			debut_partie(3,&maxpoint);
-			affiche_Plato(W,H,3,maxpoint);
+			initialiser(3);
+			affiche_Plato(W,H,3);
 		}
 		if(bout(renderer,bouton3,x,y) && Clic){
 			bouton1->det(bouton1);
@@ -380,8 +311,8 @@ extern void selecte_nb_joueur(int W,int H){
 			IMG_Quit();
 			TTF_Quit();
 			SDL_Quit();
-			debut_partie(4,&maxpoint);
-			affiche_Plato(W,H,4,maxpoint);
+			initialiser(4);
+			affiche_Plato(W,H,4);
 		}
 		if(bout(renderer,bouton4,x,y) && Clic){
 			bouton1->det(bouton1);

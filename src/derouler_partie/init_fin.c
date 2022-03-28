@@ -146,7 +146,7 @@ static void creation_joueur(int const nb_joueur){
         J[i] = malloc(sizeof(joueur_t));
         J[i]->nom_joueur=NomJ(i+1);
         for(j=0;j<3;j++){
-        	//inserer_carte(J[i]->main_J[j]);
+        	inserer_carte(J[i]->main_J[j]);
         	J[i]->bambou[j]=0;
         	J[i]->effSpe[j]=0;
         }
@@ -270,7 +270,10 @@ extern void initialiser(int const nb_joueur){
     if (extraction_fichier_tuile()){
         printf("ereur d'ouverture fichier tuile\n");
     }
-    
+    extraction_fichier_carte();
+    if (extraction_fichier_tuile()){
+    	printf("ereur d'ouverture fichier tuile\n");
+    }
     shuffleTuile();
     mise_en_file();
     creation_plateau();
