@@ -1,4 +1,4 @@
-#include "../../lib/index.h"
+#include "../../lib/init_fin.h"
 /**
  * fichier avec les fonction d'initialisation et de supression du jeu
  * Mewen / Leo

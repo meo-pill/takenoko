@@ -8,15 +8,10 @@
  * @copyright Copyright (c) 2022
  * 
  */
-#include "../../lib/index.h"
+#include "../../lib/pioche.h"
 
 
-
-typedef struct case_plato_s case_plato_t;
-extern void retirer(case_plato_t ** tuile);
-extern void ajouter(case_plato_t * tuile);
-
-int pioche_une_case(void){
+extern int pioche_une_case(void){
     int choix = -1, nb_choix =2;
     case_plato_t * choix_de_trois[3];
     case_plato_t * case_ajout;
