@@ -350,6 +350,7 @@ static void suppression_irig(void){
  * Mewen / Leo
  */
 extern void suprimer(void){
+	printf("Je débug\n");
     videe_plateau();
     detruire_carte();
     suppression_tuile();

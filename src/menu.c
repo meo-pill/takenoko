@@ -188,9 +188,6 @@ void menu(){
 		//présentation final
 		SDL_RenderPresent(renderer);
 		//affiche la position de l'endroit ou la sourie à cliquer
-		if(Clic ==1){
-			fprintf(stdout, "\t\tavec clic Position de la souris : %d;%d\n",x,y);
-		}
 		if(SDL_PollEvent(&event)){
 			if(evenment(event,pWindow,&fullscreen)==QUIT){
 				if(fullscreen==1){

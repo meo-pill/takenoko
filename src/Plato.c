@@ -14,18 +14,22 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 		fprintf ( stderr , " Erreur d ’ i nitialis ation de TTF_Init : %s \n " , TTF_GetError ());
 		exit ( EXIT_FAILURE );
 	}
+	srand (time (NULL));
+
+
 	SDL_Event event;//permet de voir les evenement sur la fenêtre
 	SDL_Window* pWindow = NULL; //pointeur sur la fenêtre invisible
 
 	SDL_Renderer *renderer=NULL;
 
-	char fond_Plato[]="image/en_plus/Fond_Plato.png";
+	char fond_Plato[]="image/en_plus/Fond_Plato2.png";
 	char contour_tuile[]="image/case/SelectCase.png";
 
 	SDL_Color Bleu = {150,255,234};
 
 	text_t* image=NULL;
-	//text_t* bouton=NULL;
+	text_t* bouton=NULL;
+	text_t* fin_tour=NULL;
 	text_t* Soleil=NULL;
 	text_t* Pluie=NULL;
 	text_t* Vent= NULL;
@@ -33,18 +37,17 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	text_t* Nuage=NULL;
 	text_t** hexagonal=NULL;
 	hexagonal=malloc(sizeof(text_t*));
-//	text_t** AffJoueur=NULL;
-//	AffJoueur=malloc(sizeof(text_t*));
-//
-//	for(int i=0;i<nbJoueur;i++){
-//		AffJoueur[i]=Crea_Tex(2);//normalement 13
-//		(AffJoueur[i]->Table[0])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",10,TTF_STYLE_BOLD,J[i]->nom_joueur,Bleu,W*1/3*i,H*1/4*i);
-//		(AffJoueur[i]->Table[1])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",10,TTF_STYLE_BOLD,"NbBambou =0",Bleu,W*1/3*i,H*1/4*i);
-//	}
+	text_t** AffJoueur=NULL;
+	AffJoueur=malloc(sizeof(text_t*));
+
+	for(int i=0;i<nbJoueur;i++){
+		AffJoueur[i]=Crea_Tex(2);//normalement 13
+		(AffJoueur[i]->Table[0])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,J[i]->nom_joueur,Bleu,W*1/2,H*1/2);
+		(AffJoueur[i]->Table[1])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,"NbBambou = 0",Bleu,W*1/2,H*1/2);
+	}
 
 	
 	int TAILTUILE=200;
-	int debug=0;
 
 	int x=0,y=0;
 	int fullscreen=0;
@@ -57,41 +60,43 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	renderer = SDL_CreateRenderer(pWindow,-1,SDL_RENDERER_ACCELERATED); // Création d'un SDL_Renderer utilisant l'accélération matérielle
 
 	image=Crea_Tex(1);
-	//bouton=Crea_Tex(2);
+	bouton=Crea_Tex(2);
+	fin_tour=Crea_Tex(2);
 
-	//bouton->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton->Table[0],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,"<-Retour",Bleu,W*1/4,H*1/3);
-	//bouton->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton->Table[1],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"<-Retour",Bleu,W*1/4,H*1/3);
+	bouton->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton->Table[0],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,"<-Retour",Bleu,W*1/4,10);
+	bouton->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton->Table[1],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"<-Retour",Bleu,W*1/4,10);
 
-	//if ((bouton->Table[0]) == NULL || bouton->Table[1]==NULL){
-	//	exit ( EXIT_FAILURE );
-	//}
+	if ((bouton->Table[0]) == NULL || bouton->Table[1]==NULL){
+		exit ( EXIT_FAILURE );
+	}
+	fin_tour->Table[0]->t=Creation_Text(renderer,lire_Rect(fin_tour->Table[0],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,"Fin de tour",Bleu,W*1/4,70);
+	fin_tour->Table[1]->t=Creation_Text(renderer,lire_Rect(fin_tour->Table[1],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Fin de tour",Bleu,W*1/4,70);
+
+	if ((bouton->Table[0]) == NULL || bouton->Table[1]==NULL){
+		exit ( EXIT_FAILURE );
+	}
+
 	Soleil=Crea_Tex(2);
 	Pluie=Crea_Tex(2);
 	Vent=Crea_Tex(2);
 	Orage=Crea_Tex(2);
 	Nuage=Crea_Tex(2);
 
-	printf("%d\n",debug++);
-	Soleil->Table[0]->t=Creation_Text(renderer,lire_Rect(Soleil->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"Soleil",Bleu,10,H*3/8);
-	Soleil->Table[1]->t=Creation_Text(renderer,lire_Rect(Soleil->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"Soleil",Bleu,10,H*3/8);
-	printf("%d\n",debug++);
+	Soleil->Table[0]->t=Creation_Text(renderer,lire_Rect(Soleil->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"Soleil",Bleu,10,H*2/8);
+	Soleil->Table[1]->t=Creation_Text(renderer,lire_Rect(Soleil->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Soleil",Bleu,10,H*2/8);
 
 
-	Pluie->Table[0]->t=Creation_Text(renderer,lire_Rect(Pluie->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"pluie",Bleu,10,H*4/8);
-	Pluie->Table[1]->t=Creation_Text(renderer,lire_Rect(Pluie->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"pluie",Bleu,10,H*4/8);
-	printf("%d\n",debug++);
+	Pluie->Table[0]->t=Creation_Text(renderer,lire_Rect(Pluie->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"pluie",Bleu,10,H*3/8);
+	Pluie->Table[1]->t=Creation_Text(renderer,lire_Rect(Pluie->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"pluie",Bleu,10,H*3/8);
 
-	Vent->Table[0]->t=Creation_Text(renderer,lire_Rect(Vent->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"vent",Bleu,10,H*5/8);
-	Vent->Table[1]->t=Creation_Text(renderer,lire_Rect(Vent->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"vent",Bleu,10,H*5/8);
-	printf("%d\n",debug++);
+	Vent->Table[0]->t=Creation_Text(renderer,lire_Rect(Vent->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"vent",Bleu,10,H*4/8);
+	Vent->Table[1]->t=Creation_Text(renderer,lire_Rect(Vent->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"vent",Bleu,10,H*4/8);
 
-	Orage->Table[0]->t=Creation_Text(renderer,lire_Rect(Orage->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"orage",Bleu,10,H*6/8);
-	Orage->Table[1]->t=Creation_Text(renderer,lire_Rect(Orage->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"orage",Bleu,10,H*6/8);
-	printf("%d\n",debug++);
+	Orage->Table[0]->t=Creation_Text(renderer,lire_Rect(Orage->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"orage",Bleu,10,H*5/8);
+	Orage->Table[1]->t=Creation_Text(renderer,lire_Rect(Orage->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"orage",Bleu,10,H*5/8);
 
-	Nuage->Table[0]->t=Creation_Text(renderer,lire_Rect(Nuage->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"nuage",Bleu,10,H*7/8);
-	Nuage->Table[1]->t=Creation_Text(renderer,lire_Rect(Nuage->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"nuage",Bleu,10,H*7/8);
-	printf("%d\n",debug++);
+	Nuage->Table[0]->t=Creation_Text(renderer,lire_Rect(Nuage->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,"nuage",Bleu,10,H*6/8);
+	Nuage->Table[1]->t=Creation_Text(renderer,lire_Rect(Nuage->Table[1],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"nuage",Bleu,10,H*6/8);
 
 	if ((Soleil->Table[0]) == NULL || Soleil->Table[1]==NULL ||
 			(Pluie->Table[0]) == NULL || Pluie->Table[1]==NULL ||
@@ -101,7 +106,6 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 		fprintf(stderr , " Erreur au niveau du Texte %s\n",TTF_GetError ());
 		exit ( EXIT_FAILURE );
 	}
-	printf("%d\n",debug++);
 
 	IMG_Init(IMG_INIT_PNG);
 
@@ -116,14 +120,12 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 				if(plateau[pos_x][pos_y]!=NULL)
 					(hexagonal[pos_y]->Table[pos_x])->t= IMG_LoadTexture(renderer, plateau[pos_x][pos_y]->image);
 				else{
-					if(plateau[pos_x+1][pos_y]!=NULL || 
-							plateau[pos_x-1][pos_y]!=NULL || 
+					if(plateau[pos_x+1][pos_y]!=NULL ||
+							plateau[pos_x-1][pos_y]!=NULL ||
 							plateau[pos_x+1][pos_y+1]!=NULL||
-							plateau[pos_x+1][pos_y-1]!=NULL||
-							plateau[pos_x][pos_y-1]!=NULL||
-							plateau[pos_x][pos_y-1]!=NULL||
-							plateau[pos_x-1][pos_y-1]!=NULL||
-							plateau[pos_x-1][pos_y+1]!=NULL){
+							plateau[pos_x][pos_y-1]!=NULL|| 
+							plateau[pos_x][pos_y+1]!=NULL|| 
+							plateau[pos_x-1][pos_y-1]!=NULL){
 						(hexagonal[pos_y]->Table[pos_x])->t = IMG_LoadTexture(renderer, contour_tuile);
 					}
 				}
@@ -132,68 +134,85 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 					exit ( EXIT_FAILURE );
 				}
 				if(pos_y%2!=0)
-					positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),(TAILTUILE)*pos_x+(TAILTUILE/2),((TAILTUILE)*pos_y)*3/4,TAILTUILE,TAILTUILE);
+					positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),((TAILTUILE)*pos_x+(TAILTUILE/2))-W,(((TAILTUILE)*pos_y)*3/4)-H*1.5,TAILTUILE,TAILTUILE);
 				else
-					positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),(TAILTUILE)*pos_x,((TAILTUILE)*pos_y)*3/4,TAILTUILE,TAILTUILE);
+					positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),((TAILTUILE)*pos_x)-W,(((TAILTUILE)*pos_y)*3/4)-H*1.5,TAILTUILE,TAILTUILE);
 			}
 		}
 
 	int new_x=0,new_y=0,dif_x,dif_y;
-	int victoirJ=0,compteur_tour=0,limit_action=2;
+	int victoirJ=0,compteur_tour=0,limit_action=2,choix=0;
 	effDes_E meteo;
-	printf("%d\n",debug++);
 
 	while(1){
-	printf("while 1 %d\n",debug++);
 		Uint32 Clic = SDL_GetMouseState(&x,&y);
 		//création de la "fenêtre ou nous verons une partie de l'image
 		SDL_RenderCopy(renderer,(*image->Table)->t,NULL,NULL);
-	//	if(bout(renderer,bouton,x,y) && Clic){
-	//		bouton->det(bouton);
-	//		image->det(image);
-	//		for(int pos_y=0;pos_y<NBTUILES;pos_y++){
-	//			hexagonal[pos_y]->det(hexagonal[pos_y]);
-	//		}
-	//		suprimer();
-	//		if(NULL!=renderer)
-	//			SDL_DestroyRenderer(renderer);
-	//		if(NULL!=pWindow)
-	//			SDL_DestroyWindow(pWindow);
-	//		IMG_Quit();
-	//		TTF_Quit();
-	//		SDL_Quit();
-	//		selecte_nb_joueur(W,H);
-	//	}
+		if(bout(renderer,bouton,x,y) && Clic){
+			bouton->det(bouton);
+			image->det(image);
+			for(int pos_y=0;pos_y<NBTUILES;pos_y++){
+				hexagonal[pos_y]->det(hexagonal[pos_y]);
+			}
+			if(NULL!=renderer)
+				SDL_DestroyRenderer(renderer);
+			if(NULL!=pWindow)
+				SDL_DestroyWindow(pWindow);
+			IMG_Quit();
+			TTF_Quit();
+			SDL_Quit();
+			suprimer();
+			selecte_nb_joueur(W,H);
+		}
 		//pose du tableau
-//		for(int i=0;i<nbJoueur;i++){
-//			for(int j=0;j<2;j++){
-//				SDL_RenderCopy(renderer,lire_Texture(AffJoueur[i]->Table[j]),NULL,lire_Rect((AffJoueur[i]->Table[j]),1));
-//			}
-//		}
-//		valida
+		for(int i=0;i<nbJoueur;i++){
+			for(int j=0;j<2;j++){
+				SDL_RenderCopy(renderer,lire_Texture(AffJoueur[i]->Table[j]),NULL,lire_Rect((AffJoueur[i]->Table[j]),1));
+			}
+		}
 
 		if(!(victoirJ && compteur_tour==0)){
-	printf("while 2 %d\n",debug++);
-			meteo=rand()%6;
+			if(!choix)
+				meteo=rand()%7;
 			int modif_Pos=0;
-			choix : switch (meteo){
+			switch (meteo){
 					case soleil :
 						SDL_RenderCopy(renderer,lire_Texture(Soleil->Table[1]),NULL,lire_Rect(Soleil->Table[1],1));
+						SDL_RenderCopy(renderer,lire_Texture(Nuage->Table[0]),NULL,lire_Rect(Nuage->Table[0],1));
+						SDL_RenderCopy(renderer,lire_Texture(Pluie->Table[0]),NULL,lire_Rect(Pluie->Table[0],1));
+						SDL_RenderCopy(renderer,lire_Texture(Vent->Table[0]),NULL,lire_Rect(Vent->Table[0],1));
+						SDL_RenderCopy(renderer,lire_Texture(Orage->Table[0]),NULL,lire_Rect(Orage->Table[0],1));
 						limit_action ++;
 						break;
 					case pluie :
 						SDL_RenderCopy(renderer,lire_Texture(Pluie->Table[1]),NULL,lire_Rect(Pluie->Table[1],1));
+						SDL_RenderCopy(renderer,lire_Texture(Soleil->Table[0]),NULL,lire_Rect(Soleil->Table[0],1));
+						SDL_RenderCopy(renderer,lire_Texture(Nuage->Table[0]),NULL,lire_Rect(Nuage->Table[0],1));
+						SDL_RenderCopy(renderer,lire_Texture(Vent->Table[0]),NULL,lire_Rect(Vent->Table[0],1));
+						SDL_RenderCopy(renderer,lire_Texture(Orage->Table[0]),NULL,lire_Rect(Orage->Table[0],1));
 						//declancher_pluie();
 						break;
 					case vent :
 						SDL_RenderCopy(renderer,lire_Texture(Vent->Table[1]),NULL,lire_Rect(Vent->Table[1],1));
+						SDL_RenderCopy(renderer,lire_Texture(Soleil->Table[0]),NULL,lire_Rect(Soleil->Table[0],1));
+						SDL_RenderCopy(renderer,lire_Texture(Nuage->Table[0]),NULL,lire_Rect(Nuage->Table[0],1));
+						SDL_RenderCopy(renderer,lire_Texture(Pluie->Table[0]),NULL,lire_Rect(Pluie->Table[0],1));
+						SDL_RenderCopy(renderer,lire_Texture(Orage->Table[0]),NULL,lire_Rect(Orage->Table[0],1));
 						break;
 					case orage :
 						SDL_RenderCopy(renderer,lire_Texture(Orage->Table[1]),NULL,lire_Rect(Orage->Table[1],1));
+						SDL_RenderCopy(renderer,lire_Texture(Soleil->Table[0]),NULL,lire_Rect(Soleil->Table[0],1));
+						SDL_RenderCopy(renderer,lire_Texture(Nuage->Table[0]),NULL,lire_Rect(Nuage->Table[0],1));
+						SDL_RenderCopy(renderer,lire_Texture(Pluie->Table[0]),NULL,lire_Rect(Pluie->Table[0],1));
+						SDL_RenderCopy(renderer,lire_Texture(Vent->Table[0]),NULL,lire_Rect(Vent->Table[0],1));
 						//orage_panda();
 						break;
 					case nuage :
 						SDL_RenderCopy(renderer,lire_Texture(Nuage->Table[1]),NULL,lire_Rect(Nuage->Table[1],1));
+						SDL_RenderCopy(renderer,lire_Texture(Soleil->Table[0]),NULL,lire_Rect(Soleil->Table[0],1));
+						SDL_RenderCopy(renderer,lire_Texture(Pluie->Table[0]),NULL,lire_Rect(Pluie->Table[0],1));
+						SDL_RenderCopy(renderer,lire_Texture(Vent->Table[0]),NULL,lire_Rect(Vent->Table[0],1));
+						SDL_RenderCopy(renderer,lire_Texture(Orage->Table[0]),NULL,lire_Rect(Orage->Table[0],1));
 						//choix_amenagement(J[i]);
 						break;
 					default:
@@ -207,9 +226,9 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 							meteo=orage;
 						else if(bout(renderer,Nuage,x,y) && Clic)
 							meteo=nuage;
-						goto choix;
 						break;
 			}
+			choix=1;
 			if(Clic){
 				if(x!=new_x && y!=new_y){
 					dif_x=x-new_x;
@@ -247,11 +266,13 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 		//	if(victoire_joueur(J[compteur_tour],maxpoint))
 		//		victoirJ=1;
 
-			compteur_tour= (compteur_tour+1)%nbJoueur;
+			if(bout(renderer,fin_tour,x,y) && Clic){
+				compteur_tour= (compteur_tour+1)%nbJoueur;
+				choix=0;
+			}
 		}
 		//présentation final
 		SDL_RenderPresent(renderer);
-	printf("while 3 %d\n",debug++);
 		if(SDL_PollEvent(&event)){
 			if(evenment(event,pWindow,&fullscreen)==QUIT){
 				if(fullscreen==1){
@@ -259,10 +280,11 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 				}
 				//bouton->det(bouton);
 				image->det(image);
+				fin_tour->det(fin_tour);
 				for(int pos_y=0;pos_y<NBTUILES;pos_y++){
 					hexagonal[pos_y]->det(hexagonal[pos_y]);
 				}
-				suprimer();
+				printf("Je debug\n");
 				if(renderer!=NULL)
 					SDL_DestroyRenderer(renderer);
 				if(pWindow!=NULL)
@@ -270,6 +292,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 				IMG_Quit();
 				TTF_Quit();
 				SDL_Quit();
+				suprimer();
 				exit(EXIT_SUCCESS);
 			}
 		}
