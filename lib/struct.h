@@ -70,6 +70,7 @@ struct case_plato_s{
   char image [LONGPATH];
 };
 
+
 struct carte_s{
   int (*verif)(struct carte_s * const,joueur_t * const);
   char type [LONGTYPE];

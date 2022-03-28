@@ -113,6 +113,27 @@ extern void mise_en_file(void){
         ajouter(piece[i]);
     }
 }
+/**
+ * @brief retoutne le nom d'un joueur
+ * @author Morgane
+ */
+static char* NomJ (int numJ){
+	switch(numJ){
+		case 1:
+			return "Joueur1";
+			break;
+		case 2:
+			return "Joueur2";
+			break;
+		case 3:
+			return "Joueur3";
+			break;
+		case 4:
+			return "Joueur4";
+			break;
+	}
+	return NULL;
+}
 
 /**
  * @brief création des structur de joueur
@@ -120,10 +141,25 @@ extern void mise_en_file(void){
  * @param nb_joueur 
  */
 static void creation_joueur(int const nb_joueur){
+    int j;
     for (int i = 0; i < nb_joueur; i++){
         J[i] = malloc(sizeof(joueur_t));
+        J[i]->nom_joueur=NomJ(i+1);
+        for(j=0;j<3;j++){
+        	//inserer_carte(J[i]->main_J[j]);
+        	J[i]->bambou[j]=0;
+        	J[i]->effSpe[j]=0;
+        }
+        for(j=0;j<MAXNB2J;j++){
+        	J[i]->valide[j]=NULL;
+        }
+        J[i]->nbIrigation=0;
+        J[i]->nbObjectif=i;
     }
 }
+
+
+
 
 /**
  * @brief mise en place de la case lac et inisialisaiton des poiteur

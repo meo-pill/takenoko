@@ -5,7 +5,7 @@
 #include "../lib/Plato.h"
 
 
-static void affiche_Plato(int W,int H){
+static void affiche_Plato(int W,int H,int nbJoueur){
 	if (SDL_Init(SDL_INIT_TIMER |SDL_INIT_VIDEO)== -1 ){
 		fprintf(stdout,"Échec de l'initialisation de la SDL (%s)\n",SDL_GetError());
 		exit(EXIT_FAILURE );
@@ -22,12 +22,21 @@ static void affiche_Plato(int W,int H){
 	char fond_Plato[]="image/en_plus/Fond_Plato.png";
 	char contour_tuile[]="image/case/SelectCase.png";
 
+	//SDL_Color Bleu = {150,255,234};
+
 	text_t* image=NULL;
-	text_t* bouton=NULL;
+	//text_t* bouton=NULL;
 	text_t** hexagonal=NULL;
 	hexagonal=malloc(sizeof(text_t*));
+//	text_t** AffJoueur=NULL;
+//	AffJoueur=malloc(sizeof(text_t*));
+//
+//	for(int i=0;i<nbJoueur;i++){
+//		AffJoueur[i]=Crea_Tex(2);//normalement 13
+//		(AffJoueur[i]->Table[0])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",10,TTF_STYLE_BOLD,J[i]->nom_joueur,Bleu,W*1/3*i,H*1/4*i);
+//		(AffJoueur[i]->Table[1])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",10,TTF_STYLE_BOLD,"NbBambou =0",Bleu,W*1/3*i,H*1/4*i);
+//	}
 
-	SDL_Color Bleu = {150,255,234};
 	
 	int TAILTUILE=H/27;
 
@@ -43,14 +52,14 @@ static void affiche_Plato(int W,int H){
 	renderer = SDL_CreateRenderer(pWindow,-1,SDL_RENDERER_ACCELERATED); // Création d'un SDL_Renderer utilisant l'accélération matérielle
 
 	image=Crea_Tex(1);
-	bouton=Crea_Tex(2);
+	//bouton=Crea_Tex(2);
 
-	bouton->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton->Table[0],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,"<-Retour",Bleu,W*1/3,10);
-	bouton->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton->Table[1],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"<-Retour",Bleu,W*1/3,10);
+	//bouton->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton->Table[0],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,"<-Retour",Bleu,W*1/4,H*1/3);
+	//bouton->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton->Table[1],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"<-Retour",Bleu,W*1/4,H*1/3);
 
-	if ((bouton->Table[0]) == NULL || bouton->Table[1]==NULL){
-		exit ( EXIT_FAILURE );
-	}
+	//if ((bouton->Table[0]) == NULL || bouton->Table[1]==NULL){
+	//	exit ( EXIT_FAILURE );
+	//}
 	IMG_Init(IMG_INIT_PNG);
 
 	(*image->Table)->t = IMG_LoadTexture(renderer, fond_Plato);
@@ -64,56 +73,76 @@ static void affiche_Plato(int W,int H){
 			for(int pos_x=0;pos_x<NBTUILES;pos_x++){
 				if(plateau[pos_x][pos_y]!=NULL)
 					(hexagonal[pos_y]->Table[pos_x])->t= IMG_LoadTexture(renderer, plateau[pos_x][pos_y]->image);
-				else
-					(hexagonal[pos_y]->Table[pos_x])->t = IMG_LoadTexture(renderer, contour_tuile);
+				else{
+					if(plateau[pos_x+1][pos_y]!=NULL || 
+							plateau[pos_x-1][pos_y]!=NULL || 
+							plateau[pos_x+1][pos_y+1]!=NULL||
+							plateau[pos_x+1][pos_y-1]!=NULL||
+							plateau[pos_x][pos_y-1]!=NULL||
+							plateau[pos_x][pos_y-1]!=NULL||
+							plateau[pos_x-1][pos_y-1]!=NULL||
+							plateau[pos_x-1][pos_y+1]!=NULL){
+						(hexagonal[pos_y]->Table[pos_x])->t = IMG_LoadTexture(renderer, contour_tuile);
+					}
+				}
 				if((hexagonal[pos_y]->Table[pos_x])->t==NULL){
 					fprintf ( stderr , " Erreur au niveau de l'image: %s \n " , TTF_GetError ());
 					exit ( EXIT_FAILURE );
 				}
 				if(pos_y%2!=0)
-					positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),(TAILTUILE)*pos_x+(TAILTUILE/2),((TAILTUILE)*pos_y)*3/4+W/18,TAILTUILE,TAILTUILE);
+					positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),(TAILTUILE)*pos_x+(TAILTUILE/2),((TAILTUILE)*pos_y)*3/4,TAILTUILE,TAILTUILE);
 				else
-					positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),(TAILTUILE)*pos_x,((TAILTUILE)*pos_y)*3/4+W/18,TAILTUILE,TAILTUILE);
+					positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),(TAILTUILE)*pos_x,((TAILTUILE)*pos_y)*3/4,TAILTUILE,TAILTUILE);
 			}
 		}
 
-	SDL_Rect* anime=NULL;
 
 	while(1){
 		Uint32 Clic = SDL_GetMouseState(&x,&y);
 		//création de la "fenêtre ou nous verons une partie de l'image
 		SDL_RenderCopy(renderer,(*image->Table)->t,NULL,NULL);
-		if(bout(renderer,bouton,x,y) && Clic){
-			bouton->det(bouton);
-			image->det(image);
-			for(int pos_y=0;pos_y<NBTUILES;pos_y++){
-				hexagonal[pos_y]->det(hexagonal[pos_y]);
-			}
-			//suppression_tuile();
-			if(NULL!=renderer)
-				SDL_DestroyRenderer(renderer);
-			if(NULL!=pWindow)
-				SDL_DestroyWindow(pWindow);
-			IMG_Quit();
-			TTF_Quit();
-			SDL_Quit();
-			selecte_nb_joueur(W,H);
-		}
+	//	if(bout(renderer,bouton,x,y) && Clic){
+	//		bouton->det(bouton);
+	//		image->det(image);
+	//		for(int pos_y=0;pos_y<NBTUILES;pos_y++){
+	//			hexagonal[pos_y]->det(hexagonal[pos_y]);
+	//		}
+	//		suprimer();
+	//		if(NULL!=renderer)
+	//			SDL_DestroyRenderer(renderer);
+	//		if(NULL!=pWindow)
+	//			SDL_DestroyWindow(pWindow);
+	//		IMG_Quit();
+	//		TTF_Quit();
+	//		SDL_Quit();
+	//		selecte_nb_joueur(W,H);
+	//	}
 		//pose du tableau
-		if(Clic)
-			positionne_rect(anime,x,y,TAILTUILE,TAILTUILE);
+//		for(int i=0;i<nbJoueur;i++){
+//			for(int j=0;j<2;j++){
+//				SDL_RenderCopy(renderer,lire_Texture(AffJoueur[i]->Table[j]),NULL,lire_Rect((AffJoueur[i]->Table[j]),1));
+//			}
+//		}
+
+		int new_x=0,new_y=0;
 		for(int pos_y=0;pos_y<NBTUILES;pos_y++){
 			for(int pos_x=0;pos_x<NBTUILES;pos_x++){
-				if(pos_y%2!=0)
-					positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),(TAILTUILE)*pos_x+(TAILTUILE/2),((TAILTUILE)*pos_y)*3/4+W/18,TAILTUILE,TAILTUILE);
-				else
-					positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),(TAILTUILE)*pos_x,((TAILTUILE)*pos_y)*3/4+W/18,TAILTUILE,TAILTUILE);
-				if(anime!=NULL)
-					SDL_RenderCopy(renderer,lire_Texture(hexagonal[pos_y]->Table[pos_x]),anime,lire_Rect((hexagonal[pos_y]->Table[pos_x]),1));
-				else
-					SDL_RenderCopy(renderer,lire_Texture(hexagonal[pos_y]->Table[pos_x]),NULL,lire_Rect((hexagonal[pos_y]->Table[pos_x]),1));
+				if(!Clic){
+					SDL_GetMouseState(&new_x,&new_y);
+				}
+				if(x-new_x>0 && y-new_y>0)
+					positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->x+1,lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->y+1,TAILTUILE,TAILTUILE);
+				else if(x-new_x<0&&y-new_y<0)
+					positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->x-1,lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->y-1,TAILTUILE,TAILTUILE);
+				else if(x-new_x>0 && y-new_y<0)
+					positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->x+1,lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->y-1,TAILTUILE,TAILTUILE);
+				else if(x-new_x<0 && y-new_y>0)
+					positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->x-1,lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->y+1,TAILTUILE,TAILTUILE);
+				SDL_RenderCopy(renderer,lire_Texture(hexagonal[pos_y]->Table[pos_x]),NULL,lire_Rect((hexagonal[pos_y]->Table[pos_x]),1));
 			}
 		}
+		printf("position tuile x=%d y=%d\n",x-new_x,y-new_y);
+				//printf("position tuile x=%d y=%d\n",((hexagonal[0]->Table[0]),1)->x,lire_Rect((hexagonal[0]->Table[0]),1)->y);
 		//présentation final
 		SDL_RenderPresent(renderer);
 		if(SDL_PollEvent(&event)){
@@ -121,12 +150,12 @@ static void affiche_Plato(int W,int H){
 				if(fullscreen==1){
 					SDL_SetWindowFullscreen(pWindow,0);
 				}
-				bouton->det(bouton);
+				//bouton->det(bouton);
 				image->det(image);
 				for(int pos_y=0;pos_y<NBTUILES;pos_y++){
 					hexagonal[pos_y]->det(hexagonal[pos_y]);
 				}
-				//suppression_tuile();
+				suprimer();
 				if(renderer!=NULL)
 					SDL_DestroyRenderer(renderer);
 				if(pWindow!=NULL)
@@ -234,7 +263,7 @@ extern void selecte_nb_joueur(int W,int H){
 			TTF_Quit();
 			SDL_Quit();
 			initialiser(2);
-			affiche_Plato(W,H);
+			affiche_Plato(W,H,2);
 		}
 		if(bout(renderer,bouton2,x,y) && Clic){
 			bouton1->det(bouton1);
@@ -250,7 +279,7 @@ extern void selecte_nb_joueur(int W,int H){
 			TTF_Quit();
 			SDL_Quit();
 			initialiser(3);
-			affiche_Plato(W,H);
+			affiche_Plato(W,H,3);
 		}
 		if(bout(renderer,bouton3,x,y) && Clic){
 			bouton1->det(bouton1);
@@ -266,7 +295,7 @@ extern void selecte_nb_joueur(int W,int H){
 			TTF_Quit();
 			SDL_Quit();
 			initialiser(4);
-			affiche_Plato(W,H);
+			affiche_Plato(W,H,4);
 		}
 		if(bout(renderer,bouton4,x,y) && Clic){
 			bouton1->det(bouton1);
