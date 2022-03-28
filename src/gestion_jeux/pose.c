@@ -255,6 +255,7 @@ int ajout_tuile(case_plato_t const * case_choix, int const x, int const y){
     return 0;
 }
 
+
 /**
  * @brief verfication de la contiguité entre deux case
  * 

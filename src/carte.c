@@ -691,6 +691,6 @@ int verif_parcelle_arc(carte_t * const carte,joueur_t * const J){
   return 0;
 }
 
-carte_t * carte_suivante (){
-  
-}
+//carte_t * carte_suivante (){
+//  
+//}
