@@ -127,61 +127,6 @@ void retire_irrigation_stock ( joueur_t * Joueur){
 /*   ajout au plateau */
 
 
-///**
-// * @brief Vérifie qu'on peu poser une case : case vide +  | - 2 case non vide adjasante
-// *                                                        | - bassin 
-// * @author MAXIME
-// * @param x position x voulue pour poser
-// * @param y position y voulue pour poser
-// * @return int
-// * retour d'un booléen de validaiton
-// * 0 le déplacement n'est pas valide
-// * 1 le déplacement est valide
-// */
-//int verif_pose_case( int const x, int const y){
-//  
-//  if (case_existe(x, y))
-//    return 0;
-//
-//  if (case_existe(x, y+1) && plateau[x][y+1]-> Eff == debut)		/* case à droite et gauche : départ */
-//    return 1;
-//  if (case_existe(x, y-1) && plateau[x][y-1]-> Eff == debut )
-//    return 1;
-//  
-//  if (case_existe(x+1, y) && plateau[x+1][y]-> Eff == debut)		/* case en haut-droite et bas-gauche : départ */
-//    return 1;
-//  if (case_existe(x-1, y) && plateau[x-1][y]-> Eff == debut)
-//    return 1;
-//  
-//  if (case_existe(x-1, y-1) && plateau[x-1][y-1]-> Eff == debut)	/* case en haut-gauche et bas-droite : départ */
-//    return 1;
-//  if (case_existe(x+1, y+1) && plateau[x+1][y+1]-> Eff == debut)
-//    return 1;
-//  
-//  int nb_case_autour = 0;
-//  
-//  if (case_existe(x+1, y))		/* case à droite et gauche : en cour de partie */
-//    nb_case_autour ++;
-//  if (case_existe(x-1, y))
-//    nb_case_autour ++;
-//  
-//  if (case_existe(x, y-1))		/* case en haut-droite et bas-gauche : en cour de partie */
-//    nb_case_autour ++;
-//  if (case_existe(x, y+1))
-//    nb_case_autour ++;
-//    
-//  if (case_existe(x-1, y-1))		/* case en haut-gauche et bas-droite : en cour de partie */
-//    nb_case_autour ++;
-//  if (case_existe(x+1, y+1))
-//    nb_case_autour ++;
-//  
-//  if (nb_case_autour > 1)
-//    return 1;
-//  else
-//    return 0;
-//}
-
-
 
 /**
  * @brief ajoute a la case du plateau sélectionner l'atribue irriguer( 1 ) et lui donne un bambou
@@ -272,6 +217,7 @@ fonction à finir et à tester
 void choixactionduJ ( joueur_t * Joueur, char const meteo, choixJ_E memaction[2]){}
 
 
+<<<<<<< Updated upstream
 void pioche_objetif ( joueur_t * Joueur){}
 void pioche_effspe( joueur_t * Joueur){}
 
@@ -349,6 +295,8 @@ int Verif_deplacer_perso( personnage_t perso, int const x_a, int const y_a){	 /*
   
   return 1;
 }
+=======
+>>>>>>> Stashed changes
 
 /**
  * @brief change les coordonnées du jardinier ou du Panda
@@ -357,16 +305,13 @@ int Verif_deplacer_perso( personnage_t perso, int const x_a, int const y_a){	 /*
  * @param x_a nouvelle position x voulue
  * @param y_a nouvelle position y voulue
  */
-void deplacer_personnage( personnage_t perso, int const x_a, int const y_a){
-  printf("anciennes coordonnées x= %d y= %d\n", perso.x, perso.y);
+void deplacer_personnage( personnage_t * perso, int const x_a, int const y_a){
 
-  if (Verif_deplacer_perso( perso, x_a, y_a)){
-	  perso.x = x_a;
-	  perso.y = y_a;
+  if (Verif_deplacer_perso( *perso, x_a, y_a)){
+	  perso->x = x_a;
+	  perso->y = y_a;
   }
   else
     printf(" erreur de déplacement ");
-  
-  printf("nouvelle coordonnées x= %d y= %d\n", perso.x, perso.y);
-  
+    
 }
