@@ -32,16 +32,17 @@ extern case_plato_t * pioche_une_case(void){
  * @param joueur qui pioche ?
  * @param type  quel type de carte (0 pour panda, 1 pour parcelle et 2 pour jardinier) ?
  */
-extern
-void joueur_pioche_carte(joueur_t * joueur, int type){
+extern void joueur_pioche_carte(joueur_t * joueur, int type){
     if(type > 2 || type < 0){
         printf("------------------erreur, le type défnie( %d ) n'est pas bon dans la fonction joueur_pioche_carte----------------------\n",type);
         return;
     }
     int i ;
     for(i = 0; i<TAILLE_MAIN ; i++){
-        if(joueur->main_J[i] == NULL)
+        if(joueur->main_J[i] == NULL){
             joueur->main_J[i] = pioche_carte(type);
+	    return;
+	}
     }
 }
 
@@ -53,8 +54,7 @@ void joueur_pioche_carte(joueur_t * joueur, int type){
  * @return carte_t* 
  *  un pointeur sur la carte qui a été pioché, ou NULL s'il y a eu une erreur
  */
-static
-carte_t * pioche_carte (int type){
+static carte_t * pioche_carte (int type){
     if(indique_carte[type] < NBCARTE){
         indique_carte[type] ++;
         switch (type)
