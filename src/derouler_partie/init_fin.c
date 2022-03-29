@@ -21,7 +21,7 @@
  * Mewen
  *
  */
-static void shuffleTuile(coid){
+static void shuffleTuile(void){
     /** 
      * mise en place des variable de la fonction
      * une pour servir de tampon pour les donée
@@ -134,16 +134,16 @@ static void init_main(carte_t ** main,int const nb_carte){
  */
 static char* NomJ (int numJ){
 	switch(numJ){
-		case 1:
+		case 0:
 			return "Joueur1";
 			break;
-		case 2:
+		case 1:
 			return "Joueur2";
 			break;
-		case 3:
+		case 2:
 			return "Joueur3";
 			break;
-		case 4:
+		case 3:
 			return "Joueur4";
 			break;
 	}
@@ -160,18 +160,18 @@ static void creation_joueur(int const nb_joueur){
     for (int i = 0; i < nb_joueur; i++){
         J[i] = malloc(sizeof(joueur_t));
 	J[i]->nom_joueur= malloc(sizeof(char));
-        J[i]->nom_joueur=NomJ(i+1);
+        J[i]->nom_joueur=NomJ(i);
 	init_main(J[i]->main_J,TAILLE_MAIN);
 	init_main(J[i]->valide,MAXNB2J);
         for(j=0;j<3;j++){
-            joueur_pioche_carte(J[i],j);
-        	J[i]->bambou[j]=0;
-        	J[i]->effSpe[j]=0;
+		joueur_pioche_carte(J[i],j);
+		J[i]->bambou[j]=0;
+		J[i]->effSpe[j]=0;
         }
-        J[i]->nbIrigation=0;
-        J[i]->nbObjectif=i;
+	J[i]->nbIrigation=0;
+	J[i]->nbObjectif=0;
     }
-    for(int i=4-nb_joueur;i!=0;i--){
+    for(int i=4;i>nb_joueur;i--){
 	    J[i] =NULL;
     }
 }

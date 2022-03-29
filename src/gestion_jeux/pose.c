@@ -36,7 +36,7 @@ extern int case_existe(int const x, int const y){
     if(coordoner_posible(x,y)){
         return(plateau[x][y]!=NULL);
     }
-    return(0);
+    return(-1);
 }
 
 /**
@@ -207,11 +207,11 @@ extern int a_coter_irigation(int const x, int const y){
  */
 extern int pose_tuile_impossible(int const x, int const y){
     int validation = 0;
-    if (!case_existe(x,y)){
-        return(1);    
-    }
     if(contigue(x,y,LACPOS,LACPOS)){
         return (0);
+    }
+    if (case_existe(x,y)){
+        return(1);    
     }
     // test de toute les position voisine et ajjout dans un compteur
     validation += case_existe(x-1,y-1);

@@ -46,7 +46,9 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 
 
 	
-	int TAILTUILE=200;
+	int TAILTUILE=90;
+	int newTail=0;
+	int Mewen=(TAILTUILE*27)/2;
 
 	int x=0,y=0;
 	int fullscreen=0;
@@ -130,17 +132,19 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 		AffJoueur[i]=Crea_Tex(1);//normalement 13
 		if(i%2!=0){
 			if(i==3)
-				(AffJoueur[i]->Table[0])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,J[i]->nom_joueur,Blanc,W*(3/4),H*8/11);
-			else
-				(AffJoueur[i])->Table[0]->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,J[i]->nom_joueur,Blanc,W*(3/4),0);
+				(AffJoueur[i]->Table[0])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,J[i]->nom_joueur,Blanc,W*3/4,H*8/11);
+			else{
+				if(J[i]->nom_joueur!=NULL)
+					(AffJoueur[i]->Table[0])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,J[i]->nom_joueur,Blanc,W*3/4,0);
+			}
 		}
 		else{
-			if(i==4)
-				(AffJoueur[i]->Table[0])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,J[i]->nom_joueur,Blanc,W*3/4,H*8/11);
+			if(i==2)
+				(AffJoueur[i]->Table[0])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,J[i]->nom_joueur,Blanc,W*(3/4),H*8/11);
 			else
-				(AffJoueur[i]->Table[0])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,J[i]->nom_joueur,Blanc,W*3/4,0);
+				(AffJoueur[i]->Table[0])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,J[i]->nom_joueur,Blanc,W*(3/4),0);
 		}
-		if ((AffJoueur[i]->Table[0]) == NULL){	
+		if ((AffJoueur[i]->Table[0])->t == NULL){	
 			if(J[0]->nom_joueur!=NULL)
 				printf("\t\tnom: %s\n",J[0]->nom_joueur);
 			else
@@ -158,12 +162,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 			if(plateau[pos_x][pos_y]!=NULL)
 				(hexagonal[pos_y]->Table[pos_x])->t= IMG_LoadTexture(renderer, plateau[pos_x][pos_y]->image);
 			else{
-				if(plateau[pos_x+1][pos_y]!=NULL ||
-						plateau[pos_x-1][pos_y]!=NULL ||
-						plateau[pos_x+1][pos_y+1]!=NULL||
-						plateau[pos_x][pos_y-1]!=NULL|| 
-						plateau[pos_x][pos_y+1]!=NULL|| 
-						plateau[pos_x-1][pos_y-1]!=NULL){
+				if(!pose_tuile_impossible(pos_x,pos_y)){
 					(hexagonal[pos_y]->Table[pos_x])->t = IMG_LoadTexture(renderer, contour_tuile);
 				}
 			}
@@ -171,10 +170,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 				fprintf ( stderr , " Erreur au niveau de l'image: %s \n " , TTF_GetError ());
 				exit ( EXIT_FAILURE );
 			}
-			if(pos_y%2!=0)
-				positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),((TAILTUILE)*pos_x+(TAILTUILE/2))-W,(((TAILTUILE)*pos_y)*3/4)-H*1.5,TAILTUILE,TAILTUILE);
-			else
-				positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),((TAILTUILE)*pos_x)-W,(((TAILTUILE)*pos_y)*3/4)-H*1.5,TAILTUILE,TAILTUILE);
+			positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),((TAILTUILE*)*pos_x),(((TAILTUILE)*pos_y)*3/4),TAILTUILE,TAILTUILE);
 		}
 	}
 
@@ -182,6 +178,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	int victoirJ=0,compteur_tour=0,limit_action=2,choix=0;
 	int UtMap=0;
 	effDes_E meteo;
+	printf("Je debug fin boucle\n");
 
 	while(1){
 		Uint32 Clic = SDL_GetMouseState(&x,&y);
@@ -272,12 +269,30 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 			}
 			choix=1;
 			if(UtMap==0){
-				if(bout(renderer,Select_Map,x,y) && Clic)
+				if(bout(renderer,Select_Map,x,y) && Clic){
 					UtMap=1;
+					positionne_rect(lire_Rect((Select_Map->Table[0]),1),
+										lire_Rect(Select_Map->Table[0],1)->x+30,
+										lire_Rect(Select_Map->Table[0],1)->y,
+										30,30);
+					positionne_rect(lire_Rect((Select_Map->Table[1]),1),
+										lire_Rect(Select_Map->Table[1],1)->x+30,
+										lire_Rect(Select_Map->Table[1],1)->y,
+										30,30);
+				}
 			}
 			if(UtMap==1){
-				if(inv_bout(renderer,Select_Map,x,y) && Clic)
+				if(inv_bout(renderer,Select_Map,x,y) && Clic){
 					UtMap=0;
+					positionne_rect(lire_Rect((Select_Map->Table[0]),1),
+										lire_Rect(Select_Map->Table[0],1)->x-30,
+										lire_Rect(Select_Map->Table[0],1)->y,
+										30,30);
+					positionne_rect(lire_Rect((Select_Map->Table[1]),1),
+										lire_Rect(Select_Map->Table[1],1)->x-30,
+										lire_Rect(Select_Map->Table[1],1)->y,
+										30,30);
+				}
 				if(Clic){
 					if(x!=new_x && y!=new_y){
 						dif_x=x-new_x;
@@ -290,27 +305,52 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 		//pose du tableau
 			for(int pos_y=0;pos_y<NBTUILES;pos_y++){
 				for(int pos_x=0;pos_x<NBTUILES;pos_x++){
-							if(dif_x<0 && dif_y<=0 && modif_Pos)
-								positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),
-										lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->x-10,
-										lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->y-10,
-										TAILTUILE,TAILTUILE);
-							else if(dif_x>=0 && dif_y>0 && modif_Pos)
-								positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),
-										lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->x+10,
-										lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->y+10,
-										TAILTUILE,TAILTUILE);
-							else if(dif_x>=0 && dif_y<0 && modif_Pos)
-								positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),
-										lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->x+10,
-										lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->y-10,
-										TAILTUILE,TAILTUILE);
-							else if(dif_x<0 && dif_y>=0 && modif_Pos)
-								positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),
-										lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->x-10,
-										lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->y+10,
-										TAILTUILE,TAILTUILE);
-					
+					if(modif_Pos){
+						if(dif_x<0 && dif_y<=0)
+							positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),
+									lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->x-10,
+									lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->y-10,
+									TAILTUILE,TAILTUILE);
+						else if(dif_x>=0 && dif_y>0 )
+							positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),
+									lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->x+10,
+									lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->y+10,
+									TAILTUILE,TAILTUILE);
+						else if(dif_x>=0 && dif_y<0 )
+							positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),
+									lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->x+10,
+									lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->y-10,
+									TAILTUILE,TAILTUILE);
+						else if(dif_x<0 && dif_y>=0 )
+							positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),
+									lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->x-10,
+									lire_Rect((hexagonal[pos_y]->Table[pos_x]),1)->y+10,
+									TAILTUILE,TAILTUILE);
+					}
+					if(newTail!=0){
+						if(TAILTUILE+(newTail*50)<0){
+							TAILTUILE=H/27;
+							positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),
+									((TAILTUILE*2/3)*pos_x),
+									(((TAILTUILE)*pos_y)*3/4),
+									H/27,H/27);
+						}
+						else if(TAILTUILE+(newTail*50)>200){
+							TAILTUILE=200;
+							positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),
+									((TAILTUILE*2/3)*pos_x),
+									(((TAILTUILE)*pos_y)*3/4),
+									200,200);
+						}
+						else{
+							TAILTUILE=TAILTUILE+(newTail*50);
+							positionne_rect(lire_Rect((hexagonal[pos_y]->Table[pos_x]),1),
+									((TAILTUILE*2/3)*pos_x),
+									(((TAILTUILE)*pos_y)*3/4),
+									TAILTUILE,TAILTUILE);
+						}
+						newTail=0;
+					}
 					SDL_RenderCopy(renderer,lire_Texture(hexagonal[pos_y]->Table[pos_x]),NULL,lire_Rect((hexagonal[pos_y]->Table[pos_x]),1));
 				}
 			}
@@ -348,8 +388,13 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 				TTF_Quit();
 				SDL_Quit();
 				suprimer(nbJoueur);
-				printf("Je debug\n");
 				exit(EXIT_SUCCESS);
+			}
+			if(event.type==SDL_MOUSEWHEEL){
+				if(event.wheel.y>0)
+					newTail--;
+				else if (event.wheel.y<0)
+					newTail++;
 			}
 		}
 	}
