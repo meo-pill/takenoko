@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-
 #include "struct.h"
 #include "file.h"
 #include "pose.h"
