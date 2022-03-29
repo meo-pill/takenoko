@@ -8,9 +8,11 @@
 */
 
 /*! Acces à la création de texte sur l'ecran*/
-SDL_Texture* Creation_Text(SDL_Renderer *renderer,SDL_Rect *tailText,const char *police,const int tailPolice,const int style,const char *texte,const SDL_Color couleur,const int position_x,const int position_y );
-
-int bout (SDL_Renderer *renderer,text_t * bouton,int x,int y);
+extern SDL_Texture* Creation_Text(SDL_Renderer *renderer,SDL_Rect *tailText,const char *police,const int tailPolice,const int style,const char *texte,const SDL_Color couleur,const int position_x,const int position_y );
 
 /*! Acces au bouton*/
+extern int bout (SDL_Renderer *renderer,text_t * bouton,int x,int y);
+
+/*! inverse l'affichage d'un bouton*/
+extern int inv_bout(SDL_Renderer * renderer, text_t * bouton,int x,int y);
 #endif
