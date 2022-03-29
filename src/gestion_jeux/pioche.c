@@ -41,8 +41,8 @@ extern void joueur_pioche_carte(joueur_t * joueur, int type){
     for(i = 0; i<TAILLE_MAIN ; i++){
         if(joueur->main_J[i] == NULL){
             joueur->main_J[i] = pioche_carte(type);
-	    return;
-	}
+	        return;
+	    }
     }
 }
 

@@ -21,7 +21,7 @@
  * Mewen
  *
  */
-static void shuffleTuile(coid){
+static void shuffleTuile(void){
     /** 
      * mise en place des variable de la fonction
      * une pour servir de tampon pour les donée
