@@ -113,33 +113,7 @@ extern void mise_en_file(void){
         ajouter(piece[i]);
     }
 }
-/**
- * @brief detruit un joueur
- * @author Morgane
- */
-static void det_Joueur(joueur_t** Joueur){
-	free((*Joueur)->nom_joueur);
-	(*Joueur)->nom_joueur=NULL;
-	for(int i=0;i<5;i++){
-		if((*J)->main_J[i]!=NULL)
-			detruire_one_carte(&((*Joueur)->main_J[i]));
-	}
-	for(int i=0;i<MAXNB2J;i++){
-		if((*Joueur)->valide[i]!=NULL)
-			detruire_one_carte(&((*Joueur)->valide[i]));
-	}
-	free((*J));
-	*J=NULL;
-}
-/**
- * @briefdetruit les joueurs 
- * @author Morgane
- */
-static void detruir_Table_J(int const nbJoueur){
-	for(int i=0;i<nbJoueur;i++){
-		det_Joueur(&J[i]);
-	}
-}
+
 /**
  * @brief retoutne le nom d'un joueur
  * @author Morgane
@@ -174,7 +148,7 @@ static void creation_joueur(int const nb_joueur){
 	J[i]->nom_joueur= malloc(sizeof(char));
         J[i]->nom_joueur=NomJ(i+1);
         for(j=0;j<3;j++){
-        	//inserer_carte(J[i]->main_J[j]);
+            joueur_pioche_carte(J[i],j);
         	J[i]->bambou[j]=0;
         	J[i]->effSpe[j]=0;
         }
@@ -352,6 +326,34 @@ extern int debut_partie(int const  nb_joueur, int * maxpoint){
  * partie destruction
  ****************************************************************************************
  */
+
+/**
+ * @brief detruit un joueur
+ * @author Morgane
+ */
+static void det_Joueur(joueur_t** Joueur){
+	free((*Joueur)->nom_joueur);
+	(*Joueur)->nom_joueur=NULL;
+	for(int i=0;i<5;i++){
+		if((*J)->main_J[i]!=NULL)
+			detruire_one_carte(&((*Joueur)->main_J[i]));
+	}
+	for(int i=0;i<MAXNB2J;i++){
+		if((*Joueur)->valide[i]!=NULL)
+			detruire_one_carte(&((*Joueur)->valide[i]));
+	}
+	free((*J));
+	*J=NULL;
+}
+/**
+ * @briefdetruit les joueurs 
+ * @author Morgane
+ */
+static void detruir_Table_J(int const nbJoueur){
+	for(int i=0;i<nbJoueur;i++){
+		det_Joueur(&J[i]);
+	}
+}
 
 /**
  * @brief mise a nul des poiteur pour éviter les poiteur fous
