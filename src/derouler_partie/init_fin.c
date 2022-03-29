@@ -120,6 +120,15 @@ extern void mise_en_file(void){
 }
 
 /**
+ * @brief initialise une main 
+ * @author Morgane
+ */
+static void init_main(carte_t ** main,int const nb_carte){
+	for(int i=0;i<nb_carte;i++){
+		main[i]=NULL;
+	}
+}
+/**
  * @brief retoutne le nom d'un joueur
  * @author Morgane
  */
@@ -152,13 +161,12 @@ static void creation_joueur(int const nb_joueur){
         J[i] = malloc(sizeof(joueur_t));
 	J[i]->nom_joueur= malloc(sizeof(char));
         J[i]->nom_joueur=NomJ(i+1);
+	init_main(J[i]->main_J,TAILLE_MAIN);
+	init_main(J[i]->valide,MAXNB2J);
         for(j=0;j<3;j++){
             joueur_pioche_carte(J[i],j);
         	J[i]->bambou[j]=0;
         	J[i]->effSpe[j]=0;
-        }
-        for(j=0;j<MAXNB2J;j++){
-        	J[i]->valide[j]=NULL;
         }
         J[i]->nbIrigation=0;
         J[i]->nbObjectif=i;
