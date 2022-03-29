@@ -1,6 +1,6 @@
 // Mise en oeuvre d'une file d'entiers par pointeurs
 
-#include "../../lib/file.h""
+#include "../../lib/file.h"
 
 extern void initfile(void){
 	file_tuile_tete = NULL;
