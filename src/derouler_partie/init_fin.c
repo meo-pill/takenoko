@@ -1,9 +1,14 @@
-#include "../../lib/init_fin.h"
 /**
- * fichier avec les fonction d'initialisation et de supression du jeu
- * Mewen / Leo
+ * @file init_fin.c
+ * @author MEWEN PUREN / NAIL LEO
+ * @brief fonction d'inisatilsation de la partie / fonction de supression
+ * @version 0.1
+ * @date 2022-03-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
  */
-
+#include "../../lib/init_fin.h"
 
 /*
  ****************************************************************************************
@@ -16,7 +21,7 @@
  * Mewen
  *
  */
-static void shuffleTuile(){
+static void shuffleTuile(coid){
     /** 
      * mise en place des variable de la fonction
      * une pour servir de tampon pour les donée
