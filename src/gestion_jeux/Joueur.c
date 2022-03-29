@@ -50,3 +50,7 @@ int orage_panda(int x, int y){
     }
     return 0;
 }
+
+extern int victoire_joueur(joueur_t const * J, int const maxpoint){
+    return (J->nbObjectif >= maxpoint);
+}

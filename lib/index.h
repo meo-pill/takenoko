@@ -6,11 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-/*
-#include "SDL2/include/SDL2/SDL.h"
-#include "SDL2/include/SDL2/SDL_ttf.h"
-#include "SDL2/include/SDL2/SDL_image.h"
-*/
+
 #include "struct.h"
 #include "file.h"
 #include "pose.h"
@@ -19,7 +15,6 @@
 #include "fonction.h"
 #include "carte.h"
 #include "pioche.h"
-#include "tour.h"
 
 
 #endif
