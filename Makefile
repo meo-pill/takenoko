@@ -46,13 +46,17 @@ object/carte.o:src/carte.c lib/carte.h
 object/file.o: src/gestion_jeux/file.c lib/file.h
 	${CCOBJ} ${CFLAGS}  src/gestion_jeux/file.c -o $@
 object/fonction.o: src/gestion_jeux/fonction.c lib/fonction.h
-	${CCOBJ} ${CFLAGS} src/gestion_jeux/fonction.c -o $@
-object/pose.o: src/gestion_jeux/pose.c lib/pose.h
-	${CCOBJ} ${CFLAGS} src/gestion_jeux/pose.c -o $@
+	${CCOBJ} ${CFLAGS} src/gestion_jeux/fonction.c -o $@Z
 object/init_fin.o:src/derouler_partie/init_fin.c lib/init_fin.h
 	${CCOBJ} ${CFLAGS} src/derouler_partie/init_fin.c -o $@
 object/tour.o: src/derouler_partie/tour.c 
 	${CCOBJ} ${CFLAGS} src/derouler_partie/tour.c -o $@
+object/carte_pioche_test.o: test/carte_pioche_test.c
+	${CCOBJ} ${CFLAGS}  test/carte_pioche_test.c -o $@
+object/pioche.o : src/gestion_jeux/pioche.c
+	${CCOBJ} ${CFLAGS}  src/gestion_jeux/pioche.c -o $@
+object/pose.o : src/gestion_jeux/pose.c
+	${CCOBJ} ${CFLAGS} src/gestion_jeux/pose.c -o $@
 
 #test des fonction du jeux
 test_Maxime: test/test_fonc.c object/fonction.o 
@@ -63,13 +67,18 @@ test_creation_carte:object/carte.o test/test_cration_carte.o object/init_fin.o o
 test_carte: object/carte.o test/carte_test.o object/init_fin.o object/file.o
 	${CC} -o bin/test_carte object/carte.o test/carte_test.o object/init_fin.o object/file.o ${FLAGS}
 
+carte_pioche_test: object/carte.o object/carte_pioche_test.o object/init_fin.o object/file.o object/pioche.o object/pose.o
+	${CC} -o bin/carte_pioche_test object/pose.o object/carte.o object/carte_pioche_test.o object/init_fin.o object/pioche.o object/file.o ${FLAGS}
+
 object/carte_test.o: test/carte_test.c
 	${CCOBJ} ${CFLAGS} test/carte_test.c -o $@
 carte_test:object/carte.o object/carte_test.o object/init_fin.o object/file.o
+
 	${CC} -o bin/carte_test object/carte.o object/carte_test.o object/init_fin.o object/file.o ${FLAGS}
 
 object/test_cration_carte.o: test/test_cration_carte.c
 	 ${CCOBJ} ${CFLAGS} test/test_cration_carte.c  -o object/test_cration_carte.o
+
 test_aff:test/test_affichage_Plato.c object/aff_table.o object/CREA.o object/texture.o  object/file.o object/carte.o object/init_fin.o object/commande.o
 	${CC} -o bin/$@ test/test_affichage_Plato.c object/aff_table.o object/CREA.o object/texture.o  object/file.o object/carte.o object/init_fin.o object/commande.o ${LIBS} ${INCS} ${FLAGS}
 #supression des fichier obeselette

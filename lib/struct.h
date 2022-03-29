@@ -20,6 +20,7 @@
 #define LACPOS 14
 #define NBIRIG 20
 #define NBCARTE 15
+#define TAILLE_MAIN 5
 
 /**definition des structurs*/
 typedef struct  personnage_s personnage_t;
@@ -81,7 +82,7 @@ struct carte_s{
 
 struct joueur_s{
   char * nom_joueur;
-  carte_t * main_J[5];
+  carte_t * main_J[TAILLE_MAIN];
   carte_t * valide[MAXNB2J];
 	int bambou [3]; /*dans l'ordre : jaune rose vert*/
 	int effSpe [3]; 

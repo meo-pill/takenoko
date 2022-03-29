@@ -20,6 +20,6 @@ extern int contigue(int const xa, int const ya, int const xb, int const yb);
 
 extern int access_lac(int const xa, int const ya, int const xb, int const yb);
 
-int ajout_tuile(case_plato_t const * case_choix, int const x, int const y);
+int ajout_tuile(case_plato_t * case_choix, int const x, int const y);
 
 #endif
