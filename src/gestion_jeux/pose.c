@@ -9,6 +9,20 @@
 #include "../../lib/pose.h"
 
 /**
+ * @brief verificaiton de validité des coordoner
+ * 
+ * @param x 
+ * @param y coordoner des la case
+ * @return int 
+ * retour d'un booléen de validation
+ * 0 les coordoné sont en dehors de la matrice
+ * 1 les coordoné sont dans la matrice
+ */
+extern int coordoner_posible(int const x, int const y){
+    return( x > 0 && x < NBTUILES && y > 0 && y < NBTUILES);
+}
+
+/**
  * @brief verfication qu'il y a une tuile au coordoné
  * 
  * @param x position x a vérifier
@@ -19,7 +33,10 @@
  *  1 case existe
  */
 extern int case_existe(int const x, int const y){
-    return(plateau[x][y]!=NULL);
+    if(coordoner_posible(x,y)){
+        return(plateau[x][y]!=NULL);
+    }
+    return(0);
 }
 
 /**
@@ -35,7 +52,10 @@ extern int case_existe(int const x, int const y){
  * 1 les case sont bien différente
  */
 extern int case_differente(int const xa, int const ya, int const xn, int const yn){
-    return(xa!=xn && ya!=yn);
+    if(coordoner_posible(xa,ya) && coordoner_posible(xn,yn)){
+        return(xa!=xn && ya!=yn);
+    }
+    return(0);
 }
 
 /**
@@ -51,7 +71,10 @@ extern int case_differente(int const xa, int const ya, int const xn, int const y
  * 1 la case se trouve sur la ligne
  */
 static int sur_la_ligne(int const xa, int const ya, int const xn, int const yn){
-    return (xa == xn || ya == yn || xa-ya == xn-yn);
+    if(coordoner_posible(xa,ya) && coordoner_posible(xn,yn)){
+        return (xa == xn || ya == yn || xa-ya == xn-yn);
+    }
+    return(0);
 }
 
 /**
@@ -160,6 +183,17 @@ extern int deplacement_imposible(int const xa, int const ya, int const xn, int c
     return(0);
 }
 
+extern int a_coter_irigation(int const x, int const y){
+    if(coordoner_posible(x,y)){
+        for(int i=0; irig[i]!=NULL;i++){
+            if((irig[i]->x_bas_droit == x && irig[i]->y_bas_droit == y )||(irig[i]->x_haut_gauche == x && irig[i]->y_haut_gauche == y )){
+                return 1;
+            }
+        }
+    }
+    return(0);
+}
+
 /**
  * @brief verifiaction des la posibllité de posser une tuile
  * 
@@ -193,13 +227,30 @@ extern int pose_tuile_impossible(int const x, int const y){
     return(2);
 }
 
-int ajout_tuile(case_plato_t const * case_choix, int const x, int const y){
+
+/**
+ * @brief fonction de pose de tuile
+ * 
+ * @param case_choix poiteur sur la case a ajouter
+ * @param x coordoné pour la dite case
+ * @param y 
+ * @return int 
+ * booléen de validation
+ * 1 tout c'est bien passer
+ * 0 il y a eu un problème
+ */
+int ajout_tuile(case_plato_t  * case_choix, int const x, int const y){
+
     if(!pose_tuile_impossible(x,y)){
         plateau[x][y] = case_choix;
         if(contigue(x,y,LACPOS,LACPOS)){
             plateau[x][y]->iriguer = 1;
         }
-        else
+        else{
+            if(a_coter_irigation(x,y)){
+                plateau[x][y]->iriguer = 1;
+            }
+        }
         return 1;
     }
     return 0;

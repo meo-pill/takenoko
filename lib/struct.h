@@ -20,6 +20,7 @@
 #define LACPOS 14
 #define NBIRIG 20
 #define NBCARTE 15
+#define TAILLE_MAIN 5
 
 /**definition des structurs*/
 typedef struct  personnage_s personnage_t;
@@ -50,7 +51,7 @@ file_t * file_tuile_queue;
 personnage_t panda;
 personnage_t jardinier;
 irig_t * irig[NBIRIG];
-//int indique_carte[3] = {0,0,0}; /*sert à indiquer pour chaque pioche de carte (cartePanda, carteParcelle et carteJardinier) à quelle endroit on est (quelle est la prochaine carte)*/
+int indique_carte[3]; /*sert à indiquer pour chaque pioche de carte (cartePanda, carteParcelle et carteJardinier) à quelle endroit on est (quelle est la prochaine carte)*/
 
 
 /** des structurs*/
@@ -81,7 +82,7 @@ struct carte_s{
 
 struct joueur_s{
   char * nom_joueur;
-  carte_t * main_J[5];
+  carte_t * main_J[TAILLE_MAIN];
   carte_t * valide[MAXNB2J];
 	int bambou [3]; /*dans l'ordre : jaune rose vert*/
 	int effSpe [3]; 
