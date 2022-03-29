@@ -4,8 +4,7 @@
 
 #include "index.h"
 
-static int debut_partie(int const * nb_joueur, int * maxpoint);
-static int victoire_joueur(joueur_t const * J, int const maxpoint);
-extern void tour_jeux(int const nb_joueur);
+extern int victoire_joueur(joueur_t const * J, int const maxpoint);
+extern void tour_jeux(int const nb_joueur,int num_tour);
 
 #endif

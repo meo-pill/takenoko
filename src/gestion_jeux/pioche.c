@@ -11,14 +11,10 @@
 #include "../../lib/pioche.h"
 
 
-extern int pioche_une_case(void){
-    int choix = -1, nb_choix =2;
+extern case_plato_t * pioche_une_case(void){
     case_plato_t * choix_de_trois[3];
-    case_plato_t * case_ajout;
-    int x,y;
     if(filevide()){
-        printf ("plus de case en file");
-        return 0;
+        return NULL;
     }
     retirer(&choix_de_trois[0]);
     if(!filevide()){
@@ -26,26 +22,8 @@ extern int pioche_une_case(void){
         if(!filevide()){
             retirer(&choix_de_trois[2]);
         }
-        
-        printf("le joueur pioche une case");
-        // a faire sdl
-        while (choix < 0 && choix > nb_choix){
-            scanf("%d",&choix);
-        }
-        for(int i = 0; i<nb_choix+1; i++){
-            if(i!= choix+1){
-                ajouter(choix_de_trois[i]);
-            }
-        }
     }
-    else{
-        case_ajout = choix_de_trois[0];
-    }
-    printf("donner position de case a ajouter");
-    scanf("%d", &x);
-    scanf("%d", &y);   
-    ajout_tuile(case_ajout,x,y);
-    return 1;
+    return choix_de_trois;
 }
 
 /**

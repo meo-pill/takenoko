@@ -103,25 +103,22 @@ carte_t * creer_carte(char * type, char * describ, char * image, int pt ){
 
   return carte ;
 }
+extern void detruire_one_carte(carte_t** C){
+	free(*C);
+	C=NULL;
+}
 
 void detruire_carte(){
-  int i =0 ;
+  int i;
   for(i = 0; i<NBCARTE;i++){
-    free(cartePanda[i]);
-    cartePanda[i] = NULL;
-  }
-  for(i = 0; i<NBCARTE;i++){
-    free(carteJardinier[i]);
-    carteJardinier[i] = NULL;
-  }
-  for(i = 0; i<NBCARTE;i++){
-    free(carteParcelle[i]);
-    carteParcelle[i] = NULL;
+    detruire_one_carte(&cartePanda[i]);
+    detruire_one_carte(&carteJardinier[i]);
+    detruire_one_carte(&carteParcelle[i]);
   }
 }
 /**
  * @brief cette fonction affiche une carte sur la sortie standard
- * 
+ *  il s'agit d'une fonction de test
  * @param c 
  * si le paramètre est NULL, la fonction affiche NULL à la place
  */

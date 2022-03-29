@@ -17,6 +17,8 @@ void a_null_carte();
 
 int inserer_carte(carte_t *);
 
+extern void detruire_one_carte(carte_t** C);
+
 void detruire_carte();
 
 void afficher_carte(carte_t * const);

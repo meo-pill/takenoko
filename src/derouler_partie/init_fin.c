@@ -114,6 +114,33 @@ extern void mise_en_file(void){
     }
 }
 /**
+ * @brief detruit un joueur
+ * @author Morgane
+ */
+static void det_Joueur(joueur_t** Joueur){
+	free((*Joueur)->nom_joueur);
+	(*Joueur)->nom_joueur=NULL;
+	for(int i=0;i<5;i++){
+		if((*J)->main_J[i]!=NULL)
+			detruire_one_carte(&((*Joueur)->main_J[i]));
+	}
+	for(int i=0;i<MAXNB2J;i++){
+		if((*Joueur)->valide[i]!=NULL)
+			detruire_one_carte(&((*Joueur)->valide[i]));
+	}
+	free((*J));
+	*J=NULL;
+}
+/**
+ * @briefdetruit les joueurs 
+ * @author Morgane
+ */
+static void detruir_Table_J(int const nbJoueur){
+	for(int i=0;i<nbJoueur;i++){
+		det_Joueur(&J[i]);
+	}
+}
+/**
  * @brief retoutne le nom d'un joueur
  * @author Morgane
  */
@@ -144,6 +171,7 @@ static void creation_joueur(int const nb_joueur){
     int j;
     for (int i = 0; i < nb_joueur; i++){
         J[i] = malloc(sizeof(joueur_t));
+	J[i]->nom_joueur= malloc(sizeof(char));
         J[i]->nom_joueur=NomJ(i+1);
         for(j=0;j<3;j++){
         	//inserer_carte(J[i]->main_J[j]);
@@ -155,6 +183,9 @@ static void creation_joueur(int const nb_joueur){
         }
         J[i]->nbIrigation=0;
         J[i]->nbObjectif=i;
+    }
+    for(int i=4-nb_joueur;i!=0;i--){
+	    J[i] =NULL;
     }
 }
 
@@ -189,7 +220,7 @@ static void init_irigation(void){
     }
 }
 
-int extraction_fichier_carte(){
+extern int extraction_fichier_carte(){
     int nb_panda = 0;
     int nb_parc = 0;
     int nb_jard = 0;
@@ -265,7 +296,7 @@ int extraction_fichier_carte(){
  * @brief fonction d'apelle pour l'initialisation de la partie
  * Mewen / Leo
  */
-extern void initialiser(int const nb_joueur){
+static void initialiser(int const nb_joueur){
     initfile();
     if (extraction_fichier_tuile()){
         printf("ereur d'ouverture fichier tuile\n");
@@ -284,6 +315,37 @@ extern void initialiser(int const nb_joueur){
     indique_carte[1] = 0;
     indique_carte[2] = 0;
 }
+
+/**
+ * @brief premier fonction d'inisialisaiton pour donner une valeur au varible
+ * et faire appelle a la fonction d'inisialisation des tuile et carte
+ * 
+ * @param nb_joueur atribution du nombre de joueur
+ * @param maxpoint atribution du nombre de carte a valider en conséquence
+ * @return int pour le retour d'erreur
+ */
+extern int debut_partie(int const  nb_joueur, int * maxpoint){
+    initialiser(nb_joueur);
+    /**
+     * @brief établisement la variable du maxpoint en fonciton du nb de joueur
+     * 
+     */
+    switch (nb_joueur){
+    case 2:
+        *maxpoint = MAXNB2J;
+        break;
+    case 3:
+        *maxpoint = MAXNB3J;
+        break;
+    case 4:
+        *maxpoint = MAXNB4J;
+        break;
+    default:
+        return(0);
+    }
+    return(1);
+}
+
 
 /*
  ****************************************************************************************
@@ -313,7 +375,8 @@ static void suppression_tuile(void){
 
 static void suppression_irig(void){
     for(int i=0; i < NBIRIG; i++){
-        free(irig[i]);
+	if(irig[i]!=NULL)
+		free(irig[i]);
     }
     init_irigation();
 }
@@ -322,9 +385,12 @@ static void suppression_irig(void){
  * @brief fonction d'appelle pour la libération de fin de partie
  * Mewen / Leo
  */
-void suprimer(void){
-    videe_plateau();
+extern void suprimer(int const nbJoueur){
+	printf("Je débug\n");
+	if(plateau!=NULL)
+		videe_plateau();
     detruire_carte();
     suppression_tuile();
     suppression_irig();
+    detruir_Table_J(nbJoueur);
 }

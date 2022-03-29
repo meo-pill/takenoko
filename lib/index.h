@@ -19,6 +19,7 @@
 #include "fonction.h"
 #include "carte.h"
 #include "pioche.h"
+#include "tour.h"
 
 
 #endif
