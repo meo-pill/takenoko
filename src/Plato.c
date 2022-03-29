@@ -38,7 +38,8 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	text_t* Vent= NULL;
 	text_t* Orage= NULL;
 	text_t* Nuage=NULL;
-	text_t* AffJoueur=NULL;
+	text_t** AffJoueur=NULL;
+	AffJoueur=malloc(sizeof(text_t*));
 	text_t** hexagonal=NULL;
 	hexagonal=malloc(sizeof(text_t*));
 
@@ -125,17 +126,30 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	}
 
 	//affichage des joueurs
-	AffJoueur=Crea_Tex(1);//normalement 13
-	AffJoueur->Table[0]->t=Creation_Text(renderer,lire_Rect(AffJoueur->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,J[0]->nom_joueur,Blanc,W*(3/4),H*8/11);
-	if ((AffJoueur->Table[0]) == NULL){	
-		if(J[0]->nom_joueur!=NULL)
-			printf("\t\tnom: %s\n",J[0]->nom_joueur);
-		else
-			printf("Il n'y as pas de nom\n");
-		fprintf(stderr , " Erreur au niveau du Texte %s\n",TTF_GetError ());
-		exit ( EXIT_FAILURE );
+	for(int i=0;i<nbJoueur;i++){
+		AffJoueur[i]=Crea_Tex(1);//normalement 13
+		if(i%2!=0){
+			if(i==3)
+				(AffJoueur[i]->Table[0])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,J[i]->nom_joueur,Blanc,W*(3/4),H*8/11);
+			else
+				(AffJoueur[i])->Table[0]->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,J[i]->nom_joueur,Blanc,W*(3/4),0);
+		}
+		else{
+			if(i==4)
+				(AffJoueur[i]->Table[0])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,J[i]->nom_joueur,Blanc,W*3/4,H*8/11);
+			else
+				(AffJoueur[i]->Table[0])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,J[i]->nom_joueur,Blanc,W*3/4,0);
+		}
+		if ((AffJoueur[i]->Table[0]) == NULL){	
+			if(J[0]->nom_joueur!=NULL)
+				printf("\t\tnom: %s\n",J[0]->nom_joueur);
+			else
+				printf("Il n'y as pas de nom\n");
+			fprintf(stderr , " Erreur au niveau du Texte %s\n",TTF_GetError ());
+			exit ( EXIT_FAILURE );
+		}
 	}
-//	(AffJoueur->Table[1])->t=Creation_Text(renderer,lire_Rect(AffJoueur->Table[0],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,"NbBambou = 0",Blanc,W*1/4,H*1/4);
+	//(AffJoueur->Table[1])->t=Creation_Text(renderer,lire_Rect(AffJoueur->Table[0],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,"NbBambou = 0",Blanc,W*1/4,H*1/4);
 
 	//initialisation des image du plato
 	for(int pos_y=0;pos_y<NBTUILES;pos_y++){
@@ -180,7 +194,9 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 			for(int pos_y=0;pos_y<NBTUILES;pos_y++){
 				hexagonal[pos_y]->det(hexagonal[pos_y]);
 			}
-			AffJoueur->det(AffJoueur);
+			for(int i=0;i<nbJoueur;i++){
+				AffJoueur[i]->det(AffJoueur[i]);
+			}
 			if(NULL!=renderer)
 				SDL_DestroyRenderer(renderer);
 			if(NULL!=pWindow)
@@ -191,9 +207,11 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 			suprimer(nbJoueur);
 			selecte_nb_joueur(W,H);
 		}
-		//for(int j=0;j<2;j++){
-			SDL_RenderCopy(renderer,AffJoueur->Table[0]->t,NULL,lire_Rect(AffJoueur->Table[0],1));
-		//}
+		for(int i=0;i<nbJoueur;i++){
+			//for(int j=0;j<2;j++){
+				SDL_RenderCopy(renderer,lire_Texture(AffJoueur[i]->Table[0]),NULL,lire_Rect(AffJoueur[i]->Table[0],1));
+			//}
+		}
 
 		if(!(victoirJ && compteur_tour==0)){
 			if(!choix)
@@ -319,7 +337,9 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 				for(int pos_y=0;pos_y<NBTUILES;pos_y++){
 					hexagonal[pos_y]->det(hexagonal[pos_y]);
 				}
-				AffJoueur->det(AffJoueur);
+				for(int i=0;i<nbJoueur;i++){
+					AffJoueur[i]->det(AffJoueur[i]);
+				}
 				if(renderer!=NULL)
 					SDL_DestroyRenderer(renderer);
 				if(pWindow!=NULL)
