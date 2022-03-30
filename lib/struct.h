@@ -40,10 +40,11 @@ typedef enum choixJ_s{rien,parcelle,irrigation,choix_jardinier,choix_panda,objec
 
 /**variable globale*/
 joueur_t * J[4];
-case_plato_t * piece[NBTUILES];
 carte_t * cartePanda[NBCARTE];
 carte_t * carteParcelle[NBCARTE];
 carte_t * carteJardinier[NBCARTE];
+int indique_carte[3]; /*sert à indiquer pour chaque pioche de carte (cartePanda, carteParcelle et carteJardinier) à quelle endroit on est (quelle est la prochaine carte)*/
+case_plato_t * piece[NBTUILES];
 case_plato_t * plateau[NBTUILES][NBTUILES];
 case_plato_t lac;
 file_t * file_tuile_tete;
@@ -51,7 +52,6 @@ file_t * file_tuile_queue;
 personnage_t panda;
 personnage_t jardinier;
 irig_t * irig[NBIRIG];
-int indique_carte[3]; /*sert à indiquer pour chaque pioche de carte (cartePanda, carteParcelle et carteJardinier) à quelle endroit on est (quelle est la prochaine carte)*/
 
 
 /** des structurs*/

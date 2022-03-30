@@ -1,9 +1,14 @@
-#include "../../lib/init_fin.h"
 /**
- * fichier avec les fonction d'initialisation et de supression du jeu
- * Mewen / Leo
+ * @file init_fin.c
+ * @author MEWEN PUREN / NAIL LEO
+ * @brief fonction d'inisatilsation de la partie / fonction de supression
+ * @version 0.1
+ * @date 2022-03-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
  */
-
+#include "../../lib/init_fin.h"
 
 /*
  ****************************************************************************************
@@ -16,7 +21,7 @@
  * Mewen
  *
  */
-static void shuffleTuile(){
+static void shuffleTuile(void){
     /** 
      * mise en place des variable de la fonction
      * une pour servir de tampon pour les donée
@@ -113,31 +118,14 @@ extern void mise_en_file(void){
         ajouter(piece[i]);
     }
 }
+
 /**
- * @brief detruit un joueur
+ * @brief initialise une main 
  * @author Morgane
  */
-static void det_Joueur(joueur_t** Joueur){
-	free((*Joueur)->nom_joueur);
-	(*Joueur)->nom_joueur=NULL;
-	for(int i=0;i<5;i++){
-		if((*J)->main_J[i]!=NULL)
-			detruire_one_carte(&((*Joueur)->main_J[i]));
-	}
-	for(int i=0;i<MAXNB2J;i++){
-		if((*Joueur)->valide[i]!=NULL)
-			detruire_one_carte(&((*Joueur)->valide[i]));
-	}
-	free((*J));
-	*J=NULL;
-}
-/**
- * @briefdetruit les joueurs 
- * @author Morgane
- */
-static void detruir_Table_J(int const nbJoueur){
-	for(int i=0;i<nbJoueur;i++){
-		det_Joueur(&J[i]);
+static void init_main(carte_t ** main,int const nb_carte){
+	for(int i=0;i<nb_carte;i++){
+		main[i]=NULL;
 	}
 }
 /**
@@ -146,16 +134,16 @@ static void detruir_Table_J(int const nbJoueur){
  */
 static char* NomJ (int numJ){
 	switch(numJ){
-		case 1:
+		case 0:
 			return "Joueur1";
 			break;
-		case 2:
+		case 1:
 			return "Joueur2";
 			break;
-		case 3:
+		case 2:
 			return "Joueur3";
 			break;
-		case 4:
+		case 3:
 			return "Joueur4";
 			break;
 	}
@@ -172,19 +160,18 @@ static void creation_joueur(int const nb_joueur){
     for (int i = 0; i < nb_joueur; i++){
         J[i] = malloc(sizeof(joueur_t));
 	J[i]->nom_joueur= malloc(sizeof(char));
-        J[i]->nom_joueur=NomJ(i+1);
+        J[i]->nom_joueur=NomJ(i);
+	init_main(J[i]->main_J,TAILLE_MAIN);
+	init_main(J[i]->valide,MAXNB2J);
         for(j=0;j<3;j++){
-        	//inserer_carte(J[i]->main_J[j]);
-        	J[i]->bambou[j]=0;
-        	J[i]->effSpe[j]=0;
+		joueur_pioche_carte(J[i],j);
+		J[i]->bambou[j]=0;
+		J[i]->effSpe[j]=0;
         }
-        for(j=0;j<MAXNB2J;j++){
-        	J[i]->valide[j]=NULL;
-        }
-        J[i]->nbIrigation=0;
-        J[i]->nbObjectif=i;
+	J[i]->nbIrigation=0;
+	J[i]->nbObjectif=0;
     }
-    for(int i=4-nb_joueur;i!=0;i--){
+    for(int i=4;i>nb_joueur;i--){
 	    J[i] =NULL;
     }
 }
@@ -352,6 +339,34 @@ extern int debut_partie(int const  nb_joueur, int * maxpoint){
  * partie destruction
  ****************************************************************************************
  */
+
+/**
+ * @brief detruit un joueur
+ * @author Morgane
+ */
+static void det_Joueur(joueur_t** Joueur){
+	free((*Joueur)->nom_joueur);
+	(*Joueur)->nom_joueur=NULL;
+	for(int i=0;i<5;i++){
+		if((*J)->main_J[i]!=NULL)
+			detruire_one_carte(&((*Joueur)->main_J[i]));
+	}
+	for(int i=0;i<MAXNB2J;i++){
+		if((*Joueur)->valide[i]!=NULL)
+			detruire_one_carte(&((*Joueur)->valide[i]));
+	}
+	free((*J));
+	*J=NULL;
+}
+/**
+ * @briefdetruit les joueurs 
+ * @author Morgane
+ */
+static void detruir_Table_J(int const nbJoueur){
+	for(int i=0;i<nbJoueur;i++){
+		det_Joueur(&J[i]);
+	}
+}
 
 /**
  * @brief mise a nul des poiteur pour éviter les poiteur fous
