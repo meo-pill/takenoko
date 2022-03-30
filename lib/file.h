@@ -10,7 +10,7 @@ struct file_s{
 
 extern void initfile(void);
 extern void ajouter(case_plato_t * tuile);
-extern void retirer(case_plato_t ** tuile);
+extern case_plato_t * retirer(void);
 extern int filevide(void);
 
 #endif
