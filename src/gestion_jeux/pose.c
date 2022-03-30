@@ -196,10 +196,10 @@ extern int a_coter_irigation(int const x, int const y){
 
 /**
  * @brief verifiaction des la posibllité de posser une tuile
- * 
+ *
  * @param x coordoné x de la tuile
  * @param y coordoné y de la tuile
- * @return int 
+ * @return int
  * retour d'un int de validation/erreur
  * 0= la posse de la tuile est possible
  * 1= une tuile se trouve deja a l'emplacement
@@ -211,7 +211,7 @@ extern int pose_tuile_impossible(int const x, int const y){
         return (0);
     }
     if (case_existe(x,y)){
-        return(1);    
+        return(1);
     }
     // test de toute les position voisine et ajjout dans un compteur
     validation += case_existe(x-1,y-1);
@@ -230,7 +230,7 @@ extern int pose_tuile_impossible(int const x, int const y){
 
 /**
  * @brief fonction de pose de tuile
- * 
+ *
  * @param case_choix poiteur sur la case a ajouter
  * @param x coordoné pour la dite case
  * @param y 
