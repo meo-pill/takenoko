@@ -1,3 +1,5 @@
+#ifndef CARTE_H_INCLUDED
+#define CARTE_H_INCLUDED
 /**
  * @file carte.h
  * @author nail léo
@@ -35,3 +37,5 @@ int verif_parcelle_triangle (carte_t * const,joueur_t * const);
 int verif_parcelle_losange(carte_t * const,joueur_t * const);
 int verif_parcelle_ligne(carte_t * const,joueur_t * const);
 int verif_parcelle_arc(carte_t * const,joueur_t * const);
+
+#endif
