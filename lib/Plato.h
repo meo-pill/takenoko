@@ -1,6 +1,5 @@
-
 #ifndef _H_PLATO_INCLUDED
-#define _H_PLATO__INCLUDED
+#define _H_PLATO_INCLUDED
 #include "Creation.h"
 #include "commande.h"
 /*!

@@ -23,14 +23,16 @@ extern void ajouter(case_plato_t * tuile){
 	file_tuile_queue = nouv;
 }
 
-extern void retirer(case_plato_t ** tuile){
+extern case_plato_t * retirer(void){
+	case_plato_t *tuile;
 file_t* premier=NULL;
 
 	if(!filevide()){
 		premier = file_tuile_tete;
-		*tuile = premier->tuile;
+		tuile = premier->tuile;
 		file_tuile_tete = premier->suivant;
 		free(premier);
 	}
+	return tuile;
 }
 
