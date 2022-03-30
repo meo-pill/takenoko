@@ -192,25 +192,22 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	//initialisation des image du plato
 	for(int ligne=0 ; ligne<NBTUILES ; ligne++){
 		hexagonal[ligne] = Crea_Tex(NBTUILES);
-		int posY = H/2 - TAILTUILE * (ligne-LACPOS)*3/4;
-		printf("Ligne %d\n",ligne);
+		int posY;
+		posY = H/2 + TAILTUILE* (ligne-LACPOS)*3/4-TAILTUILE*1/2;
 		for(int colonne=0 ; colonne<NBTUILES ; colonne++){
-			int posX = W/2 + TAILTUILE*(colonne-LACPOS) + (ligne-LACPOS)*TAILTUILE*1/2;
+			int posX;
+			if(ligne%2)
+				posX = W/2 + TAILTUILE*(colonne-LACPOS)+TAILTUILE/2;
+			else
+				posX = W/2 + TAILTUILE*(colonne-LACPOS);
 
 			if(plateau[ligne][colonne]!=NULL){
 				(hexagonal[ligne]->Table[colonne])->t= IMG_LoadTexture(renderer, plateau[ligne][colonne]->image);
-				printf("OK Je suis ici\n");
 			}
 			else{
-				if(plateau[ligne-1][colonne+1]!=NULL||
-						plateau[ligne+1][colonne]!=NULL||
-						plateau[ligne][colonne+1]!=NULL||
-						plateau[ligne+1][colonne-1]!=NULL||
-						plateau[ligne-1][colonne]!=NULL||
-						plateau[ligne][colonne-1]!=NULL){
+				if(!pose_tuile_impossible(ligne,colonne)){
 					(hexagonal[ligne]->Table[colonne])->t = IMG_LoadTexture(renderer, contour_tuile);
 				}
-				printf("X=%d Y=%d \n",ligne,colonne);//X=14 Y=11
 			}
 			if((hexagonal[ligne]->Table[colonne])->t==NULL){
 				fprintf ( stderr , " Erreur au niveau de l'image: %s \n " , TTF_GetError ());
