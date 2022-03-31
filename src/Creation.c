@@ -68,38 +68,20 @@ extern int inv_bout(SDL_Renderer * renderer,
 	return 0;
 }
 
-extern int Select_hexa(SDL_Renderer * renderer,Texture_t * evaluation, Texture_t * source, int const x, int const y){
-	SDL_Rect * rectangle =  evaluation->place2;
-	if (y < (rectangle->y +(rectangle->h/4) ) ){
-		if ( x <= (rectangle->x + (rectangle->w /2) ) ){
-			if ( (y - rectangle->y) <= ( ( (rectangle->w/2) - (x - rectangle->x) )/2) ){
-				SDL_RenderCopy(renderer, evaluation->t,NULL,rectangle);
-				return 0;
-			}
-		}
-		else if ( x<= (rectangle->x + (rectangle->w /2) ) ){
-			if( (y - rectangle->y) <= ( ( (x - rectangle->x) + (rectangle->w /2) ) /2 ) ){
-				SDL_RenderCopy(renderer, evaluation->t,NULL,rectangle);
-				return 0;
-			}
-		}
-	}
-	else if ( y > (rectangle->y + (rectangle->h - (rectangle->h/4) ) ) ){
-		if (  x <= (rectangle->x + (rectangle->w /2) ) ){
-			if ( (y - rectangle->y) >= ( ( (x - rectangle->x) + (rectangle->w /2) ) /2 ) ){
-				SDL_RenderCopy(renderer, evaluation->t,NULL,rectangle);
-				return 0;
-			}
-		}
-		else if ( x<= (rectangle->x + (rectangle->w /2) ) ){
-			if( (y - rectangle->y) >= ( ( (x - rectangle->x) + (rectangle->w /2) ) /2 ) ){
-				SDL_RenderCopy(renderer, evaluation->t,NULL,rectangle);
-				return 0;
-			}
-		}
-	}
-	else{
-		SDL_RenderCopy(renderer, source->t,NULL,rectangle);
+extern int Select_hexa(SDL_Renderer * renderer,
+		Texture_t * evaluation,
+		Texture_t * source,
+		int const curseur_x,
+		int const curseur_y)
+{
+
+	SDL_Rect* rect=evaluation->place2;
+	int pointHaut=rect->y+(rect->h*1/4);
+	int pointBas=(rect->y+rect->h)-pointHaut;
+	if((curseur_x>= rect->x && curseur_x<=rect->x+rect->w)&&(curseur_y>=pointHaut && curseur_y<=pointBas) ){
+		SDL_RenderCopy( renderer, source->t,NULL,rect);
 		return 1;
 	}
+	SDL_RenderCopy( renderer, evaluation->t,NULL,rect);
+	return 0;
 }

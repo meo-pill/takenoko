@@ -23,7 +23,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	SDL_Renderer *renderer=NULL;
 
 	char fond_Plato[]="image/en_plus/Fond_Plato2.png";
-	char contour_tuile[]="image/case/SelectCase.png";
+	char contour_tuile[]="image/case/Case.png";
 	char bouton_pas_bouge[]="image/bouton/pas_bouge_map.png";
 	char bouton_bouge[]="image/bouton/bouge_map.png";
 
@@ -45,6 +45,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	text_t* image=NULL;
 	text_t* bouton=NULL;
 	text_t* Select_Map=NULL;
+	text_t* Select_case=NULL;
 	text_t* fin_tour=NULL;
 	text_t* Soleil=NULL;
 	text_t* Pluie=NULL;
@@ -80,6 +81,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	image=Crea_Tex(1);
 	bouton=Crea_Tex(2);
 	Select_Map=Crea_Tex(2);
+	Select_case=Crea_Tex(1);
 	fin_tour=Crea_Tex(2);
 
 	bouton->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton->Table[0],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,"<-Retour",Blanc,W*1/4,10);
@@ -94,6 +96,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	if ((bouton->Table[0]) == NULL || bouton->Table[1]==NULL){
 		exit ( EXIT_FAILURE );
 	}
+	IMG_Init(IMG_INIT_PNG);
 
 	Soleil=Crea_Tex(2);
 	Pluie=Crea_Tex(2);
@@ -120,26 +123,10 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 
 	(*Met_choix->Table)->t=Creation_image(renderer,lire_Rect((*Met_choix->Table),1),Select_choix,70,H*3/11,70,50);
 
-	if ((Soleil->Table[0]) == NULL || Soleil->Table[1]==NULL ||
-			(Pluie->Table[0]) == NULL || Pluie->Table[1]==NULL ||
-			(Vent->Table[0]) == NULL || Vent->Table[1]==NULL ||
-			(Orage->Table[0]) == NULL || Orage->Table[1]==NULL ||
-			(Nuage->Table[0]) == NULL || Nuage->Table[1]==NULL ){
-		fprintf(stderr , " Erreur au niveau du Texte %s\n",TTF_GetError ());
-		exit ( EXIT_FAILURE );
-	}
-
-	IMG_Init(IMG_INIT_PNG);
 	Select_Map->Table[0]->t = Creation_image(renderer,lire_Rect(Select_Map->Table[0],1),bouton_pas_bouge,W*6/8,H*3/11,30,30);
 	Select_Map->Table[1]->t = Creation_image(renderer,lire_Rect(Select_Map->Table[1],1),bouton_bouge,W*6/8,H*3/11,30,30);
-	if(Select_Map->Table[0]->t==NULL|| Select_Map->Table[1]->t==NULL){
-		fprintf ( stderr , " Erreur au niveau de l'image: %s \n " , TTF_GetError ());
-		exit ( EXIT_FAILURE );
-	}
-	positionne_rect(lire_Rect(Select_Map->Table[0],1),W*6/8,H*3/11,30,30);
-	positionne_rect(lire_Rect(Select_Map->Table[1],1),W*6/8,H*3/11,30,30);
 
-
+	(*Select_case->Table)->t=IMG_LoadTexture(renderer,"image/case/SelectCase.png");
 
 	(*image->Table)->t = IMG_LoadTexture(renderer, fond_Plato);
 	if((*image->Table)->t==NULL){
@@ -225,9 +212,17 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 		//création de la "fenêtre ou nous verons une partie de l'image
 		SDL_RenderCopy(renderer,(*image->Table)->t,NULL,NULL);
 		if(bout(renderer,bouton,x,y) && Clic){
-			bouton->det(bouton);
 			image->det(image);
+			Select_case->det(Select_case);
+			fin_tour->det(fin_tour);
 			Select_Map->det(Select_Map);
+			Met_choix->det(Met_choix);
+			Soleil->det(Soleil);
+			Pluie->det(Pluie);
+			Vent->det(Vent);
+			Orage->det(Orage);
+			Nuage->det(Nuage);
+			bouton->det(bouton);
 			for(int ligne=0;ligne<NBTUILES;ligne++){
 				hexagonal[ligne]->det(hexagonal[ligne]);
 			}
@@ -383,7 +378,12 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 								TAILTUILE,TAILTUILE);
 						newTail=0;
 					}
-					SDL_RenderCopy(renderer,lire_Texture(hexagonal[ligne]->Table[colone]),NULL,lire_Rect((hexagonal[ligne]->Table[colone]),1));
+					SDL_RenderCopy(renderer,(hexagonal[ligne]->Table[colone])->t,NULL,lire_Rect((hexagonal[ligne]->Table[colone]),1));
+					if(Select_hexa(renderer,(hexagonal[ligne]->Table[colone]),(*Select_case->Table),x,y)){
+							printf("Je suis là\n");
+						if(!pose_tuile_impossible(ligne,colone)&& Clic){
+						}
+					}
 				}
 			}
 		}
@@ -402,10 +402,17 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 				if(fullscreen==1){
 					SDL_SetWindowFullscreen(pWindow,0);
 				}
-				//bouton->det(bouton);
+				bouton->det(bouton);
 				image->det(image);
+				Select_case->det(Select_case);
 				fin_tour->det(fin_tour);
 				Select_Map->det(Select_Map);
+				Met_choix->det(Met_choix);
+				Soleil->det(Soleil);
+				Pluie->det(Pluie);
+				Vent->det(Vent);
+				Orage->det(Orage);
+				Nuage->det(Nuage);
 				for(int ligne=0;ligne<NBTUILES;ligne++){
 					hexagonal[ligne]->det(hexagonal[ligne]);
 				}
