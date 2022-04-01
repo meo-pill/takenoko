@@ -168,6 +168,7 @@ static void creation_joueur(int const nb_joueur){
 		J[i]->bambou[j]=0;
 		J[i]->effSpe[j]=0;
         }
+	J[i]->score=0;
 	J[i]->nbIrigation=0;
 	J[i]->nbObjectif=0;
     }
