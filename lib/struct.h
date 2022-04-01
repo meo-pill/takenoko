@@ -84,6 +84,7 @@ struct joueur_s{
   char * nom_joueur;
   carte_t * main_J[TAILLE_MAIN];
   carte_t * valide[MAXNB2J];
+  int score;
 	int bambou [3]; /*dans l'ordre : jaune rose vert*/
 	int effSpe [3]; 
 	int nbIrigation;
