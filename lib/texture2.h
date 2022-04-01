@@ -32,7 +32,14 @@ typedef struct text_s{
 	Texture_t ** Table;
 	int Taille;
 }text_t;
-/*! Lecture d'un rectangle */
+/*! Lecture d'un rectangle
+ * \param texture texture de rectangle
+ * \param type_rect 0 = premier texture t selectiée
+ * 	1 = second rectangle selection
+ * 	
+ * \result SDL_Rect 
+ * retourne un rectangle
+ *  */
 extern SDL_Rect* lire_Rect(Texture_t* texture,int type_rect);
 
 /*! Permet de lire la texture*/

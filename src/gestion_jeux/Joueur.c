@@ -21,7 +21,6 @@
  */
 int possede_effet(joueur_t * j, effet_E effet){
     if(j->effSpe[effet] <= 0){
-        printf("\n----------------------le joueur %d ne possède pas d'effet %d------------------------\n\n",j->couleurJoueur,effet);
         return 0;
     }
     return 1;
