@@ -2,6 +2,7 @@
 #define _H_PLATO_INCLUDED
 #include "Creation.h"
 #include "commande.h"
+#include "converte.h"
 /*!
  * \author Morgane Pechon
  * \file Plato.h

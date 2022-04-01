@@ -198,28 +198,41 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 			if(i==3){
 				(AffJoueur[i]->Table[0])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,J[i]->nom_joueur,Blanc,W*3/4,H*8/11);
 				(AffJoueur[i]->Table[1])->t=Creation_image(renderer,lire_Rect(AffJoueur[i]->Table[1],1),"image/en_plus/pionJaune.png",W*3/4,H*8/11+40,50,30);
-				(AffJoueur[i]->Table[2])->t=Creation_image(renderer,lire_Rect(AffJoueur[i]->Table[2],1),"image/en_plus/pionRose.png",W*3/4+40,H*8/11+40,50,30);
-				(AffJoueur[i]->Table[3])->t=Creation_image(renderer,lire_Rect(AffJoueur[i]->Table[3],1),"image/en_plus/pionVert.png",W*3/4+80,H*8/11+40,50,30);
+				(AffJoueur[i]->Table[2])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[2],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD, retourne_itoa(J[i]->bambou[0]),Blanc,W*3/4,H*8/11);
+				(AffJoueur[i]->Table[3])->t=Creation_image(renderer,lire_Rect(AffJoueur[i]->Table[3],1),"image/en_plus/pionRose.png",W*3/4+40,H*8/11+40,50,30);
+				(AffJoueur[i]->Table[4])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[4],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD, retourne_itoa(J[i]->bambou[1]),Blanc,W*3/4+40,H*8/11+60);
+				(AffJoueur[i]->Table[5])->t=Creation_image(renderer,lire_Rect(AffJoueur[i]->Table[5],1),"image/en_plus/pionVert.png",W*3/4+80,H*8/11+40,50,30);
+				(AffJoueur[i]->Table[6])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[6],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]->bambou[2]),Blanc,W*3/4+80,H*8/11+60);
 			}
 			else{
+	printf("Je debug\n");
 				(AffJoueur[i]->Table[0])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,J[i]->nom_joueur,Blanc,W*3/4,0);
 				(AffJoueur[i]->Table[1])->t=Creation_image(renderer,lire_Rect(AffJoueur[i]->Table[1],1),"image/en_plus/pionJaune.png",W*3/4,40,50,30);
-				(AffJoueur[i]->Table[2])->t=Creation_image(renderer,lire_Rect(AffJoueur[i]->Table[2],1),"image/en_plus/pionRose.png",W*3/4+40,40,50,30);
-				(AffJoueur[i]->Table[3])->t=Creation_image(renderer,lire_Rect(AffJoueur[i]->Table[3],1),"image/en_plus/pionVert.png",W*3/4+80,40,50,30);
+				(AffJoueur[i]->Table[2])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[2],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD, retourne_itoa(J[i]->bambou[0]),Blanc,W*3/4,90);
+				(AffJoueur[i]->Table[3])->t=Creation_image(renderer,lire_Rect(AffJoueur[i]->Table[3],1),"image/en_plus/pionRose.png",W*3/4+40,40,50,30);
+				(AffJoueur[i]->Table[4])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[4],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]->bambou[1]),Blanc,W*3/4+40,90);
+				(AffJoueur[i]->Table[5])->t=Creation_image(renderer,lire_Rect(AffJoueur[i]->Table[5],1),"image/en_plus/pionVert.png",W*3/4+80,40,50,30);
+				(AffJoueur[i]->Table[6])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[6],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]->bambou[2]),Blanc,W*3/4+80,90);
 			}
 		}
 		else{
 			if(i==2){
-				(AffJoueur[i]->Table[0])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,J[i]->nom_joueur,Blanc,W*(3/4),H*8/11);
+				(AffJoueur[i]->Table[0])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,J[i]->nom_joueur,Blanc,W*(3/4),H*8/11+60);
 				(AffJoueur[i]->Table[1])->t=Creation_image(renderer,lire_Rect(AffJoueur[i]->Table[1],1),"image/en_plus/pionJaune.png",W*(3/4),H*8/11+40,50,30);
-				(AffJoueur[i]->Table[2])->t=Creation_image(renderer,lire_Rect(AffJoueur[i]->Table[2],1),"image/en_plus/pionRose.png",W*(3/4)+40,H*8/11+40,50,30);
-				(AffJoueur[i]->Table[3])->t=Creation_image(renderer,lire_Rect(AffJoueur[i]->Table[3],1),"image/en_plus/pionVert.png",W*(3/4)+80,H*8/11+40,50,30);
+				(AffJoueur[i]->Table[2])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[2],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]->bambou[0]),Blanc,W*(3/4),H*8/11+60);
+				(AffJoueur[i]->Table[3])->t=Creation_image(renderer,lire_Rect(AffJoueur[i]->Table[3],1),"image/en_plus/pionRose.png",W*(3/4)+40,H*8/11+40,50,30);
+				(AffJoueur[i]->Table[4])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[4],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]->bambou[1]),Blanc,W*(3/4)+40,H*8/11+60);
+				(AffJoueur[i]->Table[5])->t=Creation_image(renderer,lire_Rect(AffJoueur[i]->Table[5],1),"image/en_plus/pionVert.png",W*(3/4)+80,H*8/11+40,50,30);
+				(AffJoueur[i]->Table[6])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[6],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]->bambou[2]),Blanc,W*(3/4)+80,H*8/11+60);
 			}
 			else{
 				(AffJoueur[i]->Table[0])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,J[i]->nom_joueur,Blanc,W*(3/4),0);
 				(AffJoueur[i]->Table[1])->t=Creation_image(renderer,lire_Rect(AffJoueur[i]->Table[1],1),"image/en_plus/pionJaune.png",W*(3/4),40,50,30);
-				(AffJoueur[i]->Table[2])->t=Creation_image(renderer,lire_Rect(AffJoueur[i]->Table[2],1),"image/en_plus/pionRose.png",W*(3/4)+40,40,50,30);
-				(AffJoueur[i]->Table[3])->t=Creation_image(renderer,lire_Rect(AffJoueur[i]->Table[3],1),"image/en_plus/pionVert.png",W*(3/4)+80,40,50,30);
+				(AffJoueur[i]->Table[2])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[2],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]->bambou[0]),Blanc,W*(3/4),90);
+				(AffJoueur[i]->Table[3])->t=Creation_image(renderer,lire_Rect(AffJoueur[i]->Table[3],1),"image/en_plus/pionRose.png",W*(3/4)+40,40,50,30);
+				(AffJoueur[i]->Table[4])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[4],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]->bambou[1]),Blanc,W*(3/4)+40,90);
+				(AffJoueur[i]->Table[5])->t=Creation_image(renderer,lire_Rect(AffJoueur[i]->Table[5],1),"image/en_plus/pionVert.png",W*(3/4)+80,40,50,30);
+				(AffJoueur[i]->Table[6])->t=Creation_Text(renderer,lire_Rect(AffJoueur[i]->Table[6],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]->bambou[2]),Blanc,W*(3/4)+80,90);
 			}
 		}
 		if ((AffJoueur[i]->Table[0])->t == NULL){
@@ -231,7 +244,6 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 			exit ( EXIT_FAILURE );
 		}
 	}
-	//(AffJoueur->Table[1])->t=Creation_Text(renderer,lire_Rect(AffJoueur->Table[0],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,"NbBambou = 0",Blanc,W*1/4,H*1/4);
 
 	//initialisation des image du plato
 	for(int ligne=0 ; ligne<NBTUILES ; ligne++){
@@ -314,7 +326,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 			selecte_nb_joueur(W,H);
 		}
 		for(int i=0;i<nbJoueur;i++){
-			for(int j=0;j<4;j++){
+			for(int j=0;j<7;j++){
 				SDL_RenderCopy(renderer,lire_Texture(AffJoueur[i]->Table[j]),NULL,lire_Rect(AffJoueur[i]->Table[j],1));
 			}
 		}

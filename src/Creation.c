@@ -18,8 +18,12 @@ extern SDL_Texture* Creation_Text(SDL_Renderer *renderer,
 		return texte_tex;
 	}
 	TTF_SetFontStyle(font,style);
-	ecrire =TTF_RenderUTF8_Blended( font , texte ,couleur );
+	ecrire =TTF_RenderUTF8_Blended( font ,texte ,couleur );
 	texte_tex = SDL_CreateTextureFromSurface( renderer , ecrire );
+	if(texte_tex==NULL){
+		printf("Il y a un problème au chargement du texte %s\n",texte);
+		exit(EXIT_FAILURE);
+	}
 	tailText->x=position_x;
 	tailText->y=position_y;
 	SDL_QueryTexture( texte_tex , NULL , NULL , &tailText->w , &tailText->h);
@@ -68,6 +72,12 @@ extern int inv_bout(SDL_Renderer * renderer,
 	return 0;
 }
 
+typedef struct
+{
+int x;
+int y;
+}t_point;
+
 extern int Select_hexa(SDL_Renderer * renderer,
 		Texture_t * evaluation,
 		Texture_t * source,
@@ -76,12 +86,19 @@ extern int Select_hexa(SDL_Renderer * renderer,
 {
 
 	SDL_Rect* rect=evaluation->place2;
-	int pointHaut=rect->y+(rect->h*1/4);
-	int pointBas=(rect->y+rect->h)-pointHaut;
-	if((curseur_x>= rect->x && curseur_x<=rect->x+rect->w)&&(curseur_y>=pointHaut && curseur_y<=pointBas) ){
-		SDL_RenderCopy( renderer, source->t,NULL,rect);
+	
+	t_point Haut_G;
+	Haut_G.x=rect->x;
+	Haut_G.y=rect->y+rect->h*1/4;
+	
+	t_point Bas_D;
+	Bas_D.x=rect->w+rect->x;
+	Bas_D.y=rect->h+rect->y-rect->h*1/4;
+	if((curseur_x>=(Haut_G.x) && curseur_x<=Bas_D.x) && (curseur_y>=Haut_G.y && curseur_y<=Bas_D.y))
+	{
+		SDL_RenderCopy(renderer,source->t,NULL,rect);
 		return 1;
 	}
-	SDL_RenderCopy( renderer, evaluation->t,NULL,rect);
+	SDL_RenderCopy(renderer,evaluation->t,NULL,rect);
 	return 0;
 }
