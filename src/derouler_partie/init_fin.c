@@ -374,8 +374,14 @@ static void detruir_Table_J(int const nbJoueur){
  * Mewen
  */
 static void videe_plateau(void){
-    creation_plateau();
-    plateau[LACPOS][LACPOS]= NULL;
+	for(int i=0;i<NBTUILES;i++){
+		for(int j=0;j<NBTUILES;j++){
+			if(plateau[i][j]!=NULL){
+				free(plateau[i][j]);
+				plateau[i][j]=NULL;
+			}
+		}
+	}
 }
 
 /**
@@ -391,8 +397,10 @@ static void suppression_tuile(void){
 
 static void suppression_irig(void){
     for(int i=0; i < NBIRIG; i++){
-	if(irig[i]!=NULL)
+	if(irig[i]!=NULL){
 		free(irig[i]);
+		irig[i]=NULL;
+	}
     }
     init_irigation();
 }
@@ -402,11 +410,10 @@ static void suppression_irig(void){
  * Mewen / Leo
  */
 extern void suprimer(int const nbJoueur){
-	printf("Je débug\n");
-	if(plateau!=NULL)
-		videe_plateau();
+	videe_plateau();
     detruire_carte();
-    suppression_tuile();
     suppression_irig();
+	printf("Je débug\n");
     detruir_Table_J(nbJoueur);
+    suppression_tuile();
 }

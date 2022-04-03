@@ -115,6 +115,12 @@ void detruire_carte(){
     detruire_one_carte(&carteJardinier[i]);
     detruire_one_carte(&carteParcelle[i]);
   }
+  free(*cartePanda);
+  free(*carteJardinier);
+  free(*carteParcelle);
+  *cartePanda=NULL;
+  *carteJardinier=NULL;
+  *carteParcelle=NULL;
 }
 /**
  * @brief cette fonction affiche une carte sur la sortie standard
