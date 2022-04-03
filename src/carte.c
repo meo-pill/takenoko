@@ -697,3 +697,11 @@ int verif_parcelle_arc(carte_t * const carte,joueur_t * const J){
 //carte_t * carte_suivante (){
 //  
 //}
+
+int nb_point_joueur(joueur_t *J){
+  int resultat = 0;
+  for(int i = 0; i < MAXNB2J && J->valide[i] != NULL; i++){
+    resultat += J->valide[i]->point;
+  }
+  return resultat;
+}
