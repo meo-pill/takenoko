@@ -27,6 +27,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	char fond_Plato[]="image/en_plus/Fond_Plato2.png";
 	char bouton_pas_bouge[]="image/bouton/pas_bouge_map.png";
 	char bouton_bouge[]="image/bouton/bouge_map.png";
+	char bouton_Select_manuel[]="image/bouton/Select_manuel.png";
 	char bouton_manuel[]="image/bouton/manuel.png";
 
 	char image_sol[]="image/meteo/Soleil.png";
@@ -63,6 +64,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	char Select_Deck_defi[]="image/carte_tuile/Select_dos_carte.png";
 
 
+
 	text_t* image=NULL;
 	text_t* bouton=NULL;
 	text_t* bouton_irig=NULL;
@@ -70,6 +72,11 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	text_t* Select_case=NULL;
 	text_t* fin_tour=NULL;
 	text_t* Select_manuel=NULL;
+
+	text_t* iriger=NULL;
+	text_t* engret=NULL;
+	text_t* nonPanda=NULL;
+
 	/*bouton Meteo*/
 	text_t* Soleil=NULL;
 	text_t* Pluie=NULL;
@@ -163,6 +170,13 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	bouton_irig=Crea_Tex(2);
 	
 	
+	iriger=Crea_Tex(1);
+	engret=Crea_Tex(1);
+	nonPanda=Crea_Tex(1);
+
+	(*iriger->Table)->t=Creation_image(renderer,lire_Rect((*iriger->Table),1),"image/en_plus/irige.png",W*2/8,H*2/11,60,60);
+	(*engret->Table)->t=Creation_image(renderer,lire_Rect((*engret->Table),1),"image/en_plus/engret.png",W*3/10,H*2/11,60,60);
+	(*nonPanda->Table)->t=Creation_image(renderer,lire_Rect((*nonPanda->Table),1),"image/en_plus/nonPanda.png",W*4.25/12,H*2/11,60,60);
 
 	Soleil->Table[0]->t=Creation_image(renderer,lire_Rect(Soleil->Table[0],1),image_sol,10,H*3/11,70,50);
 	Soleil->Table[1]->t=Creation_image(renderer,lire_Rect(Soleil->Table[1],1),Select_sol,10,H*3/11,70,50);
@@ -207,7 +221,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	
 	
 	Select_manuel->Table[0]->t = Creation_image(renderer,lire_Rect(Select_manuel->Table[0],1),bouton_manuel,W*6/8,H*4/11,30,30);
-	Select_manuel->Table[1]->t = Creation_image(renderer,lire_Rect(Select_manuel->Table[1],1),bouton_manuel,W*6/8,H*4/11,30,30);
+	Select_manuel->Table[1]->t = Creation_image(renderer,lire_Rect(Select_manuel->Table[1],1),bouton_Select_manuel,W*6/8,H*4/11,30,30);
 	
 	bt_deck_panda->Table[0]->t = Creation_image(renderer,lire_Rect(bt_deck_panda->Table[0],1),Deck_panda,W*2/8,H*2/11,90,70);
 	bt_deck_panda->Table[1]->t = Creation_image(renderer,lire_Rect(bt_deck_panda->Table[1],1),Select_Deck_panda,W*2/8,H*2/11,90,70);
@@ -325,6 +339,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 
 	Uint32 Clic,relache=0;
 	int panda_bouge=0,jardinier_bouge=0,pose_pace=0,demande_carte=0,parcelle=0,met_vent=0,demande_irig=0;
+	int action=0;
 	while(1){
 		Uint32 souris = SDL_GetMouseState(&x,&y);
 		//création de la "fenêtre ou nous verons une partie de l'image
@@ -419,6 +434,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 						SDL_RenderCopy(renderer,lire_Texture(Vent->Table[0]),NULL,lire_Rect(Vent->Table[0],1));
 						SDL_RenderCopy(renderer,lire_Texture(Orage->Table[0]),NULL,lire_Rect(Orage->Table[0],1));
 						limit_action=3;
+						action=1;
 						break;
 					case pluie :
 						SDL_RenderCopy(renderer,lire_Texture(Pluie->Table[1]),NULL,lire_Rect(Pluie->Table[1],1));
@@ -428,6 +444,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 						SDL_RenderCopy(renderer,lire_Texture(Vent->Table[0]),NULL,lire_Rect(Vent->Table[0],1));
 						SDL_RenderCopy(renderer,lire_Texture(Orage->Table[0]),NULL,lire_Rect(Orage->Table[0],1));
 						//declancher_pluie();
+						action=1;
 						break;
 					case vent :
 						SDL_RenderCopy(renderer,lire_Texture(Vent->Table[1]),NULL,lire_Rect(Vent->Table[1],1));
@@ -437,6 +454,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 						SDL_RenderCopy(renderer,lire_Texture(Pluie->Table[0]),NULL,lire_Rect(Pluie->Table[0],1));
 						SDL_RenderCopy(renderer,lire_Texture(Orage->Table[0]),NULL,lire_Rect(Orage->Table[0],1));
 						met_vent=1;
+						action=1;
 						break;
 					case orage :
 						SDL_RenderCopy(renderer,lire_Texture(Orage->Table[1]),NULL,lire_Rect(Orage->Table[1],1));
@@ -446,6 +464,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 						SDL_RenderCopy(renderer,lire_Texture(Pluie->Table[0]),NULL,lire_Rect(Pluie->Table[0],1));
 						SDL_RenderCopy(renderer,lire_Texture(Vent->Table[0]),NULL,lire_Rect(Vent->Table[0],1));
 						//orage_panda();
+						action=1;
 						break;
 					case nuage :
 						SDL_RenderCopy(renderer,lire_Texture(Nuage->Table[1]),NULL,lire_Rect(Nuage->Table[1],1));
@@ -455,6 +474,8 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 						SDL_RenderCopy(renderer,lire_Texture(Vent->Table[0]),NULL,lire_Rect(Vent->Table[0],1));
 						SDL_RenderCopy(renderer,lire_Texture(Orage->Table[0]),NULL,lire_Rect(Orage->Table[0],1));
 						//choix_amenagement(J[i]);
+						if(!action)
+							action=2;
 						break;
 					default:
 						SDL_RenderCopy(renderer,lire_Texture(*Met_choix->Table),NULL,lire_Rect((*Met_choix->Table),1));
@@ -470,7 +491,47 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 							meteo=nuage;
 						break;
 			}
-			if(nb_action<limit_action)
+			if(action==2){
+				SDL_RenderCopy(renderer,lire_Texture(*iriger->Table),NULL,lire_Rect((*iriger->Table),1));
+				SDL_RenderCopy(renderer,lire_Texture(*engret->Table),NULL,lire_Rect((*engret->Table),1));
+				SDL_RenderCopy(renderer,lire_Texture(*nonPanda->Table),NULL,lire_Rect((*nonPanda->Table),1));
+				if(Select_hexa(renderer,(*iriger->Table),(*Select_case->Table),x,y) && Clic){
+					J[compteur_tour]-> effSpe[0]++;
+					action=3;
+				}
+				else if(Select_hexa(renderer,(*engret->Table),(*Select_case->Table),x,y) && Clic){
+					J[compteur_tour]-> effSpe[2]++;
+					action=3;
+				}
+				else if(Select_hexa(renderer,(*nonPanda->Table),(*Select_case->Table),x,y) && Clic){
+					J[compteur_tour]-> effSpe[1]++;
+					action=3;
+				}
+			}
+			if(action==3){
+				if(compteur_tour%2!=0){
+					//Joueur 4
+					if(compteur_tour==3){
+						AffJoueur[compteur_tour]=Creation_Joueur(renderer,W*3/4,H*8/11,compteur_tour);
+					}
+					//Joueur 2
+					else{
+						AffJoueur[compteur_tour]=Creation_Joueur(renderer,W*3/4,0,compteur_tour);
+					}
+				}
+				else{
+					//Joueur 3
+					if(compteur_tour==2){
+						AffJoueur[compteur_tour]=Creation_Joueur(renderer,W*(3/4),H*8/11,compteur_tour);
+					}
+					//Joueur 1
+					else{
+						AffJoueur[compteur_tour]=Creation_Joueur(renderer,W*(3/4),0,compteur_tour);
+					}
+				}
+				action=1;
+			}
+			if(nb_action<limit_action && action==1)
 			{
 				if(!panda_bouge||met_vent){
 					if(bout(renderer,Mov_pandas,x,y)&&Clic){
@@ -732,6 +793,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 								fprintf ( stderr , " Erreur au niveau de l'image: %s \n " , TTF_GetError ());
 								exit ( EXIT_FAILURE );
 							}
+							ajout_bambou_plato(ligne,colone);
 							pose_pace=3;
 						}
 					}
@@ -816,6 +878,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 				panda_bouge=0;
 				jardinier_bouge=0;
 				met_vent=0;
+				action=0;
 				choix=0;
 			}
 		}

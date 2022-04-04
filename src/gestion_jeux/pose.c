@@ -1,6 +1,6 @@
 /**
  * @file back_pose.c
- * @author MEWEN
+ * @author MEWEN et LEO NAIL
  * @brief fonction pour les pose des case et des irigation
  * @version 0.1
  * @date 2022-03-02
@@ -208,7 +208,48 @@ extern int pose_tuile_impossible(int const x, int const y){
     }
     return(2);
 }
+/**
+ * @brief fonction permettant de savoir sur quelles cases on peut poser une tuile
+ * 
+ * @param tab un tableau de coordonne qui reçoit le résultat
+ */
+extern void pose_tuiles_possible(coordonne_t * tab){
+    int i;
+    int j;
+    int cases_contigue;
+    int ligne_impaire;
+    int k = 0;
 
+    for(i = 0 ; i < NBTUILES ; i++){
+        for(j = 0 ; j< NBTUILES; j++){
+            cases_contigue = 0;
+            ligne_impaire = i%2;
+            if(j>0 && plateau[i][j-1] != NULL){
+                cases_contigue ++;
+            }
+            if( j>(0-ligne_impaire) && i>0 && plateau[i-1][j-1+ligne_impaire]!= NULL)
+                cases_contigue ++;
+
+            if(i>0 && j<NBTUILES-ligne_impaire && plateau[i-1][j+ligne_impaire]!= NULL)
+                cases_contigue ++;
+
+            if(j<NBTUILES-1 && plateau[i][j+1]!= NULL)
+                cases_contigue++;
+            
+            if(i<NBTUILES-1 && j<NBTUILES-ligne_impaire && plateau[i+1][j+ligne_impaire]!= NULL)
+                cases_contigue ++;
+
+            if(i<i<NBTUILES-1 && j>0-ligne_impaire && plateau[i+1][j-1+ligne_impaire]!= NULL)
+                cases_contigue ++;
+            
+            if(cases_contigue >= 2){
+                tab[k].x = i;
+                tab[k].y = j;
+                k++;
+            }
+        }
+    }
+}
 
 /**
  * @brief fonction de pose de tuile
@@ -267,7 +308,10 @@ extern int contigue(int const xa, int const ya, int const xb, int const yb){
  * @param xa 
  * @param ya 
  * @param xb 
- * @param yb coordoné des casse la plus en haut a gauche dabord
+ * @param yb
+ * la case (xa,ya) est la plus en haut à gauche : 
+ *  - (xa <= xb)
+ *  - si (xa == ab), (ya <= yb)
  * @return int 
  * 0 = la case n'a pas acces au lac
  * 1 = la case a acces au lac
@@ -277,7 +321,7 @@ extern int access_lac(int const xa, int const ya, int const xb, int const yb){
     if (!case_existe(xa,ya) && !case_existe(xa,yb)){
         return(0);
     }
-    if ((xa == LACPOS && ya == LACPOS) || xb == (LACPOS && yb == LACPOS)){
+    if ((xa == LACPOS && ya == LACPOS) || (xb == LACPOS && yb == LACPOS)){
         return(0);
     }
     if (!contigue(xa,ya,xb,yb)){
@@ -286,67 +330,70 @@ extern int access_lac(int const xa, int const ya, int const xb, int const yb){
     if (contigue(xa,ya,LACPOS,LACPOS)&&contigue(xb,yb,LACPOS,LACPOS)){
         return (1);
     }
-    
+
+    int ligne_impaire = xa %2;
+
+    /*si les deux cases sont sur la même ligne*/
     if(xa == xb){
+        /*pour toutes les irrigations*/
         for(i=0; i<NBIRIG && irig[i]!=NULL; i++){
-            if(irig[i]->x_haut_gauche == xa-1 && irig[i]->y_haut_gauche == ya &&
-            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb-1){
-                return (1);
+            /*si elle contient en haut à gauche la tuile au dessus*/
+            if(irig[i]->x_haut_gauche == xa-1 && irig[i]->y_haut_gauche == ya+ligne_impaire){
+                /*et que ses deux tuiles ne sont pas sur la même ligne*/
+                if(irig[i]->x_bas_droit != irig[i]->x_haut_gauche)
+                    return 1;
             }
-            if(irig[i]->x_haut_gauche == xa-1 && irig[i]->y_haut_gauche == ya &&
-            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb){
-                return (1);
-            }
-            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya &&
-            irig[i]->x_bas_droit == xb+1 && irig[i]->y_bas_droit == yb){
-                return (1);
-            }
-            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya+1 &&
-            irig[i]->x_bas_droit == xb+1 && irig[i]->y_bas_droit == yb){
-                return (1);
+            /*si elle contient en bas à droite la tuile en dessous*/
+            if(irig[i]->x_bas_droit == xa -1 && irig[i]->y_bas_droit == ya+ligne_impaire){
+                /*et que ses deux tuiles ne sont pas sur la même ligne*/
+                if(irig[i]->x_bas_droit != irig[i]->x_haut_gauche)
+                    return 1;
             }
         }
     }
-    else if (ya == yb){
+    /*si la case haute est en haut à gauche de l'autre*/
+    else if (ya == yb+ligne_impaire && xa +1 == xb){
+        /*pour toutes les irrigations*/
         for(i=0; i<NBIRIG && irig[i]!=NULL; i++){
-            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya-1 &&
-            irig[i]->x_bas_droit == xb-1 && irig[i]->y_bas_droit == yb){
-                return (1);
+            /*si la partie haute gauche est sur la même ligne que (xa,ya)*/
+            if(irig[i]->x_haut_gauche == xa){
+                /*irrigation ->  haute gauche == (xa,ya)*/
+                if(irig[i]->y_haut_gauche == ya){
+                    /*si l'irrigation est verticale*/
+                    if(irig[i]->x_bas_droit == xa)
+                        return 1;
+                    else if(irig[i]->y_bas_droit == yb-1)
+                        return 1;
+                }
             }
-            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya-1 &&
-            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb){
-                return (1);
-            }
-            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya &&
-            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb+1){
-                return (1);
-            }
-            if(irig[i]->x_haut_gauche == xa+1 && irig[i]->y_haut_gauche == ya &&
-            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb+1){
-                return (1);
+            /*si irrigation->bas_droit == (xb,yb)*/
+            if(irig[i]->y_bas_droit == yb && irig[i]->x_bas_droit == xb){
+                if(irig[i]->x_haut_gauche == xb)
+                    return 1;
+                else if (irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya+1)
+                    return 1;
             }
         }
     }
-    else if (xa-xb == ya-yb){
+    /*si la case haute est en haut à droite de l'autre*/
+    else if (xa +1 == xb && ya == yb-1+ligne_impaire){
         for(i=0; i<NBIRIG && irig[i]!=NULL; i++){
-            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya &&
-            irig[i]->x_bas_droit == xb-1 && irig[i]->y_bas_droit == yb){
-                return (1);
+            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya-1){
+                if(irig[i]->x_bas_droit == xa)
+                    return 1;
+                if(irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb-1)
+                    return 1;
             }
-            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya+1 &&
-            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb){
-                return (1);
-            }
-            if(irig[i]->x_haut_gauche == xa+1 && irig[i]->y_haut_gauche == ya &&
-            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb){
-                return (1);
-            }
-            if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya &&
-            irig[i]->x_bas_droit == xb && irig[i]->y_bas_droit == yb-1){
-                return (1);
+            if(irig[i]->y_bas_droit == yb+1 && irig[i]->x_bas_droit == xb){
+                if(irig[i]->x_haut_gauche == xa && irig[i]->y_haut_gauche == ya)
+                    return 1;
+                if(irig[i]->x_haut_gauche == xb)
+                    return 1;
             }
         }
     }
-    
+    else{
+        printf("\n-------------------erreur dans la fonction acces_lac, vérifier les if-----------------\n");
+    }
     return(0);
 }
