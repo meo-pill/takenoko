@@ -206,6 +206,7 @@ extern int a_coter_irigation(int const x, int const y){
  * 2= l'emmplacement a moin de 2 voisin
  */
 extern int pose_tuile_impossible(int const x, int const y){
+    int ligne_impaire = x%2;
     int validation = 0;
     if(contigue(x,y,LACPOS,LACPOS)){
         return (0);
@@ -214,12 +215,12 @@ extern int pose_tuile_impossible(int const x, int const y){
         return(1);
     }
     // test de toute les position voisine et ajjout dans un compteur
-    validation += case_existe(x+1,y+1);
-    validation += case_existe(x-1,y);
     validation += case_existe(x,y-1);
     validation += case_existe(x,y+1);
-    validation += case_existe(x+1,y);
-    validation += case_existe(x-1,y+1);
+    validation += case_existe(x-1,y-1+ligne_impaire);
+    validation += case_existe(x-1,y+ligne_impaire);
+    validation += case_existe(x+1,y-1+ligne_impaire);
+    validation += case_existe(x+1,y+ligne_impaire);
     // pour que la posse soit possible la casse doit avoir minimum 2 voissine donc le compteur doit ètre >= a 2
     if(validation >= 2){
         return(0);
