@@ -50,11 +50,11 @@ void pioche_objetif( joueur_t * Joueur);
 void pioche_effspe( joueur_t * Joueur);
 
 
-
-
+int verif_ligne_droite_pair(int const x_d, int const y_d, int const x_a, int const y_a);
+int verif_ligne_droite_impair(int const x_d, int const y_d, int const x_a, int const y_a);
 int Verif_deplacer_perso( personnage_t perso, int const x_a, int const y_a);    /* jardinier ou Panda et renvoye 1 si c'est bon */
 
-void deplacer_personnage( personnage_t * perso, int const x_a, int const y_a);
+void deplacer_personnage( personnage_t perso, int const x_a, int const y_a);
 
 
 
