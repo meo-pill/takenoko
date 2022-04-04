@@ -204,11 +204,11 @@ fonction à finir et à tester
 
 /* * choix pour 1 joueur */
 
-void choixactionduJ ( joueur_t * Joueur, char const meteo, choixJ_E memaction[2]){}
+//void choixactionduJ ( joueur_t * Joueur, char const meteo, choixJ_E memaction[2]){}
 
 
 
-void pioche_effspe( joueur_t * Joueur){}
+//void pioche_effspe( joueur_t * Joueur){}
 
 
 
@@ -223,67 +223,67 @@ void pioche_effspe( joueur_t * Joueur){}
  * 0 le déplacement n'est pas valide
  * 1 le déplacement est valide
  */
-//int Verif_deplacer_perso( personnage_t perso, int const x_a, int const y_a){	 /* jardinier ou Panda et renvoie 1 si c'est bon */
-//  int x_d = perso.x, y_d = perso.y;
-//  int dist_x = x_a - x_d , dist_y = y_a - y_d;
-//  
-//  if (dist_x == 0 && dist_y == 0) /* Si on choisi la case de départ */
-//    return 0;
-//
-//  if(sur_la_ligne(x_d, y_d, x_a, y_a)){
-//    if (dist_x == 0){          /* Cas 1 même ligne : x = x_a et seul y */
-//      if (dist_y > 0){
-//        for (int j = 1 ; j < dist_y ; j++){
-//          if (!case_existe(x_d, y_d + j))
-//            return 0;
-//        }
-//      }
-//      else{
-//        for (int j = -1 ; j > dist_y ; j--){
-//          if (!case_existe(x_d, y_d + j))
-//            return 0;
-//        }
-//      }
-//    }
-//    
-//    else if (dist_y == 0){    /* Cas 2 même colone : y = y_a et seul x change */
-//      if (dist_y > 0){
-//        for (int i = 1 ; i < dist_x ; i++){
-//          if (!case_existe(x_d+i, y_d))
-//            return 0;
-//        }
-//      }
-//      else{
-//        for (int i = -1 ; i > dist_x ; i--){
-//          if (!case_existe(x_d+i, y_d))
-//            return 0;
-//        }
-//      }
-//    }
-//    
-//    else if(dist_x == dist_y){   /* Cas 3 même diagonale : y et x change (x+1/y+1 ou x-1/y-1) */
-//      if (dist_y > 0){
-//        for (int ij = 0 ; ij < dist_x ; ij++){
-//          if (!case_existe(x_d+ij, y_d+ij))
-//            return 0;
-//        }
-//      }
-//      else{
-//        for (int ij = 0 ; ij > dist_x ; ij--){
-//          if (!case_existe(x_d+ij, y_d+ij))
-//            return 0;
-//        }
-//      }
-//    }
-//
-//    else
-//      printf(" erreur de déplacement ");
-//  }
-//  else
-//    printf(" erreur de déplacement ");
-//  
-//  return 1;
-//}
+int Verif_deplacer_perso( personnage_t perso, int const x_a, int const y_a){	 /* jardinier ou Panda et renvoie 1 si c'est bon */
+  int x_d = perso.x, y_d = perso.y;
+  int dist_x = x_a - x_d , dist_y = y_a - y_d;
+  
+  if (dist_x == 0 && dist_y == 0) /* Si on choisi la case de départ */
+    return 0;
+
+  //if(sur_la_ligne(x_d, y_d, x_a, y_a)){
+    if (dist_x == 0){          /* Cas 1 même ligne : x = x_a et seul y */
+      if (dist_y > 0){
+        for (int j = 1 ; j < dist_y ; j++){
+          if (!case_existe(x_d, y_d + j))
+            return 0;
+        }
+      }
+      else{
+        for (int j = -1 ; j > dist_y ; j--){
+          if (!case_existe(x_d, y_d + j))
+            return 0;
+        }
+      }
+    }
+    
+    else if (dist_y == 0){    /* Cas 2 même colone : y = y_a et seul x change */
+      if (dist_y > 0){
+        for (int i = 1 ; i < dist_x ; i++){
+          if (!case_existe(x_d+i, y_d))
+            return 0;
+        }
+      }
+      else{
+        for (int i = -1 ; i > dist_x ; i--){
+          if (!case_existe(x_d+i, y_d))
+            return 0;
+        }
+      }
+    }
+    
+    else if(dist_x == dist_y){   /* Cas 3 même diagonale : y et x change (x+1/y+1 ou x-1/y-1) */
+      if (dist_y > 0){
+        for (int ij = 0 ; ij < dist_x ; ij++){
+          if (!case_existe(x_d+ij, y_d+ij))
+            return 0;
+        }
+      }
+      else{
+        for (int ij = 0 ; ij > dist_x ; ij--){
+          if (!case_existe(x_d+ij, y_d+ij))
+            return 0;
+        }
+      }
+    }
+
+    else
+      printf(" erreur de déplacement ");
+  //}
+ // else
+   // printf(" erreur de déplacement ");
+  
+  return 1;
+}
 
 
 /**

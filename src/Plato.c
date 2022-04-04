@@ -112,6 +112,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	text_t** hexagonal=NULL;
 	hexagonal=malloc(sizeof(text_t*));
 
+	coordonne_t tuile_pose[20];
 	
 	int TAILTUILE=200;
 	int newTail=0;
@@ -336,6 +337,10 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 			);
 		}
 	}
+	for(int i=0;i<20;i++){
+		tuile_pose[i].x=-1;
+		tuile_pose[i].y=-1;
+	}
 
 	Uint32 Clic,relache=0;
 	int panda_bouge=0,jardinier_bouge=0,pose_pace=0,demande_carte=0,parcelle=0,met_vent=0,demande_irig=0;
@@ -408,6 +413,11 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 					if(Select_hexa(renderer,(tuile_show->Table[k]),(*Select_case->Table),x,y)&& Clic)
 					{
 						parcelle=k;
+						pose_tuiles_possible(tuile_pose);
+						for(int i=0;i<20;i++){
+							printf("|x= %d y= %d | ",tuile_pose[i].x,tuile_pose[i].y);
+						}
+						printf("\n");
 						pose_pace=2;
 					}
 				}
@@ -777,24 +787,26 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 						newTail=0;
 					}
 					SDL_RenderCopy(renderer,(hexagonal[ligne]->Table[colone])->t,NULL,lire_Rect((hexagonal[ligne]->Table[colone]),1));
-					if(!pose_tuile_impossible(ligne,colone) && pose_pace==2 ){
-						if(Select_hexa(renderer,(hexagonal[ligne]->Table[colone]),(*Select_case->Table),x,y) && Clic){
-							plateau[ligne][colone]=(aff_case[parcelle]);
-							(hexagonal[ligne]->Table[colone])->t= IMG_LoadTexture(renderer, (aff_case[parcelle])->image);
-							tuile_show->det(tuile_show);
-							for(int j=0;j<3;j++){
-								if(j!=parcelle){
-									ajouter(aff_case[j]);
+					for(int i=0;i<20;i++){
+						if(tuile_pose[i].x==ligne && tuile_pose[i].y==colone){
+							if(Select_hexa(renderer,(hexagonal[ligne]->Table[colone]),(*Select_case->Table),x,y) && Clic){
+								plateau[ligne][colone]=(aff_case[parcelle]);
+								(hexagonal[ligne]->Table[colone])->t= IMG_LoadTexture(renderer, (aff_case[parcelle])->image);
+								tuile_show->det(tuile_show);
+								for(int j=0;j<3;j++){
+									if(j!=parcelle){
+										ajouter(aff_case[j]);
+									}
 								}
+								free(*aff_case);
+								*aff_case=NULL;
+								if((hexagonal[ligne]->Table[colone])->t==NULL){
+									fprintf ( stderr , " Erreur au niveau de l'image: %s \n " , TTF_GetError ());
+									exit ( EXIT_FAILURE );
+								}
+								ajout_bambou_plato(ligne,colone);
+								pose_pace=3;
 							}
-							free(*aff_case);
-							*aff_case=NULL;
-							if((hexagonal[ligne]->Table[colone])->t==NULL){
-								fprintf ( stderr , " Erreur au niveau de l'image: %s \n " , TTF_GetError ());
-								exit ( EXIT_FAILURE );
-							}
-							ajout_bambou_plato(ligne,colone);
-							pose_pace=3;
 						}
 					}
 					if(!deplacement_imposible(panda.x,panda.y,ligne,colone) && panda_bouge==1){

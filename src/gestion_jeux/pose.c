@@ -239,7 +239,7 @@ extern void pose_tuiles_possible(coordonne_t * tab){
             if(i<NBTUILES-1 && j<NBTUILES-ligne_impaire && plateau[i+1][j+ligne_impaire]!= NULL)
                 cases_contigue ++;
 
-            if(i<i<NBTUILES-1 && j>0-ligne_impaire && plateau[i+1][j-1+ligne_impaire]!= NULL)
+            if(i<NBTUILES-1 && j>0-ligne_impaire && plateau[i+1][j-1+ligne_impaire]!= NULL)
                 cases_contigue ++;
             
             if(cases_contigue >= 2){
