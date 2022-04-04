@@ -152,7 +152,7 @@ static char* NomJ (int numJ){
 
 /**
  * @brief création des structur de joueur
- * Mewen
+ * @author Morgane
  * @param nb_joueur 
  */
 static void creation_joueur(int const nb_joueur){
@@ -163,6 +163,8 @@ static void creation_joueur(int const nb_joueur){
         J[i]->nom_joueur=NomJ(i);
 	init_main(J[i]->main_J,TAILLE_MAIN);
 	init_main(J[i]->valide,MAXNB2J);
+	if(J[i]->valide[3]==NULL)
+		printf("Yes\n");
         for(j=0;j<3;j++){
 		joueur_pioche_carte(J[i],j);
 		J[i]->bambou[j]=0;

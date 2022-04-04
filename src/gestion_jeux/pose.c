@@ -254,16 +254,15 @@ extern void pose_tuiles_possible(coordonne_t * tab){
                     cases_contigue ++;
             }
 
-            if(i<NBTUILES-1 && j>0-ligne_impaire && plateau[i+1][j-1+ligne_impaire]!= NULL)
             if(i<NBTUILES-1 && j>0-ligne_impaire && plateau[i+1][j-1+ligne_impaire]!= NULL){
                 cases_contigue ++;
-                if(i+1 == LACPOS && j-1+ligne_existe == LACPOS)
+                if(i+1 == LACPOS && j-1+ligne_impaire == LACPOS)
                     cases_contigue ++;
             }
             
 
             
-            if(cases_contigue >= 2){
+            if(cases_contigue >= 2 && plateau[i][j]==NULL){
                 tab[k].x = i;
                 tab[k].y = j;
                 k++;
