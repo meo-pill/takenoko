@@ -40,7 +40,7 @@ extern void ranger(int * xa, int * ya, int * xb, int * yb){
  * 1 les coordoné sont dans la matrice
  */
 extern int coordoner_posible(int const x, int const y){
-    return( x > 0 && x < NBTUILES && y > 0 && y < NBTUILES);
+    return( x > -1 && x < NBTUILES && y > -1 && y < NBTUILES);
 }
 
 /**
