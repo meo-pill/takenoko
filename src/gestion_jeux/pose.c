@@ -269,9 +269,15 @@ int ajout_tuile(case_plato_t  * case_choix, int const x, int const y){
  * 1 = les case sont contigue
  */
 extern int contigue(int const xa, int const ya, int const xb, int const yb){
-    return( (xa == xb-1 && ya == yb) || (xa == xb+1 && ya == yb) || 
-    (xa == xb && ya == yb-1) || (xa == xb && ya == yb+1) ||
-    (xa == xb-1 && ya == yb-1) || (xa == xb+1 && ya == yb-1) );
+    int ligne_impaire = xa%2;
+    return( (xa==xb && ya==yb-1)||
+            (xa==xb && ya==yb+1)||
+            (xa==xb-1 && ya==yb-1+ligne_impaire)||
+            (xa==xb-1 && ya==yb+ligne_impaire)||
+            (xa==xb+1 && ya==yb-1+ligne_impaire)||
+            (xa==xb+1 && ya==yb+ligne_impaire) );
+
+    
 }
 
 /**
