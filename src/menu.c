@@ -1,4 +1,3 @@
-//#include "../lib/Option.h"
 #include "../lib/Plato.h"
 
 void menu(){
@@ -42,6 +41,10 @@ void menu(){
 	auto int Width = DM.w;
 	auto int Height = DM.h;
 
+	/*Pour éviter les ouverture multiple avec manuel de la page internet des règles cf l.159*/	
+	int old_x;
+	int old_y;
+
 	int fullscreen=0;
 	//création d'une fênetre
 	pWindow = SDL_CreateWindow("takenoko",SDL_WINDOWPOS_UNDEFINED,
@@ -74,8 +77,8 @@ void menu(){
 		exit ( EXIT_FAILURE );
 	}
 
-	bouton2->Table[0]->t =Creation_Text(renderer,lire_Rect(bouton2->Table[0],1),"image/police/Takenoko.TTF",Width/48,TTF_STYLE_BOLD,"Option",Bleu,(Width/4)+(Height*2/18),(Height*5/8)+(Height*1/18));
-	bouton2->Table[1]->t =Creation_Text(renderer,lire_Rect(bouton2->Table[1],1),"image/police/Takenoko.TTF",Width/48,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Option",Orange,(Width/4)+(Height*2/18),(Height*5/8)+(Height*1/18));
+	bouton2->Table[0]->t =Creation_Text(renderer,lire_Rect(bouton2->Table[0],1),"image/police/Takenoko.TTF",Width/48,TTF_STYLE_BOLD,"Manuel",Bleu,(Width/4)+(Height*2/18),(Height*5/8)+(Height*1/18));
+	bouton2->Table[1]->t =Creation_Text(renderer,lire_Rect(bouton2->Table[1],1),"image/police/Takenoko.TTF",Width/48,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Manuel",Orange,(Width/4)+(Height*2/18),(Height*5/8)+(Height*1/18));
 	if ( bouton2->Table[0]->t == NULL||bouton2->Table[1]->t == NULL ){
 		exit ( EXIT_FAILURE );
 	}
@@ -148,24 +151,17 @@ void menu(){
 			SDL_Quit();
 			selecte_nb_joueur(Width,Height);
 		}
-		if(bout(renderer,bouton2,x,y)==1 && Clic==1){
-			if(NULL!=renderer)
-				SDL_DestroyRenderer(renderer);
-			if(NULL!=pWindow)
-				SDL_DestroyWindow(pWindow);
-			if(NULL!=pSprite)
-				SDL_FreeSurface(pSprite);
-			titre->det(titre);
-			bouton1->det(bouton1);
-			bouton2->det(bouton2);
-			bouton3->det(bouton3);
-			image->det(image);
-			IMG_Quit();
-			TTF_Quit();
-			SDL_Quit();
-			//affiche_option(Width,Height);
-		}
 
+		if(bout(renderer,bouton2,x,y)==1 && Clic==1)
+		{
+			/*Affiche les règles du jeux*/
+			if(old_x != x && old_y != y)
+			{
+				old_x=x;
+				old_y=y;
+				system("firefox http://jeuxstrategieter.free.fr/Takenoko_presentation.php");
+			}
+		}
 		
 		if(bout(renderer,bouton3,x,y) && Clic){
 			if(NULL!=renderer)

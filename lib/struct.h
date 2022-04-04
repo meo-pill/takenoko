@@ -29,6 +29,7 @@ typedef struct carte_s carte_t;
 typedef struct joueur_s joueur_t;
 typedef struct file_s file_t;
 typedef struct irig_s irig_t;
+typedef struct coord_s coordonne_t;
 
 /**definition des type enumérer*/
 typedef enum couleur_s{jaune,rose,vert,water}couleur_E;
@@ -56,12 +57,15 @@ irig_t * irig[NBIRIG];
 
 /** des structurs*/
 struct personnage_s{
-  void (*deplacement)(void); // poiteur sur fonction de déplacement
-  void (*gestionBamboo)(void); //ajout/supression des bamboopar le personnage
   int x,y; //coordonnée
-  char image[LONGPATH]; //l'images du personne
-  char Type[10]; //nom du personnage
 };
+
+struct  coord_s
+{
+  int x;
+  int y;
+};
+
 
 struct case_plato_s{
   couleur_E Coul;

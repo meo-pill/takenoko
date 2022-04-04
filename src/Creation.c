@@ -107,8 +107,8 @@ extern int Select_hexa(SDL_Renderer * renderer,
 extern text_t* Creation_Joueur(SDL_Renderer * renderer,int x,int y,int i){
 	/*! \brief couleur du texte*/
 	SDL_Color Blanc = {255,255,255};
-	text_t* Joueur;
-	Joueur=Crea_Tex(13);
+	text_t* Joueur=NULL;
+	Joueur=Crea_Tex(18);
 	(Joueur->Table[0])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,J[i]->nom_joueur,Blanc,x,y);
 	//affichage du  nombre de bambou pour le joueur
 	//Nb de bambou Jaune
@@ -125,17 +125,38 @@ extern text_t* Creation_Joueur(SDL_Renderer * renderer,int x,int y,int i){
 
 	//affichage du nombre d'effet en la posertion d'un joueur
 	//Nb d'effet non au panda
-	(Joueur->Table[7])->t=Creation_image(renderer,lire_Rect(Joueur->Table[7],1),"image/en_plus/nonPanda.png",x,y+130,30,30);
-	(Joueur->Table[8])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[8],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]-> effSpe[2]),Blanc,x,y+160);
+	(Joueur->Table[7])->t=Creation_image(renderer,lire_Rect(Joueur->Table[7],1),"image/en_plus/nonPanda.png",x,y+160,30,30);
+	(Joueur->Table[8])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[8],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]-> effSpe[1]),Blanc,x,y+190);
 
 	//Nb d'effet tuile iriger
-	(Joueur->Table[9])->t=Creation_image(renderer,lire_Rect(Joueur->Table[9],1),"image/en_plus/irige.png",x+40,y+130,30,30);
-	(Joueur->Table[10])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[10],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]-> effSpe[2]),Blanc,x+40,y+160);
+	(Joueur->Table[9])->t=Creation_image(renderer,lire_Rect(Joueur->Table[9],1),"image/en_plus/irige.png",x+40,y+160,30,30);
+	(Joueur->Table[10])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[10],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]-> effSpe[0]),Blanc,x+40,y+190);
 
 	//Nb d'effet tuile avec engret
-	(Joueur->Table[11])->t=Creation_image(renderer,lire_Rect(Joueur->Table[11],1),"image/en_plus/engret.png",x+80,y+130,30,30);
-	(Joueur->Table[12])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[12],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]-> effSpe[2]),Blanc,x+80,y+160);
+	(Joueur->Table[11])->t=Creation_image(renderer,lire_Rect(Joueur->Table[11],1),"image/en_plus/engret.png",x+80,y+160,30,30);
+	(Joueur->Table[12])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[12],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]-> effSpe[2]),Blanc,x+80,y+190);
+
+	//bare irigation
+	(Joueur->Table[13])->t=Creation_image(renderer,lire_Rect(Joueur->Table[13],1),"image/en_plus/irigation.png",x+140,y+50,30,60);
+	(Joueur->Table[14])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[14],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]->nbIrigation),Blanc,x+160,y+40);
+
+	//Score
+	(Joueur->Table[15])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[15],1),"image/police/Takenoko.TTF",25,TTF_STYLE_BOLD,"Score:",Blanc,x+230,y+40);
+	(Joueur->Table[16])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[16],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]->score),Blanc,x+280,y+60);
+
+	//Joueur actif
+	(Joueur->Table[17])->t=Creation_image(renderer,lire_Rect(Joueur->Table[17],1),"image/en_plus/Tour_de_jeux.png",x+140,y+100,60,60);
 
 	return Joueur;
-
+}
+	//Main joueur
+extern text_t* Creation_main(SDL_Renderer * renderer,int W,int H,int i){
+	text_t* mains=NULL;
+	int j,y=H,x;
+	mains=Crea_Tex(5);
+	for(j=0,x=W;j<TAILLE_MAIN;j++,x=x+90){
+		if(J[i]->main_J[j]!=NULL)
+			(mains->Table[j])->t=Creation_image(renderer,lire_Rect(mains->Table[j],1),J[i]->main_J[j]->image,x,y,100,80);
+	}
+	return mains;
 }

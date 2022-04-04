@@ -40,6 +40,16 @@ extern int inv_bout(SDL_Renderer * renderer, text_t * bouton,int x,int y);
  * \return text_t* : un tableau de texture et de réctangle
  */
 extern text_t* Creation_Joueur(SDL_Renderer * renderer,int x,int y,int i);
+
+/*!
+ * \brief permet de creer l'affichage d'une main
+ * \param renderer : Permet de charger l'affichage de la fenêtre
+ * \param W : Largeur de l'écrant
+ * \param H : Hauteur de l'écrant
+ * \param i : identifiant du joueur
+ * \return text_t* : un tableau de texture et de réctangle
+ */
+extern text_t* Creation_main(SDL_Renderer * renderer,int W,int H,int i);
 /*!
  * \author Mewen
  * \brief permet de selectionner une case

@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2022
  * 
  */
-#include "../../lib/init_fin.h"
+#include "../../lib/index.h"
 
 /*
  ****************************************************************************************
@@ -198,6 +198,13 @@ static void creation_plateau(void){
     plateau[LACPOS][LACPOS]= &lac;
 }
 
+static void init_personage(){
+	jardinier.x = LACPOS;
+	jardinier.y = LACPOS;
+	panda.x = LACPOS;
+	panda.y = LACPOS;
+}
+
 /**
  * @brief initalisation du tableau des irigation
  * MEWEN
@@ -299,10 +306,12 @@ static void initialiser(int const nb_joueur){
     creation_plateau();
     creation_joueur(nb_joueur);
     init_irigation();
+    init_personage();
     indique_carte[0] = 0;
     indique_carte[1] = 0;
     indique_carte[2] = 0;
 }
+
 
 /**
  * @brief premier fonction d'inisialisaiton pour donner une valeur au varible
@@ -374,15 +383,31 @@ static void detruir_Table_J(int const nbJoueur){
  * Mewen
  */
 static void videe_plateau(void){
-    creation_plateau();
-    plateau[LACPOS][LACPOS]= NULL;
+	for(int i=0;i<NBTUILES;i++){
+		for(int j=0;j<NBTUILES;j++){
+			if(plateau[i][j]!=NULL){
+				free(plateau[i][j]);
+				plateau[i][j]=NULL;
+			}
+		}
+	}
 }
 
+
+/**
+ * @brief suprrime UNE tuile ;_;
+ * Morgane
+ */
+ extern void suppression_ONE_tuile(case_plato_t ** T){
+ 	free(T);
+ 	T=NULL;
+ }
+ 
 /**
  * @brief free des tuile en alocation dinamque
  * Mewen
  */
-static void suppression_tuile(void){
+static void suppression_file_tuile(void){
     for(int i=0; i<NBTUILES; i++){
         free(piece[i]);
         piece[i] = NULL;
@@ -391,8 +416,10 @@ static void suppression_tuile(void){
 
 static void suppression_irig(void){
     for(int i=0; i < NBIRIG; i++){
-	if(irig[i]!=NULL)
+	if(irig[i]!=NULL){
 		free(irig[i]);
+		irig[i]=NULL;
+	}
     }
     init_irigation();
 }
@@ -402,11 +429,9 @@ static void suppression_irig(void){
  * Mewen / Leo
  */
 extern void suprimer(int const nbJoueur){
-	printf("Je débug\n");
-	if(plateau!=NULL)
-		videe_plateau();
+	videe_plateau();
     detruire_carte();
-    suppression_tuile();
     suppression_irig();
     detruir_Table_J(nbJoueur);
+    suppression_file_tuile();
 }
