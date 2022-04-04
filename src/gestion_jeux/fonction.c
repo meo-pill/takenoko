@@ -1,5 +1,5 @@
 #include "../../lib/fonction.h"
-
+#include "../../src/gestion_jeux/pose.c"
 
 /**********************
 fonction opérationnelle
@@ -211,6 +211,83 @@ void choixactionduJ ( joueur_t * Joueur, char const meteo, choixJ_E memaction[2]
 void pioche_effspe( joueur_t * Joueur){}
 
 
+/**
+ * @brief aide à la verifaction du déplacement si la ligne est pair et que la ligne d'arriver est différente
+ * @author MAXIME
+ * @param x_d position x de départ
+ * @param y_d position y de départ
+ * @param x_a nouvelle position x voulue
+ * @param y_a nouvelle position y voulue
+ * @return int 
+ * retour d'un booléen de validaiton
+ * 0 le déplacement n'est pas valide
+ * 1 le déplacement est valide
+ */
+int verif_ligne_droite_pair(int const x_d, int const y_d, int const x_a, int const y_a){
+  if ((x_d == x_a && y_d != y_a)
+  || (x_d != x_a && y_d == y_a)
+  || !case_existe(x_d, y_d))
+    return 0;
+
+  else if (x_d == x_a && y_d == y_a)
+    return 1;
+
+  else{
+    if (x_d < x_a){
+      if (y_d < y_a)
+        verif_ligne_droite_impair(x_d+1, y_d, x_a, y_a);
+      
+      else
+        verif_ligne_droite_impair(x_d+1, y_d-1, x_a, y_a);
+    }
+    else{
+      if (y_d < y_a)
+        verif_ligne_droite_impair(x_d-1, y_d, x_a, y_a);
+      
+      else
+        verif_ligne_droite_impair(x_d-1, y_d-1, x_a, y_a);
+    }
+  }
+}
+
+/**
+ * @brief aide à la verifaction du déplacement si la ligne est impair et que la ligne d'arriver est différente
+ * @author MAXIME
+ * @param x_d position x de départ
+ * @param y_d position y de départ
+ * @param x_a nouvelle position x voulue
+ * @param y_a nouvelle position y voulue
+ * @return int 
+ * retour d'un booléen de validaiton
+ * 0 le déplacement n'est pas valide
+ * 1 le déplacement est valide
+ */
+int verif_ligne_droite_impair(int const x_d, int const y_d, int const x_a, int const y_a){
+  if ((x_d == x_a && y_d != y_a)
+  || (x_d != x_a && y_d == y_a)
+  || !case_existe(x_d, y_d))
+    return 0;
+
+  else if (x_d == x_a && y_d == y_a)
+    return 1;
+
+  else{
+    if (x_d < x_a){
+      if (y_d < y_a)
+        verif_ligne_droite_pair(x_d+1, y_d, x_a, y_a);
+      
+      else
+        verif_ligne_droite_pair(x_d+1, y_d-1, x_a, y_a);
+    }
+    else{
+      if (y_d < y_a)
+        verif_ligne_droite_pair(x_d-1, y_d, x_a, y_a);
+      
+      else
+        verif_ligne_droite_pair(x_d-1, y_d-1, x_a, y_a);
+    }
+  }
+}
 
 /**
  * @brief verifaction si on peu déplacer le jardinier ou le Panda
@@ -225,65 +302,33 @@ void pioche_effspe( joueur_t * Joueur){}
  */
 int Verif_deplacer_perso( personnage_t perso, int const x_a, int const y_a){	 /* jardinier ou Panda et renvoie 1 si c'est bon */
   int x_d = perso.x, y_d = perso.y;
-  int dist_x = (x_a - x_d)/2 , dist_y = y_a - y_d;
+  int dist_x = x_a - x_d , dist_y = y_a - y_d;
   
   if (dist_x == 0 && dist_y == 0) /* Si on choisi la case de départ */
     return 0;
 
-  if(sur_la_ligne(x_d, y_d, x_a, y_a)){
-    if (dist_x == 0){          /* Cas 1 même ligne : x = x_a et seul y change */
-      if (dist_y > 0){
-        for (int j = 1 ; j < dist_y ; j++){
-          if (!case_existe(x_d, y_d + j))
-            return 0;
-        }
-      }
-      else{
-        for (int j = -1 ; j > dist_y ; j--){
-          if (!case_existe(x_d, y_d + j))
-            return 0;
-        }
+  if (dist_x == 0 && dist_y !=0){          /* Cas 1 même ligne : x = x_a et seul y change */
+    if (dist_y > 0){
+      for (int j = 1 ; j < dist_y ; j++){
+        if (!case_existe(x_d, y_d + j)) return 0;
       }
     }
-    
-
-
-    else if (dist_y == 0){    /* Cas 2 même colone : y = y_a et seul x change */
-      if (dist_y > 0){
-        for (int i = 1 ; i < dist_x ; i++){
-          if (!case_existe(x_d+i, y_d))
-            return 0;
-        }
-      }
-      else{
-        for (int i = -1 ; i > dist_x ; i--){
-          if (!case_existe(x_d+i, y_d))
-            return 0;
-        }
+    else{
+      for (int j = -1 ; j > dist_y ; j--){
+        if (!case_existe(x_d, y_d + j)) return 0;
       }
     }
-    
-    else if(dist_x == dist_y){   /* Cas 3 même diagonale : y et x change (x+1/y+1 ou x-1/y-1) */
-      if (dist_y > 0){
-        for (int ij = 0 ; ij < dist_x ; ij++){
-          if (!case_existe(x_d+ij, y_d+ij))
-            return 0;
-        }
-      }
-      else{
-        for (int ij = 0 ; ij > dist_x ; ij--){
-          if (!case_existe(x_d+ij, y_d+ij))
-            return 0;
-        }
-      }
-    }
-
-    else
-      printf(" erreur de déplacement ");
   }
-  else
-    printf(" erreur de déplacement ");
   
+  else{    /* Cas 2 même colone : y = y_a et seul x change */
+    if (x_d%2 == 0){
+      verif_ligne_droite_pair(x_d, x_a, y_d, y_a);
+    }
+    else{
+      verif_ligne_droite_impair(x_d, x_a, y_d, y_a);
+    }
+  }
+
   return 1;
 }
 
@@ -303,3 +348,73 @@ void deplacer_personnage( personnage_t perso, int const x_a, int const y_a){
   else
     printf(" erreur de déplacement ");
 }
+
+
+/* faire pousser du bambou par le jardinier */
+
+void ajout_bambou_liste_jardinier (couleur_E const couleur, int const x, int const y, t_liste_jardinier* l, t_liste_jardinier* case_verifier){
+  t_coordonees* coordonne_verif = malloc(sizeof(t_coordonees));
+  coordonne_verif->x = x;
+  coordonne_verif->y = y;
+printf("x= %i y= %i\n",coordonne_verif->x,coordonne_verif->y);
+  if (plateau[x][y]->Coul == couleur
+  && plateau[x][y]->iriguer == 1
+  && case_existe(x, y))
+    ajout_droit_jardinier(l, coordonne_verif);
+  return;
+  ajout_droit_jardinier(case_verifier, coordonne_verif);
+
+  if (!case_existe(x, y)
+  || (x== LACPOS && y == LACPOS)
+  || est_dans_liste_jardinier(case_verifier, x, y)
+  || est_dans_liste_jardinier(l, x, y))
+  {
+    if (!est_dans_liste_jardinier(case_verifier, x, y))
+      ajout_droit_jardinier(case_verifier, coordonne_verif);
+      
+    return;
+  }
+  
+  else if ( case_existe(x, y)
+          && !est_dans_liste_jardinier(case_verifier, x, y)
+          && !est_dans_liste_jardinier(l, x, y)){
+    
+    ajout_bambou_liste_jardinier ( couleur, x, y+1, l, case_verifier);
+    ajout_bambou_liste_jardinier ( couleur, x, y-1, l, case_verifier);
+    
+    int saut_ligne = 1;
+    if (x%2 == 0) saut_ligne == -1;
+    
+    ajout_bambou_liste_jardinier ( couleur, x+1, y, l, case_verifier);
+    ajout_bambou_liste_jardinier ( couleur, x+1, y+saut_ligne, l, case_verifier);
+
+    ajout_bambou_liste_jardinier ( couleur, x-1, y, l, case_verifier);
+    ajout_bambou_liste_jardinier ( couleur, x-1, y+saut_ligne, l, case_verifier);
+  }
+  else
+    return;
+}
+
+void ajout_bambou_jardinier( int const x, int const y){
+
+  if (x== LACPOS && y == LACPOS) return;
+
+  t_liste_jardinier* liste = malloc(sizeof(t_liste_jardinier));
+  init_liste_jardinier(liste);
+  t_liste_jardinier* case_verifier = malloc(sizeof(t_liste_jardinier));
+  init_liste_jardinier(case_verifier);
+
+  ajout_bambou_liste_jardinier(plateau[x][y]->Coul, x, y, liste, case_verifier);
+
+  en_tete_jardinier(liste);
+  while (!hors_liste_jardinier(liste)){
+    ajout_bambou_plato(liste->ec->x, liste->ec->y);
+    
+    suivant_jardinier(liste);
+  }
+
+  afficher_jardinier(liste);
+  vider_liste_jardinier(liste);
+  vider_liste_jardinier(case_verifier);
+}
+
