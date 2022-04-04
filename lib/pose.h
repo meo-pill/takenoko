@@ -24,4 +24,15 @@ extern int access_lac(int const xa, int const ya, int const xb, int const yb);
 
 int ajout_tuile(case_plato_t * case_choix, int const x, int const y);
 
+/**
+ * @brief fonction de rangement des coordonner
+ * la plus en haut a gauche en premier
+ * 
+ * @param xa coordoner x de la premier case  a ordoner
+ * @param ya coordoner y de la premier case  a ordoner
+ * @param xb coordoner x de la seconde case a ordoner
+ * @param yb coordoner y de la seconde case a ordoner
+ */
+extern void ranger(int * xa, int * ya, int * xb, int * yb);
+
 #endif

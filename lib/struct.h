@@ -57,11 +57,7 @@ irig_t * irig[NBIRIG];
 
 /** des structurs*/
 struct personnage_s{
-  void (*deplacement)(void); // poiteur sur fonction de déplacement
-  void (*gestionBamboo)(void); //ajout/supression des bamboopar le personnage
   int x,y; //coordonnée
-  char image[LONGPATH]; //l'images du personne
-  char Type[10]; //nom du personnage
 };
 
 struct  coord_s

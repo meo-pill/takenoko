@@ -101,7 +101,7 @@ laugth:
 	./${PROG}
 #commande git
 PATH:
-	export LD_LIBRARY_PATH="${LIEN}"
+	-export LD_LIBRARY_PATH="${LIEN}"
 PULL:
 	git pull
 ADD:
