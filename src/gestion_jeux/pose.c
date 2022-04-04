@@ -417,3 +417,20 @@ extern int access_lac(int const xa, int const ya, int const xb, int const yb){
     }
     return(0);
 }
+
+
+void actual_irig(int const x, int const y){
+    if (contigue(x,y,LACPOS,LACPOS)){
+        plateau[x][y]->iriguer=1;
+        plateau[x][y]->nbBambou =1;
+        return;
+    }
+    for(int i=0; i < NBIRIG && irig[i]!=NULL; i++){
+        if((irig[i]->x_haut_gauche == x && irig[i]->y_haut_gauche==y) ||
+        (irig[i]->x_bas_droit == x && irig[i]->y_bas_droit == y)){
+            plateau[x][y]->iriguer=1;
+            plateau[x][y]->nbBambou = 1;
+            return;
+        }
+    }
+}
