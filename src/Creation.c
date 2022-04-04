@@ -108,7 +108,7 @@ extern text_t* Creation_Joueur(SDL_Renderer * renderer,int x,int y,int i){
 	/*! \brief couleur du texte*/
 	SDL_Color Blanc = {255,255,255};
 	text_t* Joueur=NULL;
-	Joueur=Crea_Tex(21);
+	Joueur=Crea_Tex(18);
 	(Joueur->Table[0])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,J[i]->nom_joueur,Blanc,x,y);
 	//affichage du  nombre de bambou pour le joueur
 	//Nb de bambou Jaune
@@ -140,7 +140,12 @@ extern text_t* Creation_Joueur(SDL_Renderer * renderer,int x,int y,int i){
 	(Joueur->Table[13])->t=Creation_image(renderer,lire_Rect(Joueur->Table[13],1),"image/en_plus/irigation.png",x+140,y+50,30,60);
 	(Joueur->Table[14])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[14],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]->nbIrigation),Blanc,x+160,y+40);
 
-	(Joueur->Table[15])->t=Creation_image(renderer,lire_Rect(Joueur->Table[15],1),"image/en_plus/Tour_de_jeux.png",x+140,y+100,60,60);
+	//Score
+	(Joueur->Table[15])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[15],1),"image/police/Takenoko.TTF",25,TTF_STYLE_BOLD,"Score:",Blanc,x+230,y+40);
+	(Joueur->Table[16])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[16],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]->score),Blanc,x+280,y+60);
+
+	//Joueur actif
+	(Joueur->Table[17])->t=Creation_image(renderer,lire_Rect(Joueur->Table[17],1),"image/en_plus/Tour_de_jeux.png",x+140,y+100,60,60);
 
 	return Joueur;
 }

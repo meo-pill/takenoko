@@ -45,6 +45,6 @@ int verif_parcelle_arc(carte_t * const,joueur_t * const);
  * 
  * @result int somme des point d'un joueur
  */
-int nb_point_joueur(joueur_t *J)
+int nb_point_joueur(joueur_t *J);
 
 #endif
