@@ -110,7 +110,7 @@ static int sur_la_ligne(int const xa, int const ya, int const xn, int const yn){
  * 0 la ligne n'est pas continue
  * 1 la ligne est continue
  */
-static int ligne_existe(int xa, int ya, int xn, int yn){
+static int ligne_existe(int xa, int ya, int xn, int yn) {/*
     ranger(&xa,&ya,&xn,&yn);
     int ligne_impaire = xa%2;
     int nb_rep;
@@ -123,7 +123,8 @@ static int ligne_existe(int xa, int ya, int xn, int yn){
             return 1;
         }
     }
-    
+ */   
+return 1;
 }
 
 /**
@@ -186,15 +187,15 @@ extern int pose_tuile_impossible(int const x, int const y){
         return(1);
     }
     if(contigue(x,y,LACPOS,LACPOS)){
-	if(ligne_impaire)
+	/*if(ligne_impaire)
 		printf("impaire Contique x=%d y=%d\n",x,y);
 	else
 		printf("paire Contique x=%d y=%d\n",x,y);
         return (0);
+    */
     }
-    
+
     // test de toute les position voisine et ajjout dans un compteur
-    validation += 
     validation += case_existe(x,y-1);
     validation += case_existe(x,y+1);
     validation += case_existe(x-1,y+1-ligne_impaire);
