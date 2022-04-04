@@ -8,5 +8,6 @@ extern void suprimer(int const nbJoueur);
 extern int extraction_fichier_carte(void);
 extern int extraction_fichier_tuile(void);
 extern void mise_en_file(void);
+extern void suppression_ONE_tuile(case_plato_t ** T);
 
 #endif

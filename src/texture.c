@@ -2,16 +2,19 @@
 /*! detruit un pointeur de texture*/
 static void detruire_Texture(text_t *tab){
 	for(int i=0; i<tab->Taille;i++){
-		if(tab->Table[i] !=NULL)
+		if(tab->Table[i]->t !=NULL)
 			tab->quit(tab->Table[i]->t);
-		free(tab->Table[i]->place);
-		free(tab->Table[i]->place2);
+		if(tab->Table[i]->place !=NULL)
+			free(tab->Table[i]->place);
+		if(tab->Table[i]->place !=NULL)
+			free(tab->Table[i]->place2);
 		tab->Table[i]->place=NULL;
 		tab->Table[i]->place2=NULL;
 	}
 	tab->Taille=0;
 	//tab->quit
 	free(tab);
+	tab=NULL;
 }
 
 /*!Permet d'afficher la table de  texture*/

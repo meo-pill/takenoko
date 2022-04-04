@@ -38,4 +38,13 @@ int verif_parcelle_losange(carte_t * const,joueur_t * const);
 int verif_parcelle_ligne(carte_t * const,joueur_t * const);
 int verif_parcelle_arc(carte_t * const,joueur_t * const);
 
+/**
+ * @brief fonction de calcul des point d'un joueur
+ * 
+ * @param J poiteur sur une structuer de joueur
+ * 
+ * @result int somme des point d'un joueur
+ */
+int nb_point_joueur(joueur_t *J);
+
 #endif

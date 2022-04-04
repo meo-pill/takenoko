@@ -8,6 +8,27 @@
  */
 #include "../../lib/pose.h"
 
+
+extern void ranger(int * xa, int * ya, int * xb, int * yb){
+    if (*xa < *xb){
+        return;
+    }
+    if(*xa == *xb){
+        if(*ya < *yb){
+            return;
+        }
+    }
+    int x,y;
+    x = *xa;
+    y = *ya;
+    *xa = *xb;
+    *ya = *yb;
+    *xb = x;
+    *yb = y;
+    return;
+}
+
+
 /**
  * @brief verificaiton de validité des coordoner
  * 
@@ -19,7 +40,7 @@
  * 1 les coordoné sont dans la matrice
  */
 extern int coordoner_posible(int const x, int const y){
-    return( x > 0 && x < NBTUILES && y > 0 && y < NBTUILES);
+    return( x > -1 && x < NBTUILES && y > -1 && y < NBTUILES);
 }
 
 /**
@@ -89,67 +110,21 @@ static int sur_la_ligne(int const xa, int const ya, int const xn, int const yn){
  * 0 la ligne n'est pas continue
  * 1 la ligne est continue
  */
-static int ligne_existe(int const xa, int const ya, int const xn, int const yn){
+static int ligne_existe(int xa, int ya, int xn, int yn) {/*
+    ranger(&xa,&ya,&xn,&yn);
+    int ligne_impaire = xa%2;
     int nb_rep;
     int xTmp, yTmp;
-    if (!(xa-xn)){
-        if (ya < yn){
-            for(yTmp = ya+1; yTmp<yn; yTmp++){
-                if (plateau[xa][yTmp]==NULL){
-                    return(0);
-                }
-            }
-        }
-        if (ya > yn){
-            for(yTmp = yn+1; yTmp<ya; yTmp++){
-                if (plateau[xa][yTmp]==NULL){
-                    return(0);
-                }
-            }
+    if (xa == xn){
+        return 1;
+    }
+    if ((xa-xn)%2){
+        if( (ya-yn) == ( (xa-xn)/2 ) ){
+            return 1;
         }
     }
-    else if (!(ya-yn)){
-        if (xa < xn){
-            for(xTmp = xa+1; xTmp<yn; xTmp++){
-                if (plateau[xTmp][ya]==NULL){
-                    return(0);
-                }
-            }
-        }
-        if (xa > xn){
-            for(xTmp = xn+1; xTmp<ya; xTmp++){
-                if (plateau[xTmp][ya]==NULL){
-                    return(0);
-                }
-            }
-        }
-    }
-    else{
-        if (xa < xn){
-            xTmp = xa+1;
-            yTmp = ya+1;
-            while(xTmp < xn){
-                if (plateau[xTmp][yTmp]==NULL){
-                    return(0);
-                }
-                xTmp ++;
-                yTmp ++;
-                nb_rep ++;
-            }
-        }
-        if (xa > xn){
-            xTmp = xn+1;
-            yTmp = yn+1;
-            while(xTmp < xa){
-                if (plateau[xTmp][yTmp]==NULL){
-                    return(0);
-                }
-                xTmp ++;
-                yTmp ++;
-            }
-        }
-    }
-    return(1);
+ */   
+return 1;
 }
 
 /**
@@ -206,20 +181,27 @@ extern int a_coter_irigation(int const x, int const y){
  * 2= l'emmplacement a moin de 2 voisin
  */
 extern int pose_tuile_impossible(int const x, int const y){
+    int ligne_impaire = x%2;
     int validation = 0;
-    if(contigue(x,y,LACPOS,LACPOS)){
-        return (0);
-    }
     if (case_existe(x,y)){
         return(1);
     }
+    if(contigue(x,y,LACPOS,LACPOS)){
+	/*if(ligne_impaire)
+		printf("impaire Contique x=%d y=%d\n",x,y);
+	else
+		printf("paire Contique x=%d y=%d\n",x,y);
+        return (0);
+    */
+    }
+
     // test de toute les position voisine et ajjout dans un compteur
-    validation += case_existe(x+1,y+1);
-    validation += case_existe(x-1,y);
     validation += case_existe(x,y-1);
     validation += case_existe(x,y+1);
-    validation += case_existe(x+1,y);
-    validation += case_existe(x-1,y+1);
+    validation += case_existe(x-1,y+1-ligne_impaire);
+    validation += case_existe(x-1,y-ligne_impaire);
+    validation += case_existe(x+1,y+1-ligne_impaire);
+    validation += case_existe(x+1,y-ligne_impaire);
     // pour que la posse soit possible la casse doit avoir minimum 2 voissine donc le compteur doit ètre >= a 2
     if(validation >= 2){
         return(0);
@@ -330,9 +312,14 @@ int ajout_tuile(case_plato_t  * case_choix, int const x, int const y){
  * 1 = les case sont contigue
  */
 extern int contigue(int const xa, int const ya, int const xb, int const yb){
-    return( (xa == xb-1 && ya == yb) || (xa == xb+1 && ya == yb) || 
-    (xa == xb && ya == yb-1) || (xa == xb && ya == yb+1) ||
-    (xa == xb-1 && ya == yb-1) || (xa == xb+1 && ya == yb-1) );
+    int ligne_impaire = xa%2;
+    return( (xa==xb && ya==yb-1)||
+            (xa==xb && ya==yb+1)||
+            (xa==xb-1 && ya==yb+1-ligne_impaire)||
+            (xa==xb-1 && ya==yb-ligne_impaire)||
+            (xa==xb+1 && ya==yb+1-ligne_impaire)||
+            (xa==xb+1 && ya==yb-ligne_impaire) );
+
 }
 
 /**
