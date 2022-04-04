@@ -225,7 +225,7 @@ void pioche_effspe( joueur_t * Joueur){}
  */
 int Verif_deplacer_perso( personnage_t perso, int const x_a, int const y_a){	 /* jardinier ou Panda et renvoie 1 si c'est bon */
   int x_d = perso.x, y_d = perso.y;
-  int dist_x = x_a - x_d , dist_y = (y_a - y_d)/2;
+  int dist_x = (x_a - x_d)/2 , dist_y = y_a - y_d;
   
   if (dist_x == 0 && dist_y == 0) /* Si on choisi la case de départ */
     return 0;
