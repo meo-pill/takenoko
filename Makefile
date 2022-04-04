@@ -87,7 +87,7 @@ test_aff:test/test_affichage_Plato.c object/aff_table.o object/CREA.o object/tex
 test_rand:object/test_rand.o
 	${CC} -o bin/$@ object/test_rand.o ${LIBS} ${INCS} ${FLAGS}
 
-#supression des fichier obeselette
+#supression des fichier obsolette
 clean:
 	clear
 	rm -r -f ${PROG}
