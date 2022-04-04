@@ -241,7 +241,6 @@ extern int pose_tuile_impossible(int const x, int const y){
     }
     
     // test de toute les position voisine et ajjout dans un compteur
-    validation += 
     validation += case_existe(x,y-1);
     validation += case_existe(x,y+1);
     validation += case_existe(x-1,y+1-ligne_impaire);

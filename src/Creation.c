@@ -126,11 +126,11 @@ extern text_t* Creation_Joueur(SDL_Renderer * renderer,int x,int y,int i){
 	//affichage du nombre d'effet en la posertion d'un joueur
 	//Nb d'effet non au panda
 	(Joueur->Table[7])->t=Creation_image(renderer,lire_Rect(Joueur->Table[7],1),"image/en_plus/nonPanda.png",x,y+160,30,30);
-	(Joueur->Table[8])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[8],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]-> effSpe[2]),Blanc,x,y+190);
+	(Joueur->Table[8])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[8],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]-> effSpe[1]),Blanc,x,y+190);
 
 	//Nb d'effet tuile iriger
 	(Joueur->Table[9])->t=Creation_image(renderer,lire_Rect(Joueur->Table[9],1),"image/en_plus/irige.png",x+40,y+160,30,30);
-	(Joueur->Table[10])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[10],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]-> effSpe[2]),Blanc,x+40,y+190);
+	(Joueur->Table[10])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[10],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]-> effSpe[0]),Blanc,x+40,y+190);
 
 	//Nb d'effet tuile avec engret
 	(Joueur->Table[11])->t=Creation_image(renderer,lire_Rect(Joueur->Table[11],1),"image/en_plus/engret.png",x+80,y+160,30,30);
