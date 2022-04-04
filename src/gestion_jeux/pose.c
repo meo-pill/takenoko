@@ -226,21 +226,42 @@ extern void pose_tuiles_possible(coordonne_t * tab){
             ligne_impaire = i%2;
             if(j>0 && plateau[i][j-1] != NULL){
                 cases_contigue ++;
+                if(i == LACPOS && j-1 == LACPOS)
+                    cases_contigue ++;
             }
-            if( j>(0-ligne_impaire) && i>0 && plateau[i-1][j-1+ligne_impaire]!= NULL)
+            if( j>(0-ligne_impaire) && i>0 && plateau[i-1][j-1+ligne_impaire]!= NULL){
                 cases_contigue ++;
+                if(i-1 == LACPOS && j-1+ligne_impaire == LACPOS)
+                    cases_contigue ++;
+            }
+                
 
-            if(i>0 && j<NBTUILES-ligne_impaire && plateau[i-1][j+ligne_impaire]!= NULL)
+            if(i>0 && j<NBTUILES-ligne_impaire && plateau[i-1][j+ligne_impaire]!= NULL){
                 cases_contigue ++;
+                if(i-1 == LACPOS && j+ligne_impaire == LACPOS)
+                    cases_contigue ++;
+            }
 
-            if(j<NBTUILES-1 && plateau[i][j+1]!= NULL)
-                cases_contigue++;
+            if(j<NBTUILES-1 && plateau[i][j+1]!= NULL){
+                cases_contigue ++;
+                if(i == LACPOS && j+1 == LACPOS)
+                    cases_contigue ++;
+            }
             
-            if(i<NBTUILES-1 && j<NBTUILES-ligne_impaire && plateau[i+1][j+ligne_impaire]!= NULL)
+            if(i<NBTUILES-1 && j<NBTUILES-ligne_impaire && plateau[i+1][j+ligne_impaire]!= NULL){
                 cases_contigue ++;
+                if(i+1 == LACPOS && j+ligne_impaire == LACPOS)
+                    cases_contigue ++;
+            }
 
             if(i<NBTUILES-1 && j>0-ligne_impaire && plateau[i+1][j-1+ligne_impaire]!= NULL)
+            if(i<NBTUILES-1 && j>0-ligne_impaire && plateau[i+1][j-1+ligne_impaire]!= NULL){
                 cases_contigue ++;
+                if(i+1 == LACPOS && j-1+ligne_existe == LACPOS)
+                    cases_contigue ++;
+            }
+            
+
             
             if(cases_contigue >= 2){
                 tab[k].x = i;

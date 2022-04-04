@@ -223,29 +223,81 @@ fonction à finir et à tester
  * 0 le déplacement n'est pas valide
  * 1 le déplacement est valide
  */
-int Verif_deplacer_perso( personnage_t perso, int const x_a, int const y_a){	 /* jardinier ou Panda et renvoie 1 si c'est bon */
-  int x_d = perso.x, y_d = perso.y;
-  int dist_x = x_a - x_d , dist_y = y_a - y_d;
-  
-  if (dist_x == 0 && dist_y == 0) /* Si on choisi la case de départ */
-    return 0;
+//int Verif_deplacer_perso( personnage_t perso, int const x_a, int const y_a){	 /* jardinier ou Panda et renvoie 1 si c'est bon */
+//  int x_d = perso.x, y_d = perso.y;
+//<<<<<<< HEAD
+//  int dist_x = x_a - x_d , dist_y = y_a - y_d;
+//=======
+//  int dist_x = (x_a - x_d)/2 , dist_y = y_a - y_d;
+//>>>>>>> d114eb2e8e3d47fee82e834aa4262fd042a9e12f
+//  
+//  if (dist_x == 0 && dist_y == 0) /* Si on choisi la case de départ */
+//    return 0;
+//
+//<<<<<<< HEAD
+//  //if(sur_la_ligne(x_d, y_d, x_a, y_a)){
+//    if (dist_x == 0){          /* Cas 1 même ligne : x = x_a et seul y */
+//=======
+//  if(sur_la_ligne(x_d, y_d, x_a, y_a)){
+//    if (dist_x == 0){          /* Cas 1 même ligne : x = x_a et seul y change */
+//>>>>>>> d114eb2e8e3d47fee82e834aa4262fd042a9e12f
+//      if (dist_y > 0){
+//        for (int j = 1 ; j < dist_y ; j++){
+//          if (!case_existe(x_d, y_d + j))
+//            return 0;
+//        }
+//      }
+//      else{
+//        for (int j = -1 ; j > dist_y ; j--){
+//          if (!case_existe(x_d, y_d + j))
+//            return 0;
+//        }
+//      }
+//    }
+//    
+//<<<<<<< HEAD
+//    else if (dist_y == 0){    /* Cas 2 même colone : y = y_a et seul x change */
+//      if (dist_y > 0){
+//        for (int i = 1 ; i < dist_x ; i++){
+//          if (!case_existe(x_d+i, y_d))
+//            return 0;
+//        }
+//      }
+//      else{
+//        for (int i = -1 ; i > dist_x ; i--){
+//          if (!case_existe(x_d+i, y_d))
+//            return 0;
+//        }
+//      }
+//    }
+//    
+//    else if(dist_x == dist_y){   /* Cas 3 même diagonale : y et x change (x+1/y+1 ou x-1/y-1) */
+//      if (dist_y > 0){
+//        for (int ij = 0 ; ij < dist_x ; ij++){
+//          if (!case_existe(x_d+ij, y_d+ij))
+//            return 0;
+//        }
+//      }
+//      else{
+//        for (int ij = 0 ; ij > dist_x ; ij--){
+//          if (!case_existe(x_d+ij, y_d+ij))
+//            return 0;
+//        }
+//      }
+//    }
+//
+//    else
+//      printf(" erreur de déplacement ");
+//  //}
+// // else
+//   // printf(" erreur de déplacement ");
+//  
+//  return 1;
+//}
+//=======
+//
+//>>>>>>> d114eb2e8e3d47fee82e834aa4262fd042a9e12f
 
-  //if(sur_la_ligne(x_d, y_d, x_a, y_a)){
-    if (dist_x == 0){          /* Cas 1 même ligne : x = x_a et seul y */
-      if (dist_y > 0){
-        for (int j = 1 ; j < dist_y ; j++){
-          if (!case_existe(x_d, y_d + j))
-            return 0;
-        }
-      }
-      else{
-        for (int j = -1 ; j > dist_y ; j--){
-          if (!case_existe(x_d, y_d + j))
-            return 0;
-        }
-      }
-    }
-    
     else if (dist_y == 0){    /* Cas 2 même colone : y = y_a et seul x change */
       if (dist_y > 0){
         for (int i = 1 ; i < dist_x ; i++){
@@ -278,13 +330,12 @@ int Verif_deplacer_perso( personnage_t perso, int const x_a, int const y_a){	 /*
 
     else
       printf(" erreur de déplacement ");
-  //}
- // else
-   // printf(" erreur de déplacement ");
+  }
+  else
+    printf(" erreur de déplacement ");
   
   return 1;
 }
-
 
 /**
  * @brief change les coordonnées du jardinier ou du Panda
@@ -293,13 +344,12 @@ int Verif_deplacer_perso( personnage_t perso, int const x_a, int const y_a){	 /*
  * @param x_a nouvelle position x voulue
  * @param y_a nouvelle position y voulue
  */
-void deplacer_personnage( personnage_t * perso, int const x_a, int const y_a){
+void deplacer_personnage( personnage_t perso, int const x_a, int const y_a){
 
-  if (Verif_deplacer_perso( *perso, x_a, y_a)){
-	  perso->x = x_a;
-	  perso->y = y_a;
+  if (Verif_deplacer_perso( perso, x_a, y_a) && case_existe(x_a, y_a)){
+	  perso.x = x_a;
+	  perso.y = y_a;
   }
   else
     printf(" erreur de déplacement ");
-    
 }
