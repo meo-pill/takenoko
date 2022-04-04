@@ -8,6 +8,12 @@
  */
 #include "../../lib/pose.h"
 
+
+extern void ranger(int * xa, int * ya, int * xb, int * yb){
+    
+}
+
+
 /**
  * @brief verificaiton de validité des coordoner
  * 
@@ -278,7 +284,6 @@ extern int contigue(int const xa, int const ya, int const xb, int const yb){
             (xa==xb+1 && ya==yb-1+ligne_impaire)||
             (xa==xb+1 && ya==yb+ligne_impaire) );
 
-    
 }
 
 /**
