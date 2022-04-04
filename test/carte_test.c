@@ -565,5 +565,5 @@ int main(){
     /*test_losange*/
     test_arc();
     
-    suprimer();
+    suprimer(0);
 }
