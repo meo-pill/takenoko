@@ -10,7 +10,22 @@
 
 
 extern void ranger(int * xa, int * ya, int * xb, int * yb){
-    
+    if (*xa < *xb){
+        return;
+    }
+    if(*xa == *xb){
+        if(*ya < *yb){
+            return;
+        }
+    }
+    int x,y;
+    x = *xa;
+    y = *ya;
+    *xa = *xb;
+    *ya = *yb;
+    *xb = x;
+    *yb = y;
+    return;
 }
 
 
