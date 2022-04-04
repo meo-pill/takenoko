@@ -94,6 +94,9 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 
 	text_t* tuile_show=NULL;
 
+	text_t* Jardinier=NULL;
+	text_t* Panda=NULL;
+
 	text_t** AffJoueur=NULL;
 	AffJoueur=malloc(sizeof(text_t*));
 	text_t** MainsJoueur=NULL;
@@ -133,6 +136,8 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	Select_Map=Crea_Tex(2);
 	Select_case=Crea_Tex(1);
 	fin_tour=Crea_Tex(2);
+	Jardinier=Crea_Tex(1);
+	Panda=Crea_Tex(1);
 
 	bouton->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton->Table[0],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,"Quiter",Blanc,W*1/4,10);
 	bouton->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton->Table[1],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Au revoir!",Blanc,W*1/4,10);
@@ -231,6 +236,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	prd_carte->Table[1]->t=Creation_image(renderer,lire_Rect(prd_carte->Table[1],1),Select_prd_carte,200,H*7/11,70,50);
 	prd_carte->Table[2]->t=Creation_image(renderer,lire_Rect(prd_carte->Table[2],1),"image/en_plus/Choix.png",270,H*7/11,50,50);
 
+
 	(*Select_case->Table)->t=IMG_LoadTexture(renderer,"image/case/SelectCase.png");
 
 	(*image->Table)->t = IMG_LoadTexture(renderer, fond_Plato);
@@ -289,6 +295,18 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 
 			if(plateau[ligne][colonne]!=NULL){
 				(hexagonal[ligne]->Table[colonne])->t= IMG_LoadTexture(renderer, plateau[ligne][colonne]->image);
+				(*Panda->Table)->t=Creation_image(renderer,
+						lire_Rect((*Panda->Table),1),
+						"image/en_plus/Panda.png",
+						posX+50,
+						posY+50,
+						70,50);
+				(*Jardinier->Table)->t=Creation_image(renderer,
+						lire_Rect((*Jardinier->Table),1),
+						"image/en_plus/Jardinier.png",
+						posX+110,
+						posY+50,
+						70,50);
 			}
 			if((hexagonal[ligne]->Table[colonne])->t==NULL){
 				fprintf ( stderr , " Erreur au niveau de l'image: %s \n " , TTF_GetError ());
@@ -710,8 +728,62 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 							pose_pace=3;
 						}
 					}
+					if(!deplacement_imposible(panda.x,panda.y,ligne,colone) && panda_bouge==1){
+						if(Select_hexa(renderer,(hexagonal[ligne]->Table[colone]),(*Select_case->Table),x,y) && Clic){
+							positionne_rect(lire_Rect((*Panda->Table),1),
+									lire_Rect((hexagonal[ligne]->Table[colone]),1)->x+50,
+									lire_Rect((hexagonal[ligne]->Table[colone]),1)->y+50,
+									70,50);
+							panda.x=ligne;
+							panda.y=colone;
+						}
+					}
 				}
 			}
+			if(modif_Pos){
+				if(dif_x<0 && dif_y<=0){
+					positionne_rect(lire_Rect((*Panda->Table),1),
+							lire_Rect((*Panda->Table),1)->x-10,
+							lire_Rect((*Panda->Table),1)->y-10,
+							70,50);
+					positionne_rect(lire_Rect((*Jardinier->Table),1),
+							lire_Rect((*Jardinier->Table),1)->x-10,
+							lire_Rect((*Jardinier->Table),1)->y-10,
+							70,50);
+				}
+				else if(dif_x>=0 && dif_y>0 ){
+					positionne_rect(lire_Rect((*Panda->Table),1),
+							lire_Rect((*Panda->Table),1)->x+10,
+							lire_Rect((*Panda->Table),1)->y+10,
+							70,50);
+					positionne_rect(lire_Rect((*Jardinier->Table),1),
+							lire_Rect((*Jardinier->Table),1)->x+10,
+							lire_Rect((*Jardinier->Table),1)->y+10,
+							70,50);
+				}
+				else if(dif_x>=0 && dif_y<0 ){
+					positionne_rect(lire_Rect((*Panda->Table),1),
+							lire_Rect((*Panda->Table),1)->x+10,
+							lire_Rect((*Panda->Table),1)->y-10,
+							70,50);
+					positionne_rect(lire_Rect((*Jardinier->Table),1),
+							lire_Rect((*Jardinier->Table),1)->x+10,
+							lire_Rect((*Jardinier->Table),1)->y-10,
+							70,50);
+				}
+				else if(dif_x<0 && dif_y>=0 ){
+					positionne_rect(lire_Rect((*Panda->Table),1),
+							lire_Rect((*Panda->Table),1)->x-10,
+							lire_Rect((*Panda->Table),1)->y+10,
+							70,50);
+					positionne_rect(lire_Rect((*Jardinier->Table),1),
+							lire_Rect((*Jardinier->Table),1)->x-10,
+							lire_Rect((*Jardinier->Table),1)->y+10,
+							70,50);
+				}
+			}
+			SDL_RenderCopy(renderer,(*Panda->Table)->t,NULL,lire_Rect((*Panda->Table),1));
+			SDL_RenderCopy(renderer,(*Jardinier->Table)->t,NULL,lire_Rect((*Jardinier->Table),1));
 		}
 		//	if(victoire_joueur(J[compteur_tour],maxpoint))
 		//		victoirJ=1;
@@ -724,6 +796,9 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 				pose_pace=0;
 				demande_irig=0;
 				demande_carte=0;
+				panda_bouge=0;
+				jardinier_bouge=0;
+				met_vent=0;
 				choix=0;
 			}
 		}

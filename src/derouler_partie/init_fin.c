@@ -198,6 +198,13 @@ static void creation_plateau(void){
     plateau[LACPOS][LACPOS]= &lac;
 }
 
+static void init_personage(){
+	jardinier.x = LACPOS;
+	jardinier.y = LACPOS;
+	panda.x = LACPOS;
+	panda.y = LACPOS;
+}
+
 /**
  * @brief initalisation du tableau des irigation
  * MEWEN
@@ -299,10 +306,12 @@ static void initialiser(int const nb_joueur){
     creation_plateau();
     creation_joueur(nb_joueur);
     init_irigation();
+    init_personage();
     indique_carte[0] = 0;
     indique_carte[1] = 0;
     indique_carte[2] = 0;
 }
+
 
 /**
  * @brief premier fonction d'inisialisaiton pour donner une valeur au varible
@@ -423,7 +432,6 @@ extern void suprimer(int const nbJoueur){
 	videe_plateau();
     detruire_carte();
     suppression_irig();
-	printf("Je débug\n");
     detruir_Table_J(nbJoueur);
     suppression_file_tuile();
 }
