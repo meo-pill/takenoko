@@ -206,6 +206,7 @@ extern int a_coter_irigation(int const x, int const y){
  * 2= l'emmplacement a moin de 2 voisin
  */
 extern int pose_tuile_impossible(int const x, int const y){
+    int ligne_impaire = x%2;
     int validation = 0;
     if (case_existe(x,y)){
         return(1);
@@ -215,12 +216,12 @@ extern int pose_tuile_impossible(int const x, int const y){
     }
     
     // test de toute les position voisine et ajjout dans un compteur
-    validation += case_existe(x+1,y+1);
-    validation += case_existe(x-1,y);
     validation += case_existe(x,y-1);
     validation += case_existe(x,y+1);
-    validation += case_existe(x+1,y);
-    validation += case_existe(x-1,y+1);
+    validation += case_existe(x-1,y-1+ligne_impaire);
+    validation += case_existe(x-1,y+ligne_impaire);
+    validation += case_existe(x+1,y-1+ligne_impaire);
+    validation += case_existe(x+1,y+ligne_impaire);
     // pour que la posse soit possible la casse doit avoir minimum 2 voissine donc le compteur doit ètre >= a 2
     if(validation >= 2){
         return(0);
@@ -270,9 +271,15 @@ int ajout_tuile(case_plato_t  * case_choix, int const x, int const y){
  * 1 = les case sont contigue
  */
 extern int contigue(int const xa, int const ya, int const xb, int const yb){
-    return( (xa == xb-1 && ya == yb) || (xa == xb+1 && ya == yb) || 
-    (xa == xb && ya == yb-1) || (xa == xb && ya == yb+1) ||
-    (xa == xb-1 && ya == yb-1) || (xa == xb+1 && ya == yb-1) );
+    int ligne_impaire = xa%2;
+    return( (xa==xb && ya==yb-1)||
+            (xa==xb && ya==yb+1)||
+            (xa==xb-1 && ya==yb-1+ligne_impaire)||
+            (xa==xb-1 && ya==yb+ligne_impaire)||
+            (xa==xb+1 && ya==yb-1+ligne_impaire)||
+            (xa==xb+1 && ya==yb+ligne_impaire) );
+
+    
 }
 
 /**
