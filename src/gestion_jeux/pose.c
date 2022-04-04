@@ -233,16 +233,21 @@ extern int pose_tuile_impossible(int const x, int const y){
         return(1);
     }
     if(contigue(x,y,LACPOS,LACPOS)){
+	if(ligne_impaire)
+		printf("impaire Contique x=%d y=%d\n",x,y);
+	else
+		printf("paire Contique x=%d y=%d\n",x,y);
         return (0);
     }
     
     // test de toute les position voisine et ajjout dans un compteur
+    validation += 
     validation += case_existe(x,y-1);
     validation += case_existe(x,y+1);
-    validation += case_existe(x-1,y-1+ligne_impaire);
-    validation += case_existe(x-1,y+ligne_impaire);
-    validation += case_existe(x+1,y-1+ligne_impaire);
-    validation += case_existe(x+1,y+ligne_impaire);
+    validation += case_existe(x-1,y+1-ligne_impaire);
+    validation += case_existe(x-1,y-ligne_impaire);
+    validation += case_existe(x+1,y+1-ligne_impaire);
+    validation += case_existe(x+1,y-ligne_impaire);
     // pour que la posse soit possible la casse doit avoir minimum 2 voissine donc le compteur doit ètre >= a 2
     if(validation >= 2){
         return(0);
@@ -295,10 +300,10 @@ extern int contigue(int const xa, int const ya, int const xb, int const yb){
     int ligne_impaire = xa%2;
     return( (xa==xb && ya==yb-1)||
             (xa==xb && ya==yb+1)||
-            (xa==xb-1 && ya==yb-1+ligne_impaire)||
-            (xa==xb-1 && ya==yb+ligne_impaire)||
-            (xa==xb+1 && ya==yb-1+ligne_impaire)||
-            (xa==xb+1 && ya==yb+ligne_impaire) );
+            (xa==xb-1 && ya==yb+1-ligne_impaire)||
+            (xa==xb-1 && ya==yb-ligne_impaire)||
+            (xa==xb+1 && ya==yb+1-ligne_impaire)||
+            (xa==xb+1 && ya==yb-ligne_impaire) );
 
 }
 

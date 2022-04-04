@@ -65,6 +65,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 
 	text_t* image=NULL;
 	text_t* bouton=NULL;
+	text_t* bouton_irig=NULL;
 	text_t* Select_Map=NULL;
 	text_t* Select_case=NULL;
 	text_t* fin_tour=NULL;
@@ -159,6 +160,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	Orage=Crea_Tex(3);
 	Nuage=Crea_Tex(3);
 	Met_choix=Crea_Tex(1);
+	bouton_irig=Crea_Tex(2);
 	
 	
 
@@ -237,6 +239,8 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	prd_carte->Table[2]->t=Creation_image(renderer,lire_Rect(prd_carte->Table[2],1),"image/en_plus/Choix.png",270,H*7/11,50,50);
 
 
+	bouton_irig->Table[0]->t=Creation_image(renderer,lire_Rect(bouton_irig->Table[0],1),"image/bouton/pose_irig.png",W*3/11,H*8/11,80,100);
+	bouton_irig->Table[1]->t=Creation_image(renderer,lire_Rect(bouton_irig->Table[1],1),"image/bouton/Select_pose_irig.png",W*3/11,H*8/11,80,100);
 	(*Select_case->Table)->t=IMG_LoadTexture(renderer,"image/case/SelectCase.png");
 
 	(*image->Table)->t = IMG_LoadTexture(renderer, fond_Plato);
@@ -281,7 +285,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 		}
 	}
 
-	//initialisation des image du plato
+	//initialisation des images du plato
 	for(int ligne=0 ; ligne<NBTUILES ; ligne++){
 		hexagonal[ligne] = Crea_Tex(NBTUILES);
 		int posY;
@@ -589,6 +593,9 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 					SDL_RenderCopy(renderer,lire_Texture(prd_carte->Table[2]),NULL,lire_Rect(prd_carte->Table[2],1));
 				}
 			}
+			if(J[compteur_tour]->nbIrigation>0){
+				if(bout(renderer,bouton_irig,x,y) && Clic){}
+			}
 			
 			if(bout(renderer,Select_manuel,x,y)==1 && Clic==1)
 			{	
@@ -736,6 +743,16 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 									70,50);
 							panda.x=ligne;
 							panda.y=colone;
+						}
+					}
+					if(!deplacement_imposible(jardinier.x,jardinier.y,ligne,colone) && jardinier_bouge==1){
+						if(Select_hexa(renderer,(hexagonal[ligne]->Table[colone]),(*Select_case->Table),x,y) && Clic){
+							positionne_rect(lire_Rect((*Jardinier->Table),1),
+									lire_Rect((hexagonal[ligne]->Table[colone]),1)->x+50,
+									lire_Rect((hexagonal[ligne]->Table[colone]),1)->y+50,
+									70,50);
+							jardinier.x=ligne;
+							jardinier.y=colone;
 						}
 					}
 				}
