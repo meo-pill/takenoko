@@ -29,6 +29,7 @@ typedef struct carte_s carte_t;
 typedef struct joueur_s joueur_t;
 typedef struct file_s file_t;
 typedef struct irig_s irig_t;
+typedef struct coord_s coordonne_t;
 
 /**definition des type enumérer*/
 typedef enum couleur_s{jaune,rose,vert,water}couleur_E;
@@ -58,6 +59,13 @@ irig_t * irig[NBIRIG];
 struct personnage_s{
   int x,y; //coordonnée
 };
+
+struct  coord_s
+{
+  int x;
+  int y;
+};
+
 
 struct case_plato_s{
   couleur_E Coul;
