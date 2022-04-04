@@ -40,7 +40,7 @@ extern void ranger(int * xa, int * ya, int * xb, int * yb){
  * 1 les coordoné sont dans la matrice
  */
 extern int coordoner_posible(int const x, int const y){
-    return( x > 0 && x < NBTUILES && y > 0 && y < NBTUILES);
+    return( x > -1 && x < NBTUILES && y > -1 && y < NBTUILES);
 }
 
 /**
@@ -110,67 +110,21 @@ static int sur_la_ligne(int const xa, int const ya, int const xn, int const yn){
  * 0 la ligne n'est pas continue
  * 1 la ligne est continue
  */
-static int ligne_existe(int const xa, int const ya, int const xn, int const yn){
+static int ligne_existe(int xa, int ya, int xn, int yn) {/*
+    ranger(&xa,&ya,&xn,&yn);
+    int ligne_impaire = xa%2;
     int nb_rep;
     int xTmp, yTmp;
-    if (!(xa-xn)){
-        if (ya < yn){
-            for(yTmp = ya+1; yTmp<yn; yTmp++){
-                if (plateau[xa][yTmp]==NULL){
-                    return(0);
-                }
-            }
-        }
-        if (ya > yn){
-            for(yTmp = yn+1; yTmp<ya; yTmp++){
-                if (plateau[xa][yTmp]==NULL){
-                    return(0);
-                }
-            }
+    if (xa == xn){
+        return 1;
+    }
+    if ((xa-xn)%2){
+        if( (ya-yn) == ( (xa-xn)/2 ) ){
+            return 1;
         }
     }
-    else if (!(ya-yn)){
-        if (xa < xn){
-            for(xTmp = xa+1; xTmp<yn; xTmp++){
-                if (plateau[xTmp][ya]==NULL){
-                    return(0);
-                }
-            }
-        }
-        if (xa > xn){
-            for(xTmp = xn+1; xTmp<ya; xTmp++){
-                if (plateau[xTmp][ya]==NULL){
-                    return(0);
-                }
-            }
-        }
-    }
-    else{
-        if (xa < xn){
-            xTmp = xa+1;
-            yTmp = ya+1;
-            while(xTmp < xn){
-                if (plateau[xTmp][yTmp]==NULL){
-                    return(0);
-                }
-                xTmp ++;
-                yTmp ++;
-                nb_rep ++;
-            }
-        }
-        if (xa > xn){
-            xTmp = xn+1;
-            yTmp = yn+1;
-            while(xTmp < xa){
-                if (plateau[xTmp][yTmp]==NULL){
-                    return(0);
-                }
-                xTmp ++;
-                yTmp ++;
-            }
-        }
-    }
-    return(1);
+ */   
+return 1;
 }
 
 /**
@@ -233,15 +187,15 @@ extern int pose_tuile_impossible(int const x, int const y){
         return(1);
     }
     if(contigue(x,y,LACPOS,LACPOS)){
-	if(ligne_impaire)
+	/*if(ligne_impaire)
 		printf("impaire Contique x=%d y=%d\n",x,y);
 	else
 		printf("paire Contique x=%d y=%d\n",x,y);
         return (0);
+    */
     }
-    
+
     // test de toute les position voisine et ajjout dans un compteur
-    validation += 
     validation += case_existe(x,y-1);
     validation += case_existe(x,y+1);
     validation += case_existe(x-1,y+1-ligne_impaire);
