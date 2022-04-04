@@ -384,11 +384,21 @@ static void videe_plateau(void){
 	}
 }
 
+
+/**
+ * @brief suprrime UNE tuile ;_;
+ * Morgane
+ */
+ extern void suppression_ONE_tuile(case_plato_t ** T){
+ 	free(T);
+ 	T=NULL;
+ }
+ 
 /**
  * @brief free des tuile en alocation dinamque
  * Mewen
  */
-static void suppression_tuile(void){
+static void suppression_file_tuile(void){
     for(int i=0; i<NBTUILES; i++){
         free(piece[i]);
         piece[i] = NULL;
@@ -415,5 +425,5 @@ extern void suprimer(int const nbJoueur){
     suppression_irig();
 	printf("Je débug\n");
     detruir_Table_J(nbJoueur);
-    suppression_tuile();
+    suppression_file_tuile();
 }
