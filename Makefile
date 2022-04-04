@@ -12,7 +12,7 @@ INCS=-I${SDL_INC_DIR}
 
 PROG=Takenoko
 
-OBJ=object/Plato.o object/menu.o object/CREA.o object/texture.o object/carte.o object/file.o object/init_fin.o object/commande.o object/pioche.o object/pose.o
+OBJ=object/Plato.o object/menu.o object/CREA.o object/texture.o object/carte.o object/file.o object/init_fin.o object/commande.o object/pioche.o object/pose.o object/converte.o
 LIB=lib/menu.h lib/texture2.h lib/Creation.h  lib/Plato.h #lib/Option.hi
 TEST= bin/carte_test bin/creation_carte_test bin/plateau_test bin/sdl_test bin/test_affichage_Plato bin/test_fct bin/test_init bin/test_rand bin/test_shuffle bin/test
 
@@ -61,6 +61,8 @@ object/pose.o : src/gestion_jeux/pose.c
 	${CCOBJ} ${CFLAGS} src/gestion_jeux/pose.c -o $@
 object/test_creation_carte.o: test/test_creation_carte.c
 	${CCOBJ} ${CFLAGS} test/test_creation_carte.c  -o $@
+object/converte.o : src/converte.c lib/converte.h
+	${CCOBJ} ${CFLAGS} src/converte.c -o $@
 
 #test des fonction du jeux
 test_Maxime: test/test_fonc.c object/fonction.o 
