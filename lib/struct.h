@@ -100,8 +100,8 @@ struct carte_s{
   int (*verif)(struct carte_s * const,joueur_t * const);
   char type [LONGTYPE];
   char image [LONGPATH];
- 	char desc [DESCRIPTION];
- 	int point;
+  char desc [DESCRIPTION];
+  int point;
 };
 
 /**

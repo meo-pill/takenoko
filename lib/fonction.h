@@ -122,6 +122,8 @@ void choixactionduJ( joueur_t * Joueur, char const meteo, choixJ_E memaction[2])
 void pioche_objetif( joueur_t * Joueur);
 void pioche_effspe( joueur_t * Joueur);
 
+int verif_ligne_droite_pair(int const x_d, int const y_d, int const x_a, int const y_a);
+int verif_ligne_droite_impair(int const x_d, int const y_d, int const x_a, int const y_a);
 
 
 /**
