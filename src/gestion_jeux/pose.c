@@ -284,19 +284,9 @@ extern void pose_tuiles_possible(coordonne_t * tab){
  */
 int ajout_tuile(case_plato_t  * case_choix, int const x, int const y){
 
-    if(!pose_tuile_impossible(x,y)){
-        plateau[x][y] = case_choix;
-        if(contigue(x,y,LACPOS,LACPOS)){
-            plateau[x][y]->iriguer = 1;
-        }
-        else{
-            if(a_coter_irigation(x,y)){
-                plateau[x][y]->iriguer = 1;
-            }
-        }
-        return 1;
-    }
-    return 0;
+	plateau[x][y] = case_choix;
+	actual_irig(x,y);
+	return 1;
 }
 
 
