@@ -1,13 +1,3 @@
-/**
- * @file pioche.c
- * @author Leo Nail et Mewen Puren
- * @brief contient les fonctions qui permettent de piocher
- * @version 0.1
- * @date 2022-03-24
- * 
- * @copyright Copyright (c) 2022
- * 
- */
 #include "../../lib/pioche.h"
 
 
@@ -60,12 +50,7 @@ static carte_t * pioche_carte (int type){
     printf("--------------erreur dans la fonction de pioche de carte : plus de carte dans cette pioche-----------------\n");
     return NULL;
 }
-/**
- * @brief cette fonction fait piocher une carte à un joueur
- * 
- * @param joueur qui pioche ?
- * @param type  quel type de carte (0 pour panda, 1 pour parcelle et 2 pour jardinier) ?
- */
+
 extern void joueur_pioche_carte(joueur_t * joueur, int type){
     if(type > 2 || type < 0){
         printf("------------------erreur, le type défnie( %d ) n'est pas bon dans la fonction joueur_pioche_carte----------------------\n",type);

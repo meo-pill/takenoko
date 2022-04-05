@@ -1,0 +1,11 @@
+<map id="lib/Plato.h" name="lib/Plato.h">
+<area shape="rect" id="node1" title="Permet de gérer le plato de jeux." alt="" coords="178,5,265,32"/>
+<area shape="rect" id="node2" href="$d0/d37/Creation_8h.html" title="Permet de créer le texte et de gérer les bouton." alt="" coords="115,80,205,107"/>
+<area shape="rect" id="node9" href="$d3/d0d/commande_8h_source.html" title=" " alt="" coords="229,80,336,107"/>
+<area shape="rect" id="node3" href="$d4/d62/texture2_8h.html" title="Permet de gérer la table des texture." alt="" coords="41,155,130,181"/>
+<area shape="rect" id="node8" href="$d8/dbc/converte_8h_source.html" title=" " alt="" coords="155,155,245,181"/>
+<area shape="rect" id="node4" href="$db/de6/bibl__SDL_8h.html" title="appelle des bibliotheque SDL" alt="" coords="139,229,229,256"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,304,101,331"/>
+<area shape="rect" id="node6" title=" " alt="" coords="125,304,243,331"/>
+<area shape="rect" id="node7" title=" " alt="" coords="267,304,411,331"/>
+</map>

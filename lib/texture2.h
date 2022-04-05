@@ -1,11 +1,17 @@
+/**
+ * @file texture2.h
+ * @author Morgane Pechon
+ * @brief Permet de gérer la table des texture
+ * @version 0.1
+ * @date 2022-04-05
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef _TEXTURE_H_
 #define _TEXTURE_H_
 #include "bibl_SDL.h"
-/*!
- * \author Morgane Pechon
- * \file texture.h
- * \brief Permet de gérer la table de texture
-*/
+
 
 /*!
  * \struct Texture_s

@@ -1,0 +1,8 @@
+<map id="lib/bibl_SDL.h" name="lib/bibl_SDL.h">
+<area shape="rect" id="node1" title="appelle des bibliotheque SDL" alt="" coords="76,5,187,32"/>
+<area shape="rect" id="node2" href="$d4/d62/texture2_8h.html" title="Permet de gérer la table des texture." alt="" coords="31,80,141,107"/>
+<area shape="rect" id="node6" href="$d3/d0d/commande_8h_source.html" title=" " alt="" coords="140,155,267,181"/>
+<area shape="rect" id="node3" href="$d0/d37/Creation_8h.html" title="Permet de créer le texte et de gérer les bouton." alt="" coords="6,155,115,181"/>
+<area shape="rect" id="node4" href="$de/d54/aff__table_8h.html" title="generation d&#39;un plateau test" alt="" coords="5,229,116,256"/>
+<area shape="rect" id="node5" href="$d1/dd5/Plato_8h.html" title="Permet de gérer le plato de jeux." alt="" coords="149,229,236,256"/>
+</map>

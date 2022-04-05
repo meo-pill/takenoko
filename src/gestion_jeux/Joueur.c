@@ -1,24 +1,6 @@
-/**
- * @file Joueur.c
- * @author Nail Léo
- * @brief ce fichier rassemble 
- * @version 0.1
- * @date 2022-03-28
- * 
- * @copyright Copyright (c) 2022
- * 
- */
-
 #include "../../lib/index.h"
 
-/**
- * @brief fonction permettant de tester, pour une case donné, si on peut poser un certain effet 
- * 
- * @param j
- * @param eff 
- * @return int
- * 0 pour non, 1 pour oui
- */
+
 int possede_effet(joueur_t * j, effet_E effet){
     if(j->effSpe[effet] <= 0){
         return 0;
@@ -26,14 +8,7 @@ int possede_effet(joueur_t * j, effet_E effet){
     return 1;
 }
 
-/**
- * @brief téléporte le panda sur une case et le fait manger deux bambous si possible
- * 
- * @param x 
- * @param y 
- * @return int 
- * retourn 1 s'il y a eu une erreur, 0 sinon
- */
+
 int orage_panda(int x, int y){
     if(!case_existe(x,y)){
         printf("\n--------------erreur, la case spécifié n'existe pas----------------------\n\n");

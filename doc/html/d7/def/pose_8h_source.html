@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Takenoko:  Fichier source de lib/pose.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Takenoko
+   </div>
+   <div id="projectbrief">le Takenoko est un jeux de société adapter en jeux video</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">pose.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d7/def/pose_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef DEPLACEMENT_H_INCLUDED</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define DEPLACEMENT_H_INCLUDED</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d1/db5/index_8h.html">index.h</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="../../d7/def/pose_8h.html#a49de29658cc5c0de067c6ab4d8010c19">coordoner_posible</a>(<span class="keywordtype">int</span> <span class="keyword">const</span> x, <span class="keywordtype">int</span> <span class="keyword">const</span> y);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="../../d7/def/pose_8h.html#afd622f6646daf35966ebb71f20dba886">contigue</a>(<span class="keywordtype">int</span> <span class="keyword">const</span> xa, <span class="keywordtype">int</span> <span class="keyword">const</span> ya, <span class="keywordtype">int</span> <span class="keyword">const</span> xb, <span class="keywordtype">int</span> <span class="keyword">const</span> yb);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="../../d7/def/pose_8h.html#a6ca6ce45d6a33939b828f6571c24554f">case_existe</a>(<span class="keywordtype">int</span> <span class="keyword">const</span> x, <span class="keywordtype">int</span> <span class="keyword">const</span> y);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="../../d7/def/pose_8h.html#aa7a0356a21fbcdf962101c5205b1a9d4">pose_tuile_impossible</a>(<span class="keywordtype">int</span> <span class="keyword">const</span> x, <span class="keywordtype">int</span> <span class="keyword">const</span> y);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> pose_canal_impossible(<span class="keywordtype">int</span> <span class="keyword">const</span> xa, <span class="keywordtype">int</span> <span class="keyword">const</span> ya, <span class="keywordtype">int</span> <span class="keyword">const</span> xb, <span class="keywordtype">int</span> <span class="keyword">const</span> yb);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="../../d7/def/pose_8h.html#a66b186b4bf70936e9cd9a4420fca7f6f">case_differente</a>(<span class="keywordtype">int</span> <span class="keyword">const</span> xa, <span class="keywordtype">int</span> <span class="keyword">const</span> ya, <span class="keywordtype">int</span> <span class="keyword">const</span> xn, <span class="keywordtype">int</span> <span class="keyword">const</span> yn);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="../../d7/def/pose_8h.html#a6df97abed7bed8aa50e596becf372f27">deplacement_imposible</a>(<span class="keywordtype">int</span> <span class="keyword">const</span> xa, <span class="keywordtype">int</span> <span class="keyword">const</span> ya, <span class="keywordtype">int</span> <span class="keyword">const</span> xn, <span class="keywordtype">int</span> <span class="keyword">const</span> yn);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="../../d7/def/pose_8h.html#aa7a0356a21fbcdf962101c5205b1a9d4">pose_tuile_impossible</a>(<span class="keywordtype">int</span> <span class="keyword">const</span> x, <span class="keywordtype">int</span> <span class="keyword">const</span> y);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="../../d7/def/pose_8h.html#af6f6b1f03c9231dd52ebc17dececa73f">pose_tuiles_possible</a>(<a class="code" href="../../d2/de9/structcoord__s.html">coordonne_t</a> * tab);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="../../d7/def/pose_8h.html#a1ecaeeb04dc856dab22090ff15f68023">access_lac</a>(<span class="keywordtype">int</span> <span class="keyword">const</span> xa, <span class="keywordtype">int</span> <span class="keyword">const</span> ya, <span class="keywordtype">int</span> <span class="keyword">const</span> xb, <span class="keywordtype">int</span> <span class="keyword">const</span> yb);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="keywordtype">int</span> <a class="code" href="../../d7/def/pose_8h.html#aac9d8c601e690b473ebb2a8ed5e1892f">ajout_tuile</a>(<a class="code" href="../../d6/d57/structcase__plato__s.html">case_plato_t</a> * case_choix, <span class="keywordtype">int</span> <span class="keyword">const</span> x, <span class="keywordtype">int</span> <span class="keyword">const</span> y);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="../../d7/def/pose_8h.html#a24373f50424c76ec0ef8f74a3584d412">ranger</a>(<span class="keywordtype">int</span> * xa, <span class="keywordtype">int</span> * ya, <span class="keywordtype">int</span> * xb, <span class="keywordtype">int</span> * yb);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="../../d7/def/pose_8h.html#a1a98f081a95144d0be76ab3a7ea06e2c">actual_irig</a>(<span class="keywordtype">int</span> <span class="keyword">const</span> x, <span class="keywordtype">int</span> <span class="keyword">const</span> y);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="preprocessor">#endif</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="apose_8h_html_af6f6b1f03c9231dd52ebc17dececa73f"><div class="ttname"><a href="../../d7/def/pose_8h.html#af6f6b1f03c9231dd52ebc17dececa73f">pose_tuiles_possible</a></div><div class="ttdeci">void pose_tuiles_possible(coordonne_t *tab)</div><div class="ttdoc">fonction permettant de savoir sur quelles cases on peut poser une tuile</div><div class="ttdef"><b>Definition:</b> pose.c:148</div></div>
+<div class="ttc" id="astructcoord__s_html"><div class="ttname"><a href="../../d2/de9/structcoord__s.html">coord_s</a></div><div class="ttdoc">strture de stockage de coordonnée</div><div class="ttdef"><b>Definition:</b> struct.h:77</div></div>
+<div class="ttc" id="apose_8h_html_a1a98f081a95144d0be76ab3a7ea06e2c"><div class="ttname"><a href="../../d7/def/pose_8h.html#a1a98f081a95144d0be76ab3a7ea06e2c">actual_irig</a></div><div class="ttdeci">void actual_irig(int const x, int const y)</div><div class="ttdoc">fonction d'actualisaiton de l'irigatino d'une tuile</div><div class="ttdef"><b>Definition:</b> pose.c:321</div></div>
+<div class="ttc" id="aindex_8h_html"><div class="ttname"><a href="../../d1/db5/index_8h.html">index.h</a></div><div class="ttdoc">fonction d'appelle des point h global</div></div>
+<div class="ttc" id="apose_8h_html_a49de29658cc5c0de067c6ab4d8010c19"><div class="ttname"><a href="../../d7/def/pose_8h.html#a49de29658cc5c0de067c6ab4d8010c19">coordoner_posible</a></div><div class="ttdeci">int coordoner_posible(int const x, int const y)</div><div class="ttdoc">verificaiton de validité des coordoner</div><div class="ttdef"><b>Definition:</b> pose.c:24</div></div>
+<div class="ttc" id="apose_8h_html_aac9d8c601e690b473ebb2a8ed5e1892f"><div class="ttname"><a href="../../d7/def/pose_8h.html#aac9d8c601e690b473ebb2a8ed5e1892f">ajout_tuile</a></div><div class="ttdeci">int ajout_tuile(case_plato_t *case_choix, int const x, int const y)</div><div class="ttdoc">fonction de pose de tuile</div><div class="ttdef"><b>Definition:</b> pose.c:207</div></div>
+<div class="ttc" id="apose_8h_html_a6ca6ce45d6a33939b828f6571c24554f"><div class="ttname"><a href="../../d7/def/pose_8h.html#a6ca6ce45d6a33939b828f6571c24554f">case_existe</a></div><div class="ttdeci">int case_existe(int const x, int const y)</div><div class="ttdoc">verfication qu'il y a une tuile au coordoné</div><div class="ttdef"><b>Definition:</b> pose.c:28</div></div>
+<div class="ttc" id="astructcase__plato__s_html"><div class="ttname"><a href="../../d6/d57/structcase__plato__s.html">case_plato_s</a></div><div class="ttdoc">structure de case</div><div class="ttdef"><b>Definition:</b> struct.h:87</div></div>
+<div class="ttc" id="apose_8h_html_a1ecaeeb04dc856dab22090ff15f68023"><div class="ttname"><a href="../../d7/def/pose_8h.html#a1ecaeeb04dc856dab22090ff15f68023">access_lac</a></div><div class="ttdeci">int access_lac(int const xa, int const ya, int const xb, int const yb)</div><div class="ttdoc">fonction de verfication d'access au lac</div><div class="ttdef"><b>Definition:</b> pose.c:238</div></div>
+<div class="ttc" id="apose_8h_html_a24373f50424c76ec0ef8f74a3584d412"><div class="ttname"><a href="../../d7/def/pose_8h.html#a24373f50424c76ec0ef8f74a3584d412">ranger</a></div><div class="ttdeci">void ranger(int *xa, int *ya, int *xb, int *yb)</div><div class="ttdoc">fonction de rangement des coordonner la plus en haut a gauche en premier</div><div class="ttdef"><b>Definition:</b> pose.c:4</div></div>
+<div class="ttc" id="apose_8h_html_aa7a0356a21fbcdf962101c5205b1a9d4"><div class="ttname"><a href="../../d7/def/pose_8h.html#aa7a0356a21fbcdf962101c5205b1a9d4">pose_tuile_impossible</a></div><div class="ttdeci">int pose_tuile_impossible(int const x, int const y)</div><div class="ttdoc">verifiaction des la posibllité de posser une tuile</div><div class="ttdef"><b>Definition:</b> pose.c:119</div></div>
+<div class="ttc" id="apose_8h_html_afd622f6646daf35966ebb71f20dba886"><div class="ttname"><a href="../../d7/def/pose_8h.html#afd622f6646daf35966ebb71f20dba886">contigue</a></div><div class="ttdeci">int contigue(int const xa, int const ya, int const xb, int const yb)</div><div class="ttdoc">verfication de la contiguité entre deux case</div><div class="ttdef"><b>Definition:</b> pose.c:226</div></div>
+<div class="ttc" id="apose_8h_html_a66b186b4bf70936e9cd9a4420fca7f6f"><div class="ttname"><a href="../../d7/def/pose_8h.html#a66b186b4bf70936e9cd9a4420fca7f6f">case_differente</a></div><div class="ttdeci">int case_differente(int const xa, int const ya, int const xn, int const yn)</div><div class="ttdoc">verifaction si deux casse sont différent</div><div class="ttdef"><b>Definition:</b> pose.c:35</div></div>
+<div class="ttc" id="apose_8h_html_a6df97abed7bed8aa50e596becf372f27"><div class="ttname"><a href="../../d7/def/pose_8h.html#a6df97abed7bed8aa50e596becf372f27">deplacement_imposible</a></div><div class="ttdeci">int deplacement_imposible(int const xa, int const ya, int const xn, int const yn)</div><div class="ttdoc">verification de validité des coordonée</div><div class="ttdef"><b>Definition:</b> pose.c:91</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

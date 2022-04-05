@@ -1,13 +1,3 @@
-/**
- * @file init_fin.c
- * @author MEWEN PUREN / NAIL LEO
- * @brief fonction d'inisatilsation de la partie / fonction de supression
- * @version 0.1
- * @date 2022-03-29
- * 
- * @copyright Copyright (c) 2022
- * 
- */
 #include "../../lib/index.h"
 
 /*
@@ -51,12 +41,7 @@ static void shuffleTuile(void){
     }
 }
 
-/**
- * @brief sert a extraire le contenue du fichier de memoire des tuile
- * Mewen
- *
- * @return int pour la gestion d'érreur
- */
+
 extern int extraction_fichier_tuile(void){
     /** création des variable */
     int couleur,iriguer,bambou,effet;
@@ -108,11 +93,7 @@ extern int extraction_fichier_tuile(void){
     return (0);
 }
 
-/**
- * @brief fonction de mise en file des tuile de terrains
- * Mewen
- * 
- */
+
 extern void mise_en_file(void){
     for(int i=0; i<NBTUILES; i++){
         ajouter(piece[i]);
@@ -128,6 +109,7 @@ static void init_main(carte_t ** main,int const nb_carte){
 		main[i]=NULL;
 	}
 }
+
 /**
  * @brief retoutne le nom d'un joueur
  * @author Morgane
@@ -313,14 +295,7 @@ static void initialiser(int const nb_joueur){
 }
 
 
-/**
- * @brief premier fonction d'inisialisaiton pour donner une valeur au varible
- * et faire appelle a la fonction d'inisialisation des tuile et carte
- * 
- * @param nb_joueur atribution du nombre de joueur
- * @param maxpoint atribution du nombre de carte a valider en conséquence
- * @return int pour le retour d'erreur
- */
+
 extern int debut_partie(int const  nb_joueur, int * maxpoint){
     initialiser(nb_joueur);
     /**
@@ -394,10 +369,7 @@ static void videe_plateau(void){
 }
 
 
-/**
- * @brief suprrime UNE tuile ;_;
- * Morgane
- */
+
  extern void suppression_ONE_tuile(case_plato_t ** T){
  	free(T);
  	T=NULL;
@@ -424,10 +396,7 @@ static void suppression_irig(void){
     init_irigation();
 }
 
-/**
- * @brief fonction d'appelle pour la libération de fin de partie
- * Mewen / Leo
- */
+
 extern void suprimer(int const nbJoueur){
 	videe_plateau();
     detruire_carte();

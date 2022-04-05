@@ -8,12 +8,6 @@ fonction opérationnelle
 /* à chaque tour d'un joueur */
 
 
-/**
- * @brief ajoute au stock du joueur sélectionné un effet spécial
- * @author MAXIME
- * @param Joueur le joueur sélectionné
- * @param eff l'effet spécial à ajouté
- */
 void ajout_effspe_stock( joueur_t * Joueur, effet_E const eff){	 /* dans l'ordre bassin,enclos,engrais */
   printf("1 effspe");
   if (eff == bassin )
@@ -26,12 +20,7 @@ void ajout_effspe_stock( joueur_t * Joueur, effet_E const eff){	 /* dans l'ordre
     printf ( " erreur d'ajout sur eff spé " );
 }
 
-/**
- * @brief retire au stock du joueur sélectionné un effet spécial
- * @author MAXIME
- * @param Joueur le joueur sélectionné
- * @param eff l'effet spécial à ajouté
- */
+
 void retrait_effspe_stock(joueur_t * Joueur, effet_E const eff) {
   if (eff == bassin )
     Joueur-> effSpe[0] --;
@@ -43,12 +32,7 @@ void retrait_effspe_stock(joueur_t * Joueur, effet_E const eff) {
     printf(" erreur de suprimer sur eff spé ");
 }
 
-/**
- * @brief ajoute au stock du joueur sélectionné un bambou
- * @author MAXIME
- * @param Joueur le joueur sélectionné
- * @param coul la couleur du bambou
- */
+
 void ajout_bambou_stock ( joueur_t * Joueur, couleur_E const coul){	 /* dans l'ordre jaune,rose,vert */
   if ( coul == jaune )
     Joueur-> bambou [ 0 ] ++;
@@ -60,14 +44,7 @@ void ajout_bambou_stock ( joueur_t * Joueur, couleur_E const coul){	 /* dans l'o
     printf ( " erreur d'ajout sur bambou " );
 }
 
-/**
- * @brief retire au stock du joueur sélectionné un bambou
- * @author MAXIME
- * @param Joueur le joueur sélectionné
- * @param nb_bb_jaune le nombre de bambou jaune à enlever
- * @param nb_bb_rose le nombre de bambou rose à enlever
- * @param nb_bb_vert le nombre de bambou vert à enlever
- */
+
 void  retire_bambou_stock ( joueur_t * Joueur, int const nb_bb_jaune, int const nb_bb_rose, int const nb_bb_vert){
   if (Joueur-> bambou[0] >= nb_bb_jaune)
     Joueur-> bambou[0] -= nb_bb_jaune;
@@ -85,20 +62,12 @@ void  retire_bambou_stock ( joueur_t * Joueur, int const nb_bb_jaune, int const 
     printf(" pas asser de bambou vert \n");
 }
 
-/**
- * @brief ajoute au stock du joueur sélectionné une irrigation
- * @author MAXIME
- * @param Joueur le joueur sélectionné
- */
+
 void ajout_irrigation_stock ( joueur_t * Joueur){
 	Joueur-> nbIrigation ++;
 }
 
-/**
- * @brief retire au stock du joueur sélectionné une irrigation
- * @author MAXIME
- * @param Joueur Joueur le joueur sélectionné
- */
+
 void retire_irrigation_stock ( joueur_t * Joueur){
   if (Joueur-> nbIrigation > 0)
     Joueur-> nbIrigation --;
@@ -118,12 +87,7 @@ void retire_irrigation_stock ( joueur_t * Joueur){
 
 
 
-/**
- * @brief ajoute a la case du plateau sélectionner l'atribue irriguer( 1 ) et lui donne un bambou
- * @author MAXIME
- * @param x position x voulue pour poser
- * @param y position y voulue pour poser
- */
+
 void ajout_irrigation_case ( int const x, int const y){	/* Vérifie qu'on peu poser une irrigation et s'éxécute si c'est bon */
   if (case_existe(x, y) && plateau[x][y]-> iriguer == 0){
     plateau[x][y]-> iriguer = 1;
@@ -133,13 +97,7 @@ void ajout_irrigation_case ( int const x, int const y){	/* Vérifie qu'on peu po
     printf(" erreur pour poser une irrigation \n");
 }
 
-/**
- * @brief ajoute a la case du plateau sélectionner un effet spécial sélectionné
- * @author MAXIME
- * @param effet l'effet spécial sélectionné
- * @param x position x voulue pour poser l'effet spécial
- * @param y position y voulue pour poser l'effet spécial
- */
+
 void ajout_effspe_plato( effet_E effet, int const x, int const y){		/* Vérifie qu'on peu poser un effet spécial et s'éxécute si c'est bon */
   if (case_existe(x, y) && plateau[x][y]-> Eff == sans_effet){
     plateau[x][y]-> Eff = effet;
@@ -150,12 +108,7 @@ void ajout_effspe_plato( effet_E effet, int const x, int const y){		/* Vérifie 
     printf(" erreur pour poser une effspe \n");
 }
 
-/**
- * @brief ajoute a la case du plateau sélectionner 1 ou 2 bambou selon son effet spécial
- * @author MAXIME
- * @param x position x voulue pour poser le bambou
- * @param y position y voulue pour poser le bambou
- */
+
 void ajout_bambou_plato( int const x, int const y){		/* Vérifie qu'on peu poser un effet spécial et s'éxécute si c'est bon */
   
   if (case_existe(x, y) && plateau[x][y]-> iriguer == 1 && plateau[x][y]-> nbBambou < 4){
@@ -174,12 +127,7 @@ void ajout_bambou_plato( int const x, int const y){		/* Vérifie qu'on peu poser
     printf(" erreur pour poser un bambou \n");
 }
 
-/**
- * @brief retire a la case du plateau sélectionner 1 seul bambou
- * @author MAXIME
- * @param x position x voulue pour retirer le bambou
- * @param y position y voulue pour retirer le bambou
- */
+
 void retrait_bambou_plato( int const x, int const y){		/* Vérifie qu'on peu poser un effet spécial et s'éxécute si c'est bon */
   if (!case_existe(x, y) && plateau[x][y]-> iriguer == 1 && plateau[x][y]-> nbBambou > 0)
     plateau[x][y]-> nbBambou --;
@@ -212,17 +160,7 @@ void pioche_effspe( joueur_t * Joueur){}
 
 
 
-/**
- * @brief verifaction si on peu déplacer le jardinier ou le Panda
- * @author MAXIME
- * @param perso nom du personnage (la struct porte le même nom) que l'on veut déplacer
- * @param x_a nouvelle position x voulue
- * @param y_a nouvelle position y voulue
- * @return int 
- * retour d'un booléen de validaiton
- * 0 le déplacement n'est pas valide
- * 1 le déplacement est valide
- */
+
 int Verif_deplacer_perso( personnage_t perso, int const x_a, int const y_a){	 /* jardinier ou Panda et renvoie 1 si c'est bon */
   int x_d = perso.x, y_d = perso.y;
   int dist_x = (x_a - x_d)/2 , dist_y = y_a - y_d;
@@ -287,13 +225,7 @@ int Verif_deplacer_perso( personnage_t perso, int const x_a, int const y_a){	 /*
   return 1;
 }
 
-/**
- * @brief change les coordonnées du jardinier ou du Panda
- * 
- * @param perso nom du personnage (la struct porte le même nom) sélectionné
- * @param x_a nouvelle position x voulue
- * @param y_a nouvelle position y voulue
- */
+
 void deplacer_personnage( personnage_t perso, int const x_a, int const y_a){
 
   if (Verif_deplacer_perso( perso, x_a, y_a) && case_existe(x_a, y_a)){
