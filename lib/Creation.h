@@ -7,7 +7,17 @@
  * \file Creation.h
  * \brief Permet de créer le texte et de gérer les bouton
 */
-/*! Acces à la création de texte sur l'ecran*/
+/*! \brief Acces à la création de texte sur l'ecran
+ * \param renderer : Permet de charger l'affichage de la fenêtre
+ * \param tailText : rectangle comprenant le texte
+ * \param police : Prend le type de la police du texte
+ * \param tailPolice : Grandeur du texte
+ * \param style : Permet de mettre le texte en Grad/Souligner/Italic
+ * \param texte : Pointeur sur un tableau de caractère
+ * \param couleur : donne la couleur du texte
+ * \param position_x : positionne le texte sur la fenêtre sur l'axe x
+ * \param position_y : positionne le texte sur la fenêtre sur l'axe y
+ * \return une texture de type texte */
 extern SDL_Texture* Creation_Text(SDL_Renderer *renderer,
 		SDL_Rect *tailText,
 		const char *police,
@@ -18,7 +28,15 @@ extern SDL_Texture* Creation_Text(SDL_Renderer *renderer,
 		const int position_x,
 		const int position_y );
 
-/*! Acces à la création d'une image*/
+/*! \brief Acces à la création d'une image
+ * \param renderer : Permet de charger l'affichage de la fenêtre
+ * \param tailImage : rectangle comprenant l'image
+ * \param nom_image : Chaine de caractère sur le chemin de l'image
+ * \param position_x : positionne le texte sur la fenêtre sur l'axe x
+ * \param position_y : positionne le texte sur la fenêtre sur l'axe y
+ * \param Hauteur : Hauteur de l'image
+ * \param largeur : largeur de l'image
+ * \return une texture de type image*/
 extern SDL_Texture* Creation_image(SDL_Renderer *renderer,
 		SDL_Rect *tailImage,
 		const char *nom_image,
@@ -26,11 +44,20 @@ extern SDL_Texture* Creation_image(SDL_Renderer *renderer,
 		const int position_y,
 		const int Hauteur,
 		const int largeur);
-/*! Acces au bouton*/
+/*! \brief Acces au bouton
+ * \param renderer : Permet de charger l'affichage de la fenêtre
+ * \param bouton : prend le type text_t comprennant deux texture
+ * \param x : coordonnée x du curseur
+ * \param y : coordonnée y du curseur*/
 extern int bout (SDL_Renderer *renderer,text_t * bouton,int x,int y);
 
-/*! inverse l'affichage d'un bouton*/
+/*! \brief inverse l'affichage d'un bouton
+ * \param renderer : Permet de charger l'affichage de la fenêtre
+ * \param bouton : prend le type text_t comprennant deux texture
+ * \param x : coordonnée x du curseur
+ * \param y : coordonnée y du curseur*/
 extern int inv_bout(SDL_Renderer * renderer, text_t * bouton,int x,int y);
+
 /*!
  * \brief permet de creer l'affichage d'un joueur
  * \param renderer : Permet de charger l'affichage de la fenêtre
@@ -41,6 +68,19 @@ extern int inv_bout(SDL_Renderer * renderer, text_t * bouton,int x,int y);
  */
 extern text_t* Creation_Joueur(SDL_Renderer * renderer,int x,int y,int i);
 
+/*!
+ * \brief permet de Creer l'affichage d'une selection
+ * \param renderer : Permet de charger l'affichage de la fenêtre
+ * \param bouton : image à selectionner
+ * \param select: contour de la selection
+ * \param x : coordonnée x de l'affichage
+ * \param y : coordonnée y de l'affichage
+ * \return text_t* : un tableau de texture et de réctangle
+ */
+extern int plus_bout(SDL_Renderer * renderer,
+		Texture_t* bouton,
+		text_t* select,
+		int x,int y);
 /*!
  * \brief permet de creer l'affichage d'une main
  * \param renderer : Permet de charger l'affichage de la fenêtre

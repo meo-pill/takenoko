@@ -376,7 +376,7 @@ int verif_panda(carte_t * const carte,joueur_t * const J){
  * on retourne 1 si la contrainte est vérifié, -1 en cas d'erreur,  0 sinon
  */
 int verif_parcelle_triangle (carte_t * const carte, joueur_t * const J){
-  /*printf("on lance la vérification d'une carte parcelle triangle\n");*/
+  //printf("on lance la vérification d'une carte parcelle triangle\n");
   int i,j;
 
   char buff_couleur[10];
@@ -447,7 +447,7 @@ int verif_parcelle_triangle (carte_t * const carte, joueur_t * const J){
  * on retourne 1 si la contrainte est vérifié, -1 en cas d'erreur,  0 sinon
  */
 int verif_parcelle_losange(carte_t * const carte,joueur_t * const J){
-  /*printf("on lance la vérification d'une carte parcelle losange\n");*/
+  //printf("on lance la vérification d'une carte parcelle losange\n");
 
   int i,j;
 
@@ -555,7 +555,7 @@ int verif_parcelle_losange(carte_t * const carte,joueur_t * const J){
  * on retourne 1 si la contrainte est vérifié, -1 en cas d'erreur,  0 sinon
  */
 int verif_parcelle_ligne(carte_t * const carte,joueur_t * const J){
-  /*printf("on lance la vérification d'une carte parcelle ligne\n");*/
+  //printf("on lance la vérification d'une carte parcelle ligne\n");
 
   int i,j;
 
@@ -636,7 +636,7 @@ int verif_parcelle_ligne(carte_t * const carte,joueur_t * const J){
  * on retourne 1 si la contrainte est vérifié, -1 en cas d'erreur,  0 sinon
  */
 int verif_parcelle_arc(carte_t * const carte,joueur_t * const J){
-  /*printf("on lance la vérification d'une carte parcelle arc\n");*/
+  //printf("on lance la vérification d'une carte parcelle arc\n");
 
   int i,j;
 
@@ -701,7 +701,7 @@ int verif_parcelle_arc(carte_t * const carte,joueur_t * const J){
 int nb_point_joueur(joueur_t *J){
   int resultat = 0;
   for(int i = 0; i < MAXNB2J && J->valide[i] != NULL; i++){
-    resultat += J->valide[i]->point;
+    resultat += (J->valide[i])->point;
   }
   return resultat;
 }

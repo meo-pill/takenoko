@@ -204,11 +204,11 @@ fonction à finir et à tester
 
 /* * choix pour 1 joueur */
 
-void choixactionduJ ( joueur_t * Joueur, char const meteo, choixJ_E memaction[2]){}
+//void choixactionduJ ( joueur_t * Joueur, char const meteo, choixJ_E memaction[2]){}
 
 
 
-void pioche_effspe( joueur_t * Joueur){}
+//void pioche_effspe( joueur_t * Joueur){}
 
 
 
@@ -300,6 +300,7 @@ int verif_ligne_droite_impair(int const x_d, int const y_d, int const x_a, int c
  * 1 le déplacement est valide
  */
 int Verif_deplacer_perso( personnage_t perso, int const x_a, int const y_a){	 /* jardinier ou Panda et renvoie 1 si c'est bon */
+
   int x_d = perso.x, y_d = perso.y;
   int dist_x = x_a - x_d , dist_y = y_a - y_d;
   
@@ -318,6 +319,7 @@ int Verif_deplacer_perso( personnage_t perso, int const x_a, int const y_a){	 /*
       }
     }
   }
+
   
   else{    /* Cas 2 même colone : y = y_a et seul x change */
     if (x_d%2 == 0){
@@ -330,6 +332,46 @@ int Verif_deplacer_perso( personnage_t perso, int const x_a, int const y_a){	 /*
 
   return 1;
 }
+
+
+//    else if (dist_y == 0){    /* Cas 2 même colone : y = y_a et seul x change */
+//      if (dist_y > 0){
+//        for (int i = 1 ; i < dist_x ; i++){
+//          if (!case_existe(x_d+i, y_d))
+//            return 0;
+//        }
+//      }
+//      else{
+//        for (int i = -1 ; i > dist_x ; i--){
+//          if (!case_existe(x_d+i, y_d))
+//            return 0;
+//        }
+//      }
+//    }
+//    
+//    else if(dist_x == dist_y){   /* Cas 3 même diagonale : y et x change (x+1/y+1 ou x-1/y-1) */
+//      if (dist_y > 0){
+//        for (int ij = 0 ; ij < dist_x ; ij++){
+//          if (!case_existe(x_d+ij, y_d+ij))
+//            return 0;
+//        }
+//      }
+//      else{
+//        for (int ij = 0 ; ij > dist_x ; ij--){
+//          if (!case_existe(x_d+ij, y_d+ij))
+//            return 0;
+//        }
+//      }
+//    }
+//
+//    else
+//      printf(" erreur de déplacement ");
+//  }
+//  else
+//    printf(" erreur de déplacement ");
+//  
+//  return 1;
+//}
 
 /**
  * @brief change les coordonnées du jardinier ou du Panda

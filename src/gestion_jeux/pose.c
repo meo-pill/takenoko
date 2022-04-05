@@ -254,15 +254,15 @@ extern void pose_tuiles_possible(coordonne_t * tab){
                     cases_contigue ++;
             }
 
-            if(i<i<NBTUILES-1 && j>0-ligne_impaire && plateau[i+1][j-1+ligne_impaire]!= NULL){
+            if(i<NBTUILES-1 && j>0-ligne_impaire && plateau[i+1][j-1+ligne_impaire]!= NULL){
                 cases_contigue ++;
-                if(i+1 == LACPOS && j-1+ligne_existe == LACPOS)
+                if(i+1 == LACPOS && j-1+ligne_impaire == LACPOS)
                     cases_contigue ++;
             }
             
 
             
-            if(cases_contigue >= 2){
+            if(cases_contigue >= 2 && plateau[i][j]==NULL){
                 tab[k].x = i;
                 tab[k].y = j;
                 k++;
@@ -284,19 +284,9 @@ extern void pose_tuiles_possible(coordonne_t * tab){
  */
 int ajout_tuile(case_plato_t  * case_choix, int const x, int const y){
 
-    if(!pose_tuile_impossible(x,y)){
-        plateau[x][y] = case_choix;
-        if(contigue(x,y,LACPOS,LACPOS)){
-            plateau[x][y]->iriguer = 1;
-        }
-        else{
-            if(a_coter_irigation(x,y)){
-                plateau[x][y]->iriguer = 1;
-            }
-        }
-        return 1;
-    }
-    return 0;
+	plateau[x][y] = case_choix;
+	actual_irig(x,y);
+	return 1;
 }
 
 
@@ -416,4 +406,21 @@ extern int access_lac(int const xa, int const ya, int const xb, int const yb){
         printf("\n-------------------erreur dans la fonction acces_lac, vérifier les if-----------------\n");
     }
     return(0);
+}
+
+
+void actual_irig(int const x, int const y){
+    if (contigue(x,y,LACPOS,LACPOS)){
+        plateau[x][y]->iriguer=1;
+        plateau[x][y]->nbBambou =1;
+        return;
+    }
+    for(int i=0; i < NBIRIG && irig[i]!=NULL; i++){
+        if((irig[i]->x_haut_gauche == x && irig[i]->y_haut_gauche==y) ||
+        (irig[i]->x_bas_droit == x && irig[i]->y_bas_droit == y)){
+            plateau[x][y]->iriguer=1;
+            plateau[x][y]->nbBambou = 1;
+            return;
+        }
+    }
 }

@@ -12,7 +12,6 @@ static void detruire_Texture(text_t *tab){
 		tab->Table[i]->place2=NULL;
 	}
 	tab->Taille=0;
-	//tab->quit
 	free(tab);
 	tab=NULL;
 }
