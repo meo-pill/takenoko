@@ -1,11 +1,12 @@
 var searchData=
 [
-  ['verif_5fdeplacer_5fperso_92',['Verif_deplacer_perso',['../d0/d8b/fonction_8h.html#abf848596aef1e17bc5ff040faeb562da',1,'fonction.c']]],
-  ['verif_5fjardinier_93',['verif_jardinier',['../d3/da3/carte_8h.html#a047af8f7553fe1ad0e347cec6c85a6eb',1,'carte.c']]],
-  ['verif_5fpanda_94',['verif_panda',['../d3/da3/carte_8h.html#aee63f0fd2439e31c076b0f892f6543c9',1,'carte.c']]],
-  ['verif_5fparcelle_5farc_95',['verif_parcelle_arc',['../d3/da3/carte_8h.html#a974fd7a414a66632ab3148b569c4140c',1,'carte.c']]],
-  ['verif_5fparcelle_5fligne_96',['verif_parcelle_ligne',['../d3/da3/carte_8h.html#ad10dcf195d085594be03a5b0a285ce60',1,'carte.c']]],
-  ['verif_5fparcelle_5flosange_97',['verif_parcelle_losange',['../d3/da3/carte_8h.html#a453f1ac86610f826ce471ca88c41d7df',1,'carte.c']]],
-  ['verif_5fparcelle_5ftriangle_98',['verif_parcelle_triangle',['../d3/da3/carte_8h.html#ae8b4e0ee74458fa41b21e4f977e69cec',1,'carte.c']]],
-  ['victoire_5fjoueur_99',['victoire_joueur',['../d7/dee/Joueur_8h.html#a9ff26a534ddabe43034fce27e6a14281',1,'Joueur.c']]]
+  ['ranger_107',['ranger',['../d7/def/pose_8h.html#a24373f50424c76ec0ef8f74a3584d412',1,'pose.c']]],
+  ['recherche_5ffonction_5fparcelle_108',['recherche_fonction_parcelle',['../d3/da3/carte_8h.html#ab3834ed4828e85e04868beacb2bb591e',1,'carte.h']]],
+  ['recherche_5ffonction_5fverif_109',['recherche_fonction_verif',['../d3/da3/carte_8h.html#ad17caaa5a53725a7188cf8dd010fda3b',1,'carte.h']]],
+  ['retire_5fbambou_5fstock_110',['retire_bambou_stock',['../d0/d8b/fonction_8h.html#aa0b10a1dddaef7576fdf8eb771d728a8',1,'fonction.c']]],
+  ['retire_5firrigation_5fstock_111',['retire_irrigation_stock',['../d0/d8b/fonction_8h.html#aed3704243bb9f4e4ddc0e17f06e43779',1,'fonction.c']]],
+  ['retirer_112',['retirer',['../d2/d4d/file_8h.html#af743dbafa6bfff5b877ca9ddbf63c76e',1,'file.c']]],
+  ['retourne_5fitoa_113',['retourne_itoa',['../d8/dbc/converte_8h.html#a9e59ecfb0dbe56e5c22cae832627a97f',1,'converte.c']]],
+  ['retrait_5fbambou_5fplato_114',['retrait_bambou_plato',['../d0/d8b/fonction_8h.html#a7c24c4a664efaa0962c19f4c30972cce',1,'fonction.c']]],
+  ['retrait_5feffspe_5fstock_115',['retrait_effspe_stock',['../d0/d8b/fonction_8h.html#af8be61417c3e4139bb71587119e4b4a2',1,'fonction.c']]]
 ];

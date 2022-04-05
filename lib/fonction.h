@@ -122,7 +122,32 @@ void choixactionduJ( joueur_t * Joueur, char const meteo, choixJ_E memaction[2])
 void pioche_objetif( joueur_t * Joueur);
 void pioche_effspe( joueur_t * Joueur);
 
+/**
+ * @brief aide à la verifaction du déplacement si la ligne est pair et que la ligne d'arriver est différente
+ * @author MAXIME
+ * @param x_d position x de départ
+ * @param y_d position y de départ
+ * @param x_a nouvelle position x voulue
+ * @param y_a nouvelle position y voulue
+ * @return int 
+ * retour d'un booléen de validaiton
+ * 0 le déplacement n'est pas valide
+ * 1 le déplacement est valide
+ */
 int verif_ligne_droite_pair(int const x_d, int const y_d, int const x_a, int const y_a);
+
+/**
+ * @brief aide à la verifaction du déplacement si la ligne est impair et que la ligne d'arriver est différente
+ * @author MAXIME
+ * @param x_d position x de départ
+ * @param y_d position y de départ
+ * @param x_a nouvelle position x voulue
+ * @param y_a nouvelle position y voulue
+ * @return int 
+ * retour d'un booléen de validaiton
+ * 0 le déplacement n'est pas valide
+ * 1 le déplacement est valide
+ */
 int verif_ligne_droite_impair(int const x_d, int const y_d, int const x_a, int const y_a);
 
 
@@ -139,14 +164,8 @@ int verif_ligne_droite_impair(int const x_d, int const y_d, int const x_a, int c
  */
 int Verif_deplacer_perso( personnage_t perso, int const x_a, int const y_a);    /* jardinier ou Panda et renvoye 1 si c'est bon */
 
-/**
- * @brief change les coordonnées du jardinier ou du Panda
- * 
- * @param perso nom du personnage (la struct porte le même nom) sélectionné
- * @param x_a nouvelle position x voulue
- * @param y_a nouvelle position y voulue
- */
-void deplacer_personnage( personnage_t * perso, int const x_a, int const y_a);
+
+/* void deplacer_personnage( personnage_t * perso, int const x_a, int const y_a);*/
 
 
 

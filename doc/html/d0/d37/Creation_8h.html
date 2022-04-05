@@ -76,7 +76,7 @@ $(function() {
 <p>Permet de créer le texte et de gérer les bouton.  
 <a href="#details">Plus de détails...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="../../d4/d62/texture2_8h_source.html">texture2.h</a>&quot;</code><br />
-<code>#include &quot;converte.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d8/dbc/converte_8h_source.html">converte.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de Creation.h:</div>
 <div class="dyncontent">
@@ -84,7 +84,7 @@ Graphe des dépendances par inclusion de Creation.h:</div>
 <map name="lib_2Creation_8h" id="lib_2Creation_8h">
 <area shape="rect" title="Permet de créer le texte et de gérer les bouton." alt="" coords="187,5,296,32"/>
 <area shape="rect" href="../../d4/d62/texture2_8h.html" title="Permet de gérer la table des texture." alt="" coords="139,80,229,107"/>
-<area shape="rect" href="../../d8/dbc/converte_8h_source.html" title=" " alt="" coords="253,80,344,107"/>
+<area shape="rect" href="../../d8/dbc/converte_8h.html" title="fonction itoa" alt="" coords="253,80,344,107"/>
 <area shape="rect" href="../../db/de6/bibl__SDL_8h.html" title="appelle des bibliotheque SDL" alt="" coords="139,155,229,181"/>
 <area shape="rect" title=" " alt="" coords="5,229,101,256"/>
 <area shape="rect" title=" " alt="" coords="125,229,243,256"/>
@@ -99,6 +99,7 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <area shape="rect" title="Permet de créer le texte et de gérer les bouton." alt="" coords="67,5,177,32"/>
 <area shape="rect" href="../../de/d54/aff__table_8h.html" title="generation d&#39;un plateau test" alt="" coords="5,80,116,107"/>
 <area shape="rect" href="../../d1/dd5/Plato_8h.html" title="Permet de gérer le plato de jeux." alt="" coords="140,80,227,107"/>
+<area shape="rect" href="../../d3/d54/menu_8h.html" title="Permet de gérer le menu de jeux." alt="" coords="138,155,229,181"/>
 </map>
 </div>
 </div>
@@ -107,16 +108,23 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
 <tr class="memitem:a5a2d1a26686e7ae05cf3e1b3093177fd"><td class="memItemLeft" align="right" valign="top">SDL_Texture *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d37/Creation_8h.html#a5a2d1a26686e7ae05cf3e1b3093177fd">Creation_Text</a> (SDL_Renderer *renderer, SDL_Rect *tailText, const char *police, const int tailPolice, const int style, const char *texte, const SDL_Color couleur, const int position_x, const int position_y)</td></tr>
+<tr class="memdesc:a5a2d1a26686e7ae05cf3e1b3093177fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acces à la création de texte sur l'ecran.  <a href="../../d0/d37/Creation_8h.html#a5a2d1a26686e7ae05cf3e1b3093177fd">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a5a2d1a26686e7ae05cf3e1b3093177fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6552ba4d0a708eb5b239117c2fe49c8a"><td class="memItemLeft" align="right" valign="top">SDL_Texture *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d37/Creation_8h.html#a6552ba4d0a708eb5b239117c2fe49c8a">Creation_image</a> (SDL_Renderer *renderer, SDL_Rect *tailImage, const char *nom_image, const int position_x, const int position_y, const int Hauteur, const int largeur)</td></tr>
+<tr class="memdesc:a6552ba4d0a708eb5b239117c2fe49c8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acces à la création d'une image.  <a href="../../d0/d37/Creation_8h.html#a6552ba4d0a708eb5b239117c2fe49c8a">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a6552ba4d0a708eb5b239117c2fe49c8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bb9f6a6e9c0a6bb705ca86845e1836d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d37/Creation_8h.html#a7bb9f6a6e9c0a6bb705ca86845e1836d">bout</a> (SDL_Renderer *renderer, <a class="el" href="../../d4/d62/texture2_8h.html#a2c54d182e39fc5e22860ff05b8e7da6d">text_t</a> *bouton, int x, int y)</td></tr>
+<tr class="memdesc:a7bb9f6a6e9c0a6bb705ca86845e1836d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acces au bouton.  <a href="../../d0/d37/Creation_8h.html#a7bb9f6a6e9c0a6bb705ca86845e1836d">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a7bb9f6a6e9c0a6bb705ca86845e1836d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ceedd1999e43608c77540b4a8dae079"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d37/Creation_8h.html#a3ceedd1999e43608c77540b4a8dae079">inv_bout</a> (SDL_Renderer *renderer, <a class="el" href="../../d4/d62/texture2_8h.html#a2c54d182e39fc5e22860ff05b8e7da6d">text_t</a> *bouton, int x, int y)</td></tr>
+<tr class="memdesc:a3ceedd1999e43608c77540b4a8dae079"><td class="mdescLeft">&#160;</td><td class="mdescRight">inverse l'affichage d'un bouton  <a href="../../d0/d37/Creation_8h.html#a3ceedd1999e43608c77540b4a8dae079">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a3ceedd1999e43608c77540b4a8dae079"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04978bc73186356d61c7a080e262bf93"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d62/texture2_8h.html#a2c54d182e39fc5e22860ff05b8e7da6d">text_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d37/Creation_8h.html#a04978bc73186356d61c7a080e262bf93">Creation_Joueur</a> (SDL_Renderer *renderer, int x, int y, int i)</td></tr>
 <tr class="memdesc:a04978bc73186356d61c7a080e262bf93"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de creer l'affichage d'un joueur  <a href="../../d0/d37/Creation_8h.html#a04978bc73186356d61c7a080e262bf93">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a04978bc73186356d61c7a080e262bf93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34706fb6edfc68af461a981c7386a1ac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d37/Creation_8h.html#a34706fb6edfc68af461a981c7386a1ac">plus_bout</a> (SDL_Renderer *renderer, <a class="el" href="../../d4/d62/texture2_8h.html#a7d6bc89f9b5148804d8fd70cc5d3e156">Texture_t</a> *bouton, <a class="el" href="../../d4/d62/texture2_8h.html#a2c54d182e39fc5e22860ff05b8e7da6d">text_t</a> *select, int x, int y)</td></tr>
+<tr class="memdesc:a34706fb6edfc68af461a981c7386a1ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de Creer l'affichage d'une selection  <a href="../../d0/d37/Creation_8h.html#a34706fb6edfc68af461a981c7386a1ac">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a34706fb6edfc68af461a981c7386a1ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a258ae1e2dc03348ad1aaa35957f3ffed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d62/texture2_8h.html#a2c54d182e39fc5e22860ff05b8e7da6d">text_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d37/Creation_8h.html#a258ae1e2dc03348ad1aaa35957f3ffed">Creation_main</a> (SDL_Renderer *renderer, int W, int H, int i)</td></tr>
 <tr class="memdesc:a258ae1e2dc03348ad1aaa35957f3ffed"><td class="mdescLeft">&#160;</td><td class="mdescRight">permet de creer l'affichage d'une main  <a href="../../d0/d37/Creation_8h.html#a258ae1e2dc03348ad1aaa35957f3ffed">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a258ae1e2dc03348ad1aaa35957f3ffed"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,7 +173,17 @@ Fonctions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Acces au bouton </p>
+
+<p>Acces au bouton. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td>: Permet de charger l'affichage de la fenêtre </td></tr>
+    <tr><td class="paramname">bouton</td><td>: prend le type text_t comprennant deux texture </td></tr>
+    <tr><td class="paramname">x</td><td>: coordonnée x du curseur </td></tr>
+    <tr><td class="paramname">y</td><td>: coordonnée y du curseur </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -224,7 +242,21 @@ Fonctions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Acces à la création d'une image </p>
+
+<p>Acces à la création d'une image. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td>: Permet de charger l'affichage de la fenêtre </td></tr>
+    <tr><td class="paramname">tailImage</td><td>: rectangle comprenant l'image </td></tr>
+    <tr><td class="paramname">nom_image</td><td>: Chaine de caractère sur le chemin de l'image </td></tr>
+    <tr><td class="paramname">position_x</td><td>: positionne le texte sur la fenêtre sur l'axe x </td></tr>
+    <tr><td class="paramname">position_y</td><td>: positionne le texte sur la fenêtre sur l'axe y </td></tr>
+    <tr><td class="paramname">Hauteur</td><td>: Hauteur de l'image </td></tr>
+    <tr><td class="paramname">largeur</td><td>: largeur de l'image </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>une texture de type image </dd></dl>
 
 </div>
 </div>
@@ -400,7 +432,23 @@ Fonctions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Acces à la création de texte sur l'ecran </p>
+
+<p>Acces à la création de texte sur l'ecran. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td>: Permet de charger l'affichage de la fenêtre </td></tr>
+    <tr><td class="paramname">tailText</td><td>: rectangle comprenant le texte </td></tr>
+    <tr><td class="paramname">police</td><td>: Prend le type de la police du texte </td></tr>
+    <tr><td class="paramname">tailPolice</td><td>: Grandeur du texte </td></tr>
+    <tr><td class="paramname">style</td><td>: Permet de mettre le texte en Grad/Souligner/Italic </td></tr>
+    <tr><td class="paramname">texte</td><td>: Pointeur sur un tableau de caractère </td></tr>
+    <tr><td class="paramname">couleur</td><td>: donne la couleur du texte </td></tr>
+    <tr><td class="paramname">position_x</td><td>: positionne le texte sur la fenêtre sur l'axe x </td></tr>
+    <tr><td class="paramname">position_y</td><td>: positionne le texte sur la fenêtre sur l'axe y </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>une texture de type texte </dd></dl>
 
 </div>
 </div>
@@ -441,7 +489,76 @@ Fonctions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
 <p>inverse l'affichage d'un bouton </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td>: Permet de charger l'affichage de la fenêtre </td></tr>
+    <tr><td class="paramname">bouton</td><td>: prend le type text_t comprennant deux texture </td></tr>
+    <tr><td class="paramname">x</td><td>: coordonnée x du curseur </td></tr>
+    <tr><td class="paramname">y</td><td>: coordonnée y du curseur </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a34706fb6edfc68af461a981c7386a1ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34706fb6edfc68af461a981c7386a1ac">&#9670;&nbsp;</a></span>plus_bout()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int plus_bout </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *&#160;</td>
+          <td class="paramname"><em>renderer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d4/d62/texture2_8h.html#a7d6bc89f9b5148804d8fd70cc5d3e156">Texture_t</a> *&#160;</td>
+          <td class="paramname"><em>bouton</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d4/d62/texture2_8h.html#a2c54d182e39fc5e22860ff05b8e7da6d">text_t</a> *&#160;</td>
+          <td class="paramname"><em>select</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>permet de Creer l'affichage d'une selection </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td>: Permet de charger l'affichage de la fenêtre </td></tr>
+    <tr><td class="paramname">bouton</td><td>: image à selectionner </td></tr>
+    <tr><td class="paramname">select</td><td>contour de la selection </td></tr>
+    <tr><td class="paramname">x</td><td>: coordonnée x de l'affichage </td></tr>
+    <tr><td class="paramname">y</td><td>: coordonnée y de l'affichage </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>text_t* : un tableau de texture et de réctangle </dd></dl>
 
 </div>
 </div>

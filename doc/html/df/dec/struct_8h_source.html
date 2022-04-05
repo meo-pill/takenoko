@@ -94,86 +94,121 @@ $(function() {
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../dd/da4/structirig__s.html">irig_s</a> <a class="code" href="../../dd/da4/structirig__s.html">irig_t</a>;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d2/de9/structcoord__s.html">coord_s</a> <a class="code" href="../../d2/de9/structcoord__s.html">coordonne_t</a>;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="../../df/dec/struct_8h.html#a1437ae6d63b2812c0d21fef7de154075">   45</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code" href="../../df/dec/struct_8h.html#a1437ae6d63b2812c0d21fef7de154075">couleur_s</a>{jaune,rose,vert,water}<a class="code" href="../../df/dec/struct_8h.html#a87b97b5332aca62d134cf80ba6d63ebb">couleur_E</a>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> effet_s{sans_effet,bassin,enclos,engrais,effet_lac}effet_E;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> couleurJ_s{bleu,rouge,noir,blanc}couleurJ_E;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> effDes_s{soleil,pluie,vent,orage,nuage,choixJ}effDes_E;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> choixJ_s{rien,parcelle,irrigation,choix_jardinier,choix_panda,objectif}choixJ_E;</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="../../df/dec/struct_8h.html#a1437ae6d63b2812c0d21fef7de154075">   50</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code" href="../../df/dec/struct_8h.html#a1437ae6d63b2812c0d21fef7de154075">couleur_s</a>{jaune,rose,vert,water}<a class="code" href="../../df/dec/struct_8h.html#a87b97b5332aca62d134cf80ba6d63ebb">couleur_E</a>;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="../../df/dec/struct_8h.html#afdcd01166bf3f5223ff0a126c51722e2">   53</a></span>&#160;<a class="code" href="../../d1/d3e/structjoueur__s.html">joueur_t</a> * <a class="code" href="../../df/dec/struct_8h.html#afdcd01166bf3f5223ff0a126c51722e2">J</a>[4];</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * cartePanda[NBCARTE];</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * carteParcelle[NBCARTE];</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * carteJardinier[NBCARTE];</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keywordtype">int</span> indique_carte[3]; <span class="comment">/*sert à indiquer pour chaque pioche de carte (cartePanda, carteParcelle et carteJardinier) à quelle endroit on est (quelle est la prochaine carte)*/</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<a class="code" href="../../d6/d57/structcase__plato__s.html">case_plato_t</a> * piece[NBTUILES];</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<a class="code" href="../../d6/d57/structcase__plato__s.html">case_plato_t</a> * plateau[NBTUILES][NBTUILES];</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<a class="code" href="../../d6/d57/structcase__plato__s.html">case_plato_t</a> lac;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<a class="code" href="../../d5/dac/structfile__s.html">file_t</a> * file_tuile_tete;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<a class="code" href="../../d5/dac/structfile__s.html">file_t</a> * file_tuile_queue;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<a class="code" href="../../df/d60/structpersonnage__s.html">personnage_t</a> panda;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<a class="code" href="../../df/d60/structpersonnage__s.html">personnage_t</a> jardinier;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<a class="code" href="../../dd/da4/structirig__s.html">irig_t</a> * irig[NBIRIG];</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="../../df/d60/structpersonnage__s.html">   69</a></span>&#160;<span class="keyword">struct </span><a class="code" href="../../df/d60/structpersonnage__s.html">personnage_s</a>{</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  <span class="keywordtype">int</span> x,y; <span class="comment">//coordonnée</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;};</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="../../d2/de9/structcoord__s.html">   77</a></span>&#160;<span class="keyword">struct  </span><a class="code" href="../../d2/de9/structcoord__s.html">coord_s</a></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;{</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  <span class="keywordtype">int</span> x;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  <span class="keywordtype">int</span> y;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;};</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="../../d6/d57/structcase__plato__s.html">   87</a></span>&#160;<span class="keyword">struct </span><a class="code" href="../../d6/d57/structcase__plato__s.html">case_plato_s</a>{</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  <a class="code" href="../../df/dec/struct_8h.html#a87b97b5332aca62d134cf80ba6d63ebb">couleur_E</a> Coul;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  <span class="keywordtype">int</span> iriguer;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  <span class="keywordtype">int</span> nbBambou;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  effet_E Eff;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <span class="keywordtype">char</span> image [LONGPATH];</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;};</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="../../d0/d35/structcarte__s.html">   99</a></span>&#160;<span class="keyword">struct </span><a class="code" href="../../d0/d35/structcarte__s.html">carte_s</a>{</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  int (*verif)(<span class="keyword">struct </span><a class="code" href="../../d0/d35/structcarte__s.html">carte_s</a> * <span class="keyword">const</span>,<a class="code" href="../../d1/d3e/structjoueur__s.html">joueur_t</a> * <span class="keyword">const</span>);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  <span class="keywordtype">char</span> type [LONGTYPE];</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  <span class="keywordtype">char</span> image [LONGPATH];</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordtype">char</span> desc [DESCRIPTION];</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">int</span> point;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;};</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="../../d1/d3e/structjoueur__s.html">  111</a></span>&#160;<span class="keyword">struct </span><a class="code" href="../../d1/d3e/structjoueur__s.html">joueur_s</a>{</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;  <span class="keywordtype">char</span> * nom_joueur;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;  <a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * main_J[TAILLE_MAIN];</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;  <a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * valide[<a class="code" href="../../df/dec/struct_8h.html#a08f3d9e84d02e2d365827d01e75fa712">MAXNB2J</a>];</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;  <span class="keywordtype">int</span> score;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordtype">int</span> bambou [3]; <span class="comment">/*dans l&#39;ordre : jaune rose vert*/</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordtype">int</span> effSpe [3]; </div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordtype">int</span> nbIrigation;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;  <span class="keywordtype">int</span> nbObjectif;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;  couleurJ_E couleurJoueur;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;};</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
-<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="../../dd/da4/structirig__s.html">  127</a></span>&#160;<span class="keyword">struct </span><a class="code" href="../../dd/da4/structirig__s.html">irig_s</a>{</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;  <span class="keywordtype">int</span> x_haut_gauche;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;  <span class="keywordtype">int</span> y_haut_gauche;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;  <span class="keywordtype">int</span> x_bas_droit;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;  <span class="keywordtype">int</span> y_bas_droit;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;};</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="../../df/dec/struct_8h.html#ac18806223802ac12d1fc7ecd4de55932">   56</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code" href="../../df/dec/struct_8h.html#ac18806223802ac12d1fc7ecd4de55932">effet_s</a>{sans_effet,bassin,enclos,engrais,effet_lac}<a class="code" href="../../df/dec/struct_8h.html#a0a8d59611bc98de61af9c7915f437592">effet_E</a>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="../../df/dec/struct_8h.html#a82ee2d54c3ec2d7a7a100602a6e430dc">   62</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code" href="../../df/dec/struct_8h.html#a82ee2d54c3ec2d7a7a100602a6e430dc">couleurJ_s</a>{bleu,rouge,noir,blanc}<a class="code" href="../../df/dec/struct_8h.html#a876129d4b52b58a90b5fdef55eb82276">couleurJ_E</a>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="../../df/dec/struct_8h.html#a48c98fb905439daa741c1f27e4390fe1">   68</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code" href="../../df/dec/struct_8h.html#a48c98fb905439daa741c1f27e4390fe1">effDes_s</a>{soleil,pluie,vent,orage,nuage,choixJ}<a class="code" href="../../df/dec/struct_8h.html#ab0fe8924e61c7a01c98f087ee62bbc86">effDes_E</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="../../df/dec/struct_8h.html#a1f6db7854a75e6247728004b19d49442">   74</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code" href="../../df/dec/struct_8h.html#a1f6db7854a75e6247728004b19d49442">choixJ_s</a>{rien,parcelle,irrigation,choix_jardinier,choix_panda,objectif}<a class="code" href="../../df/dec/struct_8h.html#a226639e10658cae8e61d5a4b5f0686a5">choixJ_E</a>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="../../df/dec/struct_8h.html#afdcd01166bf3f5223ff0a126c51722e2">   82</a></span>&#160;<a class="code" href="../../d1/d3e/structjoueur__s.html">joueur_t</a> * <a class="code" href="../../df/dec/struct_8h.html#afdcd01166bf3f5223ff0a126c51722e2">J</a>[4];</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="../../df/dec/struct_8h.html#aaae1e21bead5e48db0d8daa29517d97f">   88</a></span>&#160;<a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * <a class="code" href="../../df/dec/struct_8h.html#aaae1e21bead5e48db0d8daa29517d97f">cartePanda</a>[NBCARTE];</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="../../df/dec/struct_8h.html#abd43204f1668085ac34fff3e160ca3a9">   94</a></span>&#160;<a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * <a class="code" href="../../df/dec/struct_8h.html#abd43204f1668085ac34fff3e160ca3a9">carteParcelle</a>[NBCARTE];</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="../../df/dec/struct_8h.html#a014fd89d1f8a3854aefabc0d02740f24">  100</a></span>&#160;<a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * <a class="code" href="../../df/dec/struct_8h.html#a014fd89d1f8a3854aefabc0d02740f24">carteJardinier</a>[NBCARTE];</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="../../df/dec/struct_8h.html#adc4d53ba045a86295a2518abcadb4075">  106</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="../../df/dec/struct_8h.html#adc4d53ba045a86295a2518abcadb4075">indique_carte</a>[3]; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="../../df/dec/struct_8h.html#acf7623fc8ddaabc4046aa71bd166a1dd">  112</a></span>&#160;<a class="code" href="../../d6/d57/structcase__plato__s.html">case_plato_t</a> * <a class="code" href="../../df/dec/struct_8h.html#acf7623fc8ddaabc4046aa71bd166a1dd">piece</a>[NBTUILES];</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="../../df/dec/struct_8h.html#a96486e38b58702cda02d8bfada608286">  118</a></span>&#160;<a class="code" href="../../d6/d57/structcase__plato__s.html">case_plato_t</a> * <a class="code" href="../../df/dec/struct_8h.html#a96486e38b58702cda02d8bfada608286">plateau</a>[NBTUILES][NBTUILES];</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="../../df/dec/struct_8h.html#a3fb6a9382657f13c7e074e7288704d22">  124</a></span>&#160;<a class="code" href="../../d6/d57/structcase__plato__s.html">case_plato_t</a> <a class="code" href="../../df/dec/struct_8h.html#a3fb6a9382657f13c7e074e7288704d22">lac</a>;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="../../df/dec/struct_8h.html#aa1fba4a8440aacd545bbdbb60b3da408">  130</a></span>&#160;<a class="code" href="../../d5/dac/structfile__s.html">file_t</a> * <a class="code" href="../../df/dec/struct_8h.html#aa1fba4a8440aacd545bbdbb60b3da408">file_tuile_tete</a>;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="../../df/dec/struct_8h.html#ac45daeaa68339f61d1e128896b104ad8">  136</a></span>&#160;<a class="code" href="../../d5/dac/structfile__s.html">file_t</a> * <a class="code" href="../../df/dec/struct_8h.html#ac45daeaa68339f61d1e128896b104ad8">file_tuile_queue</a>;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="../../df/dec/struct_8h.html#a071017782236dc04200a8686aae27553">  142</a></span>&#160;<a class="code" href="../../df/d60/structpersonnage__s.html">personnage_t</a> <a class="code" href="../../df/dec/struct_8h.html#a071017782236dc04200a8686aae27553">panda</a>;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="../../df/dec/struct_8h.html#ad698b3d8ca5bc53e5e832cd9918b717b">  148</a></span>&#160;<a class="code" href="../../df/d60/structpersonnage__s.html">personnage_t</a> <a class="code" href="../../df/dec/struct_8h.html#ad698b3d8ca5bc53e5e832cd9918b717b">jardinier</a>;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno"><a class="line" href="../../df/dec/struct_8h.html#affa62a5ef2f8be10887ac2e191abd8ea">  154</a></span>&#160;<a class="code" href="../../dd/da4/structirig__s.html">irig_t</a> * <a class="code" href="../../df/dec/struct_8h.html#affa62a5ef2f8be10887ac2e191abd8ea">irig</a>[NBIRIG];</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="../../df/d60/structpersonnage__s.html">  163</a></span>&#160;<span class="keyword">struct </span><a class="code" href="../../df/d60/structpersonnage__s.html">personnage_s</a>{</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;  <span class="keywordtype">int</span> x,y; <span class="comment">//coordonnée</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;};</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="../../d2/de9/structcoord__s.html">  171</a></span>&#160;<span class="keyword">struct  </span><a class="code" href="../../d2/de9/structcoord__s.html">coord_s</a></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;{</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;  <span class="keywordtype">int</span> x;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;  <span class="keywordtype">int</span> y;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;};</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno"><a class="line" href="../../d6/d57/structcase__plato__s.html">  181</a></span>&#160;<span class="keyword">struct </span><a class="code" href="../../d6/d57/structcase__plato__s.html">case_plato_s</a>{</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;  <a class="code" href="../../df/dec/struct_8h.html#a87b97b5332aca62d134cf80ba6d63ebb">couleur_E</a> Coul;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;  <span class="keywordtype">int</span> iriguer;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;  <span class="keywordtype">int</span> nbBambou;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;  <a class="code" href="../../df/dec/struct_8h.html#a0a8d59611bc98de61af9c7915f437592">effet_E</a> Eff;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;  <span class="keywordtype">char</span> image [LONGPATH];</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;};</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
+<div class="line"><a name="l00193"></a><span class="lineno"><a class="line" href="../../d0/d35/structcarte__s.html">  193</a></span>&#160;<span class="keyword">struct </span><a class="code" href="../../d0/d35/structcarte__s.html">carte_s</a>{</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;  int (*verif)(<span class="keyword">struct </span><a class="code" href="../../d0/d35/structcarte__s.html">carte_s</a> * <span class="keyword">const</span>,<a class="code" href="../../d1/d3e/structjoueur__s.html">joueur_t</a> * <span class="keyword">const</span>);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;  <span class="keywordtype">char</span> type [LONGTYPE];</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;  <span class="keywordtype">char</span> image [LONGPATH];</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;  <span class="keywordtype">char</span> desc [DESCRIPTION];</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;  <span class="keywordtype">int</span> point;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;};</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00205"></a><span class="lineno"><a class="line" href="../../d1/d3e/structjoueur__s.html">  205</a></span>&#160;<span class="keyword">struct </span><a class="code" href="../../d1/d3e/structjoueur__s.html">joueur_s</a>{</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;  <span class="keywordtype">char</span> * nom_joueur;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;  <a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * main_J[TAILLE_MAIN];</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;  <a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * valide[<a class="code" href="../../df/dec/struct_8h.html#a08f3d9e84d02e2d365827d01e75fa712">MAXNB2J</a>];</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;  <span class="keywordtype">int</span> score;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <span class="keywordtype">int</span> bambou [3]; <span class="comment">/*dans l&#39;ordre : jaune rose vert*/</span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <span class="keywordtype">int</span> effSpe [3]; </div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <span class="keywordtype">int</span> nbIrigation;</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;  <span class="keywordtype">int</span> nbObjectif;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;  <a class="code" href="../../df/dec/struct_8h.html#a876129d4b52b58a90b5fdef55eb82276">couleurJ_E</a> couleurJoueur;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;};</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
+<div class="line"><a name="l00221"></a><span class="lineno"><a class="line" href="../../dd/da4/structirig__s.html">  221</a></span>&#160;<span class="keyword">struct </span><a class="code" href="../../dd/da4/structirig__s.html">irig_s</a>{</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;  <span class="keywordtype">int</span> x_haut_gauche;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;  <span class="keywordtype">int</span> y_haut_gauche;</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;  <span class="keywordtype">int</span> x_bas_droit;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;  <span class="keywordtype">int</span> y_bas_droit;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;};</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="astructpersonnage__s_html"><div class="ttname"><a href="../../df/d60/structpersonnage__s.html">personnage_s</a></div><div class="ttdef"><b>Definition:</b> struct.h:69</div></div>
-<div class="ttc" id="astruct_8h_html_afdcd01166bf3f5223ff0a126c51722e2"><div class="ttname"><a href="../../df/dec/struct_8h.html#afdcd01166bf3f5223ff0a126c51722e2">J</a></div><div class="ttdeci">joueur_t * J[4]</div><div class="ttdef"><b>Definition:</b> struct.h:53</div></div>
-<div class="ttc" id="astruct_8h_html_a1437ae6d63b2812c0d21fef7de154075"><div class="ttname"><a href="../../df/dec/struct_8h.html#a1437ae6d63b2812c0d21fef7de154075">couleur_s</a></div><div class="ttdeci">couleur_s</div><div class="ttdef"><b>Definition:</b> struct.h:45</div></div>
-<div class="ttc" id="astructcoord__s_html"><div class="ttname"><a href="../../d2/de9/structcoord__s.html">coord_s</a></div><div class="ttdoc">strture de stockage de coordonnée</div><div class="ttdef"><b>Definition:</b> struct.h:77</div></div>
-<div class="ttc" id="astructirig__s_html"><div class="ttname"><a href="../../dd/da4/structirig__s.html">irig_s</a></div><div class="ttdoc">structure contenant les coordone des case autour d'une irigation</div><div class="ttdef"><b>Definition:</b> struct.h:127</div></div>
-<div class="ttc" id="astructjoueur__s_html"><div class="ttname"><a href="../../d1/d3e/structjoueur__s.html">joueur_s</a></div><div class="ttdoc">structure de Joueur</div><div class="ttdef"><b>Definition:</b> struct.h:111</div></div>
-<div class="ttc" id="astruct_8h_html_a87b97b5332aca62d134cf80ba6d63ebb"><div class="ttname"><a href="../../df/dec/struct_8h.html#a87b97b5332aca62d134cf80ba6d63ebb">couleur_E</a></div><div class="ttdeci">enum couleur_s couleur_E</div></div>
-<div class="ttc" id="astructcase__plato__s_html"><div class="ttname"><a href="../../d6/d57/structcase__plato__s.html">case_plato_s</a></div><div class="ttdoc">structure de case</div><div class="ttdef"><b>Definition:</b> struct.h:87</div></div>
+<div class="ttc" id="astruct_8h_html_a014fd89d1f8a3854aefabc0d02740f24"><div class="ttname"><a href="../../df/dec/struct_8h.html#a014fd89d1f8a3854aefabc0d02740f24">carteJardinier</a></div><div class="ttdeci">carte_t * carteJardinier[NBCARTE]</div><div class="ttdoc">pioche de carte type jardinier</div><div class="ttdef"><b>Definition:</b> struct.h:100</div></div>
+<div class="ttc" id="astruct_8h_html_a1f6db7854a75e6247728004b19d49442"><div class="ttname"><a href="../../df/dec/struct_8h.html#a1f6db7854a75e6247728004b19d49442">choixJ_s</a></div><div class="ttdeci">choixJ_s</div><div class="ttdoc">liste des choix possible d'action</div><div class="ttdef"><b>Definition:</b> struct.h:74</div></div>
+<div class="ttc" id="astructpersonnage__s_html"><div class="ttname"><a href="../../df/d60/structpersonnage__s.html">personnage_s</a></div><div class="ttdoc">structure de pressonage</div><div class="ttdef"><b>Definition:</b> struct.h:163</div></div>
+<div class="ttc" id="astruct_8h_html_afdcd01166bf3f5223ff0a126c51722e2"><div class="ttname"><a href="../../df/dec/struct_8h.html#afdcd01166bf3f5223ff0a126c51722e2">J</a></div><div class="ttdeci">joueur_t * J[4]</div><div class="ttdoc">tableau de joueur</div><div class="ttdef"><b>Definition:</b> struct.h:82</div></div>
+<div class="ttc" id="astruct_8h_html_abd43204f1668085ac34fff3e160ca3a9"><div class="ttname"><a href="../../df/dec/struct_8h.html#abd43204f1668085ac34fff3e160ca3a9">carteParcelle</a></div><div class="ttdeci">carte_t * carteParcelle[NBCARTE]</div><div class="ttdoc">pioche de carte type parcelle</div><div class="ttdef"><b>Definition:</b> struct.h:94</div></div>
+<div class="ttc" id="astruct_8h_html_a1437ae6d63b2812c0d21fef7de154075"><div class="ttname"><a href="../../df/dec/struct_8h.html#a1437ae6d63b2812c0d21fef7de154075">couleur_s</a></div><div class="ttdeci">couleur_s</div><div class="ttdoc">liste des couleur de tuile / bambou</div><div class="ttdef"><b>Definition:</b> struct.h:50</div></div>
+<div class="ttc" id="astructcoord__s_html"><div class="ttname"><a href="../../d2/de9/structcoord__s.html">coord_s</a></div><div class="ttdoc">strture de stockage de coordonnée</div><div class="ttdef"><b>Definition:</b> struct.h:171</div></div>
+<div class="ttc" id="astructirig__s_html"><div class="ttname"><a href="../../dd/da4/structirig__s.html">irig_s</a></div><div class="ttdoc">structure contenant les coordone des case autour d'une irigation</div><div class="ttdef"><b>Definition:</b> struct.h:221</div></div>
+<div class="ttc" id="astructjoueur__s_html"><div class="ttname"><a href="../../d1/d3e/structjoueur__s.html">joueur_s</a></div><div class="ttdoc">structure de Joueur</div><div class="ttdef"><b>Definition:</b> struct.h:205</div></div>
+<div class="ttc" id="astruct_8h_html_aaae1e21bead5e48db0d8daa29517d97f"><div class="ttname"><a href="../../df/dec/struct_8h.html#aaae1e21bead5e48db0d8daa29517d97f">cartePanda</a></div><div class="ttdeci">carte_t * cartePanda[NBCARTE]</div><div class="ttdoc">pioche de carte type panda</div><div class="ttdef"><b>Definition:</b> struct.h:88</div></div>
+<div class="ttc" id="astruct_8h_html_a82ee2d54c3ec2d7a7a100602a6e430dc"><div class="ttname"><a href="../../df/dec/struct_8h.html#a82ee2d54c3ec2d7a7a100602a6e430dc">couleurJ_s</a></div><div class="ttdeci">couleurJ_s</div><div class="ttdoc">liste des couleur de joueurs</div><div class="ttdef"><b>Definition:</b> struct.h:62</div></div>
+<div class="ttc" id="astruct_8h_html_ac18806223802ac12d1fc7ecd4de55932"><div class="ttname"><a href="../../df/dec/struct_8h.html#ac18806223802ac12d1fc7ecd4de55932">effet_s</a></div><div class="ttdeci">effet_s</div><div class="ttdoc">liste des effet de case posbile</div><div class="ttdef"><b>Definition:</b> struct.h:56</div></div>
+<div class="ttc" id="astruct_8h_html_affa62a5ef2f8be10887ac2e191abd8ea"><div class="ttname"><a href="../../df/dec/struct_8h.html#affa62a5ef2f8be10887ac2e191abd8ea">irig</a></div><div class="ttdeci">irig_t * irig[NBIRIG]</div><div class="ttdoc">memoire des irigation placer</div><div class="ttdef"><b>Definition:</b> struct.h:154</div></div>
+<div class="ttc" id="astruct_8h_html_a87b97b5332aca62d134cf80ba6d63ebb"><div class="ttname"><a href="../../df/dec/struct_8h.html#a87b97b5332aca62d134cf80ba6d63ebb">couleur_E</a></div><div class="ttdeci">enum couleur_s couleur_E</div><div class="ttdoc">liste des couleur de tuile / bambou</div></div>
+<div class="ttc" id="astruct_8h_html_ad698b3d8ca5bc53e5e832cd9918b717b"><div class="ttname"><a href="../../df/dec/struct_8h.html#ad698b3d8ca5bc53e5e832cd9918b717b">jardinier</a></div><div class="ttdeci">personnage_t jardinier</div><div class="ttdoc">structure de jardiner</div><div class="ttdef"><b>Definition:</b> struct.h:148</div></div>
+<div class="ttc" id="astruct_8h_html_a96486e38b58702cda02d8bfada608286"><div class="ttname"><a href="../../df/dec/struct_8h.html#a96486e38b58702cda02d8bfada608286">plateau</a></div><div class="ttdeci">case_plato_t * plateau[NBTUILES][NBTUILES]</div><div class="ttdoc">plateau de jeux</div><div class="ttdef"><b>Definition:</b> struct.h:118</div></div>
+<div class="ttc" id="astruct_8h_html_a876129d4b52b58a90b5fdef55eb82276"><div class="ttname"><a href="../../df/dec/struct_8h.html#a876129d4b52b58a90b5fdef55eb82276">couleurJ_E</a></div><div class="ttdeci">enum couleurJ_s couleurJ_E</div><div class="ttdoc">liste des couleur de joueurs</div></div>
+<div class="ttc" id="astruct_8h_html_a071017782236dc04200a8686aae27553"><div class="ttname"><a href="../../df/dec/struct_8h.html#a071017782236dc04200a8686aae27553">panda</a></div><div class="ttdeci">personnage_t panda</div><div class="ttdoc">struture de panda</div><div class="ttdef"><b>Definition:</b> struct.h:142</div></div>
+<div class="ttc" id="astruct_8h_html_a3fb6a9382657f13c7e074e7288704d22"><div class="ttname"><a href="../../df/dec/struct_8h.html#a3fb6a9382657f13c7e074e7288704d22">lac</a></div><div class="ttdeci">case_plato_t lac</div><div class="ttdoc">case du lac stoquer a part</div><div class="ttdef"><b>Definition:</b> struct.h:124</div></div>
+<div class="ttc" id="astructcase__plato__s_html"><div class="ttname"><a href="../../d6/d57/structcase__plato__s.html">case_plato_s</a></div><div class="ttdoc">structure de case</div><div class="ttdef"><b>Definition:</b> struct.h:181</div></div>
+<div class="ttc" id="astruct_8h_html_a0a8d59611bc98de61af9c7915f437592"><div class="ttname"><a href="../../df/dec/struct_8h.html#a0a8d59611bc98de61af9c7915f437592">effet_E</a></div><div class="ttdeci">enum effet_s effet_E</div><div class="ttdoc">liste des effet de case posbile</div></div>
+<div class="ttc" id="astruct_8h_html_aa1fba4a8440aacd545bbdbb60b3da408"><div class="ttname"><a href="../../df/dec/struct_8h.html#aa1fba4a8440aacd545bbdbb60b3da408">file_tuile_tete</a></div><div class="ttdeci">file_t * file_tuile_tete</div><div class="ttdoc">tete de la file</div><div class="ttdef"><b>Definition:</b> struct.h:130</div></div>
 <div class="ttc" id="astruct_8h_html_a08f3d9e84d02e2d365827d01e75fa712"><div class="ttname"><a href="../../df/dec/struct_8h.html#a08f3d9e84d02e2d365827d01e75fa712">MAXNB2J</a></div><div class="ttdeci">#define MAXNB2J</div><div class="ttdef"><b>Definition:</b> struct.h:23</div></div>
+<div class="ttc" id="astruct_8h_html_a226639e10658cae8e61d5a4b5f0686a5"><div class="ttname"><a href="../../df/dec/struct_8h.html#a226639e10658cae8e61d5a4b5f0686a5">choixJ_E</a></div><div class="ttdeci">enum choixJ_s choixJ_E</div><div class="ttdoc">liste des choix possible d'action</div></div>
+<div class="ttc" id="astruct_8h_html_ab0fe8924e61c7a01c98f087ee62bbc86"><div class="ttname"><a href="../../df/dec/struct_8h.html#ab0fe8924e61c7a01c98f087ee62bbc86">effDes_E</a></div><div class="ttdeci">enum effDes_s effDes_E</div><div class="ttdoc">liste des effet de dée</div></div>
+<div class="ttc" id="astruct_8h_html_adc4d53ba045a86295a2518abcadb4075"><div class="ttname"><a href="../../df/dec/struct_8h.html#adc4d53ba045a86295a2518abcadb4075">indique_carte</a></div><div class="ttdeci">int indique_carte[3]</div><div class="ttdoc">sert à indiquer pour chaque pioche de carte (cartePanda, carteParcelle et carteJardinier) à quelle en...</div><div class="ttdef"><b>Definition:</b> struct.h:106</div></div>
 <div class="ttc" id="astructfile__s_html"><div class="ttname"><a href="../../d5/dac/structfile__s.html">file_s</a></div><div class="ttdoc">structure de mise de la file</div><div class="ttdef"><b>Definition:</b> file.h:20</div></div>
-<div class="ttc" id="astructcarte__s_html"><div class="ttname"><a href="../../d0/d35/structcarte__s.html">carte_s</a></div><div class="ttdoc">structure de carte</div><div class="ttdef"><b>Definition:</b> struct.h:99</div></div>
+<div class="ttc" id="astruct_8h_html_acf7623fc8ddaabc4046aa71bd166a1dd"><div class="ttname"><a href="../../df/dec/struct_8h.html#acf7623fc8ddaabc4046aa71bd166a1dd">piece</a></div><div class="ttdeci">case_plato_t * piece[NBTUILES]</div><div class="ttdoc">memoire des piece sauvegarger</div><div class="ttdef"><b>Definition:</b> struct.h:112</div></div>
+<div class="ttc" id="astruct_8h_html_a48c98fb905439daa741c1f27e4390fe1"><div class="ttname"><a href="../../df/dec/struct_8h.html#a48c98fb905439daa741c1f27e4390fe1">effDes_s</a></div><div class="ttdeci">effDes_s</div><div class="ttdoc">liste des effet de dée</div><div class="ttdef"><b>Definition:</b> struct.h:68</div></div>
+<div class="ttc" id="astruct_8h_html_ac45daeaa68339f61d1e128896b104ad8"><div class="ttname"><a href="../../df/dec/struct_8h.html#ac45daeaa68339f61d1e128896b104ad8">file_tuile_queue</a></div><div class="ttdeci">file_t * file_tuile_queue</div><div class="ttdoc">queue de la file</div><div class="ttdef"><b>Definition:</b> struct.h:136</div></div>
+<div class="ttc" id="astructcarte__s_html"><div class="ttname"><a href="../../d0/d35/structcarte__s.html">carte_s</a></div><div class="ttdoc">structure de carte</div><div class="ttdef"><b>Definition:</b> struct.h:193</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

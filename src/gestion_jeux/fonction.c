@@ -161,18 +161,7 @@ fonction à finir et à tester
 
 
 
-/**
- * @brief aide à la verifaction du déplacement si la ligne est pair et que la ligne d'arriver est différente
- * @author MAXIME
- * @param x_d position x de départ
- * @param y_d position y de départ
- * @param x_a nouvelle position x voulue
- * @param y_a nouvelle position y voulue
- * @return int 
- * retour d'un booléen de validaiton
- * 0 le déplacement n'est pas valide
- * 1 le déplacement est valide
- */
+
 int verif_ligne_droite_pair(int const x_d, int const y_d, int const x_a, int const y_a){
   if ((x_d == x_a && y_d != y_a)
   || !case_existe(x_d, y_d))
@@ -199,18 +188,7 @@ int verif_ligne_droite_pair(int const x_d, int const y_d, int const x_a, int con
   }
 }
 
-/**
- * @brief aide à la verifaction du déplacement si la ligne est impair et que la ligne d'arriver est différente
- * @author MAXIME
- * @param x_d position x de départ
- * @param y_d position y de départ
- * @param x_a nouvelle position x voulue
- * @param y_a nouvelle position y voulue
- * @return int 
- * retour d'un booléen de validaiton
- * 0 le déplacement n'est pas valide
- * 1 le déplacement est valide
- */
+
 int verif_ligne_droite_impair(int const x_d, int const y_d, int const x_a, int const y_a){
   if ((x_d == x_a && y_d != y_a)
   || !case_existe(x_d, y_d))
@@ -237,18 +215,6 @@ int verif_ligne_droite_impair(int const x_d, int const y_d, int const x_a, int c
   }
 }
 
-/**
- * @brief verifaction si on peu déplacer le jardinier ou le Panda
- * @author MAXIME
- * @param perso nom du personnage (la struct porte le même nom) que l'on veut déplacer
- * @param x_a nouvelle position x voulue
- * @param y_a nouvelle position y voulue
- * @return int 
- * retour d'un booléen de validaiton
- * 0 le déplacement n'est pas valide
- * 1 le déplacement est valide
- */
- 
 
 int Verif_deplacer_perso( personnage_t perso, int const x_a, int const y_a){	 /* jardinier ou Panda et renvoie 1 si c'est bon */
 
@@ -285,7 +251,7 @@ int Verif_deplacer_perso( personnage_t perso, int const x_a, int const y_a){	 /*
 }
 
 
-void deplacer_personnage( personnage_t perso, int const x_a, int const y_a){
+/* void deplacer_personnage( personnage_t perso, int const x_a, int const y_a){
 
   if (Verif_deplacer_perso( perso, x_a, y_a) && case_existe(x_a, y_a)){
 	  perso.x = x_a;
@@ -294,6 +260,6 @@ void deplacer_personnage( personnage_t perso, int const x_a, int const y_a){
 
   if (perso.Type == "jardinier") ajout_bambou_jardinier(x_a, y_a);
 }
-
+*/
 
 

@@ -1,11 +1,8 @@
 var searchData=
 [
-  ['verif_5fdeplacer_5fperso_182',['Verif_deplacer_perso',['../d0/d8b/fonction_8h.html#abf848596aef1e17bc5ff040faeb562da',1,'fonction.c']]],
-  ['verif_5fjardinier_183',['verif_jardinier',['../d3/da3/carte_8h.html#a047af8f7553fe1ad0e347cec6c85a6eb',1,'carte.c']]],
-  ['verif_5fpanda_184',['verif_panda',['../d3/da3/carte_8h.html#aee63f0fd2439e31c076b0f892f6543c9',1,'carte.c']]],
-  ['verif_5fparcelle_5farc_185',['verif_parcelle_arc',['../d3/da3/carte_8h.html#a974fd7a414a66632ab3148b569c4140c',1,'carte.c']]],
-  ['verif_5fparcelle_5fligne_186',['verif_parcelle_ligne',['../d3/da3/carte_8h.html#ad10dcf195d085594be03a5b0a285ce60',1,'carte.c']]],
-  ['verif_5fparcelle_5flosange_187',['verif_parcelle_losange',['../d3/da3/carte_8h.html#a453f1ac86610f826ce471ca88c41d7df',1,'carte.c']]],
-  ['verif_5fparcelle_5ftriangle_188',['verif_parcelle_triangle',['../d3/da3/carte_8h.html#ae8b4e0ee74458fa41b21e4f977e69cec',1,'carte.c']]],
-  ['victoire_5fjoueur_189',['victoire_joueur',['../d7/dee/Joueur_8h.html#a9ff26a534ddabe43034fce27e6a14281',1,'Joueur.c']]]
+  ['select_5fhexa_239',['Select_hexa',['../d0/d37/Creation_8h.html#aa34b43ff618d81e845e8a8ae8d157c1f',1,'Creation.c']]],
+  ['selecte_5fnb_5fjoueur_240',['selecte_nb_joueur',['../d3/d54/menu_8h.html#a63a4db2f36d9c8c0a3c599776117bc6f',1,'menu.c']]],
+  ['suivant_5fjardinier_241',['suivant_jardinier',['../d6/dba/liste__jardinier_8h.html#ade595a1cce9a0fb44e24df325695dd40',1,'liste_jardinier.c']]],
+  ['suppression_5fone_5ftuile_242',['suppression_ONE_tuile',['../db/d68/init__fin_8h.html#aaa820ab080cbf9f0c3d89e92f53ffbcb',1,'init_fin.c']]],
+  ['suprimer_243',['suprimer',['../db/d68/init__fin_8h.html#a315a260c33c5e7c2f9580e20197b0f90',1,'init_fin.c']]]
 ];

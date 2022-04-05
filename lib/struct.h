@@ -42,30 +42,124 @@ typedef struct irig_s irig_t;
 typedef struct coord_s coordonne_t;
 
 /**definition des type enumérer*/
+
+/**
+ * @brief liste des couleur de tuile / bambou
+ * 
+ */
 typedef enum couleur_s{jaune,rose,vert,water}couleur_E;
+
+/**
+ * @brief liste des effet de case posbile
+ * 
+ */
 typedef enum effet_s{sans_effet,bassin,enclos,engrais,effet_lac}effet_E;
+
+/**
+ * @brief liste des couleur de joueurs
+ * 
+ */
 typedef enum couleurJ_s{bleu,rouge,noir,blanc}couleurJ_E;
 
+/**
+ * @brief liste des effet de dée
+ * 
+ */
 typedef enum effDes_s{soleil,pluie,vent,orage,nuage,choixJ}effDes_E;
+
+/**
+ * @brief liste des choix possible d'action
+ * 
+ */
 typedef enum choixJ_s{rien,parcelle,irrigation,choix_jardinier,choix_panda,objectif}choixJ_E;
 
 /**variable globale*/
+
+/**
+ * @brief tableau de joueur
+ * 
+ */
 joueur_t * J[4];
+
+/**
+ * @brief pioche de carte type panda
+ * 
+ */
 carte_t * cartePanda[NBCARTE];
+
+/**
+ * @brief pioche de carte type parcelle
+ * 
+ */
 carte_t * carteParcelle[NBCARTE];
+
+/**
+ * @brief pioche de carte type jardinier
+ * 
+ */
 carte_t * carteJardinier[NBCARTE];
-int indique_carte[3]; /*sert à indiquer pour chaque pioche de carte (cartePanda, carteParcelle et carteJardinier) à quelle endroit on est (quelle est la prochaine carte)*/
+
+/**
+ * @brief sert à indiquer pour chaque pioche de carte (cartePanda, carteParcelle et carteJardinier) à quelle endroit on est (quelle est la prochaine carte)
+ * 
+ */
+int indique_carte[3]; 
+
+/**
+ * @brief memoire des piece sauvegarger
+ * 
+ */
 case_plato_t * piece[NBTUILES];
+
+/**
+ * @brief plateau de jeux
+ * 
+ */
 case_plato_t * plateau[NBTUILES][NBTUILES];
+
+/**
+ * @brief case du lac stoquer a part
+ * 
+ */
 case_plato_t lac;
+
+/**
+ * @brief tete de la file
+ * 
+ */
 file_t * file_tuile_tete;
+
+/**
+ * @brief queue de la file
+ * 
+ */
 file_t * file_tuile_queue;
+
+/**
+ * @brief struture de panda
+ * 
+ */
 personnage_t panda;
+
+/**
+ * @brief structure de jardiner
+ * 
+ */
 personnage_t jardinier;
+
+/**
+ * @brief memoire des irigation placer
+ * 
+ */
 irig_t * irig[NBIRIG];
 
 
-/** des structurs*/
+/**definiton des structure
+
+/**
+ * @brief structure de pressonage
+ * 
+ */
 struct personnage_s{
   int x,y; //coordonnée
 };
