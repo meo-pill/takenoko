@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Takenoko:  Fichier source de lib/file.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Takenoko
+   </div>
+   <div id="projectbrief">le Takenoko est un jeux de société adapter en jeux video</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">file.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d2/d4d/file_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#ifndef file_H_INCLUDED</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define file_H_INCLUDED</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d1/db5/index_8h.html">index.h</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="../../d5/dac/structfile__s.html">   20</a></span>&#160;<span class="keyword">struct </span><a class="code" href="../../d5/dac/structfile__s.html">file_s</a>{</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="../../d6/d57/structcase__plato__s.html">case_plato_t</a> * tuile; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">struct </span><a class="code" href="../../d5/dac/structfile__s.html">file_s</a> * suivant;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;};</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="../../d2/d4d/file_8h.html#a273907fa64f10a578e107dde70a12876">initfile</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="../../d2/d4d/file_8h.html#a6993bbd38c61d317e6966858fa765174">ajouter</a>(<a class="code" href="../../d6/d57/structcase__plato__s.html">case_plato_t</a> * tuile);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">extern</span> <a class="code" href="../../d6/d57/structcase__plato__s.html">case_plato_t</a> * <a class="code" href="../../d2/d4d/file_8h.html#af743dbafa6bfff5b877ca9ddbf63c76e">retirer</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="../../d2/d4d/file_8h.html#a4b48b65698f5783adf206700444ea9bd">filevide</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="afile_8h_html_a4b48b65698f5783adf206700444ea9bd"><div class="ttname"><a href="../../d2/d4d/file_8h.html#a4b48b65698f5783adf206700444ea9bd">filevide</a></div><div class="ttdeci">int filevide(void)</div><div class="ttdoc">fonction booléne de validation sur la contenance de la file</div><div class="ttdef"><b>Definition:</b> file.c:8</div></div>
+<div class="ttc" id="afile_8h_html_a273907fa64f10a578e107dde70a12876"><div class="ttname"><a href="../../d2/d4d/file_8h.html#a273907fa64f10a578e107dde70a12876">initfile</a></div><div class="ttdeci">void initfile(void)</div><div class="ttdoc">fonction d'initialisation de la file</div><div class="ttdef"><b>Definition:</b> file.c:3</div></div>
+<div class="ttc" id="aindex_8h_html"><div class="ttname"><a href="../../d1/db5/index_8h.html">index.h</a></div><div class="ttdoc">fonction d'appelle des point h global</div></div>
+<div class="ttc" id="afile_8h_html_af743dbafa6bfff5b877ca9ddbf63c76e"><div class="ttname"><a href="../../d2/d4d/file_8h.html#af743dbafa6bfff5b877ca9ddbf63c76e">retirer</a></div><div class="ttdeci">case_plato_t * retirer(void)</div><div class="ttdoc">fonction permet de retire une tuile de la file</div><div class="ttdef"><b>Definition:</b> file.c:24</div></div>
+<div class="ttc" id="afile_8h_html_a6993bbd38c61d317e6966858fa765174"><div class="ttname"><a href="../../d2/d4d/file_8h.html#a6993bbd38c61d317e6966858fa765174">ajouter</a></div><div class="ttdeci">void ajouter(case_plato_t *tuile)</div><div class="ttdoc">fonction d'ajout d'une tuile dans la file</div><div class="ttdef"><b>Definition:</b> file.c:12</div></div>
+<div class="ttc" id="astructcase__plato__s_html"><div class="ttname"><a href="../../d6/d57/structcase__plato__s.html">case_plato_s</a></div><div class="ttdoc">structure de case</div><div class="ttdef"><b>Definition:</b> struct.h:87</div></div>
+<div class="ttc" id="astructfile__s_html"><div class="ttname"><a href="../../d5/dac/structfile__s.html">file_s</a></div><div class="ttdoc">structure de mise de la file</div><div class="ttdef"><b>Definition:</b> file.h:20</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<map id="lib/init_fin.h" name="lib/init_fin.h">
+<area shape="rect" id="node1" title="fonction d&#39;inisatilsation de la partie / fonction de supression" alt="" coords="353,5,451,32"/>
+<area shape="rect" id="node2" href="$d1/db5/index_8h.html" title="fonction d&#39;appelle des point h global" alt="" coords="357,80,447,107"/>
+<area shape="rect" id="node3" href="$de/d54/aff__table_8h.html" title="generation d&#39;un plateau test" alt="" coords="5,155,116,181"/>
+<area shape="rect" id="node4" href="$d2/d4d/file_8h.html" title="mise en oeuvre de la file" alt="" coords="141,155,215,181"/>
+<area shape="rect" id="node5" href="$d7/def/pose_8h.html" title="fonction pour les pose des case et des irigation" alt="" coords="239,155,325,181"/>
+<area shape="rect" id="node6" href="$d0/d8b/fonction_8h.html" title="fonction de gestion des stock" alt="" coords="349,155,455,181"/>
+<area shape="rect" id="node7" href="$d3/da3/carte_8h.html" title="toute les fonctions lié à la gestion des cartes" alt="" coords="480,155,567,181"/>
+<area shape="rect" id="node8" href="$da/d8c/pioche_8h.html" title="contient les fonctions qui permettent de piocher" alt="" coords="591,155,688,181"/>
+<area shape="rect" id="node9" href="$d7/dee/Joueur_8h.html" title="ce fichier rassemble les fonction de joueur" alt="" coords="712,155,807,181"/>
+</map>

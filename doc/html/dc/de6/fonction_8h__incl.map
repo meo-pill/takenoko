@@ -1,0 +1,14 @@
+<map id="lib/fonction.h" name="lib/fonction.h">
+<area shape="rect" id="node1" title="fonction de gestion des stock" alt="" coords="528,5,635,32"/>
+<area shape="rect" id="node2" href="$d1/db5/index_8h.html" title="fonction d&#39;appelle des point h global" alt="" coords="530,80,633,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,155,72,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="97,155,167,181"/>
+<area shape="rect" id="node5" title=" " alt="" coords="191,155,262,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="287,155,351,181"/>
+<area shape="rect" id="node7" href="$df/dec/struct_8h.html" title="deffiniton des structure/paramèttre globaux" alt="" coords="375,155,446,181"/>
+<area shape="rect" id="node8" href="$d2/d4d/file_8h.html" title="mise en oeuvre de la file" alt="" coords="470,155,525,181"/>
+<area shape="rect" id="node9" href="$d7/def/pose_8h.html" title="fonction pour les pose des case et des irigation" alt="" coords="549,155,614,181"/>
+<area shape="rect" id="node10" href="$db/d68/init__fin_8h.html" title="fonction d&#39;inisatilsation de la partie / fonction de supression" alt="" coords="638,155,717,181"/>
+<area shape="rect" id="node11" href="$d3/da3/carte_8h.html" title="toute les fonctions lié à la gestion des cartes" alt="" coords="741,155,808,181"/>
+<area shape="rect" id="node12" href="$da/d8c/pioche_8h.html" title="contient les fonctions qui permettent de piocher" alt="" coords="832,155,909,181"/>
+</map>

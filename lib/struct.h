@@ -1,3 +1,13 @@
+/**
+ * @file struct.h
+ * @authors MEWEN MORGANE LEO MAXIME
+ * @brief deffiniton des structure/paramèttre globaux
+ * @version 0.1
+ * @date 2022-04-05
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef _STRUC_H_
 #define _STRUC_H_
 
@@ -60,13 +70,20 @@ struct personnage_s{
   int x,y; //coordonnée
 };
 
+/**
+ * @brief strture de stockage de coordonnée
+ * 
+ */
 struct  coord_s
 {
   int x;
   int y;
 };
 
-
+/**
+ * @brief structure de case
+ * 
+ */
 struct case_plato_s{
   couleur_E Coul;
   int iriguer;
@@ -75,7 +92,10 @@ struct case_plato_s{
   char image [LONGPATH];
 };
 
-
+/**
+ * @brief structure de carte
+ * 
+ */
 struct carte_s{
   int (*verif)(struct carte_s * const,joueur_t * const);
   char type [LONGTYPE];
@@ -84,6 +104,10 @@ struct carte_s{
   int point;
 };
 
+/**
+ * @brief structure de Joueur
+ * 
+ */
 struct joueur_s{
   char * nom_joueur;
   carte_t * main_J[TAILLE_MAIN];
@@ -96,6 +120,10 @@ struct joueur_s{
   couleurJ_E couleurJoueur;
 };
 
+/**
+ * @brief structure contenant les coordone des case autour d'une irigation
+ * 
+ */
 struct irig_s{
   int x_haut_gauche;
   int y_haut_gauche;

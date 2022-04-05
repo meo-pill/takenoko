@@ -1,13 +1,4 @@
-/**
- * @file carte_pioche_test.c
- * @author NAIL leo
- * @brief petit fichier de test pour toutes les fonctions lié à la gestion de la pioche de carte
- * @version 0.1
- * @date 2022-03-28
- * 
- * @copyright Copyright (c) 2022
- * 
- */
+
 #include "../lib/pioche.h"
 #include "../lib/init_fin.h"
 

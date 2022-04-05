@@ -1,1 +1,0 @@
-export LD_LIBRARY_PATH="/media/i190240/Cours/université/L2/2/projet/takenoko/takenoko/fichier_c/SDL2/lib"

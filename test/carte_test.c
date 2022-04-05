@@ -1,14 +1,3 @@
-/**
- * @file carte_test.c
- * @author Léo Nail
- * @brief ce fichier sert à tester les fonction de vérification des structures cartes
- * @version 0.1
- * @date 2022-03-18
- * 
- * @copyright Copyright (c) 2022
- * 
- */
-
 #include "../lib/index.h"
 
 /**

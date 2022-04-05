@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Takenoko:  Fichier source de lib/carte.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Takenoko
+   </div>
+   <div id="projectbrief">le Takenoko est un jeux de société adapter en jeux video</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">carte.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d3/da3/carte_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#ifndef CARTE_H_INCLUDED</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define CARTE_H_INCLUDED</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d1/db5/index_8h.html">index.h</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * <a class="code" href="../../d3/da3/carte_8h.html#a826c0b39ad075219ce58c8c4cd855dff">creer_carte</a>(<span class="keywordtype">char</span> * type, <span class="keywordtype">char</span> * descrip, <span class="keywordtype">char</span> * image, <span class="keywordtype">int</span> pt );</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keywordtype">void</span> <a class="code" href="../../d3/da3/carte_8h.html#aea08321dfcd7f69f8e1ceb7b1f4eae5e">a_null_carte</a>();</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">int</span> <a class="code" href="../../d3/da3/carte_8h.html#a84d3149324626753d5c163ff5d6c5873">inserer_carte</a>(<a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> *);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> detruire_one_carte(<a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a>** C);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keywordtype">void</span> detruire_carte();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keywordtype">void</span> <a class="code" href="../../d3/da3/carte_8h.html#aed4de4dcae23d895fcecaeeb08843fbd">afficher_carte</a>(<a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * <span class="keyword">const</span>);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keywordtype">void</span> <a class="code" href="../../d3/da3/carte_8h.html#a6f1737c5a7a49442e8720348df04047b">melanger_carte</a>();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="../../d3/da3/carte_8h.html#ad17caaa5a53725a7188cf8dd010fda3b">   79</a></span>&#160;int (* <a class="code" href="../../d3/da3/carte_8h.html#ad17caaa5a53725a7188cf8dd010fda3b">recherche_fonction_verif</a>(<a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * <span class="keyword">const</span>))(<a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * <span class="keyword">const</span>, <a class="code" href="../../d1/d3e/structjoueur__s.html">joueur_t</a> * <span class="keyword">const</span>);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="../../d3/da3/carte_8h.html#ab3834ed4828e85e04868beacb2bb591e">   91</a></span>&#160;int (* <a class="code" href="../../d3/da3/carte_8h.html#ab3834ed4828e85e04868beacb2bb591e">recherche_fonction_parcelle</a>(<a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * <span class="keyword">const</span>))(<a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * <span class="keyword">const</span>, <a class="code" href="../../d1/d3e/structjoueur__s.html">joueur_t</a> * <span class="keyword">const</span>);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="keywordtype">int</span> <a class="code" href="../../d3/da3/carte_8h.html#aee63f0fd2439e31c076b0f892f6543c9">verif_panda</a> (<a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * <span class="keyword">const</span> ,<a class="code" href="../../d1/d3e/structjoueur__s.html">joueur_t</a> * <span class="keyword">const</span>);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="keywordtype">int</span> <a class="code" href="../../d3/da3/carte_8h.html#a047af8f7553fe1ad0e347cec6c85a6eb">verif_jardinier</a>(<a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * <span class="keyword">const</span>,<a class="code" href="../../d1/d3e/structjoueur__s.html">joueur_t</a> * <span class="keyword">const</span>);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="keywordtype">int</span> <a class="code" href="../../d3/da3/carte_8h.html#ae8b4e0ee74458fa41b21e4f977e69cec">verif_parcelle_triangle</a> (<a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * <span class="keyword">const</span>,<a class="code" href="../../d1/d3e/structjoueur__s.html">joueur_t</a> * <span class="keyword">const</span>);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="keywordtype">int</span> <a class="code" href="../../d3/da3/carte_8h.html#a453f1ac86610f826ce471ca88c41d7df">verif_parcelle_losange</a>(<a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * <span class="keyword">const</span>,<a class="code" href="../../d1/d3e/structjoueur__s.html">joueur_t</a> * <span class="keyword">const</span>);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="keywordtype">int</span> <a class="code" href="../../d3/da3/carte_8h.html#ad10dcf195d085594be03a5b0a285ce60">verif_parcelle_ligne</a>(<a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * <span class="keyword">const</span>,<a class="code" href="../../d1/d3e/structjoueur__s.html">joueur_t</a> * <span class="keyword">const</span>);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="keywordtype">int</span> <a class="code" href="../../d3/da3/carte_8h.html#a974fd7a414a66632ab3148b569c4140c">verif_parcelle_arc</a>(<a class="code" href="../../d0/d35/structcarte__s.html">carte_t</a> * <span class="keyword">const</span>,<a class="code" href="../../d1/d3e/structjoueur__s.html">joueur_t</a> * <span class="keyword">const</span>);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="keywordtype">int</span> <a class="code" href="../../d3/da3/carte_8h.html#a5a0ad905d069739ac3e37b30446e3e90">nb_point_joueur</a>(<a class="code" href="../../d1/d3e/structjoueur__s.html">joueur_t</a> *<a class="code" href="../../df/dec/struct_8h.html#afdcd01166bf3f5223ff0a126c51722e2">J</a>);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="preprocessor">#endif</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="acarte_8h_html_a826c0b39ad075219ce58c8c4cd855dff"><div class="ttname"><a href="../../d3/da3/carte_8h.html#a826c0b39ad075219ce58c8c4cd855dff">creer_carte</a></div><div class="ttdeci">carte_t * creer_carte(char *type, char *descrip, char *image, int pt)</div><div class="ttdoc">permet de créer une carte avec tout ses paramètre</div><div class="ttdef"><b>Definition:</b> carte.c:60</div></div>
+<div class="ttc" id="astruct_8h_html_afdcd01166bf3f5223ff0a126c51722e2"><div class="ttname"><a href="../../df/dec/struct_8h.html#afdcd01166bf3f5223ff0a126c51722e2">J</a></div><div class="ttdeci">joueur_t * J[4]</div><div class="ttdef"><b>Definition:</b> struct.h:53</div></div>
+<div class="ttc" id="acarte_8h_html_a5a0ad905d069739ac3e37b30446e3e90"><div class="ttname"><a href="../../d3/da3/carte_8h.html#a5a0ad905d069739ac3e37b30446e3e90">nb_point_joueur</a></div><div class="ttdeci">int nb_point_joueur(joueur_t *J)</div><div class="ttdoc">fonction de calcul des point d'un joueur</div><div class="ttdef"><b>Definition:</b> carte.c:573</div></div>
+<div class="ttc" id="aindex_8h_html"><div class="ttname"><a href="../../d1/db5/index_8h.html">index.h</a></div><div class="ttdoc">fonction d'appelle des point h global</div></div>
+<div class="ttc" id="acarte_8h_html_a453f1ac86610f826ce471ca88c41d7df"><div class="ttname"><a href="../../d3/da3/carte_8h.html#a453f1ac86610f826ce471ca88c41d7df">verif_parcelle_losange</a></div><div class="ttdeci">int verif_parcelle_losange(carte_t *const, joueur_t *const)</div><div class="ttdoc">fonction de verification pour une carte de parcelle, qui a besoin d'un losange</div><div class="ttdef"><b>Definition:</b> carte.c:343</div></div>
+<div class="ttc" id="acarte_8h_html_ab3834ed4828e85e04868beacb2bb591e"><div class="ttname"><a href="../../d3/da3/carte_8h.html#ab3834ed4828e85e04868beacb2bb591e">recherche_fonction_parcelle</a></div><div class="ttdeci">int(*)(carte_t *const, joueur_t *const) recherche_fonction_parcelle(carte_t *const)</div><div class="ttdoc">regarde le type d'une carte parcelle et renvoie la bonne fonction de verification</div><div class="ttdef"><b>Definition:</b> carte.h:91</div></div>
+<div class="ttc" id="astructjoueur__s_html"><div class="ttname"><a href="../../d1/d3e/structjoueur__s.html">joueur_s</a></div><div class="ttdoc">structure de Joueur</div><div class="ttdef"><b>Definition:</b> struct.h:111</div></div>
+<div class="ttc" id="acarte_8h_html_aed4de4dcae23d895fcecaeeb08843fbd"><div class="ttname"><a href="../../d3/da3/carte_8h.html#aed4de4dcae23d895fcecaeeb08843fbd">afficher_carte</a></div><div class="ttdeci">void afficher_carte(carte_t *const)</div><div class="ttdoc">cette fonction affiche une carte sur la sortie standard il s'agit d'une fonction de test</div><div class="ttdef"><b>Definition:</b> carte.c:94</div></div>
+<div class="ttc" id="acarte_8h_html_a047af8f7553fe1ad0e347cec6c85a6eb"><div class="ttname"><a href="../../d3/da3/carte_8h.html#a047af8f7553fe1ad0e347cec6c85a6eb">verif_jardinier</a></div><div class="ttdeci">int verif_jardinier(carte_t *const, joueur_t *const)</div><div class="ttdoc">fonction de vérification pour jardinier on parcoure tout le tableau pour vérifier si les objectif de ...</div><div class="ttdef"><b>Definition:</b> carte.c:179</div></div>
+<div class="ttc" id="acarte_8h_html_a974fd7a414a66632ab3148b569c4140c"><div class="ttname"><a href="../../d3/da3/carte_8h.html#a974fd7a414a66632ab3148b569c4140c">verif_parcelle_arc</a></div><div class="ttdeci">int verif_parcelle_arc(carte_t *const, joueur_t *const)</div><div class="ttdoc">fonction de verification pour une carte de parcelle, qui a besoin d'un arc</div><div class="ttdef"><b>Definition:</b> carte.c:510</div></div>
+<div class="ttc" id="acarte_8h_html_aea08321dfcd7f69f8e1ceb7b1f4eae5e"><div class="ttname"><a href="../../d3/da3/carte_8h.html#aea08321dfcd7f69f8e1ceb7b1f4eae5e">a_null_carte</a></div><div class="ttdeci">void a_null_carte()</div><div class="ttdoc">met tout les deck à NULL</div><div class="ttdef"><b>Definition:</b> carte.c:5</div></div>
+<div class="ttc" id="acarte_8h_html_aee63f0fd2439e31c076b0f892f6543c9"><div class="ttname"><a href="../../d3/da3/carte_8h.html#aee63f0fd2439e31c076b0f892f6543c9">verif_panda</a></div><div class="ttdeci">int verif_panda(carte_t *const, joueur_t *const)</div><div class="ttdoc">fonction de verification pour une carte panda pour cela, on prend le joueur courant,...</div><div class="ttdef"><b>Definition:</b> carte.c:254</div></div>
+<div class="ttc" id="acarte_8h_html_a84d3149324626753d5c163ff5d6c5873"><div class="ttname"><a href="../../d3/da3/carte_8h.html#a84d3149324626753d5c163ff5d6c5873">inserer_carte</a></div><div class="ttdeci">int inserer_carte(carte_t *)</div><div class="ttdoc">prend une carte et l'insère dans le bon tableau</div><div class="ttdef"><b>Definition:</b> carte.c:15</div></div>
+<div class="ttc" id="acarte_8h_html_a6f1737c5a7a49442e8720348df04047b"><div class="ttname"><a href="../../d3/da3/carte_8h.html#a6f1737c5a7a49442e8720348df04047b">melanger_carte</a></div><div class="ttdeci">void melanger_carte()</div><div class="ttdoc">appelle trois fois mélanger deck, pour que tous les decks soient mélanger (n'a du sens que si les dec...</div><div class="ttdef"><b>Definition:</b> carte.c:130</div></div>
+<div class="ttc" id="acarte_8h_html_ae8b4e0ee74458fa41b21e4f977e69cec"><div class="ttname"><a href="../../d3/da3/carte_8h.html#ae8b4e0ee74458fa41b21e4f977e69cec">verif_parcelle_triangle</a></div><div class="ttdeci">int verif_parcelle_triangle(carte_t *const, joueur_t *const)</div><div class="ttdoc">fonction de verification pour une carte de parcelle, qui a besoin d'un triangle</div><div class="ttdef"><b>Definition:</b> carte.c:283</div></div>
+<div class="ttc" id="acarte_8h_html_ad10dcf195d085594be03a5b0a285ce60"><div class="ttname"><a href="../../d3/da3/carte_8h.html#ad10dcf195d085594be03a5b0a285ce60">verif_parcelle_ligne</a></div><div class="ttdeci">int verif_parcelle_ligne(carte_t *const, joueur_t *const)</div><div class="ttdoc">fonction de verification pour une carte de parcelle, qui a besoin d'une ligne</div><div class="ttdef"><b>Definition:</b> carte.c:440</div></div>
+<div class="ttc" id="acarte_8h_html_ad17caaa5a53725a7188cf8dd010fda3b"><div class="ttname"><a href="../../d3/da3/carte_8h.html#ad17caaa5a53725a7188cf8dd010fda3b">recherche_fonction_verif</a></div><div class="ttdeci">int(*)(carte_t *const, joueur_t *const) recherche_fonction_verif(carte_t *const)</div><div class="ttdoc">fonction de recherche de la bonne fonction de vérification pour un type de carte donnée (jardinier,...</div><div class="ttdef"><b>Definition:</b> carte.h:79</div></div>
+<div class="ttc" id="astructcarte__s_html"><div class="ttname"><a href="../../d0/d35/structcarte__s.html">carte_s</a></div><div class="ttdoc">structure de carte</div><div class="ttdef"><b>Definition:</b> struct.h:99</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>
