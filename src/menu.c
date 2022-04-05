@@ -1,4 +1,4 @@
-#include "../lib/Plato.h"
+#include "../lib/menu.h"
 
 void menu(){
 	if (SDL_Init(SDL_INIT_TIMER |SDL_INIT_VIDEO)== -1 ){

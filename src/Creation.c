@@ -73,6 +73,19 @@ extern int inv_bout(SDL_Renderer * renderer,
 	return 0;
 }
 
+extern int plus_bout(SDL_Renderer * renderer,
+		Texture_t* bouton,
+		text_t* select,
+		int x,int y){
+	SDL_Rect* rect=bouton->place2;
+	if((x>=(rect->x) && x<=((rect->w)+(rect->x))) && (y>=rect->y && y<=(rect->h+rect->y))){
+		SDL_RenderCopy( renderer, bouton->t,NULL,bouton->place2);
+		return 1;
+	}
+	SDL_RenderCopy(renderer, (*select->Table)->t,NULL,bouton->place2);
+	return 0;
+}
+
 typedef struct
 {
 int x;
@@ -108,7 +121,7 @@ extern text_t* Creation_Joueur(SDL_Renderer * renderer,int x,int y,int i){
 	/*! \brief couleur du texte*/
 	SDL_Color Blanc = {255,255,255};
 	text_t* Joueur=NULL;
-	Joueur=Crea_Tex(18);
+	Joueur=Crea_Tex(20);
 	(Joueur->Table[0])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[0],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,J[i]->nom_joueur,Blanc,x,y);
 	//affichage du  nombre de bambou pour le joueur
 	//Nb de bambou Jaune
@@ -144,8 +157,12 @@ extern text_t* Creation_Joueur(SDL_Renderer * renderer,int x,int y,int i){
 	(Joueur->Table[15])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[15],1),"image/police/Takenoko.TTF",25,TTF_STYLE_BOLD,"Score:",Blanc,x+230,y+40);
 	(Joueur->Table[16])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[16],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]->score),Blanc,x+280,y+60);
 
+	//Nombre Objectif
+	(Joueur->Table[17])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[17],1),"image/police/Takenoko.TTF",25,TTF_STYLE_BOLD,"Objectif :",Blanc,x+230,y+100);
+	(Joueur->Table[18])->t=Creation_Text(renderer,lire_Rect(Joueur->Table[18],1),"image/police/Takenoko.TTF",30,TTF_STYLE_BOLD,retourne_itoa(J[i]->nbObjectif),Blanc,x+280,y+140);
+
 	//Joueur actif
-	(Joueur->Table[17])->t=Creation_image(renderer,lire_Rect(Joueur->Table[17],1),"image/en_plus/Tour_de_jeux.png",x+140,y+100,60,60);
+	(Joueur->Table[19])->t=Creation_image(renderer,lire_Rect(Joueur->Table[19],1),"image/en_plus/Tour_de_jeux.png",x+140,y+100,60,60);
 
 	return Joueur;
 }

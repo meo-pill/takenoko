@@ -1,5 +1,4 @@
 #include <unistd.h>
-#include"../lib/aff_table.h"
 #include "../lib/index.h"
 #include "../lib/menu.h"
 #include "../lib/Plato.h"
@@ -63,6 +62,10 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	char Select_Deck_panda[]="image/carte_panda/Select_dos_carte.png";
 	char Select_Deck_defi[]="image/carte_tuile/Select_dos_carte.png";
 
+	//char bambou_rose[]="image/en_plus/rose.png";
+	//char bambou_vert[]="image/en_plus/vert.png";
+	//char bambou_jaune[]="image/en_plus/jaune.png";
+
 
 
 	text_t* image=NULL;
@@ -72,6 +75,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	text_t* Select_case=NULL;
 	text_t* fin_tour=NULL;
 	text_t* Select_manuel=NULL;
+	text_t* Select=NULL;
 
 	text_t* iriger=NULL;
 	text_t* engret=NULL;
@@ -112,6 +116,10 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	text_t** hexagonal=NULL;
 	hexagonal=malloc(sizeof(text_t*));
 
+	SDL_Texture* irig_Droit=NULL;
+	SDL_Texture* irig_Gauche=NULL;
+	SDL_Texture* irig_Droite=NULL;
+	coordonne_t tuile_pose[20];
 	
 	int TAILTUILE=200;
 	int newTail=0;
@@ -147,7 +155,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	Jardinier=Crea_Tex(1);
 	Panda=Crea_Tex(1);
 
-	bouton->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton->Table[0],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,"Quiter",Blanc,W*1/4,10);
+	bouton->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton->Table[0],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,"Quitter",Blanc,W*1/4,10);
 	bouton->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton->Table[1],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Au revoir!",Blanc,W*1/4,10);
 
 	if ((bouton->Table[0]) == NULL || bouton->Table[1]==NULL){
@@ -168,6 +176,7 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	Nuage=Crea_Tex(3);
 	Met_choix=Crea_Tex(1);
 	bouton_irig=Crea_Tex(2);
+	Select=Crea_Tex(1);
 	
 	
 	iriger=Crea_Tex(1);
@@ -178,10 +187,15 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 	(*engret->Table)->t=Creation_image(renderer,lire_Rect((*engret->Table),1),"image/en_plus/engret.png",W*3/10,H*2/11,60,60);
 	(*nonPanda->Table)->t=Creation_image(renderer,lire_Rect((*nonPanda->Table),1),"image/en_plus/nonPanda.png",W*4.25/12,H*2/11,60,60);
 
+	(*Select->Table)->t=IMG_LoadTexture(renderer,"image/en_plus/Select.png");
+
 	Soleil->Table[0]->t=Creation_image(renderer,lire_Rect(Soleil->Table[0],1),image_sol,10,H*3/11,70,50);
 	Soleil->Table[1]->t=Creation_image(renderer,lire_Rect(Soleil->Table[1],1),Select_sol,10,H*3/11,70,50);
 	Soleil->Table[2]->t=Creation_Text(renderer,lire_Rect(Soleil->Table[2],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,"O",Blanc,70,H*3/11);
 
+	irig_Droit=IMG_LoadTexture(renderer,"image/en_plus/irig_Droit.png");
+	irig_Gauche=IMG_LoadTexture(renderer,"image/en_plus/irig_Droite.png");
+	irig_Droite=IMG_LoadTexture(renderer,"image/en_plus/irig_Gauche.png");
 
 	Pluie->Table[0]->t=Creation_image(renderer,lire_Rect(Pluie->Table[0],1),image_Pluie,10,H*4/11,70,50);
 	Pluie->Table[1]->t=Creation_image(renderer,lire_Rect(Pluie->Table[1],1),Select_Pluie,10,H*4/11,70,50);
@@ -376,23 +390,36 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 			bt_deck_panda->det(bt_deck_panda);
 			bt_deck_jardi->det(bt_deck_jardi);
 			bt_deck_tuile->det(bt_deck_tuile);
+			printf("Je debug 1\n");
 			for(int ligne=0;ligne<NBTUILES;ligne++){
 				hexagonal[ligne]->det(hexagonal[ligne]);
 			}
+			free(*hexagonal);
+			(*hexagonal)=NULL;
+			printf("Je debug 2\n");
 			for(int i=0;i<nbJoueur;i++){
 				AffJoueur[i]->det(AffJoueur[i]);
 			}
-			if(NULL!=renderer)
+			free(*AffJoueur);
+			(*AffJoueur)=NULL;
+			printf("Je debug 3\n");
+			if(NULL!=renderer){
+				printf("Je debug 3.1\n");
 				SDL_DestroyRenderer(renderer);
-			if(NULL!=pWindow)
+			}
+			printf("Je debug 4\n");
+			if(NULL!=pWindow){
+				printf("Je debug 4.1\n");
 				SDL_DestroyWindow(pWindow);
+			}
 			IMG_Quit();
 			TTF_Quit();
 			SDL_Quit();
+			printf("Je debug 5\n");
 			suprimer(nbJoueur);
 		}
 		for(int i=0;i<nbJoueur;i++){
-			for(int j=0;j<17;j++){
+			for(int j=0;j<19;j++){
 				SDL_RenderCopy(renderer,lire_Texture(AffJoueur[i]->Table[j]),NULL,lire_Rect(AffJoueur[i]->Table[j],1));
 			}
 		}
@@ -408,6 +435,15 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 					if(Select_hexa(renderer,(tuile_show->Table[k]),(*Select_case->Table),x,y)&& Clic)
 					{
 						parcelle=k;
+						for(int i=0;i<20;i++){
+							tuile_pose[i].x=-1;
+							tuile_pose[i].y=-1;
+						}
+						pose_tuiles_possible(tuile_pose);
+						for(int i=0;i<20;i++){
+							printf("|x= %d y= %d | ",tuile_pose[i].x,tuile_pose[i].y);
+						}
+						printf("\n");
 						pose_pace=2;
 					}
 				}
@@ -417,10 +453,39 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 			}
 		
 
-			SDL_RenderCopy(renderer,lire_Texture(AffJoueur[compteur_tour]->Table[17]),NULL,lire_Rect(AffJoueur[compteur_tour]->Table[17],1));
+			SDL_RenderCopy(renderer,lire_Texture(AffJoueur[compteur_tour]->Table[19]),NULL,lire_Rect(AffJoueur[compteur_tour]->Table[19],1));
 			for(int j=0;j<TAILLE_MAIN;j++){
-				if(MainsJoueur[compteur_tour]->Table[j]!=NULL)
+				if(MainsJoueur[compteur_tour]->Table[j]!=NULL && J[compteur_tour]->main_J[j]!=NULL){
 					SDL_RenderCopy(renderer,lire_Texture(MainsJoueur[compteur_tour]->Table[j]),NULL,lire_Rect(MainsJoueur[compteur_tour]->Table[j],1));
+					if((J[compteur_tour]->main_J[j])->verif(J[compteur_tour]->main_J[j],J[compteur_tour])){
+						if(plus_bout(renderer,MainsJoueur[compteur_tour]->Table[j],Select,x,y) && Clic){
+							J[compteur_tour]->valide[J[compteur_tour]->nbObjectif]=J[compteur_tour]->main_J[j];
+							J[compteur_tour]->nbObjectif++;
+							J[compteur_tour]->main_J[j]=NULL;
+							J[compteur_tour]->score=nb_point_joueur(J[compteur_tour]);
+							if(compteur_tour%2!=0){
+								//Joueur 4
+								if(compteur_tour==3){
+									AffJoueur[compteur_tour]=Creation_Joueur(renderer,W*3/4,H*8/11,compteur_tour);
+								}
+								//Joueur 2
+								else{
+									AffJoueur[compteur_tour]=Creation_Joueur(renderer,W*3/4,0,compteur_tour);
+								}
+							}
+							else{
+								//Joueur 3
+								if(compteur_tour==2){
+									AffJoueur[compteur_tour]=Creation_Joueur(renderer,W*(3/4),H*8/11,compteur_tour);
+								}
+								//Joueur 1
+								else{
+									AffJoueur[compteur_tour]=Creation_Joueur(renderer,W*(3/4),0,compteur_tour);
+								}
+							}
+						}
+					}
+				}
 			}
 			if(!choix)
 				meteo=rand()%7;
@@ -681,14 +746,14 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 				
 				if(bout(renderer,bt_deck_jardi,x,y)&&Clic)
 				{
-						joueur_pioche_carte(J[compteur_tour],1);
+						joueur_pioche_carte(J[compteur_tour],2);
 						demande_carte=2;
 				}
 				
 				if(bout(renderer,bt_deck_tuile,x,y)&&Clic)
 				{
 						
-					joueur_pioche_carte(J[compteur_tour],2);
+					joueur_pioche_carte(J[compteur_tour],1);
 					demande_carte=2;
 				}
 				if(demande_carte==2){
@@ -777,25 +842,30 @@ static void affiche_Plato(int W,int H,int nbJoueur,int maxpoint){
 						newTail=0;
 					}
 					SDL_RenderCopy(renderer,(hexagonal[ligne]->Table[colone])->t,NULL,lire_Rect((hexagonal[ligne]->Table[colone]),1));
-					if(!pose_tuile_impossible(ligne,colone) && pose_pace==2 ){
-						if(Select_hexa(renderer,(hexagonal[ligne]->Table[colone]),(*Select_case->Table),x,y) && Clic){
-							plateau[ligne][colone]=(aff_case[parcelle]);
-							(hexagonal[ligne]->Table[colone])->t= IMG_LoadTexture(renderer, (aff_case[parcelle])->image);
-							tuile_show->det(tuile_show);
-							for(int j=0;j<3;j++){
-								if(j!=parcelle){
-									ajouter(aff_case[j]);
+					if(pose_pace==2){
+						for(int i=0;i<20;i++){
+							if(tuile_pose[i].x==ligne && tuile_pose[i].y==colone){
+								if(Select_hexa(renderer,(hexagonal[ligne]->Table[colone]),(*Select_case->Table),x,y) && Clic){
+									ajout_tuile(aff_case[parcelle],ligne,colone);
+									(hexagonal[ligne]->Table[colone])->t= IMG_LoadTexture(renderer, (aff_case[parcelle])->image);
+									tuile_show->det(tuile_show);
+									for(int j=0;j<3;j++){
+										if(j!=parcelle){
+											ajouter(aff_case[j]);
+										}
+									}
+									free(*aff_case);
+									*aff_case=NULL;
+									if((hexagonal[ligne]->Table[colone])->t==NULL){
+										fprintf ( stderr , " Erreur au niveau de l'image: %s \n " , TTF_GetError ());
+										exit ( EXIT_FAILURE );
+									}
+									ajout_bambou_plato(ligne,colone);
+									pose_pace=3;
 								}
 							}
-							free(*aff_case);
-							*aff_case=NULL;
-							if((hexagonal[ligne]->Table[colone])->t==NULL){
-								fprintf ( stderr , " Erreur au niveau de l'image: %s \n " , TTF_GetError ());
-								exit ( EXIT_FAILURE );
-							}
-							ajout_bambou_plato(ligne,colone);
-							pose_pace=3;
 						}
+						//actual_irig(ligne,colone);
 					}
 					if(!deplacement_imposible(panda.x,panda.y,ligne,colone) && panda_bouge==1){
 						if(Select_hexa(renderer,(hexagonal[ligne]->Table[colone]),(*Select_case->Table),x,y) && Clic){
@@ -986,7 +1056,7 @@ extern void selecte_nb_joueur(int W,int H){
 		exit ( EXIT_FAILURE );
 	}
 
-	bouton2->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton2->Table[0],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,"3 Jouer",Blanc,W*1/3,H*1/5+H*1/9);
+	bouton2->Table[0]->t=Creation_Text(renderer,lire_Rect(bouton2->Table[0],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD,"3 Joueur",Blanc,W*1/3,H*1/5+H*1/9);
 	bouton2->Table[1]->t=Creation_Text(renderer,lire_Rect(bouton2->Table[1],1),"image/police/Takenoko.TTF",60,TTF_STYLE_BOLD|TTF_STYLE_UNDERLINE,"Select 3 J",Blanc,W*1/3,H*1/5+H*1/9);
 	if ( bouton2->Table[0]->t == NULL||bouton2->Table[1]->t == NULL ){
 		printf("\t\tJe n'arrive pas à charger bouton2\n");

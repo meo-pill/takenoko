@@ -35,4 +35,5 @@ int ajout_tuile(case_plato_t * case_choix, int const x, int const y);
  */
 extern void ranger(int * xa, int * ya, int * xb, int * yb);
 
+void actual_irig(int const x, int const y);
 #endif
